@@ -211,7 +211,7 @@ function teaching_status_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'Teaching Status', array( 'program' ), $args );
+	register_taxonomy( 'teaching_status', array( 'program' ), $args );
 
 }
 add_action( 'init', 'teaching_status_tax', 0 );
@@ -250,7 +250,7 @@ function region_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'Region', array( 'program' ), $args );
+	register_taxonomy( 'region', array( 'program' ), $args );
 
 }
 add_action( 'init', 'region_tax', 0 );
@@ -289,7 +289,7 @@ function active_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'Active', array( 'program' ), $args );
+	register_taxonomy( 'active', array( 'program' ), $args );
 
 }
 add_action( 'init', 'active_tax', 0 );
@@ -329,7 +329,7 @@ function partners_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'Partners', array( 'program' ), $args );
+	register_taxonomy( 'partners', array( 'program' ), $args );
 
 }
 add_action( 'init', 'partners_tax', 0 );
@@ -408,7 +408,7 @@ function target_pop_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'Target Pop', array( 'program' ), $args );
+	register_taxonomy( 'target_pop', array( 'program' ), $args );
 
 }
 add_action( 'init', 'target_pop_tax', 0 );
@@ -447,7 +447,7 @@ function program_setting_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'Program Setting', array( 'program' ), $args );
+	register_taxonomy( 'program_setting', array( 'program' ), $args );
 
 }
 add_action( 'init', 'program_setting_tax', 0 );
@@ -486,7 +486,7 @@ function pop_size_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'Pop Size', array( 'program' ), $args );
+	register_taxonomy( 'pop_size', array( 'program' ), $args );
 
 }
 add_action( 'init', 'pop_size_tax', 0 );
@@ -525,7 +525,7 @@ function percent_below_fpl_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( '% Below FPL', array( 'program' ), $args );
+	register_taxonomy( 'percent_below_fpl', array( 'program' ), $args );
 
 }
 add_action( 'init', 'percent_below_fpl_tax', 0 );
@@ -564,7 +564,7 @@ function percent_uninsured_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( '% Uninsured', array( 'program' ), $args );
+	register_taxonomy( 'percent_uninsured', array( 'program' ), $args );
 
 }
 add_action( 'init', 'percent_uninsured_tax', 0 );
