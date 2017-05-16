@@ -1,0 +1,54 @@
+// Base Styles
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// NOTE
+// html is set to 62.5% so that all the REM measurements throughout Skeleton
+// are based on 10px sizing. So basically 1.5rem = 15px :)
+ 
+html {
+  font-size: 62.5%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+}
+
+body {
+  font-size: 1.4em; // currently ems cause chrome bug misinterpreting rems on body element
+  line-height: 1.428;
+  font-weight: 100;
+  //font-family: $proxima;
+ 
+
+  //color: $font-color;
+}
+
+// Links
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+a {
+  //color: $red;
+  text-decoration: none;
+  &:hover {
+    //color: $red;
+    text-decoration: underline;
+  }
+}
+
+// Misc
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+ // border-top: 1px solid $light-grey;
+}
+
+img{
+  //max-width: 100%;
+}
+
+li{
+    list-style-type: circle;
+ 
+}

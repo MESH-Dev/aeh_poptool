@@ -1,0 +1,28 @@
+// Variables
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// Breakpoints
+// Example Usage: @media($bp-smaller-than-tablet) { ... }
+$bp-larger-than-mobile    : "min-width: 480px" !default;
+$bp-larger-than-phablet   : "min-width: 550px" !default;
+$bp-larger-than-tablet    : "min-width: 750px" !default;
+$bp-larger-than-desktop   : "min-width: 1000px" !default;
+$bp-larger-than-desktophd : "min-width: 1200px" !default;
+
+$bp-smaller-than-desktop : "max-width: 1060px" !default;
+$bp-smaller-than-tablet : "max-width: 750px" !default;
+$bp-smaller-than-mobile : "max-width: 480px" !default;
+$bp-smaller-than-phablet   : "max-width: 550px" !default;
+
+// Colors
+$red: #a42126 !default;
+$white: #FFFFFF !default;
+$black: #000000 !default;
+
+
+//Fonts
+$proxima: "proxima-nova",sans-serif;
+
+
+// Misc
+//$global-radius: 4px !default;
