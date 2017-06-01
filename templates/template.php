@@ -66,189 +66,558 @@
       </div> -->
    </div>
    <div id="listingInterface" class="listing-interface">
-      <div class="search-container">
-         <input type="text" name="" value="" placeholder="Search">
-         <input type="submit" name="" value="»">
-      </div>
-      <div class="filter-pretext">
-         <p id="filter-by">FILTER BY:</p>
-         <a id="filterClear" href="#">CLEAR ALL X</a>
-      </div>
-      <div class="trigger-container">
-         <a class="dropdown-trigger" id="hospitalTrigger">
-            HOSPITAL
-            <span>»</span>
-         </a><a class="dropdown-trigger" id="communityTrigger">
-            COMMUNITY
-            <span>»</span>
-         </a><a class="dropdown-trigger" id="programTrigger">
-            PROGRAM
-            <span>»</span>
-         </a>
+      <div id="selectionView">
+         <div class="search-container">
+            <input type="text" name="" value="" placeholder="Search">
+            <input type="submit" name="" value="»">
+         </div>
+         <div class="filter-pretext">
+            <p id="filter-by">FILTER BY:</p>
+            <a id="filterClear" href="#">CLEAR ALL X</a>
+         </div>
+         <div class="trigger-container">
+            <a class="dropdown-trigger" id="hospitalTrigger">
+               HOSPITAL
+               <span>»</span>
+            </a><a class="dropdown-trigger" id="communityTrigger">
+               COMMUNITY
+               <span>»</span>
+            </a><a class="dropdown-trigger" id="programTrigger">
+               PROGRAM
+               <span>»</span>
+            </a>
+         </div>
+         <div id="nonFilterContent">
+            <div class="filter-posttext">
+               <p id="results-indicator">10 RESULTS:</p>
+               <div class="category">
+                  <p>Housing Instability</p>
+                  <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
+                  </svg>
+               </div><div class="category">
+                           <p>Housing Instability</p>
+                           <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                               <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
+                           </svg>
+                        </div>
+            </div>
+            <div class="listing-blocks-container">
+               <ul class="listing-blocks">
+                  <a href="#"><li class="indiv-block">
+                     <div class="block-interior">
+                        <div class="category">
+                           <p>Housing Instability</p>
+                           <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                               <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
+                           </svg>
+                        </div>
+                        <h2>Housing in Healthcare</h2>
+                        <p class="hospital">UVM Health Network</p>
+                        <p class="location">Burlington, Vermont</p>
+                     </div>
+                  </li></a>
+                  <a href="#"><li class="indiv-block">
+                     <div class="block-interior">
+                        <div class="category">
+                           <p>Housing Instability</p>
+                           <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                               <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
+                           </svg>
+                        </div>
+                        <h2>Preventative Food Pantry/Food Demonstration Kitchen</h2>
+                        <p class="hospital">UVM Health Network</p>
+                        <p class="location">Burlington, Vermont</p>
+                     </div>
+                  </li></a>
+                  <a href="#"><li class="indiv-block">
+                     <div class="block-interior">
+                        <div class="category">
+                           <p>Housing Instability</p>
+                           <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                               <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
+                           </svg>
+                        </div>
+                        <h2>Housing in Healthcare</h2>
+                        <p class="hospital">UVM Health Network</p>
+                        <p class="location">Burlington, Vermont</p>
+                     </div>
+                  </li></a>
+                  <a href="#"><li class="indiv-block">
+                     <div class="block-interior">
+                        <div class="category">
+                           <p>Housing Instability</p>
+                           <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                               <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
+                           </svg>
+                        </div>
+                        <h2>Housing in Healthcare</h2>
+                        <p class="hospital">UVM Health Network</p>
+                        <p class="location">Burlington, Vermont</p>
+                     </div>
+                  </li></a>
+                  <a href="#"><li class="indiv-block">
+                     <div class="block-interior">
+                        <div class="category">
+                           <p>Housing Instability</p>
+                           <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                               <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
+                           </svg>
+                        </div>
+                        <h2>Housing in Healthcare</h2>
+                        <p class="hospital">UVM Health Network</p>
+                        <p class="location">Burlington, Vermont</p>
+                     </div>
+                  </li></a>
+                  <a href="#"><li class="indiv-block">
+                     <div class="block-interior">
+                        <div class="category">
+                           <p>Housing Instability</p>
+                           <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                               <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
+                           </svg>
+                        </div>
+                        <h2>Housing in Healthcare</h2>
+                        <p class="hospital">UVM Health Network</p>
+                        <p class="location">Burlington, Vermont</p>
+                     </div>
+                  </li></a>
+                  <a href="#"><li class="indiv-block">
+                     <div class="block-interior">
+                        <div class="category">
+                           <p>Housing Instability</p>
+                           <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                               <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
+                           </svg>
+                        </div>
+                        <h2>Housing in Healthcare</h2>
+                        <p class="hospital">UVM Health Network</p>
+                        <p class="location">Burlington, Vermont</p>
+                     </div>
+                  </li></a>
+                  <a href="#"><li class="indiv-block">
+                     <div class="block-interior">
+                        <div class="category">
+                           <p>Housing Instability</p>
+                           <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                               <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
+                           </svg>
+                        </div>
+                        <h2>Housing in Healthcare</h2>
+                        <p class="hospital">UVM Health Network</p>
+                        <p class="location">Burlington, Vermont</p>
+                     </div>
+                  </li></a>
+               </ul>
+            </div>
+         </div>
       </div>
       <div class="filters" id="filterContainer">
          <div id="hospitalFilters">
             <form class="" action="" method="">
-               <select>
+               <select class="filter-select">
                   <option value="">dsfgdf</option>
                   <option value="">dsfgdf</option>
                   <option value="">dsfgdf</option>
                   <option value="">dsfgdf</option>
                   <option value="">dsfgdf</option>
                </select>
-               <input type="radio" name="frequency" value="daily">hospital<br>
-               <input type="radio" name="frequency" value="weekly">hospital<br>
-               <input type="radio" name="frequency" value="monthly">hospital<br>
-               <input type="radio" name="frequency" value="yearly">krankenhaus
+               <div class="radio-buttons">
+                  <label>
+                     <input type="radio" name="first" value="daily">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="first" value="weekly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="first" value="monthly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <div class="checkboxes">
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <input type="range">
+               <div class="radio-buttons">
+                  <label>
+                     <input type="radio" name="second" value="daily">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="second" value="weekly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="second" value="monthly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <div class="checkboxes">
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <input type="range">
+               <div class="radio-buttons">
+                  <label>
+                     <input type="radio" name="third" value="daily">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="third" value="weekly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="third" value="monthly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <div class="checkboxes">
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <input type="range">
+               <div class="radio-buttons">
+                  <label>
+                     <input type="radio" name="fourth" value="daily">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="fourth" value="weekly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="fourth" value="monthly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <div class="checkboxes">
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <input type="range">
+               <div class="radio-buttons">
+                  <label>
+                     <input type="radio" name="fifth" value="daily">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="fifth" value="weekly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="fifth" value="monthly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <div class="checkboxes">
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <input type="range">
+               <div class="radio-buttons">
+                  <label>
+                     <input type="radio" name="sixth" value="daily">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="sixth" value="weekly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="sixth" value="monthly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <div class="checkboxes">
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <input type="range">
+               <div class="radio-buttons">
+                  <label>
+                     <input type="radio" name="seventh" value="daily">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="seventh" value="weekly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="radio" name="seventh" value="monthly">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <div class="checkboxes">
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Hospital
+                  </label>
+               </div>
+               <input type="range">
             </form>
          </div>
          <div id="communityFilters">
             <form class="" action="" method="">
-               <select>
+               <select class="filter-select">
                   <option value="">dsfgdf</option>
                   <option value="">dsfgdf</option>
                   <option value="">dsfgdf</option>
                   <option value="">dsfgdf</option>
                   <option value="">dsfgdf</option>
                </select>
-               <input type="radio" name="frequency" value="daily">community<br>
-               <input type="radio" name="frequency" value="weekly">community<br>
-               <input type="radio" name="frequency" value="monthly">community<br>
-               <input type="radio" name="frequency" value="yearly">communiter
+               <div class="radio-buttons">
+                  <label>
+                     <input type="radio" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     Community
+                  </label>
+                  <label>
+                     <input type="radio" name="frequency" value="weekly">
+                     <div class="indicator"></div>
+                     Community
+                  </label>
+                  <label>
+                     <input type="radio" name="frequency" value="monthly">
+                     <div class="indicator"></div>
+                     Community
+                  </label>
+               </div>
+               <div class="checkboxes">
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Community
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Community
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Community
+                  </label>
+               </div>
             </form>
          </div>
          <div id="programFilters">
             <form class="" action="" method="">
-               <select>
+               <select class="filter-select">
                   <option value="">dsfgdf</option>
                   <option value="">dsfgdf</option>
                   <option value="">dsfgdf</option>
                   <option value="">dsfgdf</option>
                   <option value="">dsfgdf</option>
                </select>
-               <input type="radio" name="frequency" value="daily">program<br>
-               <input type="radio" name="frequency" value="weekly">program<br>
-               <input type="radio" name="frequency" value="monthly">program<br>
-               <input type="radio" name="frequency" value="yearly">beer
+               <div class="radio-buttons">
+                  <label>
+                     <input type="radio" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     Program
+                  </label>
+                  <label>
+                     <input type="radio" name="frequency" value="weekly">
+                     <div class="indicator"></div>
+                     Program
+                  </label>
+                  <label>
+                     <input type="radio" name="frequency" value="monthly">
+                     <div class="indicator"></div>
+                     Program
+                  </label>
+               </div>
+               <div class="checkboxes">
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Program
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Program
+                  </label>
+                  <label>
+                     <input type="checkbox" name="" value="">
+                     <div class="indicator"></div>
+                     Program
+                  </label>
+               </div>
             </form>
          </div>
       </div>
-      <div id="nonFilterContent">
-         <div class="filter-posttext">
-            <p id="results-indicator">10 RESULTS:</p>
+      <div class="filter-bottom-nav" id="filterBottomNav">
+         <div class="filter-nav-border">
+            <a id="cancelFilters">Cancel</a>
+            <a id="applyFilters">Apply Filters »</a>
+         </div>
+      </div>
+      <div id="detailPane">
+         <div class="detail-nav" id="detailNavTop"><div class="detail-nav-border">
+            <svg class="back-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 25">
+               <defs>
+                <style>
+                  .cls-1 {
+                    fill: #0d97d4;
+                    fill-rule: evenodd;
+                  }
+                </style>
+               </defs>
+               <path class="cls-1" d="M56,2223l-12,11.94L56,2248v-4.28l-7.925-8.78L56,2226.83V2223Z" transform="translate(-44 -2223)"/>
+            </svg><p class="back-button">BACK</p>
+            <p class="program-hospital">Boston Medical Center | Boston, Massachusetts</p>
+         </div></div>
+         <div id="detailPaneContent" class="detail-view-content">
             <div class="category">
                <p>Housing Instability</p>
                <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                    <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
                </svg>
-            </div><div class="category">
-                        <p>Housing Instability</p>
-                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
-                        </svg>
-                     </div>
+            </div>
+            <h1>Preventative Food Pantry/Food Demonstration Kitchen</h1>
+               <div class="row program-info-row">
+                  <h4>DETAILS</h4>
+                  <div class="columns-3">
+                     <p>Bed Size:</p>
+                     <p>Designation:</p>
+                     <p>Payer Mix:</p>
+                     <p>Social Determinant:</p>
+                     <p>Target Populations:</p>
+                     <p>Program Settings:</p>
+                  </div>
+                  <div class="columns-5">
+                     <p>300</p>
+                     <p>Non-Profit, Academic Medical Center</p>
+                     <p>50% Medicaid</p>
+                     <p>Housing</p>
+                     <p>Adults, Families</p>
+                     <p>Hospital, Community</p>
+                  </div>
+               </div>
+               <p class="program-info-row">UVM Health Network worked with local partners to acquire a vacant motel and create Harbor Place. Now, homeless patients who have been discharged from the hospital have a temporary place to stay in the motel. Most important, as part of their tenancy at Harbor Place, individuals staying there can access case management provided by a coalition of community-based agencies and targeted at improving their social and health care needs. As of 2016, about 100 patients have been discharged to Harbor Place, and UVM Medical Center estimated it has saved about $1 million in care costs as a result.</p>
+               <h4>PARTNERS</h4>
+               <p>Champlain Housing Trust</p>
+               <p>Community Health Centers of Burlington</p>
+               <p>United Way</p>
+               <p>Howard Center</p>
          </div>
-         <div class="listing-blocks-container">
-            <ul class="listing-blocks">
-               <a href="#"><li class="indiv-block">
-                  <div class="block-interior">
-                     <div class="category">
-                        <p>Housing Instability</p>
-                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
-                        </svg>
-                     </div>
-                     <h2>Housing in Healthcare</h2>
-                     <p class="hospital">UVM Health Network</p>
-                     <p class="location">Burlington, Vermont</p>
-                  </div>
-               </li></a><a href="#"><li class="indiv-block">
-                  <div class="block-interior">
-                     <div class="category">
-                        <p>Housing Instability</p>
-                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
-                        </svg>
-                     </div>
-                     <h2>Preventative Food Pantry/Food Demonstration Kitchen</h2>
-                     <p class="hospital">UVM Health Network</p>
-                     <p class="location">Burlington, Vermont</p>
-                  </div>
-               </li></a><a href="#"><li class="indiv-block">
-                  <div class="block-interior">
-                     <div class="category">
-                        <p>Housing Instability</p>
-                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
-                        </svg>
-                     </div>
-                     <h2>Housing in Healthcare</h2>
-                     <p class="hospital">UVM Health Network</p>
-                     <p class="location">Burlington, Vermont</p>
-                  </div>
-               </li></a><a href="#"><li class="indiv-block">
-                  <div class="block-interior">
-                     <div class="category">
-                        <p>Housing Instability</p>
-                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
-                        </svg>
-                     </div>
-                     <h2>Housing in Healthcare</h2>
-                     <p class="hospital">UVM Health Network</p>
-                     <p class="location">Burlington, Vermont</p>
-                  </div>
-               </li></a><a href="#"><li class="indiv-block">
-                  <div class="block-interior">
-                     <div class="category">
-                        <p>Housing Instability</p>
-                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
-                        </svg>
-                     </div>
-                     <h2>Housing in Healthcare</h2>
-                     <p class="hospital">UVM Health Network</p>
-                     <p class="location">Burlington, Vermont</p>
-                  </div>
-               </li></a><a href="#"><li class="indiv-block">
-                  <div class="block-interior">
-                     <div class="category">
-                        <p>Housing Instability</p>
-                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
-                        </svg>
-                     </div>
-                     <h2>Housing in Healthcare</h2>
-                     <p class="hospital">UVM Health Network</p>
-                     <p class="location">Burlington, Vermont</p>
-                  </div>
-               </li></a><a href="#"><li class="indiv-block">
-                  <div class="block-interior">
-                     <div class="category">
-                        <p>Housing Instability</p>
-                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
-                        </svg>
-                     </div>
-                     <h2>Housing in Healthcare</h2>
-                     <p class="hospital">UVM Health Network</p>
-                     <p class="location">Burlington, Vermont</p>
-                  </div>
-               </li></a><a href="#"><li class="indiv-block">
-                  <div class="block-interior">
-                     <div class="category">
-                        <p>Housing Instability</p>
-                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
-                        </svg>
-                     </div>
-                     <h2>Housing in Healthcare</h2>
-                     <p class="hospital">UVM Health Network</p>
-                     <p class="location">Burlington, Vermont</p>
-                  </div>
-               </li></a>
-            </ul>
-         </div>
+         <div class="detail-nav" id="detailNavBottom"><div class="detail-nav-border">
+            <a class="contact-button" href="mailto:example@example.com">Contact a Representative »</a>
+         </div></div>
       </div>
    </div>
    <div id="map"></div>
