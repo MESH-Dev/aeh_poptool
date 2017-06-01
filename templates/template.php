@@ -1,16 +1,7 @@
 <?php /* Template Name: Static Template*/ ?>
-<!DOCTYPE html>
-<html>
-<head>
-   <title>AEH Population Health Tool</title>
-   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-   <meta charset="utf-8">
-   <link href='https://fonts.googleapis.com/css?family=Cabin:400,600,700' rel='stylesheet' type='text/css'>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
-   <script src="https://rawgit.com/GoogleChrome/flipjs/master/dist/flip.js"></script>
-   <link rel="stylesheet" href="style.css">
-</head>
-<body>
+
+get_header();
+<main id="content">
    <div class="navigation-bar">
       <div class="navigation-logo">
          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 805 373.22">
@@ -622,9 +613,5 @@
       </div>
    </div>
    <div id="map"></div>
-
-<script src="js/map.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXR8bORut0sXyoust5FWnhi-9TA8TWktw&callback=initMap"></script>
-<script async defer src="js/main.js"></script>
-</body>
-</html>
+</main>
+<?php get_footer(); ?>
