@@ -1,6 +1,6 @@
-<?php /* Template Name: Static Template*/ ?>
+<?php /* Template Name: Static Template*/ 
 
-get_header();
+get_header();?>
 <main id="content">
    <div class="navigation-bar">
       <div class="navigation-logo">
