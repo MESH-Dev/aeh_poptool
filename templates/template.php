@@ -1,3 +1,4 @@
+<?php /* Template Name: Static Template*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
