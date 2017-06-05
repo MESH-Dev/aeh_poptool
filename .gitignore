@@ -3,3 +3,4 @@ node_modules/
 sitemap.xml
 *.log
 .DS_Store
+/helpers/*.json
