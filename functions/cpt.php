@@ -39,7 +39,7 @@ function program_custom_post() {
 		'description'           => __( 'Custom AEH Population Health Tool post type for individual programs', 'text_domain' ),
 		'labels'                => $labels,
 		'supports'              => array( ),
-		//'taxonomies'            => array( 'Bed Size', ' % Gov Payer', ' Ownership', 'Teaching Status', 'Region', 'Active', 'Partners', 'SDH', 'Target Pop', 'Program Setting', 'Pop Size', '% Below FPL', '% Uninsured' ),
+		'taxonomies'            => array('Active', 'Partners', 'SDH', 'Target Pop', 'Program Setting'),
 		'hierarchical'          => true,
 		'public'                => true,
 		'show_ui'               => true,
@@ -96,7 +96,7 @@ function hospital_custom_post() {
 		'description'           => __( 'Custom AEH Population Health Tool post type for individual hospitals', 'text_domain' ),
 		'labels'                => $labels,
 		'supports'              => array( ),
-		'taxonomies'            => array( 'Bed Size', ' % Gov Payer', ' Ownership', 'Teaching Status', 'Region', 'Active', 'Partners', 'SDH', 'Target Pop', 'Program Setting', 'Pop Size', '% Below FPL', '% Uninsured' ),
+		'taxonomies'            => array( 'Bed Size', ' % Gov Payer', ' Ownership', 'Teaching Status', 'Region', 'Pop Size', '% Below FPL', '% Uninsured' ),
 		'hierarchical'          => true,
 		'public'                => true,
 		'show_ui'               => true,
@@ -346,7 +346,7 @@ function active_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'active', array( 'hospital' ), $args );
+	register_taxonomy( 'active', array( 'program' ), $args );
 
 }
 add_action( 'init', 'active_tax', 0 );
@@ -386,7 +386,7 @@ function partners_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'partners', array( 'hospital' ), $args );
+	register_taxonomy( 'partners', array( 'program'  ), $args );
 
 }
 add_action( 'init', 'partners_tax', 0 );
@@ -426,7 +426,7 @@ function sdh_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'sdh', array( 'hospital' ), $args );
+	register_taxonomy( 'sdh', array( 'program'  ), $args );
 
 }
 add_action( 'init', 'sdh_tax', 0 );
@@ -465,7 +465,7 @@ function target_pop_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'target_pop', array( 'hospital' ), $args );
+	register_taxonomy( 'target_pop', array( 'program' ), $args );
 
 }
 add_action( 'init', 'target_pop_tax', 0 );
@@ -504,7 +504,7 @@ function program_setting_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'program_setting', array( 'hospital' ), $args );
+	register_taxonomy( 'program_setting', array( 'program'  ), $args );
 
 }
 add_action( 'init', 'program_setting_tax', 0 );
