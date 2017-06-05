@@ -66,5 +66,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     // tasks that will be triggered with [grunt] in the cli
-    grunt.registerTask('default', ['compass','browserSync', 'concat:js', 'uglify:js','watch']);
+    grunt.registerTask('default', ['compass','watch']);
 };

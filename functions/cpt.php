@@ -20,7 +20,7 @@ function program_custom_post() {
 		'edit_item'             => __( 'Edit Program', 'text_domain' ),
 		'update_item'           => __( 'Update Program', 'text_domain' ),
 		'view_item'             => __( 'View Program', 'text_domain' ),
-		'view_items'            => __( 'ViewPrograms', 'text_domain' ),
+		'view_items'            => __( 'View Programs', 'text_domain' ),
 		'search_items'          => __( 'Search Programs', 'text_domain' ),
 		'not_found'             => __( 'Program Not found', 'text_domain' ),
 		'not_found_in_trash'    => __( 'Program Not found in Trash', 'text_domain' ),
@@ -39,7 +39,7 @@ function program_custom_post() {
 		'description'           => __( 'Custom AEH Population Health Tool post type for individual programs', 'text_domain' ),
 		'labels'                => $labels,
 		'supports'              => array( ),
-		'taxonomies'            => array( 'Bed Size', ' % Gov Payer', ' Ownership', 'Teaching Status', 'Region', 'Active', 'Partners', 'SDH', 'Target Pop', 'Program Setting', 'Pop Size', '% Below FPL', '% Uninsured' ),
+		//'taxonomies'            => array( 'Bed Size', ' % Gov Payer', ' Ownership', 'Teaching Status', 'Region', 'Active', 'Partners', 'SDH', 'Target Pop', 'Program Setting', 'Pop Size', '% Below FPL', '% Uninsured' ),
 		'hierarchical'          => true,
 		'public'                => true,
 		'show_ui'               => true,
@@ -58,6 +58,63 @@ function program_custom_post() {
 
 }
 add_action( 'init', 'program_custom_post', 0 );
+
+//Custom post type PROGRAMS
+function hospital_custom_post() {
+
+	$labels = array(
+		'name'                  => _x( 'Hospitals', 'Post Type General Name', 'text_domain' ),
+		'singular_name'         => _x( 'Hospital', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'             => __( 'Hospitals', 'text_domain' ),
+		'name_admin_bar'        => __( 'Hospitals', 'text_domain' ),
+		'archives'              => __( 'Hospital Archives', 'text_domain' ),
+		'attributes'            => __( 'Hospital Attributes', 'text_domain' ),
+		'parent_item_colon'     => __( 'Parent Hospital:', 'text_domain' ),
+		'all_items'             => __( 'All Hospitals', 'text_domain' ),
+		'add_new_item'          => __( 'Add New Hospitals', 'text_domain' ),
+		'add_new'               => __( 'Add New Hospital', 'text_domain' ),
+		'new_item'              => __( 'New Hospital', 'text_domain' ),
+		'edit_item'             => __( 'Edit Hospital', 'text_domain' ),
+		'update_item'           => __( 'Update Hospital', 'text_domain' ),
+		'view_item'             => __( 'View Hospital', 'text_domain' ),
+		'view_items'            => __( 'View Hospitals', 'text_domain' ),
+		'search_items'          => __( 'Search Hospitals', 'text_domain' ),
+		'not_found'             => __( 'Hospital Not found', 'text_domain' ),
+		'not_found_in_trash'    => __( 'Hospital Not found in Trash', 'text_domain' ),
+		'featured_image'        => __( 'Featured Image', 'text_domain' ),
+		'set_featured_image'    => __( 'Set featured image', 'text_domain' ),
+		'remove_featured_image' => __( 'Remove featured image', 'text_domain' ),
+		'use_featured_image'    => __( 'Use as featured image', 'text_domain' ),
+		'insert_into_item'      => __( 'Insert into item', 'text_domain' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this item', 'text_domain' ),
+		'items_list'            => __( 'Items list', 'text_domain' ),
+		'items_list_navigation' => __( 'Items list navigation', 'text_domain' ),
+		'filter_items_list'     => __( 'Filter items list', 'text_domain' ),
+	);
+	$args = array(
+		'label'                 => __( 'Hospital', 'text_domain' ),
+		'description'           => __( 'Custom AEH Population Health Tool post type for individual hospitals', 'text_domain' ),
+		'labels'                => $labels,
+		'supports'              => array( ),
+		'taxonomies'            => array( 'Bed Size', ' % Gov Payer', ' Ownership', 'Teaching Status', 'Region', 'Active', 'Partners', 'SDH', 'Target Pop', 'Program Setting', 'Pop Size', '% Below FPL', '% Uninsured' ),
+		'hierarchical'          => true,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 5,
+		'menu_icon'             => 'dashicons-admin-post',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'has_archive'           => true,		
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'capability_type'       => 'page',
+	);
+	register_post_type( 'hospital', $args );
+
+}
+add_action( 'init', 'hospital_custom_post', 0 );
 
 // Register Bed Size Tax
 function bed_size_tax() {
@@ -93,7 +150,7 @@ function bed_size_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'bed_size', array( 'program' ), $args );
+	register_taxonomy( 'bed_size', array( 'hospital' ), $args );
 
 }
 add_action( 'init', 'bed_size_tax', 0 );
@@ -132,7 +189,7 @@ function percent_govt_payer_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'percent_govt_payer', array( 'program' ), $args );
+	register_taxonomy( 'percent_govt_payer', array( 'hospital' ), $args );
 
 }
 add_action( 'init', 'percent_govt_payer_tax', 0 );
@@ -172,7 +229,7 @@ function ownership_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'ownership', array( 'program' ), $args );
+	register_taxonomy( 'ownership', array( 'hospital' ), $args );
 
 }
 add_action( 'init', 'ownership_tax', 0 );
@@ -211,7 +268,7 @@ function teaching_status_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'teaching_status', array( 'program' ), $args );
+	register_taxonomy( 'teaching_status', array( 'hospital' ), $args );
 
 }
 add_action( 'init', 'teaching_status_tax', 0 );
@@ -250,7 +307,7 @@ function region_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'region', array( 'program' ), $args );
+	register_taxonomy( 'region', array( 'hospital' ), $args );
 
 }
 add_action( 'init', 'region_tax', 0 );
@@ -289,7 +346,7 @@ function active_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'active', array( 'program' ), $args );
+	register_taxonomy( 'active', array( 'hospital' ), $args );
 
 }
 add_action( 'init', 'active_tax', 0 );
@@ -329,7 +386,7 @@ function partners_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'partners', array( 'program' ), $args );
+	register_taxonomy( 'partners', array( 'hospital' ), $args );
 
 }
 add_action( 'init', 'partners_tax', 0 );
@@ -369,7 +426,7 @@ function sdh_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'sdh', array( 'program' ), $args );
+	register_taxonomy( 'sdh', array( 'hospital' ), $args );
 
 }
 add_action( 'init', 'sdh_tax', 0 );
@@ -408,7 +465,7 @@ function target_pop_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'target_pop', array( 'program' ), $args );
+	register_taxonomy( 'target_pop', array( 'hospital' ), $args );
 
 }
 add_action( 'init', 'target_pop_tax', 0 );
@@ -447,7 +504,7 @@ function program_setting_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'program_setting', array( 'program' ), $args );
+	register_taxonomy( 'program_setting', array( 'hospital' ), $args );
 
 }
 add_action( 'init', 'program_setting_tax', 0 );
@@ -486,7 +543,7 @@ function pop_size_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'pop_size', array( 'program' ), $args );
+	register_taxonomy( 'pop_size', array( 'hospital' ), $args );
 
 }
 add_action( 'init', 'pop_size_tax', 0 );
@@ -525,7 +582,7 @@ function percent_below_fpl_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'percent_below_fpl', array( 'program' ), $args );
+	register_taxonomy( 'percent_below_fpl', array( 'hospital' ), $args );
 
 }
 add_action( 'init', 'percent_below_fpl_tax', 0 );
@@ -564,7 +621,7 @@ function percent_uninsured_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'percent_uninsured', array( 'program' ), $args );
+	register_taxonomy( 'percent_uninsured', array( 'hospital' ), $args );
 
 }
 add_action( 'init', 'percent_uninsured_tax', 0 );
