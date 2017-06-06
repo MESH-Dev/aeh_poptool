@@ -94,7 +94,7 @@ get_header();?>
                            </svg>
                         </div>
             </div>
-            <div class="listing-blocks-container">
+            <!-- <div class="listing-blocks-container">
                <ul class="listing-blocks">
                   <a href="#"><li class="indiv-block">
                      <div class="block-interior">
@@ -201,7 +201,7 @@ get_header();?>
                      </div>
                   </li></a>
                </ul>
-            </div>
+            </div> -->
          </div>
       </div>
       <div class="filters" id="filterContainer">

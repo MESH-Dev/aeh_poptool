@@ -72,161 +72,193 @@ get_header();
          <a id="filterClear" href="#">CLEAR ALL X</a>
       </div>
       <div class="trigger-container">
-         <a class="dropdown-trigger" id="hospitalTrigger">
-            HOSPITAL
-            <span>»</span>
-         </a><a class="dropdown-trigger" id="communityTrigger">
-            COMMUNITY
-            <span>»</span>
-         </a><a class="dropdown-trigger" id="programTrigger">
-            PROGRAM
-            <span>»</span>
-         </a>
+            <a class="dropdown-trigger" id="hospitalTrigger">
+               HOSPITAL
+               <span>»</span>
+            </a><a class="dropdown-trigger" id="communityTrigger">
+               COMMUNITY
+               <span>»</span>
+            </a><a class="dropdown-trigger" id="programTrigger">
+               PROGRAM
+               <span>»</span>
+            </a>
       </div>
       <div class="filters" id="filterContainer">
          <div id="hospitalFilters">
             <form class="" action="" method="">
-               <select>
-
-                  <option value="">Bed Size</option>
-                  <option value="">% Govt Payer</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-               </select>
                <h2>Bed size</h2>
-               <?php $bed_filters= get_terms('bed_size');
+               <div class="checkboxes">
+               <?php $bed_filters= get_terms(array('taxonomy'=>'bed_size', 'hide_empty'=>false));
 
                   foreach ($bed_filters as $bed_filter){ ?>
-               <input type="checkbox" name="frequency" value="daily"><?php echo $bed_filter->name; ?><br>
+                  <label>
+                     <input type="checkbox" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $bed_filter->name; ?>
+                  </label>
                <?php } ?>
-
+               </div>
                 <h2>%Govt payer</h2>
-               <?php $govt_filters= get_terms('percent_govt_payer');
+                <div class="checkboxes">
+               <?php $govt_filters= get_terms(array('taxonomy'=>'percent_govt_payer', 'hide_empty'=>false));
 
                   foreach ($govt_filters as $govt_filter){ ?>
-               <input type="checkbox" name="frequency" value="daily"><?php echo $govt_filter->name; ?><br>
+                  <label>
+                     <input type="checkbox" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $govt_filter->name; ?>
+                  </label>
                <?php } ?>
+               </div>
                 <h2>Ownership</h2>
-               <?php $own_filters= get_terms('ownership');
+                <div class="radio-buttons">
+               <?php $own_filters= get_terms(array('taxonomy'=>'ownership', 'hide_empty'=>false));
 
                   foreach ($own_filters as $own_filter){ ?>
-               <input type="checkbox" name="frequency" value="daily"><?php echo $own_filter->name; ?><br>
+                  <label>
+                     <input type="radio" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $own_filter->name; ?>
+                  </label>
                <?php } ?>
-
+               </div>
                <h2>Teaching Status</h2>
-                <?php $teach_filters= get_terms('teaching_status');
+               <div class="radio-buttons">
+                <?php $teach_filters= get_terms(array('taxonomy'=>'teaching_status', 'hide_empty'=>false));
 
                   foreach ($teach_filters as $teach_filter){ ?>
-               <input type="radio" name="frequency" value="daily"><?php echo $teach_filter->name; ?><br>
+                  <label>
+                     <input type="radio" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $teach_filter->name; ?>
+                  </label>
                <?php } ?>
-
+               </div>
                <h2>Region</h2>
-                <?php $region_filters= get_terms('region');
+               <div class="checkboxes">
+                <?php $region_filters= get_terms(array('taxonomy'=>'region','hide_empty'=>false));
 
                   foreach ($region_filters as $region_filter){ ?>
-               <input type="checkbox" name="frequency" value="daily"><?php echo $region_filter->name; ?><br>
+                  <label>
+                     <input type="checkbox" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $region_filter->name; ?>
+                  </label>
                <?php } ?>
-
-              <!--  <input type="radio" name="frequency" value="weekly">hospital<br>
-               <input type="radio" name="frequency" value="monthly">hospital<br>
-               <input type="radio" name="frequency" value="yearly">krankenhaus
-
-               <input type="checkbox" name="frequency" value="daily">hospital<br>
-               <input type="checkbox" name="frequency" value="daily">hospital<br>
-               <input type="checkbox" name="frequency" value="daily">hospital<br>
-               <input type="checkbox" name="frequency" value="daily">hospital<br>
-               <input type="checkbox" name="frequency" value="daily">hospital<br> -->
+               </div>
             </form>
          </div>
          <div id="communityFilters">
             <form class="" action="" method="">
-              <!--  <select>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-               </select>
-               <input type="radio" name="frequency" value="daily">community<br>
-               <input type="radio" name="frequency" value="weekly">community<br>
-               <input type="radio" name="frequency" value="monthly">community<br>
-               <input type="radio" name="frequency" value="yearly">communiter -->
-
+               <div class="checkboxes">
                 <h2>Pop Size</h2>
-                <?php $pop_filters= get_terms('pop_size');
+                <?php $pop_filters= get_terms(array('taxonomy'=>'pop_size','hide_empty'=>false));
 
                   foreach ($pop_filters as $pop_filter){ ?>
-               <input type="checkbox" name="frequency" value="daily"><?php echo $pop_filter->name; ?><br>
+                  <label>
+                     <input type="checkbox" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $pop_filter->name; ?>
+                  </label>
                <?php } ?>
-
+               </div>
                <h2>% Below FPL</h2>
-                <?php $fpl_filters= get_terms('percent_below_fpl');
+               <div class="checkboxes">
+                <?php $fpl_filters= get_terms(array('taxonomy'=>'percent_below_fpl','hide_empty'=>false));
 
                   foreach ($fpl_filters as $fpl_filter){ ?>
-               <input type="checkbox" name="frequency" value="daily"><?php echo $fpl_filter->name; ?><br>
+                  <label>
+                     <input type="checkbox" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $fpl_filter->name; ?>
+                  </label>
                <?php } ?>
-
+               </div>
                <h2>% Uninsured</h2>
-                <?php $uninsured_filters= get_terms('percent_uninsured');
+               <div class="checkboxes">
+                <?php $uninsured_filters= get_terms(array('taxonomy'=>'percent_uninsured','hide_empty'=>false));
 
                   foreach ($uninsured_filters as $uninsured_filter){ ?>
-               <input type="checkbox" name="frequency" value="daily"><?php echo $uninsured_filter->name; ?><br>
+                  <label>
+                     <input type="checkbox" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $uninsured_filter->name; ?>
+                  </label>
                <?php } ?>
-
+               </div>
 
                
             </form>
          </div>
          <div id="programFilters">
             <form class="" action="" method="">
-              <!--  <select>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-               </select>
-               <input type="radio" name="frequency" value="daily">program<br>
-               <input type="radio" name="frequency" value="weekly">program<br>
-               <input type="radio" name="frequency" value="monthly">program<br>
-               <input type="radio" name="frequency" value="yearly">beer -->
-
                <h2>Active</h2>
-                <?php $active_filters= get_terms('active');
+               <div class="radio-buttons">
+                <?php $active_filters= get_terms(array('taxonomy'=>'active','hide_empty'=>false));
 
                   foreach ($active_filters as $active_filter){ ?>
-               <input type="radio" name="frequency" value="daily"><?php echo $active_filter->name; ?><br>
+                  <label>
+                     <input type="radio" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $active_filter->name; ?>
+                  </label>
                <?php } ?>
-
+               </div>
                <h2>Partners</h2>
-                <?php $partner_filters= get_terms('partners');
+               <div class="checkboxes">
+                <?php $partner_filters= get_terms(array('taxonomy'=>'partners','hide_empty'=>false));
 
                   foreach ($partner_filters as $partner_filter){ ?>
-               <input type="checkbox" name="frequency" value="daily"><?php echo $partner_filter->name; ?><br>
+                  <label>
+                     <input type="checkbox" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $partner_filter->name; ?>
+                  </label>
                <?php } ?>
-
+               </div>
                <h2>Social Determinants</h2>
-                <?php $sdh_filters= get_terms('sdh');
+               <div class="checkboxes">
+                <?php $sdh_filters= get_terms(array('taxonomy'=>'sdh','hide_empty'=>false));
 
                   foreach ($sdh_filters as $sdh_filter){ ?>
-               <input type="checkbox" name="frequency" value="daily"><?php echo $sdh_filter->name; ?><br>
+                  <label>
+                     <input type="checkbox" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $sdh_filter->name; ?>
+                  </label>
                <?php } ?>
-
+               </div>   
                <h2>Target Pop</h2>
-                <?php $tp_filters= get_terms('target_pop');
+               <div class="checkboxes">
+                <?php $tp_filters= get_terms(array('taxonomy'=>'target_pop','hide_empty'=>false));
 
                   foreach ($tp_filters as $tp_filter){ ?>
-               <input type="checkbox" name="frequency" value="daily"><?php echo $tp_filter->name; ?><br>
+                  <label>
+                     <input type="checkbox" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $tp_filter->name; ?>
+                  </label>
                <?php } ?>
-
+               </div>
                <h2>Program Setting</h2>
-                <?php $program_filters= get_terms('program_setting');
+               <div class="radio-buttons">
+                <?php $program_filters= get_terms(array('taxonomy'=>'program_setting','hide_empty'=>false));
 
                   foreach ($program_filters as $program_filter){ ?>
-               <input type="checkbox" name="frequency" value="daily"><?php echo $program_filter->name; ?><br>
+                  <label>
+                     <input type="radio" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $program_filter->name; ?>
+                  </label>
                <?php } ?>
+               </div>
             </form>
+         </div>
+      </div>
+      <div class="filter-bottom-nav" id="filterBottomNav">
+         <div class="filter-nav-border">
+            <a id="cancelFilters">Cancel</a>
+            <a id="applyFilters">Apply Filters »</a>
          </div>
       </div>
       <div id="nonFilterContent">
@@ -249,7 +281,7 @@ get_header();
             <ul class="listing-blocks">
                <?php 
                   $args = array(
-                     'post_type' => 'program',
+                     'post_type' => 'hospital',
                      'posts_per_page' => -1,
                   );
 

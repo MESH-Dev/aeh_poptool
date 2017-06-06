@@ -24,7 +24,7 @@ function update_programs_map( $post_id ) {
     
     //echo $p_id;
     //echo $post_id;
-     if("program" != $post_type){ return; }
+     if("hospital" != $post_type){ return; }
      else{
      $p_id = get_the_ID();
     //The file location for the json file we're creating
@@ -37,7 +37,7 @@ function update_programs_map( $post_id ) {
         $arr = array();
         
         $args = array(
-          'post_type' => 'program',
+          'post_type' => 'hospital',
           'posts_per_page'=> -1,
           'orderby' => 'title',
           'order' => 'asc',
@@ -170,7 +170,7 @@ function update_programs_map( $post_id ) {
         	$p_settings = get_the_terms($post_id, 'program_setting');
         	$settings = ' ';
 
-        	if($p_settings){
+        	if($p_settings!=''){
 	        	foreach ($p_settings as $p_setting){
 	        		$settings .= $p_setting->name . $separator;
 	        	}
