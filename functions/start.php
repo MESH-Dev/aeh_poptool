@@ -7,11 +7,11 @@
 //enqueue scripts and styles *use production assets. Dev assets are located in  /css and /js
 function loadup_scripts() {
     wp_enqueue_script( 'gsap', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js', array('jquery'), '1.0.0', true );
-    wp_enqueue_script( 'flip', '//rawgit.com/GoogleChrome/flipjs/master/dist/flip.js', array('jquery'), '1.0.0', true );
+   //  wp_enqueue_script( 'flip', '//rawgit.com/GoogleChrome/flipjs/master/dist/flip.js', array('jquery'), '1.0.0', true );
     //wp_enqueue_script( 'map-js', get_template_directory_uri().'/js/map.js', array('jquery'), '1.0.0', true );
     wp_enqueue_script( 'theme-js', get_template_directory_uri().'/js/main.js', array('jquery'), '1.0.0', true );
 	wp_enqueue_script( 'theme-js', get_template_directory_uri().'/js/mesh.js', array('jquery'), '1.0.0', true );
-    
+
     //wp_enqueue_script( 'theme-js', get_template_directory_uri().'/js/mesh.js', array('jquery'), '1.0.0', true );
 
 }

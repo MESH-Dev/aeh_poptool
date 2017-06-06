@@ -22,6 +22,7 @@ var searchClose = document.getElementById('searchModalClose'),
    detailPaneContent = document.getElementById('detailPaneContent'),
    cancelFilters = document.getElementById('cancelFilters'),
    filterBottomNav = document.getElementById('filterBottomNav'),
+   filterSelects = document.getElementsByClassName('custom-select');
    filterView = new TimelineMax(),
    landingView = new TimelineMax(),
    detailView = new TimelineMax();
@@ -100,6 +101,14 @@ cancelFilters.onclick = function(){
    //Reveal listing view
    filterView.reverse();
 };
+
+//Filter Dropdowns
+for (var i = 0; i < filterSelects.length; i++) {
+   filterSelects[i].addEventListener('click', function(event){
+      this.classList.toggle("open");
+   });
+}
+console.log(filterSelects);
 
 //Detail View
 detailView.paused(true)
