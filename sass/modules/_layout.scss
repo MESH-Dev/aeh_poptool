@@ -86,7 +86,7 @@ a.dropdown-trigger{
       background-color: $green;
    }
    &.active-filter{
-      background-color: $green;
+      background-color: $red;
    }
    p{
       color: $white;
@@ -106,6 +106,7 @@ a.dropdown-trigger{
 }
 
 #map{
+   position: absolute;
    height: 100vh;
    width: 100%;
    z-index: 0;
@@ -118,7 +119,7 @@ a.dropdown-trigger{
    left: -50%;
    top: 0;
    z-index: 1;
-   padding: 80px 40px 40px 40px;
+   padding: 0 40px 40px 40px;
    height: 100vh;
    max-height: 100vh;
    box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.4);
@@ -130,6 +131,7 @@ a.dropdown-trigger{
       position: relative;
       overflow-y: scroll;
       height: 100vh;
+      padding-top: 80px;
    }
    #detailPane{
       opacity: 0;
@@ -258,13 +260,13 @@ a.dropdown-trigger{
       input[type=range]:focus, input[type=range]:active {
         outline: none;
         &::-webkit-slider-thumb{
-           background: $green;
+           background: $red;
         }
         &::-moz-range-thumb{
-           background: $green;
+           background: $red;
         }
         &::-ms-thumb{
-           background: $green;
+           background: $red;
         }
       }
       input[type=range]::-webkit-slider-runnable-track {
@@ -355,7 +357,7 @@ a.dropdown-trigger{
             position: absolute;
             &:focus{
                ~ .indicator{
-                  border-color: $green;
+                  border-color: $red;
                }
             }
             &:checked{
@@ -408,6 +410,61 @@ a.dropdown-trigger{
          }
       }
       //Checkboxes and Radios
+      //Selects
+      select{
+         border: 0px;
+         -webkit-appearance: none;
+      }
+      .custom-select{
+         position: relative;
+         display: inline-block;
+         cursor: pointer;
+         p{
+            display: inline-block;
+            margin: 0px;
+         }
+         &.open{
+            .select-menu{
+               display: block;
+            }
+            &::after{
+               transform: rotate(-90deg);
+            }
+         }
+         .select-menu{
+            display: none;
+            position: absolute;
+            right: 0;
+            background: $white;
+            font-family: 'Cabin', sans-serif;
+            border: 2px solid $blue;
+            z-index: 2;
+            padding: 10px;
+            li{
+               color: $blue;
+               list-style: none;
+               cursor: pointer;
+               &:hover{
+                  color: $green;
+               }
+            }
+         }
+         &::after{
+            content: '»';
+            color: $white;
+            text-align: center;
+            transform: rotate(90deg);
+            vertical-align: middle;
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            font-family: 'Cabin', sans-serif;
+            font-size: 1.8rem;
+            line-height: 18px;
+            background-color: $blue;
+         }
+      }
+      //Selects
       #hospitalFilters{
          display: none;
       }
@@ -545,8 +602,4 @@ a.dropdown-trigger{
          }
       }
    }
-}
-
-#map{
-
 }

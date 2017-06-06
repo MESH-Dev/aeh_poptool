@@ -1,4 +1,4 @@
-<?php /* Template Name: Static Template*/ 
+<?php /* Template Name: Static Template*/
 
 get_header();?>
 <main id="content">
@@ -41,11 +41,11 @@ get_header();?>
                <div id="filterContainer">
                   <form class="" action="" method="">
                      <select>
-                        <option value="">dsfgdf</option>
-                        <option value="">dsfgdf</option>
-                        <option value="">dsfgdf</option>
-                        <option value="">dsfgdf</option>
-                        <option value="">dsfgdf</option>
+                        <option value="">Option</option>
+                        <option value="">Option</option>
+                        <option value="">Option</option>
+                        <option value="">Option</option>
+                        <option value="">Option</option>
                      </select>
                      <input type="radio" name="frequency" value="daily">Daily<br>
                      <input type="radio" name="frequency" value="weekly">Weekly<br>
@@ -207,13 +207,15 @@ get_header();?>
       <div class="filters" id="filterContainer">
          <div id="hospitalFilters">
             <form class="" action="" method="">
-               <select class="filter-select">
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-               </select>
+               <div class="custom-select">
+                  <p>Select Options</p>
+                  <ul class="select-menu">
+                     <li>Option 1</li>
+                     <li>Option 2</li>
+                     <li>Option 3</li>
+                     <li>Option 4</li>
+                  </ul>
+               </div>
                <div class="radio-buttons">
                   <label>
                      <input type="radio" name="first" value="daily">
@@ -464,11 +466,11 @@ get_header();?>
          <div id="communityFilters">
             <form class="" action="" method="">
                <select class="filter-select">
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
+                  <option value="">Option</option>
+                  <option value="">Option</option>
+                  <option value="">Option</option>
+                  <option value="">Option</option>
+                  <option value="">Option</option>
                </select>
                <div class="radio-buttons">
                   <label>
@@ -509,11 +511,11 @@ get_header();?>
          <div id="programFilters">
             <form class="" action="" method="">
                <select class="filter-select">
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
-                  <option value="">dsfgdf</option>
+                  <option value="">Option</option>
+                  <option value="">Option</option>
+                  <option value="">Option</option>
+                  <option value="">Option</option>
+                  <option value="">Option</option>
                </select>
                <div class="radio-buttons">
                   <label>

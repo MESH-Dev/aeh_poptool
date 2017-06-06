@@ -162,6 +162,8 @@ function initMap() {
   ]
   });
   // var iconBase = 'img/markers/';
+  var activeSize = new google.maps.Size(60, 67.68);
+  var inactiveSize = new google.maps.Size(40, 45.3);
   var icons = {
   //   parking: {
   //     icon: iconBase + 'parking_lot_maps.png'
@@ -170,15 +172,23 @@ function initMap() {
   //     icon: iconBase + 'blankmarker.svg'
   //  }
     programtype: {
-        path: "M58.65,37.47a18,18,0,1,0-24.13,17L40.64,63l6.12-8.45A18.11,18.11,0,0,0,58.65,37.47Z",
-        fillColor: '#0E97D4',
-        fillOpacity: 1,
-        anchor: new google.maps.Point(40.64,63),
-        strokeWeight: 0,
-        scale: 1
+      //   path: "M58.65,37.47a18,18,0,1,0-24.13,17L40.64,63l6.12-8.45A18.11,18.11,0,0,0,58.65,37.47Z",
+      //   fillColor: '#0E97D4',
+      //   fillOpacity: 1,
+      //   anchor: new google.maps.Point(40.64,63),
+      //   strokeWeight: 0,
+      //   scale: 1
+      active: {
+         url: 'http://localhost:8888/aeh_poptool/wp-content/themes/aeh_PHT/img/markers/CommunityInfrastructure_active.png',
+         scaledSize: activeSize
+      },
+      inactive: {
+         url: 'http://localhost:8888/aeh_poptool/wp-content/themes/aeh_PHT/img/markers/CommunityInfrastructure_inactive.png',
+         scaledSize: inactiveSize
+      }
     }
   };
-
+console.log(icons.programtype.inactive);
   var features = [
     {
       position: new google.maps.LatLng(47.481910, -105.980428),
@@ -200,10 +210,11 @@ function initMap() {
 
   // Create markers
   var allMarkers = [];
+  var viewStatus = '';
   features.forEach(function(feature) {
     var marker = new google.maps.Marker({
       position: feature.position,
-      icon: icons[feature.type],
+      icon: icons[feature.type].inactive,
       animation: google.maps.Animation.DROP,
       map: map
     });
@@ -211,20 +222,21 @@ function initMap() {
     marker.addListener('click', function(){
       // If an open marker is clicked, close it
       var icon = this.get('icon');
+      console.log(icon.scaledSize);
       if (this.open) {
          this.open = false;
-         icon.scale = 1;
-         icon.fillColor = '#0E97D4';
-         this.setIcon(icon);
+         // icon.scale = 1;
+         // icon.fillColor = '#0E97D4';
+         this.setIcon(icons[feature.type].inactive);
       } else{
          for (var i = 0; i < allMarkers.length; i++) {
             // If there is another marker open, close it
             if (allMarkers[i].open) {
                var closeicon = allMarkers[i].get('icon');
                allMarkers[i].open = false;
-               closeicon.scale = 1;
-               closeicon.fillColor = '#0E97D4';
-               allMarkers[i].setIcon(closeicon);
+               // closeicon.scale = 1;
+               // closeicon.fillColor = '#0E97D4';
+               allMarkers[i].setIcon(icons[feature.type].inactive);
             } else{
                // If all markers are closed and the listing view has not been opened, open listing view and proceed to open selected marker
                var viewStatus = landingView.progress();
@@ -234,12 +246,16 @@ function initMap() {
             }
             // Whether or not listing view plays, open selected marker
             this.open = true;
-            icon.scale = 1.5;
-            icon.fillColor = '#8FC740';
-            this.setIcon(icon);
+            // icon.scale = 1.5;
+            // icon.fillColor = '#8FC740';
+            this.setIcon(icons[feature.type].active);
          };
       };
     });
   });
+  var initialModalClose = map.addListener('click', function(){
+     landingView.play();
+     google.maps.event.removeListener(initialModalClose);
+ });
   // setMarkers(map);
 };

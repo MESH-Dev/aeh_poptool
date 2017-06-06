@@ -19,7 +19,9 @@
 
 	<!-- CSS
 	================================================== -->
+	<link href='https://fonts.googleapis.com/css?family=Cabin:400,600,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
+
 
 	<!-- Favicons
 	================================================== -->
@@ -33,7 +35,7 @@
 </head>
 
 <body <?php body_class(); ?>>
- 
+
 	<header>
 		<div class="container">
 
