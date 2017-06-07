@@ -562,20 +562,22 @@ get_header();?>
       </div>
       <div id="detailPane">
          <div class="detail-nav" id="detailNavTop"><div class="detail-nav-border">
-            <svg class="back-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 25">
-               <defs>
-                <style>
-                  .cls-1 {
-                    fill: #0d97d4;
-                    fill-rule: evenodd;
-                  }
-                </style>
-               </defs>
-               <path class="cls-1" d="M56,2223l-12,11.94L56,2248v-4.28l-7.925-8.78L56,2226.83V2223Z" transform="translate(-44 -2223)"/>
-            </svg><p class="back-button">BACK</p>
+            <div class="navigation-button" id="backButton">
+               <svg class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 25">
+                  <defs>
+                   <style>
+                     .cls-1 {
+                       fill: #0d97d4;
+                       fill-rule: evenodd;
+                     }
+                   </style>
+                  </defs>
+                  <path class="cls-1" d="M56,2223l-12,11.94L56,2248v-4.28l-7.925-8.78L56,2226.83V2223Z" transform="translate(-44 -2223)"/>
+               </svg><p class="button-text">BACK</p>
+            </div>
             <p class="program-hospital">Boston Medical Center | Boston, Massachusetts</p>
          </div></div>
-         <div id="detailPaneContent" class="detail-view-content">
+         <div id="detailPaneContent" class="first detail-view-content">
             <div class="category">
                <p>Housing Instability</p>
                <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -583,6 +585,7 @@ get_header();?>
                </svg>
             </div>
             <h1>Preventative Food Pantry/Food Demonstration Kitchen</h1>
+            <div id="collapsableContent">
                <div class="row program-info-row">
                   <h4>DETAILS</h4>
                   <div class="columns-3">
@@ -608,10 +611,24 @@ get_header();?>
                <p>Community Health Centers of Burlington</p>
                <p>United Way</p>
                <p>Howard Center</p>
+            </div>
+            <div class="detail-nav" id="detailNavBottom"><div class="detail-nav-border">
+               <a class="contact-button" href="mailto:example@example.com">Contact a Representative »</a>
+               <div class="navigation-button" id="collapse">
+                  <a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: #0d97d4;
+                        }
+                      </style>
+                    </defs>
+                    <title>uparrow</title>
+                    <path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/>
+                  </svg>
+               </div>
+            </div></div>
          </div>
-         <div class="detail-nav" id="detailNavBottom"><div class="detail-nav-border">
-            <a class="contact-button" href="mailto:example@example.com">Contact a Representative »</a>
-         </div></div>
       </div>
    </div>
    <div id="map"></div>

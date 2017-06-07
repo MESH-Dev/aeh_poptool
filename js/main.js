@@ -18,14 +18,19 @@ var searchClose = document.getElementById('searchModalClose'),
    selectionView = document.getElementById('selectionView'),
    detailPane = document.getElementById('detailPane'),
    detailNavTop = document.getElementById('detailNavTop'),
+   backButton = document.getElementById('backButton'),
    detailNavBottom = document.getElementById('detailNavBottom'),
    detailPaneContent = document.getElementById('detailPaneContent'),
    cancelFilters = document.getElementById('cancelFilters'),
    filterBottomNav = document.getElementById('filterBottomNav'),
-   filterSelects = document.getElementsByClassName('custom-select');
+   filterSelects = document.getElementsByClassName('custom-select'),
+   collapseButton = document.getElementById('collapse'),
+   collapseArrow = document.getElementById('collapseArrow'),
+   collapsableContent = document.getElementById('collapsableContent'),
    filterView = new TimelineMax(),
    landingView = new TimelineMax(),
-   detailView = new TimelineMax();
+   detailView = new TimelineMax(),
+   detailCollapse = new TimelineMax();
 
 //Langing view close animation
 landingView.paused(true)
@@ -135,4 +140,24 @@ var closeDetails = function(){
 for (var i = 0; i < programBlocks.length; i++) {
    programBlocks[i].onclick = openDetails;
 }
-detailNavTop.onclick = closeDetails;
+backButton.onclick = closeDetails;
+
+//Multi-project Detail Collapse
+detailCollapse.paused(true)
+   .add("open")
+   .to(collapseArrow, 0.4, {rotation: "+=180"}, "open")
+   .to(collapsableContent, 0.4, {height:0}, "open")
+   .to(detailPaneContent, 0.4, {height:"180px"}, "open")
+   .add("closed");
+
+var multiProjectOpen = function(){
+   detailCollapse.reverse();
+   collapseButton.onclick = multiProjectClose;
+};
+
+var multiProjectClose = function(){
+   detailCollapse.play();
+   collapseButton.onclick = multiProjectOpen;
+};
+
+collapseButton.onclick = multiProjectClose;
