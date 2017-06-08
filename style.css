@@ -816,9 +816,42 @@ td:last-child {
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.4);
   z-index: 2;
 }
-/* line 9, sass/modules/_header.scss */
+/* line 10, sass/modules/_header.scss */
+.navigation-bar.global {
+  height: auto;
+  position: relative;
+}
+/* line 14, sass/modules/_header.scss */
 .navigation-bar svg {
   height: 60px;
+}
+
+/* line 21, sass/modules/_header.scss */
+.main-navigation ul {
+  float: right;
+  margin-top: 25px;
+}
+/* line 24, sass/modules/_header.scss */
+.main-navigation ul li {
+  display: inline-block;
+  float: left;
+  border-top: 5px solid #00aeef;
+  list-style-type: none;
+  margin-right: 1em;
+}
+/* line 30, sass/modules/_header.scss */
+.main-navigation ul li:nth-of-type(1), .main-navigation ul li:nth-of-type(3) {
+  width: 150px;
+}
+/* line 34, sass/modules/_header.scss */
+.main-navigation ul li:nth-of-type(2), .main-navigation ul li:nth-of-type(4) {
+  width: 200px;
+}
+/* line 38, sass/modules/_header.scss */
+.main-navigation ul li a {
+  color: #5A5B5C;
+  text-transform: uppercase;
+  font-size: 13px;
 }
 
 /* line 1, sass/modules/_layout.scss */
@@ -1497,4 +1530,37 @@ a.dropdown-trigger span {
 /* line 599, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block .block-interior.filter-view {
   height: 0;
+}
+
+/* line 11, sass/modules/_s_layout.scss */
+.greeting {
+  background-color: #00aeef;
+  padding: 4em 0;
+}
+/* line 15, sass/modules/_s_layout.scss */
+.greeting h1 {
+  font-size: 3.6rem;
+  margin-bottom: 4rem;
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-weight: 100;
+}
+/* line 20, sass/modules/_s_layout.scss */
+.greeting h1 span {
+  text-transform: uppercase;
+  font-family: 'Cabin', sans-serif;
+}
+/* line 25, sass/modules/_s_layout.scss */
+.greeting p {
+  color: white;
+}
+
+/* line 33, sass/modules/_s_layout.scss */
+.section-cta .wrapper {
+  border-left: 2px solid #ffffff;
+  padding-left: 2em;
+}
+/* line 36, sass/modules/_s_layout.scss */
+.section-cta .wrapper .single-cta {
+  background-color: #ffffff;
+  color: #00aeef;
 }

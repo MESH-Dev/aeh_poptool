@@ -1,0 +1,47 @@
+@mixin georgia{
+  font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+@mixin cabin{
+  font-family: 'Cabin', sans-serif;
+}
+
+//Homepage
+
+.greeting{
+  background-color: $blue;
+  //height:700px;
+  padding:4em 0;
+  h1{
+    font-size:3.6rem;
+    margin-bottom:4rem;
+    @include georgia;
+    font-weight:100;
+    span{
+      text-transform:uppercase;
+      @include cabin;
+    }
+  }
+  p{
+    //@include georgia;
+    color:white;
+  }
+}
+
+.section-cta{
+  //background-color:$white;
+  .wrapper{
+    border-left:2px solid $white;
+    padding-left:2em;
+    .single-cta{
+      background-color:$white;
+      color:$blue;
+    }
+  }
+}
+
+//Default pages 
+
+.the-content{
+
+}
