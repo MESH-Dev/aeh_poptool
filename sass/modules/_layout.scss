@@ -1,3 +1,60 @@
+#map-listing-button{
+   display: none;
+   visibility: hidden;
+   opacity: 0;
+   a{
+      color: $blue;
+      line-height: 28px;
+      &:hover{
+         text-decoration: none;
+      }
+   }
+   @media screen and ($bp-listing-interface){
+      display: initial;
+   }
+   &.open{
+      #map-tab{
+         right: 100%;
+      }
+      #listing-tab{
+         left: 0;
+      }
+   }
+   #map-tab, #listing-tab{
+      background: $white;
+      height: 36px;
+      position: absolute;
+      display: inline-block;
+      z-index: 10;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+      bottom: 40px;
+      padding: 4px 10px;
+   }
+   #map-tab{
+      border-radius: 4px 0px 0px 4px;
+      right: 0;
+      // transition: right 0.4s linear;
+      a{
+         &::after{
+            content: '»';
+            display: inline;
+         }
+      }
+   }
+   #listing-tab{
+      border-radius: 0px 4px 4px 0px;
+      left: 100%;
+      // transition: left 0.4s linear;
+      a{
+         &::before{
+            content: '»';
+            display: inline-block;
+            transform: rotate(180deg);
+         }
+      }
+   }
+}
+
 .searchmodal{
    position: absolute;
    top: 50%;
@@ -124,6 +181,13 @@ a.dropdown-trigger{
    max-height: 100vh;
    box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.4);
    overflow: hidden;
+   @media screen and ($bp-listing-interface){
+      width: 100%;
+      left: -100%;
+      &.closed{
+         left: -100%;
+      }
+   }
    &.filter-view{
       overflow-y: hidden;
    }
@@ -146,35 +210,35 @@ a.dropdown-trigger{
    #collapsableContent{
       overflow: hidden;
    }
-   .detail-view-content{
+   .detail-block-container{
       position: absolute;
-      top: 80px;
-      right: 0;
+      top: 150px;
       left: 50px;
-      bottom: 0;
-      padding: 0 40px;
       overflow-y: scroll;
       opacity: 0;
       visibility: hidden;
-      &.first{
-         margin-top: 70px;
-      }
+      padding: 0 40px;
+      bottom: 0;
+      // right: 0;
+   }
+   .indiv-detail-block{
+      display: block;
    }
    .detail-nav{
-      position: absolute;
       width: 100%;
-      visibility: hidden;
-      opacity: 0;
       z-index: 2;
-      padding: 0 40px;
       line-height: 50px;
       background-color: $white;
    }
    #detailNavTop{
+      position: absolute;
       height: 60px;
       line-height: 60px;
       top: 40px;
       left: 0;
+      padding: 0 40px;
+      visibility: hidden;
+      opacity: 0;
       .detail-nav-border{
          border-bottom: 4px solid $blue;
       }
@@ -225,8 +289,8 @@ a.dropdown-trigger{
          }
       }
    }
-   #detailNavBottom{
-      bottom: -40px;
+   .detail-nav-bottom{
+      bottom: 0;
       left: 0;
       padding-bottom: 10px;
       .button-arrow{

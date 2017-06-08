@@ -179,16 +179,15 @@ function initMap() {
       //   strokeWeight: 0,
       //   scale: 1
       active: {
-         url: 'http://localhost:8888/aeh_poptool/wp-content/themes/aeh_PHT/img/markers/CommunityInfrastructure_active.png',
+         url: 'http://localhost:8888/aeh_poptool/wp-content/themes/aeh_PHT/img/markers/community-infrastructure-active.png',
          scaledSize: activeSize
       },
       inactive: {
-         url: 'http://localhost:8888/aeh_poptool/wp-content/themes/aeh_PHT/img/markers/CommunityInfrastructure_inactive.png',
+         url: 'http://localhost:8888/aeh_poptool/wp-content/themes/aeh_PHT/img/markers/community-infrastructure.png',
          scaledSize: inactiveSize
       }
     }
   };
-console.log(icons.programtype.inactive);
   var features = [
     {
       position: new google.maps.LatLng(47.481910, -105.980428),
@@ -222,7 +221,6 @@ console.log(icons.programtype.inactive);
     marker.addListener('click', function(){
       // If an open marker is clicked, close it
       var icon = this.get('icon');
-      console.log(icon.scaledSize);
       if (this.open) {
          this.open = false;
          // icon.scale = 1;

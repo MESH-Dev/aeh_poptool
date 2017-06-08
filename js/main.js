@@ -27,16 +27,21 @@ var searchClose = document.getElementById('searchModalClose'),
    collapseButton = document.getElementById('collapse'),
    collapseArrow = document.getElementById('collapseArrow'),
    collapsableContent = document.getElementById('collapsableContent'),
+   listingTab = document.getElementById('listing-tab'),
+   mapTab = document.getElementById('map-tab'),
+   mapListingButton = document.getElementById('map-listing-button'),
    filterView = new TimelineMax(),
    landingView = new TimelineMax(),
    detailView = new TimelineMax(),
-   detailCollapse = new TimelineMax();
+   detailCollapse = new TimelineMax(),
+   mapView = new TimelineMax();
 
 //Langing view close animation
 landingView.paused(true)
    .add("open")
    .to(searchModal, 0.75, {css:{top:"-100%", autoAlpha:0}, ease: Elastic.easeIn.config(1, 1)}, "open")
    .to(listingInterface, 0.75, {css:{left:"0"}, ease: Power3.easeInOut, delay:0.4}, "open")
+   .to(mapListingButton, 1, {css:{autoAlpha:1}}, "open")
    .add("closed");
 
 //Landing view close function
@@ -45,10 +50,34 @@ var landingViewClose = function(event){
    landingView.play();
 };
 
+//Map view animation
+mapView.paused(true)
+   .add("open")
+   .to(listingInterface, 0.75, {css:{left:"-100%"}, ease: Power3.easeInOut}, "open")
+   // .to(mapTab, 0.75, {css:{right:'100%'}}, "open")
+   // .to(listingTab, 0.75, {css:{left:'0'}}, "open")
+   .to(mapListingButton, 0.1, {className:"+=open"}, "open")
+   .add("closed");
+
+//Map view open function
+var mapViewOpen = function(event){
+   event.preventDefault();
+   mapView.play();
+}
+
+var mapViewClose = function(event){
+   event.preventDefault();
+   mapView.reverse();
+}
+
 //Play landing view close
 searchClose.addEventListener("click", landingViewClose);
 
 altSearchClose1.addEventListener("click", landingViewClose);
+
+mapTab.addEventListener("click", mapViewOpen);
+
+listingTab.addEventListener("click", mapViewClose);
 
 //Filter view
 var filterTriggers = document.getElementsByClassName('dropdown-trigger');
@@ -113,7 +142,6 @@ for (var i = 0; i < filterSelects.length; i++) {
       this.classList.toggle("open");
    });
 }
-console.log(filterSelects);
 
 //Detail View
 detailView.paused(true)
@@ -121,7 +149,6 @@ detailView.paused(true)
    .to(selectionView, 0.2, {css:{autoAlpha:0}}, "closed")
    .to(detailPane, 0.2, {css:{autoAlpha:1}}, "closed")
    .to(detailNavTop, 0.2, {css:{autoAlpha:1, top:"80px"}}, "open")
-   .to(detailNavBottom, 0.2, {css:{autoAlpha:1, bottom:"0"}}, "open")
    .to(detailPaneContent, 0.2, {css:{autoAlpha:1, left:"0"}}, "open")
    .add("open");
 
@@ -147,7 +174,7 @@ detailCollapse.paused(true)
    .add("open")
    .to(collapseArrow, 0.4, {rotation: "+=180"}, "open")
    .to(collapsableContent, 0.4, {height:0}, "open")
-   .to(detailPaneContent, 0.4, {height:"180px"}, "open")
+   // .to(detailPaneContent, 0.4, {height:"180px"}, "open")
    .add("closed");
 
 var multiProjectOpen = function(){
