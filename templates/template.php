@@ -63,7 +63,7 @@ get_header();?>
                            </svg>
                         </div>
             </div>
-            <!-- <div class="listing-blocks-container">
+            <div class="listing-blocks-container">
                <ul class="listing-blocks">
                   <a href="#"><li class="indiv-block">
                      <div class="block-interior">
@@ -170,355 +170,175 @@ get_header();?>
                      </div>
                   </li></a>
                </ul>
-            </div> -->
+            </div>
          </div>
       </div>
       <div class="filters" id="filterContainer">
          <div id="hospitalFilters">
             <form class="" action="" method="">
-               <div class="custom-select">
-                  <p>Select Options</p>
-                  <ul class="select-menu">
-                     <li>Option 1</li>
-                     <li>Option 2</li>
-                     <li>Option 3</li>
-                     <li>Option 4</li>
-                  </ul>
-               </div>
-               <div class="radio-buttons">
-                  <label>
-                     <input type="radio" name="first" value="daily">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="radio" name="first" value="weekly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="radio" name="first" value="monthly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-               </div>
+               <h2>Bed size</h2>
                <div class="checkboxes">
+               <?php $bed_filters= get_terms(array('taxonomy'=>'bed_size', 'hide_empty'=>false));
+
+                  foreach ($bed_filters as $bed_filter){ ?>
                   <label>
-                     <input type="checkbox" name="" value="">
+                     <input type="checkbox" name="frequency" value="daily">
                      <div class="indicator"></div>
-                     Hospital
+                     <?php echo $bed_filter->name; ?>
                   </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
+               <?php } ?>
                </div>
-               <input type="range">
+                <h2>%Govt payer</h2>
+                <div class="checkboxes">
+               <?php $govt_filters= get_terms(array('taxonomy'=>'percent_govt_payer', 'hide_empty'=>false));
+
+                  foreach ($govt_filters as $govt_filter){ ?>
+                  <label>
+                     <input type="checkbox" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $govt_filter->name; ?>
+                  </label>
+               <?php } ?>
+               </div>
+                <h2>Ownership</h2>
+                <div class="radio-buttons">
+               <?php $own_filters= get_terms(array('taxonomy'=>'ownership', 'hide_empty'=>false));
+
+                  foreach ($own_filters as $own_filter){ ?>
+                  <label>
+                     <input type="radio" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $own_filter->name; ?>
+                  </label>
+               <?php } ?>
+               </div>
+               <h2>Teaching Status</h2>
                <div class="radio-buttons">
+                <?php $teach_filters= get_terms(array('taxonomy'=>'teaching_status', 'hide_empty'=>false));
+
+                  foreach ($teach_filters as $teach_filter){ ?>
                   <label>
-                     <input type="radio" name="second" value="daily">
+                     <input type="radio" name="frequency" value="daily">
                      <div class="indicator"></div>
-                     Hospital
+                     <?php echo $teach_filter->name; ?>
                   </label>
-                  <label>
-                     <input type="radio" name="second" value="weekly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="radio" name="second" value="monthly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
+               <?php } ?>
                </div>
+               <h2>Region</h2>
                <div class="checkboxes">
+                <?php $region_filters= get_terms(array('taxonomy'=>'region','hide_empty'=>false));
+
+                  foreach ($region_filters as $region_filter){ ?>
                   <label>
-                     <input type="checkbox" name="" value="">
+                     <input type="checkbox" name="frequency" value="daily">
                      <div class="indicator"></div>
-                     Hospital
+                     <?php echo $region_filter->name; ?>
                   </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
+               <?php } ?>
                </div>
-               <input type="range">
-               <div class="radio-buttons">
-                  <label>
-                     <input type="radio" name="third" value="daily">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="radio" name="third" value="weekly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="radio" name="third" value="monthly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-               </div>
-               <div class="checkboxes">
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-               </div>
-               <input type="range">
-               <div class="radio-buttons">
-                  <label>
-                     <input type="radio" name="fourth" value="daily">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="radio" name="fourth" value="weekly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="radio" name="fourth" value="monthly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-               </div>
-               <div class="checkboxes">
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-               </div>
-               <input type="range">
-               <div class="radio-buttons">
-                  <label>
-                     <input type="radio" name="fifth" value="daily">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="radio" name="fifth" value="weekly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="radio" name="fifth" value="monthly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-               </div>
-               <div class="checkboxes">
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-               </div>
-               <input type="range">
-               <div class="radio-buttons">
-                  <label>
-                     <input type="radio" name="sixth" value="daily">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="radio" name="sixth" value="weekly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="radio" name="sixth" value="monthly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-               </div>
-               <div class="checkboxes">
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-               </div>
-               <input type="range">
-               <div class="radio-buttons">
-                  <label>
-                     <input type="radio" name="seventh" value="daily">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="radio" name="seventh" value="weekly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="radio" name="seventh" value="monthly">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-               </div>
-               <div class="checkboxes">
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-                  <label>
-                     <input type="checkbox" name="" value="">
-                     <div class="indicator"></div>
-                     Hospital
-                  </label>
-               </div>
-               <input type="range">
             </form>
          </div>
          <div id="communityFilters">
             <form class="" action="" method="">
-               <select class="filter-select">
-                  <option value="">Option</option>
-                  <option value="">Option</option>
-                  <option value="">Option</option>
-                  <option value="">Option</option>
-                  <option value="">Option</option>
-               </select>
-               <div class="radio-buttons">
-                  <label>
-                     <input type="radio" name="frequency" value="daily">
-                     <div class="indicator"></div>
-                     Community
-                  </label>
-                  <label>
-                     <input type="radio" name="frequency" value="weekly">
-                     <div class="indicator"></div>
-                     Community
-                  </label>
-                  <label>
-                     <input type="radio" name="frequency" value="monthly">
-                     <div class="indicator"></div>
-                     Community
-                  </label>
-               </div>
                <div class="checkboxes">
+                <h2>Pop Size</h2>
+                <?php $pop_filters= get_terms(array('taxonomy'=>'pop_size','hide_empty'=>false));
+
+                  foreach ($pop_filters as $pop_filter){ ?>
                   <label>
-                     <input type="checkbox" name="" value="">
+                     <input type="checkbox" name="frequency" value="daily">
                      <div class="indicator"></div>
-                     Community
+                     <?php echo $pop_filter->name; ?>
                   </label>
+               <?php } ?>
+               </div>
+               <h2>% Below FPL</h2>
+               <div class="checkboxes">
+                <?php $fpl_filters= get_terms(array('taxonomy'=>'percent_below_fpl','hide_empty'=>false));
+
+                  foreach ($fpl_filters as $fpl_filter){ ?>
                   <label>
-                     <input type="checkbox" name="" value="">
+                     <input type="checkbox" name="frequency" value="daily">
                      <div class="indicator"></div>
-                     Community
+                     <?php echo $fpl_filter->name; ?>
                   </label>
+               <?php } ?>
+               </div>
+               <h2>% Uninsured</h2>
+               <div class="checkboxes">
+                <?php $uninsured_filters= get_terms(array('taxonomy'=>'percent_uninsured','hide_empty'=>false));
+
+                  foreach ($uninsured_filters as $uninsured_filter){ ?>
                   <label>
-                     <input type="checkbox" name="" value="">
+                     <input type="checkbox" name="frequency" value="daily">
                      <div class="indicator"></div>
-                     Community
+                     <?php echo $uninsured_filter->name; ?>
                   </label>
+               <?php } ?>
                </div>
             </form>
          </div>
          <div id="programFilters">
             <form class="" action="" method="">
-               <select class="filter-select">
-                  <option value="">Option</option>
-                  <option value="">Option</option>
-                  <option value="">Option</option>
-                  <option value="">Option</option>
-                  <option value="">Option</option>
-               </select>
+               <h2>Active</h2>
                <div class="radio-buttons">
+                <?php $active_filters= get_terms(array('taxonomy'=>'active','hide_empty'=>false));
+
+                  foreach ($active_filters as $active_filter){ ?>
                   <label>
                      <input type="radio" name="frequency" value="daily">
                      <div class="indicator"></div>
-                     Program
+                     <?php echo $active_filter->name; ?>
                   </label>
-                  <label>
-                     <input type="radio" name="frequency" value="weekly">
-                     <div class="indicator"></div>
-                     Program
-                  </label>
-                  <label>
-                     <input type="radio" name="frequency" value="monthly">
-                     <div class="indicator"></div>
-                     Program
-                  </label>
+               <?php } ?>
                </div>
+               <h2>Partners</h2>
                <div class="checkboxes">
+                <?php $partner_filters= get_terms(array('taxonomy'=>'partners','hide_empty'=>false));
+
+                  foreach ($partner_filters as $partner_filter){ ?>
                   <label>
-                     <input type="checkbox" name="" value="">
+                     <input type="checkbox" name="frequency" value="daily">
                      <div class="indicator"></div>
-                     Program
+                     <?php echo $partner_filter->name; ?>
                   </label>
+               <?php } ?>
+               </div>
+               <h2>Social Determinants</h2>
+               <div class="checkboxes">
+                <?php $sdh_filters= get_terms(array('taxonomy'=>'sdh','hide_empty'=>false));
+
+                  foreach ($sdh_filters as $sdh_filter){ ?>
                   <label>
-                     <input type="checkbox" name="" value="">
+                     <input type="checkbox" name="frequency" value="daily">
                      <div class="indicator"></div>
-                     Program
+                     <?php echo $sdh_filter->name; ?>
                   </label>
+               <?php } ?>
+               </div>
+               <h2>Target Pop</h2>
+               <div class="checkboxes">
+                <?php $tp_filters= get_terms(array('taxonomy'=>'target_pop','hide_empty'=>false));
+
+                  foreach ($tp_filters as $tp_filter){ ?>
                   <label>
-                     <input type="checkbox" name="" value="">
+                     <input type="checkbox" name="frequency" value="daily">
                      <div class="indicator"></div>
-                     Program
+                     <?php echo $tp_filter->name; ?>
                   </label>
+               <?php } ?>
+               </div>
+               <h2>Program Setting</h2>
+               <div class="radio-buttons">
+                <?php $program_filters= get_terms(array('taxonomy'=>'program_setting','hide_empty'=>false));
+
+                  foreach ($program_filters as $program_filter){ ?>
+                  <label>
+                     <input type="radio" name="frequency" value="daily">
+                     <div class="indicator"></div>
+                     <?php echo $program_filter->name; ?>
+                  </label>
+               <?php } ?>
                </div>
             </form>
          </div>
