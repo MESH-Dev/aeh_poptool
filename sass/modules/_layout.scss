@@ -1,3 +1,7 @@
+header{
+   display: none;
+}
+
 #map-listing-button{
    display: none;
    visibility: hidden;
@@ -18,6 +22,7 @@
       }
       #listing-tab{
          left: 0;
+         display: inline-block;
       }
    }
    #map-tab, #listing-tab{
@@ -27,8 +32,9 @@
       display: inline-block;
       z-index: 10;
       box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
-      bottom: 40px;
+      bottom: 70px;
       padding: 4px 10px;
+      cursor: pointer;
    }
    #map-tab{
       border-radius: 4px 0px 0px 4px;
@@ -38,18 +44,24 @@
          &::after{
             content: '»';
             display: inline;
+            font-size: 2rem;
+            margin-left: 4px;
          }
       }
    }
    #listing-tab{
       border-radius: 0px 4px 4px 0px;
       left: 100%;
+      display: none;
       // transition: left 0.4s linear;
       a{
          &::before{
             content: '»';
             display: inline-block;
             transform: rotate(180deg);
+            font-size: 2rem;
+            vertical-align: middle;
+            margin-right: 4px;
          }
       }
    }
@@ -108,6 +120,7 @@
    margin: 20px 0 0 0;
    white-space: nowrap;
    input[type="text"]{
+      font-family: 'Cabin', sans-serif;
       width: 40vw;
       height: 36px;
       border: 0px;
@@ -138,6 +151,10 @@ a.dropdown-trigger{
    padding: 5px;
    transition: background-color 0.2s ease-in-out;
    cursor: pointer;
+   @media screen and ($bp-smaller-than-phablet){
+      display: block;
+      width: 100%;
+   }
    &:hover{
       text-decoration: none;
       background-color: $green;
@@ -153,6 +170,10 @@ a.dropdown-trigger{
    &:nth-of-type(2){
       border-left: 1px solid $light-grey;
       border-right: 1px solid $light-grey;
+      @media screen and ($bp-smaller-than-phablet){
+         border: 0px;
+         margin: 2px 0;
+      }
    }
    span{
       float: right;
@@ -184,6 +205,7 @@ a.dropdown-trigger{
    @media screen and ($bp-listing-interface){
       width: 100%;
       left: -100%;
+      padding: 0 20px 20px 20px;
       &.closed{
          left: -100%;
       }
@@ -629,8 +651,17 @@ a.dropdown-trigger{
       }
    }
    .search-container{
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
       input[type="text"]{
-         width: 92%;
+         -webkit-flex-grow: 1;
+         -moz-flex-grow: 1;
+         -ms-flex-grow: 1;
+         flex-grow: 1;
+         margin-right: 5px;
       }
    }
    .trigger-container{
@@ -664,6 +695,10 @@ a.dropdown-trigger{
          text-decoration: none;
          color: $black;
          float: left;
+         @media screen and ($bp-smaller-than-phablet){
+            width: 100%;
+            float: none;
+         }
          &:hover{
             h2{
                color: $green;

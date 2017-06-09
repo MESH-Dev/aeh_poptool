@@ -10,7 +10,7 @@ get_header();?>
       </div>
    </div>
    <div id="map-listing-button">
-      <div id="map-tab"><a>VIEW MAP</a></div><div id="listing-tab"><a>RESULTS &amp; FILTERS</a></div>
+      <div id="map-tab"><a>MAP</a></div><div id="listing-tab"><a>RESULTS &amp; FILTERS</a></div>
    </div>
    <div id="searchModal" class="searchmodal">
       <svg id="searchModalClose" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
