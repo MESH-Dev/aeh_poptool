@@ -9,6 +9,8 @@ function loadup_scripts() {
     wp_enqueue_script( 'gsap', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js', array('jquery'), '1.0.0', true );
    //  wp_enqueue_script( 'flip', '//rawgit.com/GoogleChrome/flipjs/master/dist/flip.js', array('jquery'), '1.0.0', true );
     //wp_enqueue_script( 'map-js', get_template_directory_uri().'/js/map.js', array('jquery'), '1.0.0', true );
+     wp_enqueue_script( 'google-map-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDXR8bORut0sXyoust5FWnhi-9TA8TWktw', array('jquery'), '1.0.0', true );
+    wp_enqueue_script( 'mixitup', 'https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.js', array('jquery'), '1.0.0', true );
     wp_enqueue_script( 'theme-js', get_template_directory_uri().'/js/main.js', array('jquery'), '1.0.0', true );
 	wp_enqueue_script( 'theme-js', get_template_directory_uri().'/js/mesh.js', array('jquery'), '1.0.0', true );
 

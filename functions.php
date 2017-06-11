@@ -77,7 +77,7 @@ function update_programs_map( $post_id ) {
           //__Get the categories for the post, we'll break it up below
           //$listing_cats = get_the_category($p_id); 
           //----
-          $separator = '';
+          $separator = ' ';
 
             //1
           $beds = get_the_terms($post_id, 'bed_size');
