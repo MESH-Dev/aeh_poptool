@@ -40,8 +40,6 @@
 
 <body <?php body_class(); ?>>
 
-	<?php if(!is_page_template('templates/template-map.php')){?>
+ 
 		<?php get_template_part('partials/header-global'); ?>
-	<?php }else{ ?>
-		<?php get_template_part('partials/header-map'); ?>
-	<?php } ?>
+ 
