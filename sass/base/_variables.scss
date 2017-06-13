@@ -9,6 +9,7 @@ $bp-larger-than-tablet    : "min-width: 750px" !default;
 $bp-larger-than-desktop   : "min-width: 1000px" !default;
 $bp-larger-than-desktophd : "min-width: 1200px" !default;
 
+$bp-smaller-than-desktophd: "max-width: 1200px" !default;
 $bp-smaller-than-desktop : "max-width: 1060px" !default;
 $bp-smaller-than-tablet : "max-width: 750px" !default;
 $bp-smaller-than-mobile : "max-width: 480px" !default;
@@ -25,6 +26,9 @@ $green: #35BDB2 !default;
 $grey: #5A5B5C !default;
 $light-grey: #E3E3E3 !default;
 
+$light-blue: #bfebfb;
+$new-red: #ed4642;
+$light-light-blue: #e5f7fd;
 
 //Fonts
 $proxima: "proxima-nova",sans-serif;
