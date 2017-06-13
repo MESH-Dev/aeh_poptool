@@ -505,9 +505,10 @@ get_header();?>
                            <p>Community Health Centers of Burlington</p>
                            <p>United Way</p>
                            <p>Howard Center</p>
+                           <a class="contact-button" href="mailto:example@example.com">Contact a Representative »</a>
                         </div>
                         <div class="detail-nav detail-nav-bottom"><div class="detail-nav-border">
-                           <a class="contact-button" href="mailto:example@example.com">Contact a Representative »</a>
+                           
                            <div class="navigation-button" id="collapse">
                               <a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12">
                                 <defs>

@@ -382,7 +382,8 @@ function createMarker(hospital){
 
       //reset detail panel html here
       $('#detailPaneContent').html('');
-      createHospitalPanel(hospitals[marker.id]);
+
+      createDetailPanel('', marker.id);
 
    });
 
@@ -423,15 +424,16 @@ function createProgramCard(program){
    program_taxs += program.target_pop_slug + " ";
    program_taxs += program.program_setting_slug + " ";
 
+   var sdh_arry = program.sdh_slug.split(" ");
 
-
+   var sdh_img = sdh_arry[0];
  
    //print out single card html with all filterable taxonomies
    var cardHTML = "";
    cardHTML =  '<a href="#"><li data-hospid="hosp-'+ program.hosp_id +'" id="program-'+ program.id +'" class="mix indiv-block program-card ' + program.taxs + ' ' + hospital_taxs + '" >';
    cardHTML += '<div class="block-interior">';
    cardHTML +=   '<div class="category"><p>'+ program.sdh +'</p>';
-   cardHTML +=      '<img class="category-icon" src="/img/icons/'+ program.sdh_slug +'.svg"  >.';
+   cardHTML +=      '<img class="category-icon" src="../wp-content/themes/aeh_poptool/img/icons/'+ sdh_img +'.svg"  >';
    cardHTML +=   '</div>';
    cardHTML +=   '<h2>'+ program.name +'</h2>';
    cardHTML +=   '<p class="hospital">'+hospitals[program.hosp_id].name +'</p>';
@@ -478,10 +480,82 @@ function UpdateMarkers(){
 
 
 //Generates HTML to load into Program View Panel, then calls function to show panel
-function createProgramPanel(single_program, single_hospital){
-   console.log("Program Data! " + single_program.name );
-   console.log("Hospital Data! " + single_hospital.name );
+function createDetailPanel(single_program_id, single_hospital_id){
+   var prog_ids = [];
+   var single = false;
+   var hospital = hospitals[single_hospital_id];
 
+   if(single_program_id){
+      prog_ids.push(single_program_id);
+      single = true;
+   }
+   else{
+      prog_ids = hospital.program_ids;
+   }
+
+   console.log(prog_ids);
+   //set panel hospital title
+   $('#hospital_title').html(hospital.name + " | " + hospital.city);
+
+   var panel_HTML = '';
+   for(var x = 0; x < prog_ids.length; x++){
+      var program = programs[prog_ids[x]];
+      
+      console.log(prog_ids[x]);
+
+      panel_HTML += '<div class="indiv-detail-block">';
+      panel_HTML +=     '<div class="category"><p>' + program.sdh + '</p></div>';
+      panel_HTML +=     '<h1>' + program.name + '</h1>';
+      panel_HTML +=     '<div id="collapsableContent">';
+      panel_HTML +=        '<div class="row program-info-row"><h4>PROGRAM DETAILS</h4>';
+      panel_HTML +=           '<div class="columns-3">';
+      panel_HTML +=              '<p>Target Population: </p>';
+      panel_HTML +=              '<p>Program Setting: </p>';
+      panel_HTML +=              '<p>Partners: </p>';
+      panel_HTML +=              '<p>Active Program: </p>';
+      panel_HTML +=           '</div>';
+      panel_HTML +=           '<div class="columns-5">';
+      panel_HTML +=              '<p>'+ program.target_pop +'</p>';
+      panel_HTML +=              '<p>'+ program.program_setting +'</p>';
+      panel_HTML +=              '<p>'+ program.partners +'</p>';
+      panel_HTML +=              '<p>'+ program.active +'</p>';
+      panel_HTML +=           '</div>';
+      panel_HTML +=        '</div>';
+      panel_HTML +=        '<div class="row program-info-row"><h4>HOSPITAL DETAILS</h4>';
+      panel_HTML +=           '<div class="columns-3">';
+      panel_HTML +=              '<p>Ownership: </p>';
+      panel_HTML +=              '<p>Population Size: </p>';
+      panel_HTML +=              '<p>Number of Beds: </p>';
+      panel_HTML +=              '<p>Teaching Hospital: </p>';
+      panel_HTML +=              '<p>% Government Payer: </p>';
+      panel_HTML +=              '<p>% Below FPL: </p>';
+      panel_HTML +=              '<p>% Uninsured: </p>';
+      panel_HTML +=              '<p>Region: </p>';
+      panel_HTML +=           '</div>';
+      panel_HTML +=           '<div class="columns-5">';
+      panel_HTML +=              '<p>'+ hospital.ownership +'</p>';
+      panel_HTML +=              '<p>'+ hospital.pop_size   +'</p>';
+      panel_HTML +=              '<p>'+ hospital.bed_size +'</p>';
+      panel_HTML +=              '<p>'+ hospital.teaching_status +'</p>';
+      panel_HTML +=              '<p>'+ hospital.percent_govt_payer +'</p>';
+      panel_HTML +=              '<p>'+ hospital.percent_below_fpl +'</p>';
+      panel_HTML +=              '<p>'+ hospital.percent_uninsured +'</p>';
+      panel_HTML +=              '<p>'+ hospital.region +'</p>';
+      panel_HTML +=           '</div>';
+      panel_HTML +=        '</div>';
+      panel_HTML +=        '<div class="program-info-row">' + program.description + '</div>';
+      panel_HTML +=        '<div class="program-info-row"><a class="contact-button" href="'+program.contact_email+'">Contact a Representative »</a></div>';
+
+
+      panel_HTML +=     '</div> ';
+      panel_HTML += '</div>';
+ 
+   }
+
+   panel_HTML += '<div class="detail-nav detail-nav-bottom"><div class="detail-nav-border"><div class="navigation-button" id="collapse"><a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12"><defs><style>.cls-1 { fill: #0d97d4; } </style></defs><title>uparrow</title><path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/></svg></div></div>';
+ 
+   $('#detailPaneContent').html(panel_HTML);
+ 
    openDetails(); 
 }
 
@@ -641,7 +715,7 @@ $('#program-cards').on( "click", "li" , function(){
    prog_id = prog_id.substring(8, prog_id.length);
    hosp_id = hosp_id.substring(5, hosp_id.length);
 
-   createProgramPanel(programs[prog_id], hospitals[hosp_id]);
+   createDetailPanel(prog_id, hosp_id);
 
    centerMapOnHospital(hosp_id);
 

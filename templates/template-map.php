@@ -257,64 +257,35 @@ get_header();?>
 
       <div id="detailPane">
 
-         <div class="detail-nav" id="detailNavTop"><div class="detail-nav-border">
-            <div class="navigation-button" id="backButton">
-               <svg class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 25">
-                  <defs>
-                   <style>
-                     .cls-1 {
-                       fill: #0d97d4;
-                       fill-rule: evenodd;
-                     }
-                   </style>
-                  </defs>
-                  <path class="cls-1" d="M56,2223l-12,11.94L56,2248v-4.28l-7.925-8.78L56,2226.83V2223Z" transform="translate(-44 -2223)"/>
-               </svg><p class="button-text">BACK</p>
-            </div>
-            <p class="program-hospital">Boston Medical Center | Boston, Massachusetts</p>
-         </div></div>
+         <div class="detail-nav" id="detailNavTop">
+            <div class="detail-nav-border">
+               <div class="navigation-button" id="backButton">
+                  <svg class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 25">
+                     <defs>
+                      <style>
+                        .cls-1 {
+                          fill: #0d97d4;
+                          fill-rule: evenodd;
+                        }
+                      </style>
+                     </defs>
+                     <path class="cls-1" d="M56,2223l-12,11.94L56,2248v-4.28l-7.925-8.78L56,2226.83V2223Z" transform="translate(-44 -2223)"/>
+                  </svg><p class="button-text">BACK</p>
+               </div>
+               <p id="hospital_title" class="program-hospital"> </p>
+            </div>    
+         </div> 
 
 
          <div id="detailPaneContent" class="detail-block-container">
             <div class="indiv-detail-block">
-               <div class="category">
-                  <p>Housing Instability</p>
-                  <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                      <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
-                  </svg>
-               </div>
-               <h1>Preventative Food Pantry/Food Demonstration Kitchen</h1>
-               <div id="collapsableContent">
-                  <div class="row program-info-row">
-                     <h4>DETAILS</h4>
-                     <div class="columns-3">
-                        <p>Bed Size:</p>
-                        <p>Designation:</p>
-                        <p>Payer Mix:</p>
-                        <p>Social Determinant:</p>
-                        <p>Target Populations:</p>
-                        <p>Program Settings:</p>
-                     </div>
-                     <div class="columns-5">
-                        <p>300</p>
-                        <p>Non-Profit, Academic Medical Center</p>
-                        <p>50% Medicaid</p>
-                        <p>Housing</p>
-                        <p>Adults, Families</p>
-                        <p>Hospital, Community</p>
-                     </div>
-                     </div>
-                     <p class="program-info-row">UVM Health Network worked with local partners to acquire a vacant motel and create Harbor Place. Now, homeless patients who have been discharged from the hospital have a temporary place to stay in the motel. Most important, as part of their tenancy at Harbor Place, individuals staying there can access case management provided by a coalition of community-based agencies and targeted at improving their social and health care needs. As of 2016, about 100 patients have been discharged to Harbor Place, and UVM Medical Center estimated it has saved about $1 million in care costs as a result.</p>
-                     <h4>PARTNERS</h4>
-                     <p>Champlain Housing Trust</p>
-                     <p>Community Health Centers of Burlington</p>
-                     <p>United Way</p>
-                     <p>Howard Center</p>
-                  </div>
-                  <div class="detail-nav detail-nav-bottom"><div class="detail-nav-border">
-                     <a class="contact-button" href="mailto:example@example.com">Contact a Representative »</a>
-                     <div class="navigation-button" id="collapse">
-                        <a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12">
+               <div id="collapsableContent"></div>  
+            </div>
+            <div class="detail-nav detail-nav-bottom">
+               <div class="detail-nav-border">
+                  <div class="navigation-button" id="collapse">
+                     <a class="button-text">COLLAPSE</a>
+                     <svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12">
                           <defs>
                             <style>
                               .cls-1 {
@@ -322,117 +293,13 @@ get_header();?>
                               }
                             </style>
                           </defs>
-                          <title>uparrow</title>
-                          <path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/>
-                        </svg>
-                     </div>
-                  </div></div>
-               </div>
-               <div class="indiv-detail-block">
-                  <div class="category">
-                     <p>Housing Instability</p>
-                     <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                         <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
+                           <title>uparrow</title>
+                           <path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/>
                      </svg>
-                  </div>
-                  <h1>Preventative Food Pantry/Food Demonstration Kitchen</h1>
-                  <div id="collapsableContent">
-                     <div class="row program-info-row">
-                        <h4>DETAILS</h4>
-                        <div class="columns-3">
-                           <p>Bed Size:</p>
-                           <p>Designation:</p>
-                           <p>Payer Mix:</p>
-                           <p>Social Determinant:</p>
-                           <p>Target Populations:</p>
-                           <p>Program Settings:</p>
-                        </div>
-                        <div class="columns-5">
-                           <p>300</p>
-                           <p>Non-Profit, Academic Medical Center</p>
-                           <p>50% Medicaid</p>
-                           <p>Housing</p>
-                           <p>Adults, Families</p>
-                           <p>Hospital, Community</p>
-                        </div>
-                        </div>
-                        <p class="program-info-row">UVM Health Network worked with local partners to acquire a vacant motel and create Harbor Place. Now, homeless patients who have been discharged from the hospital have a temporary place to stay in the motel. Most important, as part of their tenancy at Harbor Place, individuals staying there can access case management provided by a coalition of community-based agencies and targeted at improving their social and health care needs. As of 2016, about 100 patients have been discharged to Harbor Place, and UVM Medical Center estimated it has saved about $1 million in care costs as a result.</p>
-                        <h4>PARTNERS</h4>
-                        <p>Champlain Housing Trust</p>
-                        <p>Community Health Centers of Burlington</p>
-                        <p>United Way</p>
-                        <p>Howard Center</p>
-                     </div>
-                     <div class="detail-nav detail-nav-bottom"><div class="detail-nav-border">
-                        <a class="contact-button" href="mailto:example@example.com">Contact a Representative »</a>
-                        <div class="navigation-button" id="collapse">
-                           <a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12">
-                             <defs>
-                               <style>
-                                 .cls-1 {
-                                   fill: #0d97d4;
-                                 }
-                               </style>
-                             </defs>
-                             <title>uparrow</title>
-                             <path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/>
-                           </svg>
-                        </div>
-                     </div></div>
-                  </div>
-                  <div class="indiv-detail-block">
-                     <div class="category">
-                        <p>Housing Instability</p>
-                        <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
-                        </svg>
-                     </div>
-                     <h1>Preventative Food Pantry/Food Demonstration Kitchen</h1>
-                     <div id="collapsableContent">
-                        <div class="row program-info-row">
-                           <h4>DETAILS</h4>
-                           <div class="columns-3">
-                              <p>Bed Size:</p>
-                              <p>Designation:</p>
-                              <p>Payer Mix:</p>
-                              <p>Social Determinant:</p>
-                              <p>Target Populations:</p>
-                              <p>Program Settings:</p>
-                           </div>
-                           <div class="columns-5">
-                              <p>300</p>
-                              <p>Non-Profit, Academic Medical Center</p>
-                              <p>50% Medicaid</p>
-                              <p>Housing</p>
-                              <p>Adults, Families</p>
-                              <p>Hospital, Community</p>
-                           </div>
-                           </div>
-                           <p class="program-info-row">UVM Health Network worked with local partners to acquire a vacant motel and create Harbor Place. Now, homeless patients who have been discharged from the hospital have a temporary place to stay in the motel. Most important, as part of their tenancy at Harbor Place, individuals staying there can access case management provided by a coalition of community-based agencies and targeted at improving their social and health care needs. As of 2016, about 100 patients have been discharged to Harbor Place, and UVM Medical Center estimated it has saved about $1 million in care costs as a result.</p>
-                           <h4>PARTNERS</h4>
-                           <p>Champlain Housing Trust</p>
-                           <p>Community Health Centers of Burlington</p>
-                           <p>United Way</p>
-                           <p>Howard Center</p>
-                        </div>
-                        <div class="detail-nav detail-nav-bottom"><div class="detail-nav-border">
-                           <a class="contact-button" href="mailto:example@example.com">Contact a Representative »</a>
-                           <div class="navigation-button" id="collapse">
-                              <a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12">
-                                <defs>
-                                  <style>
-                                    .cls-1 {
-                                      fill: #0d97d4;
-                                    }
-                                  </style>
-                                </defs>
-                                <title>uparrow</title>
-                                <path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/>
-                              </svg>
-                           </div>
-                        </div></div>
-                     </div>
-            </div>
+                  </div>   
+               </div>
+            </div>       
+         </div> <!-- #detailPaneContent -->
 
       </div><!-- #detailPane -->
 

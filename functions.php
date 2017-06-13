@@ -57,6 +57,8 @@ function update_programs_map( $post_id ) {
           $title = get_the_title();
           $description = get_the_content();
 
+          $contact_email = get_field('contact_email',$p_id);
+
       
           $the_id = (string)$p_id;
           $slug = $post->post_name;
@@ -153,6 +155,7 @@ function update_programs_map( $post_id ) {
               "target_pop_slug" => $target_pop_slug,
               "program_setting" => $settings,
               "program_setting_slug" => $settings_slug,
+              "contact_email" => $contact_email,
               "hosp_id" => $hosp_id
  
           ];
