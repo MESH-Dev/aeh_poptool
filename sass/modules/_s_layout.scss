@@ -62,8 +62,8 @@ img{
         }
     }
     &.determ{
-       .determ-intro{
-         display: block;
+       .determ-intro.active{
+          display: block;
       }
       .main-intro{
          display: none;
@@ -163,6 +163,9 @@ img{
   }
   svg{
      width: 80px;
+     .cls-1{
+        transition: fill 0.25s ease-in-out;
+     }
  }
  &.active{
     svg{
