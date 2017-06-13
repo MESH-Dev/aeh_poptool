@@ -1,9 +1,19 @@
-@mixin georgia{
-  font-family: Georgia, Times, "Times New Roman", serif;
-}
+//Add to typography.scss
+
+// @mixin georgia{
+//   font-family: Georgia, Times, "Times New Roman", serif;
+// }
 
 @mixin cabin{
   font-family: 'Cabin', sans-serif;
+}
+
+//Add to variables.scss
+$light-blue: #bfebfb;
+$new-red: #ed4642;
+
+img{
+  max-width:100%;
 }
 
 //Homepage
@@ -15,33 +25,225 @@
   h1{
     font-size:3.6rem;
     margin-bottom:4rem;
-    @include georgia;
     font-weight:100;
     span{
       text-transform:uppercase;
-      @include cabin;
+      font-weight: 600;
+      // @include cabin;
     }
   }
   p{
-    //@include georgia;
     color:white;
+  }
+}
+
+.sdh-intro{
+  h2{
+     font-size: 3.6rem;
+    span{
+      @include georgia;
+      font-weight: 100;
+    }
   }
 }
 
 .section-cta{
   //background-color:$white;
+     h3{
+        display: inline-block;
+        font-weight: 600;
+        max-width: 50%;
+        font-size: 2.4rem;
+    }
+    h3, p{
+       color: $blue;
+       margin-bottom: 5px;
+       transform: translateX(0px);
+       transition: transform 0.25s ease-in-out;
+   }
   .wrapper{
     border-left:2px solid $white;
     padding-left:2em;
+    float: left;
+    a{
+      float: left;
+      &:nth-of-type(2){
+          margin: 10px 0;
+      }
+   }
     .single-cta{
+      position: relative;
+      overflow: hidden;
+      &::after{
+         content: '»';
+         position: absolute;
+         top: 14px;
+         right: 14px;
+         font-size: 4rem;
+         line-height: 3rem;
+      }
+      img{
+         position: absolute;
+         top: 14px;
+         left: 14px;
+         width: 60px;
+         transform: translateX(-80px);
+         transition: transform 0.25s ease-in-out;
+      }
+      &:hover{
+          h3, p{
+             color: $green;
+             transform: translateX(70px);
+          }
+          &::after{
+             color: $green;
+          }
+          img{
+             transform: translateX(0px);
+          }
+      }
       background-color:$white;
       color:$blue;
+      float: left;
+      padding: 14px;
     }
   }
 }
 
-//Default pages 
+.social-determinants{
+  padding:6em 0;
+}
 
+.sdh-icon{
+  display:inline-block;
+  float:left;
+  text-align:center;
+  cursor:pointer;
+  width:25%;
+  @media ($bp-smaller-than-tablet){
+    width:40%;
+    margin:0 5%;
+  }
+  @media ($bp-smaller-than-mobile){
+    width: 95%;
+  }
+  svg{
+     width: 80px;
+ }
+  &:hover,
+  &:active,
+  &:focus{
+    svg{
+      .cls-1{
+        //fill:$red;
+        fill: $green;
+      }
+    }
+  }
+  .wrap{
+
+   //  img,svg{
+   //    max-width:60%;
+   //    height:auto;
+   //    @media ($bp-smaller-than-tablet){
+   //      max-width:100%;
+   //    }
+      // &:hover{
+      //   .cls-1{
+      //     fill:$red;
+      //   }
+      // }
+    }
+
+    .caption{
+      font-size: 1.2em;
+      color:$red;
+      font-weight:600;
+      @include cabin;
+    }
+  }
+
+//Default pages
+
+.page-title{
+  margin-top:3em;
+  text-transform: uppercase;
+}
+.headline{
+  color:$blue;
+  font-size:2.2rem;
+  margin-bottom:4rem;
+}
+
+.cta-sidebar{
+  // -webkit-box-shadow: inset 15px -9px 5px -10px rgba(0,0,0,0.69);
+  // -moz-box-shadow: inset 15px -9px 5px -10px rgba(0,0,0,0.69);
+  // box-shadow: inset 15px -9px 5px -10px rgba(0,0,0,0.69);
+  height:100%;
+  padding: 1em;
+}
+
+
+.side-cta{
+  background-color:$light-light-blue;
+  padding:1.5em 2em;
+  margin-bottom:1em;
+  background-image:url('img/cta-arrow.png');
+  background-repeat:no-repeat;
+  background-position:95% 1.75em;
+  .wrap{
+    width:80%;
+  }
+  h3{
+    color:$blue;
+    font-size:1.3em;
+    font-style:italic;
+    margin-bottom:0;
+  }
+
+  .cta-arrow{
+    position: absolute;
+    right: 1.5em;
+    top: 2.5em;
+  }
+  a{
+    color:$blue;
+    &:hover,
+    &:focus,
+    &:active{
+      text-decoration:none;
+      h2,h3{
+        opacity:.7;
+        text-decoration: none;
+      }
+  }
+  }
+
+}
+
+.page-content{
+  // -webkit-box-shadow: inset 15px -9px 5px -10px rgba(0,0,0,0.69);
+  // -moz-box-shadow: inset 15px -9px 5px -10px rgba(0,0,0,0.69);
+  // box-shadow: inset 15px -9px 5px -10px rgba(0,0,0,0.69);
+  box-shadow: 2.828px 0px 4px 0px rgba(0, 0, 0, 0.06);
+  -webkit-box-shadow: 2.828px 0px 4px 0px rgba(0, 0, 0, 0.06);
+  -moz-box-shadow: 2.828px 0px 4px 0px rgba(0, 0, 0, 0.06);
+  @media ($bp-smaller-than-tablet){
+    box-shadow:none;
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+  }
+  height:100%;
+  .wrap{
+    width:80%;
+    @media ($bp-smaller-than-tablet){
+      width:initial;
+    }
+  }
+}
 .the-content{
-
+  h1, h2, h3, h4, h5, h6{
+    color:$red;
+    text-transform:uppercase;
+  }
 }

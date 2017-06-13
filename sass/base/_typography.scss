@@ -1,6 +1,14 @@
 // Typography
 //––––––––––––––––––––––––––––––––––––––––––––––––––
 
+@mixin georgia{
+  font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+@mixin cabin{
+  font-family: 'Cabin', sans-serif;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 2rem;
@@ -42,7 +50,8 @@ h4{
 
 p {
    font-family: 'Cabin', sans-serif;
-  font-size: 1.4rem;
+  //font-size: 1.4rem;
+  font-size:1.3em;
   line-height: 1.428;
   margin-top: 0;
   margin-bottom: 1.8rem;

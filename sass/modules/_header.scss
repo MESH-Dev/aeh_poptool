@@ -10,7 +10,11 @@
    &.global{
       height:auto;
       position:relative;
+      box-shadow: 1px 1.732px 5px 0px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 1px 1.732px 5px 0px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 1px 1.732px 5px 0px rgba(0, 0, 0, 0.1);
    }
+
    svg{
       height: 60px;
    }
@@ -33,7 +37,7 @@
          }
          &:nth-of-type(2),
          &:nth-of-type(4){
-            width:200px;
+            width:230px;
          }
          a{
             color:$grey;
