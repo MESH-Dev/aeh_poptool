@@ -38,13 +38,37 @@ img{
 }
 
 .sdh-intro{
+   @media screen and ($bp-smaller-than-tablet){
+      margin-bottom: 40px;
+   }
+   a{
+      color: $blue;
+      cursor: pointer;
+      &:hover{
+         text-decoration: none;
+      }
+   }
   h2{
      font-size: 3.6rem;
     span{
       @include georgia;
       font-weight: 100;
     }
-  }
+     }
+     .determ-intro{
+        display: none;
+        h2{
+           color: $red;
+        }
+    }
+    &.determ{
+       .determ-intro{
+         display: block;
+      }
+      .main-intro{
+         display: none;
+      }
+   }
 }
 
 .section-cta{
@@ -65,15 +89,25 @@ img{
     border-left:2px solid $white;
     padding-left:2em;
     float: left;
+    @media screen and ($bp-smaller-than-tablet){
+      padding-left: 0;
+      border-left: 0px;
+   }
     a{
       float: left;
       &:nth-of-type(2){
           margin: 10px 0;
       }
+      @media screen and ($bp-smaller-than-tablet){
+         width: 100%;
+      }
    }
     .single-cta{
       position: relative;
       overflow: hidden;
+      @media screen and ($bp-smaller-than-tablet){
+         width: 100%;
+      }
       &::after{
          content: '»';
          position: absolute;
@@ -130,12 +164,23 @@ img{
   svg{
      width: 80px;
  }
+ &.active{
+    svg{
+      circle{
+         fill: $red;
+      }
+   }
+   &:hover, &:active, &:focus{
+      .cls-1{
+         fill: $red;
+      }
+   }
+}
   &:hover,
   &:active,
   &:focus{
     svg{
       .cls-1{
-        //fill:$red;
         fill: $green;
       }
     }

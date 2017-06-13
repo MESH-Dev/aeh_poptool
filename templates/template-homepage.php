@@ -52,13 +52,20 @@ get_header();
       <div class="container">
          <div class="row">
             <div class="sdh-intro columns-5">
-               <?php
-                  $sd_intro_b = get_field('sdh_intro_bold');
-                  $sd_intro_nb = get_field('sdh_intro_nobold');
-                  $sd_intro_desc = get_field('sdh_intro_description');
-               ?>
-               <h2><?php echo $sd_intro_b; ?> <span><?php echo $sd_intro_nb; ?></span></h2>
-               <?php echo $sd_intro_desc; ?>
+               <div class="main-intro">
+                  <?php
+                     $sd_intro_b = get_field('sdh_intro_bold');
+                     $sd_intro_nb = get_field('sdh_intro_nobold');
+                     $sd_intro_desc = get_field('sdh_intro_description');
+                  ?>
+                  <h2><?php echo $sd_intro_b; ?> <span><?php echo $sd_intro_nb; ?></span></h2>
+                  <?php echo $sd_intro_desc; ?>
+               </div>
+               <div class="determ-intro">
+                  <h2>Housing Instability</h2>
+                  <p>Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean lacinia bibendum nulla sed consectetur.</p>
+                  <a class="determ-close">BACK TO DESCRIPTION OF ALL SOCIAL DETERMINATES »</a>
+               </div>
 
             </div>
             <div class="columns-6 offset-by-1">
