@@ -36,13 +36,15 @@
 	</div>
 </footer>
 <!-- <script src="js/map.js"></script> -->
-<?php if (is_page_template('/templates/template-map.php')) {?>
+ 
+<!-- <?php //if (is_page_template('/templates/template-map.php')) {?>
 	<script src="<?php echo get_template_directory_uri() ?>/js/map.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXR8bORut0sXyoust5FWnhi-9TA8TWktw&amp;callback=initMap"></script>
-<?php } ?>
+<?php// } ?> -->
 
 <!-- Go to www.addthis.com/dashboard to customize your tools --> 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-593039cafc329c1e"></script> 
+ 
 </body>
 </html>
 

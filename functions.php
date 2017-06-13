@@ -22,18 +22,16 @@ function update_programs_map( $post_id ) {
 
     $post_type = get_post_type($post_id);
     
-    //echo $p_id;
-    //echo $post_id;
-     if("program" != $post_type){ return; }
-     else{
-     $p_id = get_the_ID();
+ 
+    if($post_type!="program" && $post_type!="hospital"){ return; }
+    else{
+    $p_id = get_the_ID();
+    
     //The file location for the json file we're creating
     $directory = get_template_directory().'/helpers/programs.json';
     //The contents of the file, so we can check to see if it's empty or not.
     $program_file = file_get_contents($directory);
-       
-    //}else{
-    	//if($program_file == ''){
+ 
         $arr = array();
         $ids = array();
         
@@ -45,10 +43,13 @@ function update_programs_map( $post_id ) {
           'post_status' => 'publish'
         );
 
-        query_posts( $args );
-        //$ct = 0;
-        while (have_posts()) { the_post();
-          //$ct++;
+        $program_query = new WP_Query($args );
+ 
+         while ($program_query->have_posts()) { 
+
+          global $post;
+          $program_query->the_post();
+           
           //Save the post ID to a variable
           $p_id = get_the_ID();
 
@@ -56,243 +57,94 @@ function update_programs_map( $post_id ) {
           $title = get_the_title();
           $description = get_the_content();
 
-          GLOBAL $post;
+          $contact_email = get_field('contact_email',$p_id);
+
+      
           $the_id = (string)$p_id;
           $slug = $post->post_name;
-          $name = get_field('hospital_name',$post_id);
-          $address = get_field('hospital_address',$post_id);
-          $city = get_field('hospital_city_state',$post_id);
-          $zip = get_field('hospital_zip',$post_id);
-          $lat = get_field('hospital_latitude',$post_id);
-          $long = get_field('hospital_longitude',$post_id);
-          $email = get_field('contact_email',$post_id);
-          $hosp_id = get_field('hospital',$post->ID);
-          //var_dump($hosp_id);
-          //$website = get_field('web_address');
-       		//$phone = get_field('phone_number');
-          //$zip = get_field('zip');
-          //$primary_section = get_the_terms($p_id, 'primary_section'); 
-          //var_dump($primary_section);
-          //$color = get_term_meta($primary_section[0]->term_id, 'color');
-          //__Get the categories for the post, we'll break it up below
-          //$listing_cats = get_the_category($p_id); 
-          //----
-          $separator = '';
-
-            //1
-          $beds = get_the_terms($post_id, 'bed_size');
-          $bed_name = '';
-          $bed_slug = '';
-          if($beds){
-            foreach ($beds as $bed){
-              $bed_name .= $bed->name . $separator;
-              $bed_slug .= $bed->slug . $separator;
-            }
-        } 
-
-          //2
-          $payers = get_the_terms($post_id, 'percent_govt_payer');
-          $govt_payer = '';
-          $govt_payer_slug = '';
-
-          if($payers){
-            foreach ($payers as $payer){
-              $govt_payer .= $payer->name . $separator;
-              $govt_payer_slug .= $payer->slug . $separator;
-            }
-          }
-          //3
-          $ownerships = get_the_terms($post_id, 'ownership');
-          $owners = '';
-          $owners_slug = '';
-
-          if($ownerships){
-            foreach ($ownerships as $ownership){
-              $owners .= $ownership->name . $separator;
-              $owners_slug .= $ownership->slug . $separator;
-            }
-          }
-          
-
-
-          //4
-          $t_statuses = get_the_terms($post_id, 'teaching_status');
-          $teach = '';
-          $teach_slug = '';
-
-          if($t_statuses){
-            foreach ($t_statuses as $t_status){
-              $teach .= $t_status->name . $separator;
-              $teach_slug .= $t_status->slug . $separator;
-            }
-          }
-
-          //5
-          $regions = get_the_terms($post_id, 'region');
-          $reg = '';
-          $reg_slug = '';
-          if($regions){
-            foreach ($regions as $region){
-              $reg .= $region->name . $separator;
-              $reg_slug .= $region->slug . $separator;
-            }
-          }
-
-          //6
-          $actives = get_the_terms($post_id, 'active');
+ 
+          $separator_space = ' ';
+          $separator_comma = ', ';
+ 
+          // 
+          $actives = get_the_terms($p_id , 'active');
           $is_active = '';
           $is_active_slug ='';
 
           if($actives){
             foreach ($actives as $active){
-              $is_active .= $active->name . $separator;
-              $is_active_slug .= $active->slug . $separator;
+              $is_active .= $active->name . $separator_comma;
+              $is_active_slug .= $active->slug . $separator_space;
             }
+            $is_active = rtrim($is_active,', ');
+            $is_active_slug = rtrim($is_active_slug," ");
           }
 
-          //7
-          $partners = get_the_terms($post_id, 'partners');
+          //  
+          $partners = get_the_terms($p_id , 'partners');
           $part = '';
           $part_slug ='';
 
           if($partners){
             foreach ($partners as $partner){
-              $part .= $partner->name . $separator;
-              $part_slug .= $partner->slug . $separator;
+              $part .= $partner->name . $separator_comma;
+              $part_slug .= $partner->slug . $separator_space;
             }
+            $part = rtrim($part,', ');
+            $part_slug = rtrim($part_slug," ");
           }
 
-          //8
-          $determinants = get_the_terms($post_id, 'sdh');
+          // 
+          $determinants = get_the_terms($p_id , 'sdh');
           $social_det = '';
           $social_det_slug = '';
 
           if($determinants){
             foreach ($determinants as $determinant){
-              $social_det .= $determinant->name . $separator;
-              $social_det_slug .= $determinant->slug . $separator;
+              $social_det .= $determinant->name . $separator_comma;
+              $social_det_slug .= $determinant->slug . $separator_space;
             }
+            $social_det = rtrim($social_det,', ');
+            $social_det_slug = rtrim($social_det_slug," ");
+
           }
 
-          //9
-          $t_pops = get_the_terms($post_id, 'target_pop');
+          // 
+          $t_pops = get_the_terms($p_id , 'target_pop');
           $target_pop = '';
           $target_pop_slug = '';
 
           if($t_pops){
             foreach ($t_pops as $t_pop){
-              $target_pop .= $t_pop->name . $separator;
-              $target_pop_slug .= $t_pop->slug . $separator;
+              $target_pop .= $t_pop->name . $separator_comma;
+              $target_pop_slug .= $t_pop->slug . $separator_space;
             }
+            $target_pop = rtrim($target_pop,', ');
+            $target_pop_slug = rtrim($target_pop_slug," ");
           }
 
-          //10
-          $p_settings = get_the_terms($post_id, 'program_setting');
+          // 
+          $p_settings = get_the_terms($p_id , 'program_setting');
           $settings = '';
           $settings_slug = '';
 
           if($p_settings!=''){
             foreach ($p_settings as $p_setting){
-              $settings .= $p_setting->name . $separator;
-              $settings_slug .= $p_setting->slug . $separator;
+              $settings .= $p_setting->name . $separator_comma;
+              $settings_slug .= $p_setting->slug . $separator_space;
             }
+            $settings = rtrim($settings,', ');
+            $settings_slug = rtrim($settings_slug," ");
           }
 
-          //11
-          $pop_sizes = get_the_terms($post_id, 'pop_size');
-          $pop_sz = '';
-          $pop_sz_slug = '';
-
-          if($pop_sizes){
-            foreach ($pop_sizes as $pop_size){
-              $pop_sz .= $pop_size->name . $separator;
-              $pop_sz_slug .= $pop_size->slug . $separator;
-            }
-          }
-
-          //12
-          $below_fpls = get_the_terms($post_id, 'percent_below_fpl');
-          $fpl = '';
-          $fpl_slug = '';
-
-          if($below_fpls){
-            foreach ($below_fpls as $below_fpl){
-              $fpl .= $below_fpl->name . $separator;
-              $fpl_slug .= $below_fpl->slug . $separator;
-            }
-          }
-
-          //13
-          $percent_uninsureds = get_the_terms($post_id, 'percent_uninsured');
-          $perc_uninsured = '';
-          $perc_uninsured_slug = '';
-
-          if($percent_uninsureds){
-            foreach ($percent_uninsureds as $percent_uninsured){
-              $perc_uninsured .= $percent_uninsured->name . $separator;
-              $perc_uninsured_slug .= $percent_uninsured->slug . $separator;
-            }
-          }
-
-          if ($hosp_id != ''){
-            $h_id = $hosp_id;
-          }else{
-            $h_id = '';
-          }
-          //get one category by splitting the value from above
-          // foreach ($listing_cats as $cat) {
-          //    $listing_category = $cat->slug;
-          //    $listing_name = $cat->name;
-          //    break;
-          // }
-         
- 		  // foreach ($primary_section as $ps){
- 		  // 	$primary_sec = $ps->name;
- 		  // 	break;
- 		  // }
-
-          
-          //$logo = wp_get_attachment_url(get_post_thumbnail_id());
-
-          //$business_category = get_field('business_category');
-
-          //Save the address, city, & zip to a variable to use in the getCoordinates function
-          $f = $address . ' ' . $city . ' '. $zip;
-           
-          //Override   
-          //Check to see if the latitude and longitude overides on the listing posttype are being used
-          //If so, use those values to retrieve our location information for our map
-          //If not, run the getCoordinates function to dynamically retrieve the lat and lng  
-          if (get_field('latitude') && get_field('longitude')) {
-            $lat = get_field('hospital_latitude');
-            $long = get_field('hospital_longitude');
-            $coordinates = array((float)$lat, (float)$long);
-          }else{
-            $coordinates = getCoordinates($f);
-          }
-  
-            //Add all of the listing 'parts' to an array
-            $a = [
-               "id" => $the_id,
+          $hosp_id = get_field('hospital',$p_id);
+ 
+          //Add all of the listing 'parts' to an array
+          $a = [
+              "id" => $the_id,
               "name" => $title,
               "slug"=> $slug,
               "description" => $description,
-              // "address" => $address,
-              // "city" => $city,
-              // "zip" => $zip,
-              // "latitude" => $lat,
-              // "longitude" => $long,
-              //"coordinates" => $coordinates,
-              // "bed_size" => $bed_name,
-              // "bed_size_slug" => $bed_slug,
-              // "percent_govt_payer" => $govt_payer,
-              // "percent_govt_payer_slug" => $govt_payer,
-              // "ownership" => $owners,
-              // "ownership_slug" => $owners,
-              // "teaching_status" => $teach,
-              // "teaching_status_slug" => $teach,
-              // "region" => $reg,
-              // "region_slug" => $reg_slug,
               "active" => $is_active,
               "active_slug" => $is_active_slug,
               "partners" => $part,
@@ -303,20 +155,11 @@ function update_programs_map( $post_id ) {
               "target_pop_slug" => $target_pop_slug,
               "program_setting" => $settings,
               "program_setting_slug" => $settings_slug,
-              "hosp_id" => $h_id
-              // "pop_size" => $pop_sz,
-              // "pop_size_slug" => $pop_sz_slug,
-              // "percent_below_fpl" => $fpl,
-              // "percent_below_fpl_slug" => $fpl_slug,
-              // "percent_uninsured" => $perc_uninsured,
-              // "percent_uninsured_slug" => $perc_uninsured_slug,
-            ];
-
-            // $id = [
-            //   $the_id => $a
-            // ];
-
-            // array_push($arr, $id);
+              "contact_email" => $contact_email,
+              "hosp_id" => $hosp_id
+ 
+          ];
+ 
             $arr[$the_id] = $a;
 
         }
@@ -326,107 +169,33 @@ function update_programs_map( $post_id ) {
 
         // JSON-encode the response
         $json = json_encode($arr, JSON_PRETTY_PRINT);
-
-        
-        //if($program_file == ''){
+ 
+         
         //Write to our file
         $myfile = fopen(''.$directory.'', "w") or die("Unable to open file!");
         fwrite($myfile, $json);
         fclose($myfile);  
-     //    }else{
-     //    	$json_string = file_get_contents($directory);
-    	// 	//var_dump($json_string);
-	    // 	$data = json_decode($json_string, true);
-	    // 	//var_dump($data);
-	    // 	//$data[1]['title'] = 'isThisThingWorking';
-
-	    // 	foreach($data as $key => $program){
-	    // 		//echo $program['ID'];
-	    // 		//echo $program['title'];
-	    // 		if($post_id == $program['ID']){
-	    // 			global $post;
-	  		// 		//echo $post_id;
-	  		// 		//echo $program['ID'];
-					// // $data[$key]['ID'] = $the_id;
-					// // echo $the_id;
-					// //$data[$key]['title'] = 'UPDATED';
-					// //$data[$key]['title'] = $title;
-					// $data[$key]['title'] = get_the_title($post_id);
-					//  //echo get_the_title($post_id);
-					// $data[$key]['description'] = get_the_content($post_id);
-					// $data[$key]['slug']= $post->post_name;
-					// $data[$key]['name'] = $name;
-					// $data[$key]['address'] = $address;
-					// $data[$key]['city'] = $city;
-					// $data[$key]['zip'] = $zip;
-					// $data[$key]['coordinates'] = $coordinates;
-					// $data[$key]['bed_size'] = $bed_name;
-					// $data[$key]['percent_govt_payer'] = $govt_payer;
-					// $data[$key]['ownership'] = $owners;
-					// $data[$key]['teaching_status'] = $teach;
-					// $data[$key]['region'] = $reg;
-					// $data[$key]['active'] = $is_active;
-					// $data[$key]['partners'] = $part;
-					// $data[$key]['sdh'] = $social_det;
-					// $data[$key]['target_pop'] = $target_pop;
-					// $data[$key]['program_setting'] = $settings;
-					// $data[$key]['pop_size'] = $pop_sz;
-					// $data[$key]['percent_below_fpl'] = $fpl;
-					// $data[$key]['percent_uninsured'] = $perc_uninsured;
-
-	    // 		}else{
-	    // 			$data[$key]['title'] = get_the_title($p_id);
-					//  //echo get_the_title($p_id);
-					// $data[$key]['description'] = $description;
-					// $data[$key]['slug']= $slug;
-					// $data[$key]['name'] = $name;
-					// $data[$key]['address'] = $address;
-					// $data[$key]['city'] = $city;
-					// $data[$key]['zip'] = $zip;
-					// $data[$key]['coordinates'] = $coordinates;
-					// $data[$key]['bed_size'] = $bed_name;
-					// $data[$key]['percent_govt_payer'] = $govt_payer;
-					// $data[$key]['ownership'] = $owners;
-					// $data[$key]['teaching_status'] = $teach;
-					// $data[$key]['region'] = $reg;
-					// $data[$key]['active'] = $is_active;
-					// $data[$key]['partners'] = $part;
-					// $data[$key]['sdh'] = $social_det;
-					// $data[$key]['target_pop'] = $target_pop;
-					// $data[$key]['program_setting'] = $settings;
-					// $data[$key]['pop_size'] = $pop_sz;
-					// $data[$key]['percent_below_fpl'] = $fpl;
-					// $data[$key]['percent_uninsured'] = $perc_uninsured;
-	  //   		}
-	  //   	}
-
-	  //   	$newJsonString = json_encode($data, JSON_PRETTY_PRINT);
-	  //   	//var_dump($newJsonString);
-			// file_put_contents($directory, $newJsonString);
-   //      }
-    //}
+ 
+        
     }
- }
+}
 
- add_action('save_post', 'update_programs_map', 10, 3);
+add_action('save_post', 'update_programs_map', 10, 3);
 
- function update_hospital_map( $post_id ) {
+function update_hospital_map( $post_id ) {
 
     $post_type = get_post_type($post_id);
-    
-    //echo $p_id;
-    //echo $post_id;
-     if("hospital" != $post_type){ return; }
-     else{
-     $p_id = get_the_ID();
+ 
+    if($post_type!="program" && $post_type!="hospital"){ return; }
+    else{
+    $p_id = get_the_ID();
     //The file location for the json file we're creating
     $directoryH = get_template_directory().'/helpers/hospitals.json';
-    $i = 0;
+    
     //The contents of the file, so we can check to see if it's empty or not.
     $hospital_file = file_get_contents($directoryH);
        
-    //}else{
-      //if($program_file == ''){
+ 
         $arr = array();
         $ids = array();
         
@@ -438,276 +207,198 @@ function update_programs_map( $post_id ) {
           'post_status' => 'publish'
         );
 
-        query_posts( $args );
-        //$ct = 0;
-        while (have_posts()) { the_post();
-          //$ct++;
-          $i++;
+        $hospital_query = new WP_Query($args );
+ 
+        while ($hospital_query->have_posts()) { 
+
+          global $post;
+          $hospital_query->the_post();
+
           //Save the post ID to a variable
           $p_id = get_the_ID();
 
           //Get post info to save to our json file
           $title = get_the_title();
           $description = get_the_content();
-
-          GLOBAL $post;
+ 
           $the_id = (string)$p_id;
-          //var_dump($the_id);
-          $da_id = $p_id;
-          $slug = $post->post_name;
-          $name = get_field('hospital_name',$post_id);
-          $address = get_field('hospital_address',$post_id);
-          $city = get_field('hospital_city_state',$post_id);
-          $zip = get_field('hospital_zip',$post_id);
-          $lat = get_field('hospital_latitude',$post_id);
-          $long = get_field('hospital_longitude',$post_id);
-          $email = get_field('contact_email',$post_id);
-          //$website = get_field('web_address');
-          //$phone = get_field('phone_number');
-          //$zip = get_field('zip');
-          //$primary_section = get_the_terms($p_id, 'primary_section'); 
-          //var_dump($primary_section);
-          //$color = get_term_meta($primary_section[0]->term_id, 'color');
-          //__Get the categories for the post, we'll break it up below
-          //$listing_cats = get_the_category($p_id); 
-          //----
-          $separator = '';
 
-            //1
-          $beds = get_the_terms($post_id, 'bed_size');
+          $slug = $post->post_name;
+          $name = get_field('hospital_name',$p_id);
+          $address = get_field('hospital_address',$p_id);
+          $city = get_field('hospital_city_state',$p_id);
+          $zip = get_field('hospital_zip',$p_id);
+          $lat = get_field('hospital_latitude',$p_id);
+          $long = get_field('hospital_longitude',$p_id);
+          $email = get_field('contact_email',$p_id);
+ 
+          $separator_space = ' ';
+          $separator_comma = ', ';
+
+          //1
+          $beds = get_the_terms($p_id, 'bed_size');
           $bed_name = '';
           $bed_slug = '';
           if($beds){
-            foreach ($beds as $bed){
-              $bed_name .= $bed->name . $separator;
-              $bed_slug .= $bed->slug . $separator;
-            }
-        } 
+              foreach ($beds as $bed){
+                $bed_name .= $bed->name . $separator_comma;
+                $bed_slug .= $bed->slug . $separator_space;
+              }
+              $bed_name = rtrim($bed_name,', ');
+              $bed_slug = rtrim($bed_slug," ");
+          } 
 
           //2
-          $payers = get_the_terms($post_id, 'percent_govt_payer');
+          $payers = get_the_terms($p_id, 'percent_govt_payer');
           $govt_payer = '';
           $govt_payer_slug = '';
 
           if($payers){
             foreach ($payers as $payer){
-              $govt_payer .= $payer->name . $separator;
-              $govt_payer_slug .= $payer->slug . $separator;
+              $govt_payer .= $payer->name . $separator_comma;
+              $govt_payer_slug .= $payer->slug . $separator_space;
             }
+            $govt_payer = rtrim($govt_payer,', ');
+            $govt_payer_slug = rtrim($govt_payer_slug," ");
           }
           //3
-          $ownerships = get_the_terms($post_id, 'ownership');
+          $ownerships = get_the_terms($p_id, 'ownership');
           $owners = '';
           $owners_slug = '';
 
           if($ownerships){
             foreach ($ownerships as $ownership){
-              $owners .= $ownership->name . $separator;
-              $owners_slug .= $ownership->slug . $separator;
+              $owners .= $ownership->name . $separator_comma;
+              $owners_slug .= $ownership->slug . $separator_space;
             }
+            $owners = rtrim($owners,', ');
+            $owners_slug = rtrim($owners_slug," ");
           }
           
 
 
           //4
-          $t_statuses = get_the_terms($post_id, 'teaching_status');
+          $t_statuses = get_the_terms($p_id, 'teaching_status');
           $teach = '';
           $teach_slug = '';
 
           if($t_statuses){
             foreach ($t_statuses as $t_status){
-              $teach .= $t_status->name . $separator;
-              $teach_slug .= $t_status->slug . $separator;
+              $teach .= $t_status->name . $separator_comma;
+              $teach_slug .= $t_status->slug . $separator_space;
             }
+            $teach = rtrim($teach,', ');
+            $teach_slug = rtrim($teach_slug," ");
           }
 
           //5
-          $regions = get_the_terms($post_id, 'region');
+          $regions = get_the_terms($p_id, 'region');
           $reg = '';
           $reg_slug = '';
           if($regions){
             foreach ($regions as $region){
-              $reg .= $region->name . $separator;
-              $reg_slug .= $region->slug . $separator;
+              $reg .= $region->name . $separator_comma;
+              $reg_slug .= $region->slug . $separator_space;
             }
+            $reg = rtrim($reg,', ');
+            $reg_slug = rtrim($reg_slug," ");
           }
-
-          //6
-          $actives = get_the_terms($post_id, 'active');
-          $is_active = '';
-          $is_active_slug ='';
-
-          if($actives){
-            foreach ($actives as $active){
-              $is_active .= $active->name . $separator;
-              $is_active_slug .= $active->slug . $separator;
-            }
-          }
-
-          //7
-          $partners = get_the_terms($post_id, 'partners');
-          $part = '';
-          $part_slug ='';
-
-          if($partners){
-            foreach ($partners as $partner){
-              $part .= $partner->name . $separator;
-              $part_slug .= $partner->slug . $separator;
-            }
-          }
-
+ 
           //8
-          $determinants = get_the_terms($post_id, 'sdh');
-          $social_det = '';
+          $determinants = get_the_terms($p_id, 'sdh');
           $social_det_slug = '';
-
-          if($determinants){
-            foreach ($determinants as $determinant){
-              $social_det .= $determinant->name . $separator;
-              $social_det_slug .= $determinant->slug . $separator;
-            }
-          }
-
-          //9
-          $t_pops = get_the_terms($post_id, 'target_pop');
-          $target_pop = '';
-          $target_pop_slug = '';
-
-          if($t_pops){
-            foreach ($t_pops as $t_pop){
-              $target_pop .= $t_pop->name . $separator;
-              $target_pop_slug .= $t_pop->slug . $separator;
-            }
-          }
-
-          //10
-          $p_settings = get_the_terms($post_id, 'program_setting');
-          $settings = '';
-          $settings_slug = '';
-
-          if($p_settings!=''){
-            foreach ($p_settings as $p_setting){
-              $settings .= $p_setting->name . $separator;
-              $settings_slug .= $p_setting->slug . $separator;
-            }
-          }
-
+          $social_det_slug .= $determinant[0]->slug;
+ 
+ 
           //11
-          $pop_sizes = get_the_terms($post_id, 'pop_size');
+          $pop_sizes = get_the_terms($p_id, 'pop_size');
           $pop_sz = '';
           $pop_sz_slug = '';
 
           if($pop_sizes){
             foreach ($pop_sizes as $pop_size){
-              $pop_sz .= $pop_size->name . $separator;
-              $pop_sz_slug .= $pop_size->slug . $separator;
+              $pop_sz .= $pop_size->name . $separator_comma;
+              $pop_sz_slug .= $pop_size->slug . $separator_space;
             }
+            $pop_sz = rtrim($pop_sz,', ');
+            $pop_sz_slug = rtrim($pop_sz_slug," ");
           }
 
           //12
-          $below_fpls = get_the_terms($post_id, 'percent_below_fpl');
+          $below_fpls = get_the_terms($p_id, 'percent_below_fpl');
           $fpl = '';
           $fpl_slug = '';
 
           if($below_fpls){
             foreach ($below_fpls as $below_fpl){
-              $fpl .= $below_fpl->name . $separator;
-              $fpl_slug .= $below_fpl->slug . $separator;
+              $fpl .= $below_fpl->name . $separator_comma;
+              $fpl_slug .= $below_fpl->slug . $separator_space;
             }
+            $fpl = rtrim($fpl,', ');
+            $fpl_slug = rtrim($fpl_slug," ");
           }
 
           //13
-          $percent_uninsureds = get_the_terms($post_id, 'percent_uninsured');
+          $percent_uninsureds = get_the_terms($p_id, 'percent_uninsured');
           $perc_uninsured = '';
           $perc_uninsured_slug = '';
 
           if($percent_uninsureds){
             foreach ($percent_uninsureds as $percent_uninsured){
-              $perc_uninsured .= $percent_uninsured->name . $separator;
-              $perc_uninsured_slug .= $percent_uninsured->slug . $separator;
+              $perc_uninsured .= $percent_uninsured->name . $separator_comma;
+              $perc_uninsured_slug .= $percent_uninsured->slug . $separator_space;
             }
+            $perc_uninsured = rtrim($perc_uninsured,', ');
+            $perc_uninsured_slug = rtrim($perc_uninsured_slug," ");
           }
 
            $p_args = array(
               'post_type' => 'program',
               'posts_per_page'=> -1,
-              //'orderby' => 'title',
-              //'order' => 'asc',
               'post_status' => 'publish',
               'meta_key' => 'hospital',
               'meta_query' => array(
                   array(
                       'key' => 'hospital',
                       'compare' => '=',
-                      'value' => $da_id,
+                      'value' => $p_id,
                       ) 
                   )
               );
 
-           $prog_query = new WP_Query( $p_args );
+          $prog_query = new WP_Query( $p_args );
            
-        $prog_ids = array();
-        while ($prog_query->have_posts()) { $prog_query->the_post();
-          //var_dump($prog_query);
-          // $separator = ", ";
-          $prog_id = $post->ID;
-          
-          array_push($prog_ids, $prog_id);
-          // //$prog_id .= $prog_id + $separator;
-          // //var_dump($prog_id);
-          // $prog_ids='';
-          // if($prog_id!=''){
-          // $prog_ids = array($prog_id);
-          // //return $prog_ids;
-          // var_dump($prog_ids);
-          // //var_dump($prog_id);
-          // }else{
-          //   $prog_ids = '';
-          // }
-        }wp_reset_postdata();
-           //var_dump($prog_query);
-
-          // $hosp = get_field('hospital');
-
-          // $hosp_meta_args = array(
-          //     $key = 'meta_value';
-          //   );
-          //get one category by splitting the value from above
-          // foreach ($listing_cats as $cat) {
-          //    $listing_category = $cat->slug;
-          //    $listing_name = $cat->name;
-          //    break;
-          // }
-         
-      // foreach ($primary_section as $ps){
-      //  $primary_sec = $ps->name;
-      //  break;
-      // }
+          $prog_ids = array();
+          while ($prog_query->have_posts()) { $prog_query->the_post();
+   
+            $prog_id = $post->ID;
+            
+            array_push($prog_ids, $prog_id);
+            
+          }wp_reset_postdata();
+            
 
           
-          //$logo = wp_get_attachment_url(get_post_thumbnail_id());
-
-          //$business_category = get_field('business_category');
-
-          //Save the address, city, & zip to a variable to use in the getCoordinates function
-          $f = $address . ' ' . $city . ' '. $zip;
+          
            
-          //Override   
-          //Check to see if the latitude and longitude overides on the listing posttype are being used
+      
+          //Check to see if the latitude and longitude on the listing posttype are being used
           //If so, use those values to retrieve our location information for our map
           //If not, run the getCoordinates function to dynamically retrieve the lat and lng  
-          if (get_field('hospital_latitude') && get_field('hospital_longitude')) {
-            $lat = get_field('hospital_latitude');
-            $long = get_field('hospital_longitude');
-            $coordinates = array((float)$lat, (float)$long);
-          }else{
+          if ($lat == '' && $long== '') {
+            $f = $address . ' ' . $city . ' '. $zip; //Save the address, city, & zip to a variable to use in the getCoordinates function
             $coordinates = getCoordinates($f);
-          }
+             $coordinates = getCoordinates($f);
+            //If we got a good response from Google, update post_meta 
+            $lat = $coordinates[0];
+            $long = $coordinates[1];
+            update_post_meta($p_id, 'hospital_latitude',  $lat);
+            update_post_meta($p_id, 'hospital_longitude' , $long);
+          } 
   
             //Add all of the listing 'parts' to an array
             //$prog_ids = meta_query of programs that contain the meta value of this hospital
             $a = [
-              //$the_id,
               "id" => $the_id,
               "name" => $title,
               "slug"=> $slug,
@@ -716,7 +407,6 @@ function update_programs_map( $post_id ) {
               "zip" => $zip,
               "latitude" => $lat,
               "longitude" => $long,
-              //"coordinates" => $coordinates,
               "bed_size" => $bed_name,
               "bed_size_slug" => $bed_slug,
               "percent_govt_payer" => $govt_payer,
@@ -727,16 +417,7 @@ function update_programs_map( $post_id ) {
               "teaching_status_slug" => $teach_slug,
               "region" => $reg,
               "region_slug" => $reg_slug,
-              "active" => $is_active,
-              "active_slug" => $is_active_slug,
-              "partners" => $part,
-              "partners_slug" => $part_slug,
-              "sdh" => $social_det,
               "sdh_slug" => $social_det_slug,
-              "target_pop" => $target_pop,
-              "target_pop_slug" => $target_pop_slug,
-              // "program_setting" => $settings,
-              // "program_setting_slug" => $settings_slug,
               "pop_size" => $pop_sz,
               "pop_size_slug" => $pop_sz_slug,
               "percent_below_fpl" => $fpl,
@@ -745,17 +426,7 @@ function update_programs_map( $post_id ) {
               "percent_uninsured_slug" => $perc_uninsured_slug,
               "program_ids" => $prog_ids,
             ];
-
-            // $id = [
-            //   $the_id => $a
-            // ];
-            //array_push($arr, $a);
-            // array_push($ids, $id);
-            // array_push($ids[$i], $a);
-            // array_push($arr, $id);
-            // $h_array = array_merge($ids, $arr);
-            //array_push($ids, $id);
-            //array_push($ids, $a);
+ 
 
             $arr[$the_id] = $a;
 
@@ -773,79 +444,7 @@ function update_programs_map( $post_id ) {
         $myfile = fopen(''.$directoryH.'', "w") or die("Unable to open file!");
         fwrite($myfile, $json);
         fclose($myfile);  
-        //}
-      //   else{
-      //     $json_string = file_get_contents($directoryH);
-      //   //var_dump($json_string);
-      //   $data = json_decode($json_string, true);
-      //   //var_dump($data);
-      //   //$data[1]['title'] = 'isThisThingWorking';
-
-      //   foreach($data as $key => $hospital){
-      //     //echo $program['ID'];
-      //     //echo $program['title'];
-      //     if($post_id == $hospital['ID']){
-      //       global $post;
-      //       //echo $post_id;
-      //       //echo $program['ID'];
-      //     // $data[$key]['ID'] = $the_id;
-      //     // echo $the_id;
-      //     //$data[$key]['title'] = 'UPDATED';
-      //     //$data[$key]['title'] = $title;
-      //     $data[$key]['title'] = get_the_title($post_id);
-      //      //echo get_the_title($post_id);
-      //     $data[$key]['description'] = get_the_content($post_id);
-      //     $data[$key]['slug']= $post->post_name;
-      //     $data[$key]['name'] = $name;
-      //     $data[$key]['address'] = $address;
-      //     $data[$key]['city'] = $city;
-      //     $data[$key]['zip'] = $zip;
-      //     $data[$key]['coordinates'] = $coordinates;
-      //     $data[$key]['bed_size'] = $bed_name;
-      //     $data[$key]['percent_govt_payer'] = $govt_payer;
-      //     $data[$key]['ownership'] = $owners;
-      //     $data[$key]['teaching_status'] = $teach;
-      //     $data[$key]['region'] = $reg;
-      //     $data[$key]['active'] = $is_active;
-      //     $data[$key]['partners'] = $part;
-      //     $data[$key]['sdh'] = $social_det;
-      //     $data[$key]['target_pop'] = $target_pop;
-      //     $data[$key]['program_setting'] = $settings;
-      //     $data[$key]['pop_size'] = $pop_sz;
-      //     $data[$key]['percent_below_fpl'] = $fpl;
-      //     $data[$key]['percent_uninsured'] = $perc_uninsured;
-
-      // //    }else{
-      // //      $data[$key]['title'] = get_the_title($p_id);
-      //     //  //echo get_the_title($p_id);
-      //     // $data[$key]['description'] = $description;
-      //     // $data[$key]['slug']= $slug;
-      //     // $data[$key]['name'] = $name;
-      //     // $data[$key]['address'] = $address;
-      //     // $data[$key]['city'] = $city;
-      //     // $data[$key]['zip'] = $zip;
-      //     // $data[$key]['coordinates'] = $coordinates;
-      //     // $data[$key]['bed_size'] = $bed_name;
-      //     // $data[$key]['percent_govt_payer'] = $govt_payer;
-      //     // $data[$key]['ownership'] = $owners;
-      //     // $data[$key]['teaching_status'] = $teach;
-      //     // $data[$key]['region'] = $reg;
-      //     // $data[$key]['active'] = $is_active;
-      //     // $data[$key]['partners'] = $part;
-      //     // $data[$key]['sdh'] = $social_det;
-      //     // $data[$key]['target_pop'] = $target_pop;
-      //     // $data[$key]['program_setting'] = $settings;
-      //     // $data[$key]['pop_size'] = $pop_sz;
-      //     // $data[$key]['percent_below_fpl'] = $fpl;
-      //     // $data[$key]['percent_uninsured'] = $perc_uninsured;
-      //     }
-      //   }
-
-      //   $newJsonStringH = json_encode($data, JSON_PRETTY_PRINT);
-      //   //var_dump($newJsonString);
-      // file_put_contents($directoryH, $newJsonStringH);
-      //   }
-    //}
+         
     }
  }
 
@@ -856,26 +455,27 @@ function update_programs_map( $post_id ) {
 //** See Override above for situations where the use of this function is overriden per lisitng post
 function getCoordinates($address){
 
-          //var_dump($response)
-          $address = urlencode($address);
+    //var_dump($response)
+    $address = urlencode($address);
 
-          $url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address=" . $address;
-          $response = file_get_contents($url);
-          $json = json_decode($response,true);
+    $url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address=" . $address;
+    $response = file_get_contents($url);
+    $json = json_decode($response,true);
 
-          //Check to see if we received a good response from GoogleMaps
-          if ($json['status'] == 'OK'){
-            $lat = $json['results'][0]['geometry']['location']['lat'];
-            $lng = $json['results'][0]['geometry']['location']['lng'];
-          //If not, set lat lng values to 0 
-          //** This should be good to narrow down issues with a particular listing,
-          //   as problem listings will return a 0 value lat lng in our json file
-          }else{
-            $lat = 0;
-            $lng = 0;
-          }
+    //Check to see if we received a good response from GoogleMaps
+    if ($json['status'] == 'OK'){
+    $lat = $json['results'][0]['geometry']['location']['lat'];
+    $lng = $json['results'][0]['geometry']['location']['lng'];
 
-          return array($lat, $lng);
+    //If not, set lat lng values to 0 
+    //** This should be good to narrow down issues with a particular listing,
+    //   as problem listings will return a 0 value lat lng in our json file
+    }else{
+    $lat = 0;
+    $lng = 0;
+    }
+
+    return array($lat, $lng);
 
 }
 
