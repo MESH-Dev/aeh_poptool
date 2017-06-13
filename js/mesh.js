@@ -21,7 +21,7 @@ jQuery(document).ready(function($){
          }
       });
       $('.sdh-intro').addClass('determ');
-      $('.' + current_determ).addClass('active');
+      $('.determ-intro.' + current_determ).addClass('active');
    });
 
  $('.determ-close').click(function(){

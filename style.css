@@ -408,7 +408,7 @@ h6 {
 /* line 63, sass/base/_typography.scss */
 p {
   font-family: 'Cabin', sans-serif;
-  font-size: 1.3em;
+  font-size: 1.3rem;
   line-height: 1.428;
   margin-top: 0;
   margin-bottom: 1.8rem;
