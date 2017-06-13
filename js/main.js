@@ -689,13 +689,14 @@ function initMap() {
 var programs;
 var hospitals;
 
+var prog_file = $dir + "/helpers/programs.json";
+var hosp_file = $dir + "/helpers/hospitals.json";
 
-
-$.getJSON('http://localhost/aeh_pop/wp-content/themes/aeh_poptool/helpers/programs.json', function(data) {
+$.getJSON(prog_file, function(data) {
      
     programs = data;
     
-    $.getJSON('http://localhost/aeh_pop/wp-content/themes/aeh_poptool/helpers/hospitals.json', function(hosp_data) {
+    $.getJSON(hosp_file, function(hosp_data) {
 
       hospitals = hosp_data;
       console.log("json loaded");

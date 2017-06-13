@@ -35,6 +35,7 @@
 		</div>
 	</div>
 </footer>
+<script>var $dir = '<?php echo get_template_directory_uri(); ?>';  </script>
 <!-- <script src="js/map.js"></script> -->
  
 <!-- <?php //if (is_page_template('/templates/template-map.php')) {?>
