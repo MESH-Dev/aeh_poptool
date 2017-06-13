@@ -96,7 +96,7 @@ function hospital_custom_post() {
 		'description'           => __( 'Custom AEH Population Health Tool post type for individual hospitals', 'text_domain' ),
 		'labels'                => $labels,
 		'supports'              => array( ),
-		'taxonomies'            => array( 'Bed Size', ' % Gov Payer', ' Ownership', 'Teaching Status', 'Region', 'Pop Size', '% Below FPL', '% Uninsured' ),
+		'taxonomies'            => array( 'Bed Size', ' % Gov Payer',  ' Ownership', 'Teaching Status', 'Region', 'Pop Size', '% Below FPL', '% Uninsured','SDH'),
 		'hierarchical'          => true,
 		'public'                => true,
 		'show_ui'               => true,
@@ -426,7 +426,7 @@ function sdh_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'sdh', array( 'program'  ), $args );
+	register_taxonomy( 'sdh', array( 'program','hospital'  ), $args );
 
 }
 add_action( 'init', 'sdh_tax', 0 );
