@@ -43,9 +43,21 @@ h2{
    font-weight: bold;
 }
 
+h3{
+   font-family: 'Cabin', sans-serif;
+}
+
 h4{
    color: $blue;
    font-weight: 600;
+}
+
+h5{
+   font-family: 'Cabin', sans-serif;
+}
+
+h6{
+   font-family: 'Cabin', sans-serif;
 }
 
 p {
@@ -58,6 +70,10 @@ p {
 }
 
 a{
+   font-family: 'Cabin', sans-serif;
+}
+
+address, ol, ul{
    font-family: 'Cabin', sans-serif;
 }
 

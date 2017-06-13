@@ -7,7 +7,7 @@
 @function grid-column-width($n) {
   @return $n/12 * 100%;
 }
- 
+
 
 
 //========= VARIABLES ==============================================
@@ -18,11 +18,13 @@ $max-width: 1200px;
 
 //==================================================================
 //==================================================================
- 
+
 .container{
 	max-width: $max-width;
 	margin:  0 auto;
- 
+   @media($bp-smaller-than-desktophd){
+         margin:0 1em;
+     }
 }
 
 .row {
@@ -34,10 +36,10 @@ $max-width: 1200px;
 		clear: both;
   }
   &.padding-bottom{
-  	margin-bottom: $pad; 
+  	margin-bottom: $pad;
   }
 }
- 
+
 .columns-1 { width: grid-column-width(1); }
 .columns-2 { width: grid-column-width(2); }
 .columns-3 { width: grid-column-width(3); }
@@ -64,8 +66,8 @@ $max-width: 1200px;
 .offset-by-11 { margin-left: grid-column-width(11); }
 .offset-by-12 { margin-left: grid-column-width(12); }
 
- 
- 
+
+
 [class*='columns-'] {
 	float: left;
 	padding-right: $pad;
@@ -77,9 +79,9 @@ $max-width: 1200px;
 	@media($bp-smaller-than-tablet) {
 	    width: 100%;
 	    padding: 0;
-	  
+
 	}
- 
+
 }
 
 [class*='offset-by-'] {
@@ -87,10 +89,10 @@ $max-width: 1200px;
 	@media($bp-smaller-than-tablet) {
 	   margin-left: 0;
 	}
- 
+
 }
 
-//helper class 
+//helper class
 .no-padding{
 	padding-right: 0;
 }

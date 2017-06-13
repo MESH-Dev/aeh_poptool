@@ -1,11 +1,35 @@
-// jQuery(document).ready(function($){
-//
-//   //Are we loaded?
-//   console.log('New theme loaded!');
-//
-//   //Let's do something awesome!
-//
+jQuery(document).ready(function($){
+
+  //Are we loaded?
+
+  $('.sdh-icon').click(function(){
+   //   if($(this).hasClass('active')){
+   //      $(this).removeClass('active');
+   //      $('.sdh-intro').removeClass('determ');
+   //   }
+   $('.sdh-icon').each(function(){
+      if($(this).hasClass('active')){
+         $(this).removeClass('active');
+      }
+   });
+     $(this).toggleClass('active');
+     $('.sdh-intro').addClass('determ');
+ });
+
+ $('.determ-close').click(function(){
+    $('.sdh-intro').removeClass('determ');
+    $('.sdh-icon').each(function(){
+      $(this).removeClass('active');
+   });
+});
+
+//  $('.sdh-icon.active').click(function(){
+//     $('.sdh-intro').removeClass('determ');
 // });
+
+  //Let's do something awesome!
+
+});
 
 // var searchClose = document.getElementById('searchModalClose'),
 //    listingInterface = document.getElementById('listingInterface'),
