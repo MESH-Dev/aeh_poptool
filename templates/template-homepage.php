@@ -84,7 +84,7 @@ get_header();
              </div>
              <?php endwhile; endif; ?>
             </div>
-            <div class="columns-6 offset-by-1">
+            <div class="columns-6 offset-by-1 icons-container">
                <div class="row">
                <?php if (have_rows('social_determinant')):
                      $sdh_cnt=0;

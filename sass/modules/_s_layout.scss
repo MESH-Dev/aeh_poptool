@@ -60,6 +60,11 @@ img{
         h2{
            color: $red;
         }
+        p{
+           @include georgia;
+           font-size: 3.2rem;
+           font-weight: 400;
+        }
     }
     &.determ{
        .determ-intro.active{
@@ -76,8 +81,8 @@ img{
      h3{
         display: inline-block;
         font-weight: 600;
-        max-width: 50%;
-        font-size: 2.4rem;
+        max-width: 60%;
+        font-size: 2.6rem;
     }
     h3, p{
        color: $blue;
@@ -85,6 +90,9 @@ img{
        transform: translateX(0px);
        transition: transform 0.25s ease-in-out;
    }
+   // p{
+   //    max-width: 80%;
+   // }
   .wrapper{
     border-left:2px solid $white;
     padding-left:2em;
@@ -148,19 +156,30 @@ img{
   padding:6em 0;
 }
 
+.icons-container{
+   @media screen and ($bp-smaller-than-tablet){
+      text-align: center;
+   }
+}
+
 .sdh-icon{
-  display:inline-block;
-  float:left;
+  display: inline-block;
+  vertical-align: top;
+  // float:left;
   text-align:center;
   cursor:pointer;
-  width:25%;
-  @media ($bp-smaller-than-tablet){
-    width:40%;
-    margin:0 5%;
-  }
+  width:24%;
+  margin-bottom: 20px;
+  // @media ($bp-smaller-than-tablet){
+  //   width:40%;
+  //  //  margin:0 5%;
+  // }
   @media ($bp-smaller-than-mobile){
-    width: 95%;
+    width: 32%;
   }
+  @media screen and (max-width: 350px){
+     width: 40%;
+ }
   svg{
      width: 80px;
      .cls-1{

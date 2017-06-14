@@ -1,26 +1,26 @@
 jQuery( document ).ready(function($) {
 // To keep our code clean and modular, all custom functionality will be contained inside a single object literal called "multiFilter".
 var multiFilter = {
-  
+
   // Declare any variables we will need as properties of the object
-  
+
   $filterGroups: null,
   $filterUi: null,
   $reset: null,
   groups: [],
   outputArray: [],
   outputString: '',
-  
+
   // The "init" method will run on document ready and cache any jQuery objects we will need.
-  
+
   init: function(){
     var self = this; // As a best practice, in each method we will asign "this" to the variable "self" so that it remains scope-agnostic. We will use it to refer to the parent "checkboxFilter" object so that we can share methods and properties between all parts of the object.
-    
+
     self.$filterUi = $('#filters');
     self.$filterGroups = $('.filter-group');
     self.$reset = $('#Reset');
     self.$container = $('#program-cards');
-    
+
     self.$filterGroups.each(function(){
       self.groups.push({
         $inputs: $(this).find('input'),
@@ -28,34 +28,34 @@ var multiFilter = {
           tracker: false
       });
     });
-    
+
     self.bindHandlers();
   },
-  
-  // The "bindHandlers" method will listen for whenever a form value changes. 
-  
+
+  // The "bindHandlers" method will listen for whenever a form value changes.
+
   bindHandlers: function(){
     var self = this,
         typingDelay = 300,
         typingTimeout = -1,
         resetTimer = function() {
           clearTimeout(typingTimeout);
-          
+
           typingTimeout = setTimeout(function() {
             self.parseFilters();
           }, typingDelay);
         };
-    
+
     self.$filterGroups
       .filter('.checkboxes')
       .on('change', function() {
          self.parseFilters();
       });
-    
+
     self.$filterGroups
       .filter('.search')
       .on('keyup change', resetTimer);
-    
+
     self.$reset.on('click', function(e){
       e.preventDefault();
       self.$filterUi[0].reset();
@@ -63,49 +63,49 @@ var multiFilter = {
       self.parseFilters();
     });
   },
-  
+
   // The parseFilters method checks which filters are active in each group:
-  
+
   parseFilters: function(){
     var self = this;
- 
+
     // loop through each filter group and add active filters to arrays
-    
+
     for(var i = 0, group; group = self.groups[i]; i++){
       group.active = []; // reset arrays
       group.$inputs.each(function(){
         var searchTerm = '',
                $input = $(this),
             minimumLength = 3;
-        
+
         if ($input.is(':checked')) {
           group.active.push(this.value);
         }
-        
+
         if ($input.is('[type="text"]') && this.value.length >= minimumLength) {
           searchTerm = this.value
             .trim()
             .toLowerCase()
             .replace(' ', '-');
-          
-          group.active[0] = '[class*="' + searchTerm + '"]'; 
+
+          group.active[0] = '[class*="' + searchTerm + '"]';
         }
       });
        group.active.length && (group.tracker = 0);
     }
-    
+
     self.concatenate();
   },
-  
+
   // The "concatenate" method will crawl through each group, concatenating filters as desired:
-  
+
   concatenate: function(){
     var self = this,
         cache = '',
         crawled = false,
         checkTrackers = function(){
         var done = 0;
-        
+
         for(var i = 0, group; group = self.groups[i]; i++){
           (group.tracker === false) && done++;
         }
@@ -128,7 +128,7 @@ var multiFilter = {
           var group = self.groups[i];
 
           if(group.active[group.tracker + 1]){
-            group.tracker++; 
+            group.tracker++;
             break;
           } else if(i > 0){
             group.tracker && (group.tracker = 0);
@@ -137,7 +137,7 @@ var multiFilter = {
           }
         }
       };
-    
+
     self.outputArray = []; // reset output array
 
      do{
@@ -146,25 +146,25 @@ var multiFilter = {
      while(!crawled && checkTrackers());
 
     self.outputString = self.outputArray.join();
-    
+
     // If the output string is empty, show all rather than none:
-    
-    !self.outputString.length && (self.outputString = 'all'); 
-    
-    console.log(self.outputString); 
-    
+
+    !self.outputString.length && (self.outputString = 'all');
+
+    console.log(self.outputString);
+
     // ^ we can check the console here to take a look at the filter string that is produced
-    
+
     // Send the output string to MixItUp via the 'filter' method:
-    
+
      if(self.$container.mixItUp('isLoaded')){
       self.$container.mixItUp('filter', self.outputString);
      }
   }
 };
 // END MIXITUP MULTIFILTERS
- 
- 
+
+
 var searchClose = document.getElementById('searchModalClose'),
    listingInterface = document.getElementById('listingInterface'),
    altSearchClose1 = document.getElementById('landingBrowsePrograms'),
@@ -205,7 +205,12 @@ landingView.paused(true)
 //Landing view close function
 var landingViewClose = function(event){
    event.preventDefault();
+   var center = map.getCenter();
+   var mainMap = document.getElementById('map');
    landingView.play();
+   mainMap.className += ' listing-view';
+   google.maps.event.trigger(map, 'resize');
+   map.setCenter(center);
 };
 
 //Map view animation
@@ -350,7 +355,7 @@ collapseButton.onclick = multiProjectClose;
 
 // ======================= END FRONT END INTERACTIONS ==================================================
 
- 
+
 
 // ======================= DATA FUNCTIONS  =============================================================
 var map;
@@ -360,7 +365,7 @@ var markers = [];
 
 //Create All Map Markers for Hospitals
 function createMarker(hospital){
-   
+
    var marker = new google.maps.Marker({
       map: map,
       position: new google.maps.LatLng(hospital.latitude, hospital.longitude),
@@ -368,16 +373,16 @@ function createMarker(hospital){
       id: hospital.id,
       topic: hospital.topic,
       //add custom marker based on topic here (need to add topic to json)
- 
+
    });
- 
-  
-   //Click event here to open panel and get content by ID 
+
+
+   //Click event here to open panel and get content by ID
    google.maps.event.addListener(marker, 'click', function(){
- 
+
       // infoWindow.setContent('<h2>' + marker.title + marker.id + '</h2>' + marker.desc);
       // infoWindow.open(map, marker);
- 
+
       //ADD IN MARKER COLOR/SIZE CHANGE HERE
 
       //reset detail panel html here
@@ -391,11 +396,11 @@ function createMarker(hospital){
    // google.maps.event.addListener(map, 'idle', function() {
    //     showVisibleMarkers();
    // });
- 
+
 
    markers.push(marker);
- 
-}  
+
+}
 
 
 
@@ -405,8 +410,8 @@ function createProgramCard(program){
    //Get values of hospital taxonomies for filtering cards
    var hospital_taxs = "";
    var program_taxs = "";
- 
-   //combine all hospital taxonomies 
+
+   //combine all hospital taxonomies
    hospital_taxs += hospitals[program.hosp_id].bed_size_slug + " ";
    hospital_taxs += hospitals[program.hosp_id].percent_govt_payer_slug + " ";
    hospital_taxs += hospitals[program.hosp_id].ownership_slug + " ";
@@ -427,7 +432,7 @@ function createProgramCard(program){
    var sdh_arry = program.sdh_slug.split(" ");
 
    var sdh_img = sdh_arry[0];
- 
+
    //print out single card html with all filterable taxonomies
    var cardHTML = "";
    cardHTML =  '<a href="#"><li data-hospid="hosp-'+ program.hosp_id +'" id="program-'+ program.id +'" class="mix indiv-block program-card ' + program.taxs + ' ' + hospital_taxs + '" >';
@@ -440,24 +445,24 @@ function createProgramCard(program){
    cardHTML +=   '<p class="location">'+hospitals[program.hosp_id].city +'</p>';
    cardHTML += '</div>';
    cardHTML += '</li></a>';
- 
+
 
    $('#program-cards').append(cardHTML);
- 
+
 }
 
 
- 
+
 
 //Function to show/hide markers that fires as a callback after filtering is complete
 function UpdateMarkers(){
-   
+
    //this will show the active filters strings
    var state = $('#program-cards').mixItUp('getState');
    console.log("### : " + state.activeFilter);
    //-------
- 
-   //loop through markers (hospitals) 
+
+   //loop through markers (hospitals)
    for (var i = 0; i < markers.length; i++) {
 
       var marker = markers[i];
@@ -466,15 +471,15 @@ function UpdateMarkers(){
       //get program cards with hospital id
         var programCard = $('li[data-hospid="hosp-'+marker_id+'"]');
 
-      //check if there is a card visible(not filtered)       
+      //check if there is a card visible(not filtered)
         if(programCard.is(':visible')) {
-         marker.setVisible(true); 
-      }    
+         marker.setVisible(true);
+      }
         else{
             marker.setVisible(false); //hide marker if no visible cards with hospital id
 
         }
-    } 
+    }
 }
 
 
@@ -500,7 +505,7 @@ function createDetailPanel(single_program_id, single_hospital_id){
    var panel_HTML = '';
    for(var x = 0; x < prog_ids.length; x++){
       var program = programs[prog_ids[x]];
-      
+
       console.log(prog_ids[x]);
 
       panel_HTML += '<div class="indiv-detail-block">';
@@ -549,21 +554,21 @@ function createDetailPanel(single_program_id, single_hospital_id){
 
       panel_HTML +=     '</div> ';
       panel_HTML += '</div>';
- 
+
    }
 
    panel_HTML += '<div class="detail-nav detail-nav-bottom"><div class="detail-nav-border"><div class="navigation-button" id="collapse"><a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12"><defs><style>.cls-1 { fill: #0d97d4; } </style></defs><title>uparrow</title><path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/></svg></div></div>';
- 
+
    $('#detailPaneContent').html(panel_HTML);
- 
-   openDetails(); 
+
+   openDetails();
 }
 
 
 //Generates HTML to load into Hospital View Panel, then calls function to show panel
 function createHospitalPanel(single_hospital){
- 
- 
+
+
    console.log("Hospital Data! " + single_hospital.name );
 
    var program_ids = [];
@@ -573,20 +578,20 @@ function createHospitalPanel(single_hospital){
 
 
    hosp_HTML += "<h3>" + single_hospital.name + "</h3>";
- 
+
 
    $('#hospital-panel').prepend(hosp_HTML);
 
    program_ids = single_hospital.program_ids;
- 
- 
+
+
    for(var x = 0; x < program_ids.length; x++){
-       
+
       program_HTML += "<h1>" + programs[program_ids[x]].name + "</h1><hr>";
    }
    $('#hospital-panel').append(program_HTML);
 
-   openDetails(); 
+   openDetails();
 
 }
 
@@ -597,15 +602,15 @@ function centerMapOnHospital(hosp_id){
    var lng = hospitals[hosp_id].longitude;
 
    var center = new google.maps.LatLng(lat, lng);
-    
+
    map.panTo(center);
    //map.setZoom(7);
- 
+
 }
 
- 
+
 function loadMarkers(){
-    
+
    //create markers from hospital data json
    for (var hospital_id in hospitals){
       createMarker(hospitals[hospital_id]);
@@ -616,14 +621,14 @@ function loadMarkers(){
 function loadPrograms() {
    //create programs from program data json
    for (var program_id in programs){
- 
+
       createProgramCard(programs[program_id]);
    }
 }
- 
 
-function resetFilters() {    
- 
+
+function resetFilters() {
+
 
    //clear all input fields
    $('#filters input:checked').removeAttr('checked');
@@ -633,9 +638,9 @@ function resetFilters() {
 
    //reset filters to show all
    $('#program-cards').mixItUp('filter','all')
- 
 
-} 
+
+}
 
 
 
@@ -648,7 +653,7 @@ function initMap() {
       center: new google.maps.LatLng(37.1345952,-90.1902162),
       //PUT IN STYLES HERE
    }
-    
+
    map_document = document.getElementById('map');
    map = new google.maps.Map(map_document,mapOptions);
 
@@ -662,7 +667,7 @@ function initMap() {
 
    multiFilter.init();
 
-   // Instantiate MixItUp      
+   // Instantiate MixItUp
    $('#program-cards').mixItUp({
        controls: {
          enable: false // we won't be needing these
@@ -676,8 +681,8 @@ function initMap() {
        callbacks: {
          onMixEnd: UpdateMarkers //Show or hide markers afer filtering Cards
        }
-   }); 
- 
+   });
+
 }
 
 
@@ -693,25 +698,25 @@ var prog_file = $dir + "/helpers/programs.json";
 var hosp_file = $dir + "/helpers/hospitals.json";
 
 $.getJSON(prog_file, function(data) {
-     
+
     programs = data;
-    
+
     $.getJSON(hosp_file, function(hosp_data) {
 
       hospitals = hosp_data;
       console.log("json loaded");
       initMap(); //Everything is loaded - build map!
-     
+
 
     });
- 
+
 });
 
 //Handler for click on programs
 $('#program-cards').on( "click", "li" , function(){
 
    //get ids from li element
-   var prog_id = $(this).attr('id'); 
+   var prog_id = $(this).attr('id');
    var hosp_id = $(this).attr('data-hospid');
    prog_id = prog_id.substring(8, prog_id.length);
    hosp_id = hosp_id.substring(5, hosp_id.length);
@@ -720,7 +725,7 @@ $('#program-cards').on( "click", "li" , function(){
 
    centerMapOnHospital(hosp_id);
 
-    
+
 });
 
 
@@ -736,12 +741,12 @@ $("input#program-search, input#landing-search").keyup(function(){
         // If the list item does not contain the text phrase fade it out
         if ($(this).text().search(new RegExp(filter, "i")) < 0) {
             $(this).fadeOut(200, UpdateMarkers);
-            
+
 
         // Show the list item if the phrase matches and increase the count by 1
         } else {
             $(this).fadeIn(200, UpdateMarkers);
-            
+
 
         }
     });
@@ -758,12 +763,12 @@ $("input#program-search, input#landing-search").keyup(function(){
 //         // If the list item does not contain the text phrase fade it out
 //         if ($(this).text().search(new RegExp(filter, "i")) < 0) {
 //             $(this).fadeOut(200, UpdateMarkers);
-            
+
 
 //         // Show the list item if the phrase matches and increase the count by 1
 //         } else {
 //             $(this).fadeIn(200, UpdateMarkers);
- 
+
 //         }
 //     });
 
@@ -773,6 +778,3 @@ $("input#program-search, input#landing-search").keyup(function(){
 
 
 }); //END MAIN JQUERY READY
-
-
-
