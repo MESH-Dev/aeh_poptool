@@ -251,7 +251,7 @@ function initMap() {
       };
     });
   });
-  
+
   var initialModalClose = map.addListener('click', function(){
      landingView.play();
      google.maps.event.removeListener(initialModalClose);

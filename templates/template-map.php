@@ -1,8 +1,8 @@
 <?php /* Template Name: Map Tool Template*/
 
 get_header();?>
-<main id="content">
-    
+<main class="map-tool-page" id="content">
+
 
    <div id="map-listing-button">
       <div id="map-tab"><a>VIEW MAP</a></div><div id="listing-tab"><a>RESULTS &amp; FILTERS</a></div>
@@ -61,7 +61,7 @@ get_header();?>
                </div>
             </div>
 
-            
+
             <div class="listing-blocks-container">
                <ul id="program-cards" class="listing-blocks">
                   <!-- ==================== PROGRAM CARDS GO HERE ==================== -->
@@ -136,7 +136,7 @@ get_header();?>
                   <?php } ?>
                   </div>
                </fieldset>
-   
+
          </div>
 
 
@@ -273,13 +273,13 @@ get_header();?>
                   </svg><p class="button-text">BACK</p>
                </div>
                <p id="hospital_title" class="program-hospital"> </p>
-            </div>    
-         </div> 
+            </div>
+         </div>
 
 
          <div id="detailPaneContent" class="detail-block-container">
             <div class="indiv-detail-block">
-               <div id="collapsableContent"></div>  
+               <div id="collapsableContent"></div>
             </div>
             <div class="detail-nav detail-nav-bottom">
                <div class="detail-nav-border">
@@ -296,9 +296,9 @@ get_header();?>
                            <title>uparrow</title>
                            <path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/>
                      </svg>
-                  </div>   
+                  </div>
                </div>
-            </div>       
+            </div>
          </div> <!-- #detailPaneContent -->
 
       </div><!-- #detailPane -->
