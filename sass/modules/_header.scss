@@ -18,13 +18,57 @@
    svg{
       height: 60px;
    }
+   .navigation-logo{
+      width: 144px;
+      @media screen and ($bp-smaller-than-desktop){
+         margin: 0 auto;
+         float: none;
+      }
+      // @media screen and ($bp-smaller-than-tablet){
+      //    width: 50%;
+      // }
+   }
 }
 
+.menu-button{
+   width: 100%;
+   border-top: 2px solid $light-grey;
+   text-align: center;
+   display: none;
+   padding: 10px 0px 4px 0px;
+   color: $blue;
+   font-weight: 600;
+   font-size: 1.5rem;
+   cursor: pointer;
+   &:hover{
+      text-decoration: none;
+   }
+   @media screen and (max-width: 843px){
+      display: block;
+   }
+}
 
 .main-navigation{
+   // &::after{
+   //    content: '';
+   //    clear: both;
+   //    height: 0px;
+   //    width: 0px;
+   // }
    ul{
       float:right;
       margin-top:10px;
+      transition: height 0.25s ease-in-out;
+      @media screen and ($bp-smaller-than-desktop){
+         float: left;
+      }
+      &:not(.open){
+         @media screen and (max-width: 843px){
+            overflow: hidden;
+            height: 0px;
+            margin: 0;
+         }
+      }
       li{
          display:inline-block;
          float:left;

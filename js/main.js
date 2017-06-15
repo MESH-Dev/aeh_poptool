@@ -188,11 +188,15 @@ var searchClose = document.getElementById('searchModalClose'),
    listingTab = document.getElementById('listing-tab'),
    mapTab = document.getElementById('map-tab'),
    mapListingButton = document.getElementById('map-listing-button'),
+   menuButton =  document.getElementById('menuButton'),
+   mainNav = document.getElementById('menu-main_nav'),
    filterView = new TimelineMax(),
    landingView = new TimelineMax(),
    detailView = new TimelineMax(),
    detailCollapse = new TimelineMax(),
    mapView = new TimelineMax();
+
+console.log("open");
 
 //Langing view close animation
 landingView.paused(true)
@@ -352,7 +356,11 @@ var multiProjectClose = function(){
 
 collapseButton.onclick = multiProjectClose;
 
-
+//Mobile Nav Open and Close
+menuButton.addEventListener("click", function(){
+   mainNav.classList.toggle("open");
+   console.log("open");
+});
 // ======================= END FRONT END INTERACTIONS ==================================================
 
 

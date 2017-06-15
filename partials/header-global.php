@@ -5,7 +5,7 @@
 				<div class="navigation-logo columns-2">
 					<img src="<?php bloginfo('template_directory'); ?>/img/logo-full.png" >
      			</div>
-				<nav class="main-navigation columns-10">
+				<nav class="main-navigation">
 					<?php if(has_nav_menu('main_nav')){
 								$defaults = array(
 									'theme_location'  => 'main_nav',
@@ -30,6 +30,8 @@
 							} ?>
 				</nav>
 			</div>
-
+			<a id="menuButton" class="menu-button">
+				MENU
+			</a>
 		</div>
 	</header>
