@@ -74,7 +74,7 @@ get_header();?>
 
       <div class="filters" id="filterContainer">
          <div id="hospitalFilters">
-               <fieldset class="filter-group checkboxes">
+               <fieldset class="filter-group">
                   <h2>Bed size</h2>
                   <div class="checkboxes">
                   <?php $bed_filters= get_terms(array('taxonomy'=>'bed_size', 'hide_empty'=>false));
@@ -105,7 +105,7 @@ get_header();?>
 
                      foreach ($own_filters as $own_filter){ ?>
                      <label>
-                        <input type="radio" name="frequency" value="daily">
+                        <input type="radio" name="ownership" value="daily">
                         <div class="indicator"></div>
                         <?php echo $own_filter->name; ?>
                      </label>
@@ -117,7 +117,7 @@ get_header();?>
 
                      foreach ($teach_filters as $teach_filter){ ?>
                      <label>
-                        <input type="radio" name="frequency" value="daily">
+                        <input type="radio" name="techingstatus" value="daily">
                         <div class="indicator"></div>
                         <?php echo $teach_filter->name; ?>
                      </label>
@@ -141,7 +141,7 @@ get_header();?>
 
 
          <div id="communityFilters">
-            <fieldset class="filter-group checkboxes">
+            <fieldset class="filter-group">
                <div class="checkboxes">
                 <h2>Pop Size</h2>
                 <?php $pop_filters= get_terms(array('taxonomy'=>'pop_size','hide_empty'=>false));
@@ -182,14 +182,14 @@ get_header();?>
          </div>
 
          <div id="programFilters">
-            <fieldset class="filter-group checkboxes">
+            <fieldset class="filter-group">
                <h2>Active</h2>
                <div class="radio-buttons">
                 <?php $active_filters= get_terms(array('taxonomy'=>'active','hide_empty'=>false));
 
                   foreach ($active_filters as $active_filter){ ?>
                   <label>
-                     <input type="radio" name="frequency" value="daily">
+                     <input type="radio" name="active" value="daily">
                      <div class="indicator"></div>
                      <?php echo $active_filter->name; ?>
                   </label>
@@ -237,7 +237,7 @@ get_header();?>
 
                   foreach ($program_filters as $program_filter){ ?>
                   <label>
-                     <input type="radio" name="frequency" value="daily">
+                     <input type="radio" name="programsetting" value="daily">
                      <div class="indicator"></div>
                      <?php echo $program_filter->name; ?>
                   </label>

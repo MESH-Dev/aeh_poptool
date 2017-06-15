@@ -196,8 +196,6 @@ var searchClose = document.getElementById('searchModalClose'),
    detailCollapse = new TimelineMax(),
    mapView = new TimelineMax();
 
-console.log("open");
-
 //Langing view close animation
 landingView.paused(true)
    .add("open")
@@ -254,7 +252,9 @@ var active = '';
 filterView.paused(true)
    .add("closed")
    .to(nonFilterContent, 0.2, {css:{autoAlpha:0}}, "closed")
-   .to(filterContainer, 0.2, {css:{top:"240px", autoAlpha:1}}, "open")
+   .to(selectionView, 0.2, {css:{overflow:"hidden"}}, "closed")
+   .to(mapTab, 0.2, {css:{autoAlpha:0}}, "closed")
+   .to(filterContainer, 0.2, {css:{autoAlpha:1}}, "open")
    .to(filterBottomNav, 0.2, {css:{autoAlpha:1}}, "open")
    .to('.block-interior', 0.1, {className:'+=filter-view'}, "open")
    .add("open");
@@ -315,7 +315,7 @@ detailView.paused(true)
    .add("closed")
    .to(selectionView, 0.2, {css:{autoAlpha:0}}, "closed")
    .to(detailPane, 0.2, {css:{autoAlpha:1}}, "closed")
-   .to(detailNavTop, 0.2, {css:{autoAlpha:1, top:"80px"}}, "open")
+   .to(detailNavTop, 0.2, {css:{autoAlpha:1, left:"0"}}, "open")
    .to(detailPaneContent, 0.2, {css:{autoAlpha:1, left:"0"}}, "open")
    .add("open");
 
@@ -356,11 +356,6 @@ var multiProjectClose = function(){
 
 collapseButton.onclick = multiProjectClose;
 
-//Mobile Nav Open and Close
-menuButton.addEventListener("click", function(){
-   mainNav.classList.toggle("open");
-   console.log("open");
-});
 // ======================= END FRONT END INTERACTIONS ==================================================
 
 
@@ -521,43 +516,43 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML +=     '<h1>' + program.name + '</h1>';
       panel_HTML +=     '<div id="collapsableContent">';
       panel_HTML +=        '<div class="row program-info-row"><h4>PROGRAM DETAILS</h4>';
-      panel_HTML +=           '<div class="columns-3">';
-      panel_HTML +=              '<p>Target Population: </p>';
-      panel_HTML +=              '<p>Program Setting: </p>';
-      panel_HTML +=              '<p>Partners: </p>';
-      panel_HTML +=              '<p>Active Program: </p>';
+      panel_HTML +=           '<div class="columns-8">';
+      panel_HTML +=              '<p><span class="detail-title">Target Population:</span> '+ program.target_pop +'</p>';
+      panel_HTML +=              '<p><span class="detail-title">Program Setting:</span> '+ program.program_setting +'</p>';
+      panel_HTML +=              '<p><span class="detail-title">Partners:</span> '+ program.partners +'</p>';
+      panel_HTML +=              '<p><span class="detail-title">Active Program:</span> '+ program.active +'</p>';
       panel_HTML +=           '</div>';
-      panel_HTML +=           '<div class="columns-5">';
-      panel_HTML +=              '<p>'+ program.target_pop +'</p>';
-      panel_HTML +=              '<p>'+ program.program_setting +'</p>';
-      panel_HTML +=              '<p>'+ program.partners +'</p>';
-      panel_HTML +=              '<p>'+ program.active +'</p>';
-      panel_HTML +=           '</div>';
+      // panel_HTML +=           '<div class="columns-5">';
+      // panel_HTML +=              '<p>'+ program.target_pop +'</p>';
+      // panel_HTML +=              '<p>'+ program.program_setting +'</p>';
+      // panel_HTML +=              '<p>'+ program.partners +'</p>';
+      // panel_HTML +=              '<p>'+ program.active +'</p>';
+      // panel_HTML +=           '</div>';
       panel_HTML +=        '</div>';
       panel_HTML +=        '<div class="row program-info-row"><h4>HOSPITAL DETAILS</h4>';
-      panel_HTML +=           '<div class="columns-3">';
-      panel_HTML +=              '<p>Ownership: </p>';
-      panel_HTML +=              '<p>Population Size: </p>';
-      panel_HTML +=              '<p>Number of Beds: </p>';
-      panel_HTML +=              '<p>Teaching Hospital: </p>';
-      panel_HTML +=              '<p>% Government Payer: </p>';
-      panel_HTML +=              '<p>% Below FPL: </p>';
-      panel_HTML +=              '<p>% Uninsured: </p>';
-      panel_HTML +=              '<p>Region: </p>';
+      panel_HTML +=           '<div class="columns-8">';
+      panel_HTML +=              '<p><span class="detail-title">Ownership:</span> '+ hospital.ownership +'</p>';
+      panel_HTML +=              '<p><span class="detail-title">Population Size:</span> '+ hospital.pop_size   +'</p>';
+      panel_HTML +=              '<p><span class="detail-title">Number of Beds:</span> '+ hospital.bed_size +'</p>';
+      panel_HTML +=              '<p><span class="detail-title">Teaching Hospital:</span> '+ hospital.teaching_status +'</p>';
+      panel_HTML +=              '<p><span class="detail-title">% Government Payer:</span> '+ hospital.percent_govt_payer +'</p>';
+      panel_HTML +=              '<p><span class="detail-title">% Below FPL:</span> '+ hospital.percent_below_fpl +'</p>';
+      panel_HTML +=              '<p><span class="detail-title">% Uninsured:</span> '+ hospital.percent_uninsured +'</p>';
+      panel_HTML +=              '<p><span class="detail-title">Region:</span> '+ hospital.region +'</p>';
       panel_HTML +=           '</div>';
-      panel_HTML +=           '<div class="columns-5">';
-      panel_HTML +=              '<p>'+ hospital.ownership +'</p>';
-      panel_HTML +=              '<p>'+ hospital.pop_size   +'</p>';
-      panel_HTML +=              '<p>'+ hospital.bed_size +'</p>';
-      panel_HTML +=              '<p>'+ hospital.teaching_status +'</p>';
-      panel_HTML +=              '<p>'+ hospital.percent_govt_payer +'</p>';
-      panel_HTML +=              '<p>'+ hospital.percent_below_fpl +'</p>';
-      panel_HTML +=              '<p>'+ hospital.percent_uninsured +'</p>';
-      panel_HTML +=              '<p>'+ hospital.region +'</p>';
-      panel_HTML +=           '</div>';
+      // panel_HTML +=           '<div class="columns-5">';
+      // panel_HTML +=              '<p>'+ hospital.ownership +'</p>';
+      // panel_HTML +=              '<p>'+ hospital.pop_size   +'</p>';
+      // panel_HTML +=              '<p>'+ hospital.bed_size +'</p>';
+      // panel_HTML +=              '<p>'+ hospital.teaching_status +'</p>';
+      // panel_HTML +=              '<p>'+ hospital.percent_govt_payer +'</p>';
+      // panel_HTML +=              '<p>'+ hospital.percent_below_fpl +'</p>';
+      // panel_HTML +=              '<p>'+ hospital.percent_uninsured +'</p>';
+      // panel_HTML +=              '<p>'+ hospital.region +'</p>';
+      // panel_HTML +=           '</div>';
       panel_HTML +=        '</div>';
       panel_HTML +=        '<div class="program-info-row">' + program.description + '</div>';
-      panel_HTML +=        '<div class="program-info-row"><a class="contact-button" href="'+program.contact_email+'">Contact a Representative »</a></div>';
+      // panel_HTML +=        '<div class="program-info-row"></div>';
 
 
       panel_HTML +=     '</div> ';
@@ -565,7 +560,7 @@ function createDetailPanel(single_program_id, single_hospital_id){
 
    }
 
-   panel_HTML += '<div class="detail-nav detail-nav-bottom"><div class="detail-nav-border"><div class="navigation-button" id="collapse"><a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12"><defs><style>.cls-1 { fill: #0d97d4; } </style></defs><title>uparrow</title><path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/></svg></div></div>';
+   panel_HTML += '<div class="detail-nav detail-nav-bottom"><div class="detail-nav-border"><a class="contact-button" href="'+program.contact_email+'">CONTACT A REPRESENTATIVE »</a><div class="navigation-button" id="collapse"><a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12"><defs><style>.cls-1 { fill: #0d97d4; } </style></defs><title>uparrow</title><path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/></svg></div></div>';
 
    $('#detailPaneContent').html(panel_HTML);
 
