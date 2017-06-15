@@ -1,0 +1,38 @@
+.sidr-trigger{
+	display:block;
+    position: absolute;
+    right: 1.5em;
+    top: 2.5em;
+	@media ($bp-larger-than-tablet ){
+		display:none;
+	}
+}
+
+.sidr-close{
+
+		display:none;
+}
+
+.sidr{
+	background:$white;
+	padding:1em;
+	
+		li{
+			list-style-type:none !important;
+		}
+	
+	a{
+		font-size:1.8em;
+		color:$blue;
+		&:hover,
+		&:active,
+		&:focus{
+			text-decoration:none;
+			opacity:.7;
+		}
+	}
+
+	.sidr-close{
+		display:block;
+	}
+}
