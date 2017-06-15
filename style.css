@@ -1239,7 +1239,7 @@ a.dropdown-trigger span {
 
 /* line 194, sass/modules/_layout.scss */
 .filter-group {
-  padding-bottom: 70px;
+  margin-bottom: 70px;
 }
 
 /* line 198, sass/modules/_layout.scss */
@@ -1296,7 +1296,7 @@ a.dropdown-trigger span {
   position: relative;
   overflow-y: scroll;
   height: 100vh;
-  padding: 80px 40px 40px 40px;
+  padding: 80px 40px 0px 40px;
 }
 @media screen and (max-width: 960px) {
   /* line 235, sass/modules/_layout.scss */
