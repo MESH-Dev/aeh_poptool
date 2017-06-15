@@ -2,37 +2,7 @@ jQuery(document).ready(function($){
 
   //Are we loaded?
 
-  $('.sdh-icon').click(function(event){
-      //   if($(this).hasClass('active')){
-      //      $(this).removeClass('active');
-      //      $('.sdh-intro').removeClass('determ');
-      //   }
-      $('.sdh-icon').each(function(){
-         if($(this).hasClass('active')){
-            $(this).removeClass('active');
-         }
-      });
-      var current_determ = this.id;
-      $(this).toggleClass('active');
-      $('.determ-intro').each(function(){
-         if($(this).hasClass('active')){
-            $(this).removeClass('active');
-         }
-      });
-      $('.sdh-intro').addClass('determ');
-      $('.determ-intro.' + current_determ).addClass('active');
-   });
-
- $('.determ-close').click(function(){
-      $('.sdh-intro').removeClass('determ');
-      $('.sdh-icon').each(function(){
-         $(this).removeClass('active');
-      });
-   });
-
-   $('#menuButton').click(function(){
-      $('#menu-main_nav').toggleClass('open');
-   });
+  
 
 //  $('.sdh-icon.active').click(function(){
 //     $('.sdh-intro').removeClass('determ');
