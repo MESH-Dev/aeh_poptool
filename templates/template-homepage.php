@@ -16,7 +16,7 @@ get_header();
                   $g_intro = get_field('greeting_intro');
                   $g_sub = get_field('greeting_subparagraph');
                ?>
-               <h1 style="color:white; font-size:36px;"><span><?php echo $g_title; ?></span><br> <?php echo $g_intro; ?></h1>
+               <h1 style="color:white;"><span><?php echo $g_title; ?></span><br> <?php echo $g_intro; ?></h1>
 
                <p><?php echo $g_sub; ?></p>
             </div>
@@ -80,7 +80,7 @@ get_header();
                <div class="determ-intro <?php echo $determ_identifier; ?>">
                   <h2><?php echo $sdh_title; ?></h2>
                   <p><?php echo $sdh_description; ?></p>
-                <a class="determ-close">BACK TO DESCRIPTION OF ALL SOCIAL DETERMINATES »</a>
+                <a class="determ-close">BACK TO DESCRIPTION OF ALL SOCIAL DETERMINANTS »</a>
              </div>
              <?php endwhile; endif; ?>
             </div>
