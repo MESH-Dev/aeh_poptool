@@ -47,7 +47,7 @@ var multiFilter = {
         };
 
     self.$filterGroups
-      .filter('.checkboxes')
+      .filter('.checkers')
       .on('change', function() {
          self.parseFilters();
       });
@@ -724,8 +724,7 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML +=           '</div>';
       panel_HTML +=        '</div>';
       panel_HTML +=        '<div class="program-info-row">' + program.description + '</div>';
-      panel_HTML +=        '<div class="program-info-row"><a class="contact-button" href="'+program.contact_email+'">Contact a Representative »</a></div>';
-      panel_HTML +=        '<div class="detail-nav detail-nav-bottom"><div class="detail-nav-border"><div class="navigation-button" id="collapse"><a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12"><defs><style>.cls-1 { fill: #0d97d4; } </style></defs><title>uparrow</title><path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/></svg></div></div>';
+      panel_HTML +=        '<div class="detail-nav detail-nav-bottom"><div class="detail-nav-border"><a class="contact-button" href="'+program.contact_email+'">Contact a Representative »</a><div class="navigation-button" id="collapse"><a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12"><defs><style>.cls-1 { fill: #0d97d4; } </style></defs><title>uparrow</title><path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/></svg></div></div>';
       panel_HTML +=     '</div> ';
       panel_HTML += '</div>';
    }
