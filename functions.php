@@ -307,7 +307,7 @@ function update_hospital_map( $post_id ) {
           //8
           $determinants = get_the_terms($p_id, 'sdh');
           $social_det_slug = '';
-          $social_det_slug .= $determinant[0]->slug;
+          $social_det_slug .= $determinants[0]->slug;
  
  
           //11
@@ -324,7 +324,7 @@ function update_hospital_map( $post_id ) {
             $pop_sz_slug = rtrim($pop_sz_slug," ");
           }
 
-          //12
+          // 
           $below_fpls = get_the_terms($p_id, 'percent_below_fpl');
           $fpl = '';
           $fpl_slug = '';
@@ -338,7 +338,9 @@ function update_hospital_map( $post_id ) {
             $fpl_slug = rtrim($fpl_slug," ");
           }
 
-          //13
+
+
+          // 
           $percent_uninsureds = get_the_terms($p_id, 'percent_uninsured');
           $perc_uninsured = '';
           $perc_uninsured_slug = '';
