@@ -16,7 +16,7 @@ var multiFilter = {
   init: function(){
     var self = this; // As a best practice, in each method we will asign "this" to the variable "self" so that it remains scope-agnostic. We will use it to refer to the parent "checkboxFilter" object so that we can share methods and properties between all parts of the object.
 
-    self.$filterUi = $('#filters');
+    self.$filterUi = $('#filterContainer');
     self.$filterGroups = $('.filter-group');
     self.$reset = $('#Reset');
     self.$container = $('#program-cards');
@@ -151,7 +151,7 @@ var multiFilter = {
 
     !self.outputString.length && (self.outputString = 'all');
 
-    console.log(self.outputString);
+    //console.log(self.outputString);
 
     // ^ we can check the console here to take a look at the filter string that is produced
 
@@ -164,6 +164,161 @@ var multiFilter = {
 };
 // END MIXITUP MULTIFILTERS
 
+var mapStyles = [
+      {
+          "featureType": "administrative.country",
+          "elementType": "geometry.stroke",
+          "stylers": [
+              {
+                  "color": "#cecdcc"
+              }
+          ]
+      },
+      {
+          "featureType": "landscape",
+          "elementType": "all",
+          "stylers": [
+              {
+                  "hue": "#FFBB00"
+              },
+              {
+                  "saturation": 43.400000000000006
+              },
+              {
+                  "lightness": 37.599999999999994
+              },
+              {
+                  "gamma": 1
+              }
+          ]
+      },
+      {
+          "featureType": "poi",
+          "elementType": "all",
+          "stylers": [
+              {
+                  "hue": "#00FF6A"
+              },
+              {
+                  "saturation": -1.0989010989011234
+              },
+              {
+                  "lightness": 11.200000000000017
+              },
+              {
+                  "gamma": 1
+              }
+          ]
+      },
+      {
+          "featureType": "poi.park",
+          "elementType": "geometry",
+          "stylers": [
+              {
+                  "visibility": "off"
+              }
+          ]
+      },
+      {
+          "featureType": "poi.park",
+          "elementType": "labels",
+          "stylers": [
+              {
+                  "visibility": "off"
+              }
+          ]
+      },
+      {
+          "featureType": "road.highway",
+          "elementType": "all",
+          "stylers": [
+              {
+                  "hue": "#FFC200"
+              },
+              {
+                  "saturation": -61.8
+              },
+              {
+                  "lightness": 45.599999999999994
+              },
+              {
+                  "gamma": 1
+              }
+          ]
+      },
+      {
+          "featureType": "road.highway",
+          "elementType": "labels",
+          "stylers": [
+              {
+                  "visibility": "off"
+              }
+          ]
+      },
+      {
+          "featureType": "road.arterial",
+          "elementType": "all",
+          "stylers": [
+              {
+                  "hue": "#FF0300"
+              },
+              {
+                  "saturation": -100
+              },
+              {
+                  "lightness": 51.19999999999999
+              },
+              {
+                  "gamma": 1
+              }
+          ]
+      },
+      {
+          "featureType": "road.local",
+          "elementType": "all",
+          "stylers": [
+              {
+                  "hue": "#FF0300"
+              },
+              {
+                  "saturation": -100
+              },
+              {
+                  "lightness": 52
+              },
+              {
+                  "gamma": 1
+              }
+          ]
+      },
+      {
+          "featureType": "water",
+          "elementType": "all",
+          "stylers": [
+              {
+                  "hue": "#0078FF"
+              },
+              {
+                  "saturation": -13.200000000000003
+              },
+              {
+                  "lightness": 2.4000000000000057
+              },
+              {
+                  "gamma": 1
+              }
+          ]
+      },
+      {
+          "featureType": "water",
+          "elementType": "geometry.fill",
+          "stylers": [
+              {
+                  "color": "#b1cef5"
+              }
+          ]
+      }
+  ];
 
 var searchClose = document.getElementById('searchModalClose'),
    listingInterface = document.getElementById('listingInterface'),
@@ -180,6 +335,7 @@ var searchClose = document.getElementById('searchModalClose'),
    detailNavBottom = document.getElementById('detailNavBottom'),
    detailPaneContent = document.getElementById('detailPaneContent'),
    cancelFilters = document.getElementById('cancelFilters'),
+   applyFilters = document.getElementById('applyFilters'),
    filterBottomNav = document.getElementById('filterBottomNav'),
    filterSelects = document.getElementsByClassName('custom-select'),
    collapseButton = document.getElementById('collapse'),
@@ -205,8 +361,8 @@ landingView.paused(true)
    .add("closed");
 
 //Landing view close function
-var landingViewClose = function(event){
-   event.preventDefault();
+var landingViewClose = function(){
+ 
    var center = map.getCenter();
    var mainMap = document.getElementById('map');
    landingView.play();
@@ -279,7 +435,7 @@ var openFilters = function(event){
 
 var closeFilters = function(event){
    //Remove category highlight & filter container contents
-   active.className = "dropdown-trigger";
+   active.className = "dropdown-trigger ";
    //Reset filter container classes
    filterContainer.className = "filters";
    //Reveal listing view
@@ -292,16 +448,12 @@ for (var i = 0; i < filterTriggers.length; i++) {
    filterTriggers[i].onclick = openFilters;
 };
 
-cancelFilters.onclick = function(){
-   //Reset active filter category styles and functions
-   active.className = "dropdown-trigger";
-   active.onclick = openFilters;
-   active = '';
-   //Reset filter container classes
-   filterContainer.className = "filters";
-   //Reveal listing view
-   filterView.reverse();
-};
+applyFilters.addEventListener("click", closeFilters);
+cancelFilters.addEventListener("click", closeFilters);
+ 
+
+
+
 
 //Filter Dropdowns
 for (var i = 0; i < filterSelects.length; i++) {
@@ -336,6 +488,7 @@ var closeDetails = function(){
 // }
 backButton.onclick = closeDetails;
 
+
 //Multi-project Detail Collapse
 detailCollapse.paused(true)
    .add("open")
@@ -356,6 +509,14 @@ var multiProjectClose = function(){
 
 collapseButton.onclick = multiProjectClose;
 
+
+//Mobile Nav Open and Close
+menuButton.addEventListener("click", function(){
+   mainNav.classList.toggle("open");
+ 
+});
+
+
 // ======================= END FRONT END INTERACTIONS ==================================================
 
 
@@ -363,46 +524,60 @@ collapseButton.onclick = multiProjectClose;
 // ======================= DATA FUNCTIONS  =============================================================
 var map;
 var markers = [];
-
-
-
+var icons = [];
+var activeSize = new google.maps.Size(60, 67.68);
+var inactiveSize = new google.maps.Size(40, 45.3);
+ 
 //Create All Map Markers for Hospitals
 function createMarker(hospital){
 
-   var marker = new google.maps.Marker({
-      map: map,
-      position: new google.maps.LatLng(hospital.latitude, hospital.longitude),
-      name: hospital.name,
-      id: hospital.id,
-      topic: hospital.topic,
+    var marker = new google.maps.Marker({
+        map: map,
+        position: new google.maps.LatLng(hospital.latitude, hospital.longitude),
+        name: hospital.name,
+        id: hospital.id,
+        topic: hospital.sdh_slug,
+        icon: icons[hospital.sdh_slug].inactive
       //add custom marker based on topic here (need to add topic to json)
 
-   });
+    });
+ 
 
 
-   //Click event here to open panel and get content by ID
-   google.maps.event.addListener(marker, 'click', function(){
+    //Click event here to open panel and get content by ID
+    google.maps.event.addListener(marker, 'click', function(){
 
-      // infoWindow.setContent('<h2>' + marker.title + marker.id + '</h2>' + marker.desc);
-      // infoWindow.open(map, marker);
+        //reset detail panel html here
+        $('#detailPaneContent').html('');
+ 
+        setActiveMarker(marker.id);
+ 
+        //create Panel content and show it.
+        createDetailPanel('', marker.id);
+        mapView.reverse();
 
-      //ADD IN MARKER COLOR/SIZE CHANGE HERE
-
-      //reset detail panel html here
-      $('#detailPaneContent').html('');
-
-      createDetailPanel('', marker.id);
-
-   });
+    });
 
     // Fired when the map becomes idle after panning or zooming. HOLD ON THIS
    // google.maps.event.addListener(map, 'idle', function() {
    //     showVisibleMarkers();
    // });
-
-
+ 
    markers.push(marker);
 
+}
+
+
+function setActiveMarker(marker_id){
+    for (var i = 0; i < markers.length; i++) {
+ 
+        if(markers[i].id == marker_id){
+            markers[i].setIcon(icons[markers[i].topic].active);
+        }
+        else{
+            markers[i].setIcon(icons[markers[i].topic].inactive);
+        }
+    }
 }
 
 
@@ -432,16 +607,18 @@ function createProgramCard(program){
    program_taxs += program.target_pop_slug + " ";
    program_taxs += program.program_setting_slug + " ";
 
+ 
+
    var sdh_arry = program.sdh_slug.split(" ");
 
    var sdh_img = sdh_arry[0];
 
    //print out single card html with all filterable taxonomies
    var cardHTML = "";
-   cardHTML =  '<a href="#"><li data-hospid="hosp-'+ program.hosp_id +'" id="program-'+ program.id +'" class="mix indiv-block program-card ' + program.taxs + ' ' + hospital_taxs + '" >';
+   cardHTML =  '<a href="#"><li data-hospid="hosp-'+ program.hosp_id +'" id="program-'+ program.id +'" class="mix indiv-block program-card ' + program_taxs + ' ' + hospital_taxs + '">';
    cardHTML += '<div class="block-interior">';
    cardHTML +=   '<div class="category"><p>'+ program.sdh +'</p>';
-   cardHTML +=      '<img class="category-icon" src="../wp-content/themes/aeh_poptool/img/icons/'+ sdh_img +'.svg"  >';
+   cardHTML +=      '<img class="category-icon" src="'+$dir+'/img/icons/'+ sdh_img +'.svg"  >';
    cardHTML +=   '</div>';
    cardHTML +=   '<h2>'+ program.name +'</h2>';
    cardHTML +=   '<p class="hospital">'+hospitals[program.hosp_id].name +'</p>';
@@ -461,8 +638,21 @@ function createProgramCard(program){
 function UpdateMarkers(){
 
    //this will show the active filters strings
-   var state = $('#program-cards').mixItUp('getState');
-   console.log("### : " + state.activeFilter);
+   var activeString = GetActiveString();
+    
+ 
+
+   $('#filter-string p').html(activeString);
+   //var state = $('#program-cards').mixItUp('getState'); 
+
+   //$('#results-count').html(state.totalShow);
+   $('#results-count').html($('#program-cards li:visible').length);
+
+   
+
+   
+ 
+
    //-------
 
    //loop through markers (hospitals)
@@ -500,16 +690,14 @@ function createDetailPanel(single_program_id, single_hospital_id){
    else{
       prog_ids = hospital.program_ids;
    }
-
-   console.log(prog_ids);
+ 
+   
    //set panel hospital title
    $('#hospital_title').html(hospital.name + " | " + hospital.city);
 
    var panel_HTML = '';
    for(var x = 0; x < prog_ids.length; x++){
       var program = programs[prog_ids[x]];
-
-      console.log(prog_ids[x]);
 
       panel_HTML += '<div class="indiv-detail-block">';
       panel_HTML +=     '<div class="category"><p>' + program.sdh + '</p></div>';
@@ -522,12 +710,6 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML +=              '<p><span class="detail-title">Partners:</span> '+ program.partners +'</p>';
       panel_HTML +=              '<p><span class="detail-title">Active Program:</span> '+ program.active +'</p>';
       panel_HTML +=           '</div>';
-      // panel_HTML +=           '<div class="columns-5">';
-      // panel_HTML +=              '<p>'+ program.target_pop +'</p>';
-      // panel_HTML +=              '<p>'+ program.program_setting +'</p>';
-      // panel_HTML +=              '<p>'+ program.partners +'</p>';
-      // panel_HTML +=              '<p>'+ program.active +'</p>';
-      // panel_HTML +=           '</div>';
       panel_HTML +=        '</div>';
       panel_HTML +=        '<div class="row program-info-row"><h4>HOSPITAL DETAILS</h4>';
       panel_HTML +=           '<div class="columns-8">';
@@ -540,65 +722,20 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML +=              '<p><span class="detail-title">% Uninsured:</span> '+ hospital.percent_uninsured +'</p>';
       panel_HTML +=              '<p><span class="detail-title">Region:</span> '+ hospital.region +'</p>';
       panel_HTML +=           '</div>';
-      // panel_HTML +=           '<div class="columns-5">';
-      // panel_HTML +=              '<p>'+ hospital.ownership +'</p>';
-      // panel_HTML +=              '<p>'+ hospital.pop_size   +'</p>';
-      // panel_HTML +=              '<p>'+ hospital.bed_size +'</p>';
-      // panel_HTML +=              '<p>'+ hospital.teaching_status +'</p>';
-      // panel_HTML +=              '<p>'+ hospital.percent_govt_payer +'</p>';
-      // panel_HTML +=              '<p>'+ hospital.percent_below_fpl +'</p>';
-      // panel_HTML +=              '<p>'+ hospital.percent_uninsured +'</p>';
-      // panel_HTML +=              '<p>'+ hospital.region +'</p>';
-      // panel_HTML +=           '</div>';
       panel_HTML +=        '</div>';
       panel_HTML +=        '<div class="program-info-row">' + program.description + '</div>';
-      // panel_HTML +=        '<div class="program-info-row"></div>';
-
-
+      panel_HTML +=        '<div class="program-info-row"><a class="contact-button" href="'+program.contact_email+'">Contact a Representative »</a></div>';
+      panel_HTML +=        '<div class="detail-nav detail-nav-bottom"><div class="detail-nav-border"><div class="navigation-button" id="collapse"><a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12"><defs><style>.cls-1 { fill: #0d97d4; } </style></defs><title>uparrow</title><path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/></svg></div></div>';
       panel_HTML +=     '</div> ';
       panel_HTML += '</div>';
-
    }
-
-   panel_HTML += '<div class="detail-nav detail-nav-bottom"><div class="detail-nav-border"><a class="contact-button" href="'+program.contact_email+'">CONTACT A REPRESENTATIVE »</a><div class="navigation-button" id="collapse"><a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12"><defs><style>.cls-1 { fill: #0d97d4; } </style></defs><title>uparrow</title><path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/></svg></div></div>';
 
    $('#detailPaneContent').html(panel_HTML);
 
    openDetails();
 }
 
-
-//Generates HTML to load into Hospital View Panel, then calls function to show panel
-function createHospitalPanel(single_hospital){
-
-
-   console.log("Hospital Data! " + single_hospital.name );
-
-   var program_ids = [];
-
-   var hosp_HTML = "";
-   var program_HTML = "";
-
-
-   hosp_HTML += "<h3>" + single_hospital.name + "</h3>";
-
-
-   $('#hospital-panel').prepend(hosp_HTML);
-
-   program_ids = single_hospital.program_ids;
-
-
-   for(var x = 0; x < program_ids.length; x++){
-
-      program_HTML += "<h1>" + programs[program_ids[x]].name + "</h1><hr>";
-   }
-   $('#hospital-panel').append(program_HTML);
-
-   openDetails();
-
-}
-
-
+ 
 //Pans Map to center on hospitla marker - called after a program click.
 function centerMapOnHospital(hosp_id){
    var lat = hospitals[hosp_id].latitude;
@@ -613,12 +750,35 @@ function centerMapOnHospital(hosp_id){
 
 
 function loadMarkers(){
-
    //create markers from hospital data json
    for (var hospital_id in hospitals){
       createMarker(hospitals[hospital_id]);
    }
 }
+
+//create icon object with SDH icons.
+function createIcons(){
+    for (var hospital_id in hospitals){
+        var sdh = hospitals[hospital_id].sdh_slug;
+        var active={};
+        var inactive={};
+        var iconObj ={};
+
+        active.url = $dir + "/img/markers/" + sdh + "-active.png"; 
+        active.scaledSize= activeSize;
+        inactive.url = $dir+ "/img/markers/" + sdh + ".png"; 
+        inactive.scaledSize= inactiveSize;
+
+        iconObj.active = active;
+        iconObj.inactive = inactive;
+
+        icons[sdh] = iconObj;
+       
+   }
+   
+}
+
+
 
 
 function loadPrograms() {
@@ -631,40 +791,70 @@ function loadPrograms() {
 
 
 function resetFilters() {
-
-
+ 
    //clear all input fields
-   $('#filters input:checked').removeAttr('checked');
+   $('#filterContainer input:checked').removeAttr('checked');
 
    //clear search box here
    $("input#program-search").val('');
 
    //reset filters to show all
-   $('#program-cards').mixItUp('filter','all')
+   $('#program-cards').mixItUp('filter','all');
+
+   $('#filter-string p').html("Showing All Programs");
 
 
 }
 
 
+//Update active filters and display
+function GetActiveString(){
+    var active = [];
+    $('#filterContainer input:checked').each(function() {
+
+        var val = $(this).attr('data-valname');
+         
+        active.push(val);
+    });
+    var filtered = '';
+    filtered = active.join(", ");
+
+     if(filtered == ''){
+        filtered = 'Showing All Programs';
+    }
+ 
+    return filtered;
+
+}
+
+ 
+
+
 
 function initMap() {
-   console.log("loading map");
-
-
+ 
    var mapOptions = {
       zoom: 5,
       center: new google.maps.LatLng(37.1345952,-90.1902162),
-      //PUT IN STYLES HERE
+      styles: mapStyles,
+      animation: google.maps.Animation.DROP,
+      streetViewControl: false,
+ 
    }
+
+   
 
    map_document = document.getElementById('map');
    map = new google.maps.Map(map_document,mapOptions);
 
    var initialModalClose = map.addListener('click', function(){
-      landingView.play();
+      landingViewClose();
       google.maps.event.removeListener(initialModalClose);
    });
 
+
+
+   createIcons();
    loadMarkers();
    loadPrograms();
 
@@ -692,6 +882,10 @@ function initMap() {
 
 
 
+
+
+
+
 //========================  GET DATA AND LOAD UP MAP    ====================================================
 
 var programs;
@@ -700,6 +894,9 @@ var hospitals;
 var prog_file = $dir + "/helpers/programs.json";
 var hosp_file = $dir + "/helpers/hospitals.json";
 
+var activeSize = new google.maps.Size(60, 67.68);
+var inactiveSize = new google.maps.Size(40, 45.3);
+
 $.getJSON(prog_file, function(data) {
 
     programs = data;
@@ -707,7 +904,6 @@ $.getJSON(prog_file, function(data) {
     $.getJSON(hosp_file, function(hosp_data) {
 
       hospitals = hosp_data;
-      console.log("json loaded");
       initMap(); //Everything is loaded - build map!
 
 
@@ -725,11 +921,15 @@ $('#program-cards').on( "click", "li" , function(){
    hosp_id = hosp_id.substring(5, hosp_id.length);
 
    createDetailPanel(prog_id, hosp_id);
-
+   setActiveMarker(hosp_id);
    centerMapOnHospital(hosp_id);
 
 
 });
+
+$('a#filterClear').on( "click" , resetFilters);
+//$('#backButton').on( "click" , setActiveMarker(0));
+ 
 
 
 //Live Search Program Panel
@@ -756,27 +956,7 @@ $("input#program-search, input#landing-search").keyup(function(){
 
 });
 
-// //Landing Search  -- REDUNDANT?
-// $("input#landing-search").keyup(function(){
-//    var filter = $(this).val();
-//    $("input#program-search").val(filter);
-
-//    $("#program-cards a").each(function(){
-
-//         // If the list item does not contain the text phrase fade it out
-//         if ($(this).text().search(new RegExp(filter, "i")) < 0) {
-//             $(this).fadeOut(200, UpdateMarkers);
-
-
-//         // Show the list item if the phrase matches and increase the count by 1
-//         } else {
-//             $(this).fadeIn(200, UpdateMarkers);
-
-//         }
-//     });
-
-// });
-
+ 
 
 
 

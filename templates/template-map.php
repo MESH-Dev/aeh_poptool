@@ -1,6 +1,10 @@
 <?php /* Template Name: Map Tool Template*/
 
 get_header();?>
+
+<style>.mix{
+    display: none;
+}</style>
 <main class="map-tool-page" id="content">
 
 
@@ -13,15 +17,23 @@ get_header();?>
           <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
       </svg>
       <div id="modalNonFilter">
-         <h2 class="">THIS NEEDS TO BE DYAMIC: Examine how programs around the country are shaping our understanding of population health.</h2>
-         <p>As prevalence of population health grows, Essential Hospitals Institute seeks to better understand the upstream effects. Find programs around the country that are working with population health.</p>
-         <p>Use the search tools below, or click here to <a id="landingBrowsePrograms">browse all programs &raquo</a></p>
+         <?php 
+            $modal_title = get_field('modal_title');
+            $intro = get_field('introduction');
+            $instruction = get_field('instruction_paragraph');
+            $dismiss = get_field('dismiss_link_text');
+         ?>
+         <h2 class=""><?php echo $modal_title; ?></h2>
+         <p><?php echo $intro; ?></p>
+         <p><?php echo $instruction; ?> <a id="landingBrowsePrograms"><?php echo $dismiss?></a></p>
          <div class="search-container">
             <input type="text" id="landing-search" value="" placeholder="Search Programs">
             <input type="submit" name="" value="»">
          </div>
       </div>
    </div>
+
+      
 
 
    <div id="listingInterface" class="listing-interface">
@@ -52,12 +64,10 @@ get_header();?>
          <div id="nonFilterContent">
 
             <div class="filter-posttext">
-               <p id="results-indicator">10 RESULTS:</p>
-               <div class="category">
-                  <p>Housing Instability, 20%+, 100-500</p>
-                  <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                      <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/>
-                  </svg>
+               <p id="results-indicator"><span id="results-count"></span> RESULTS:</p>
+               <div id="filter-string" class="category">
+                  <p></p>
+                   
                </div>
             </div>
 
@@ -81,7 +91,7 @@ get_header();?>
 
                      foreach ($bed_filters as $bed_filter){ ?>
                      <label>
-                        <input type="checkbox" name="frequency" value="daily">
+                        <input type="checkbox" name="bed_size" data-valname="<?php echo $bed_filter->name; ?>" value=".<?php echo $bed_filter->slug; ?>">
                         <div class="indicator"></div>
                         <?php echo $bed_filter->name; ?>
                      </label>
@@ -93,7 +103,7 @@ get_header();?>
 
                      foreach ($govt_filters as $govt_filter){ ?>
                      <label>
-                        <input type="checkbox" name="frequency" value="daily">
+                        <input type="checkbox" name="percent_govt_payer" data-valname="<?php echo $govt_filter->name; ?>" value=".<?php echo $govt_filter->slug; ?>">
                         <div class="indicator"></div>
                         <?php echo $govt_filter->name; ?>
                      </label>
@@ -105,7 +115,7 @@ get_header();?>
 
                      foreach ($own_filters as $own_filter){ ?>
                      <label>
-                        <input type="radio" name="ownership" value="daily">
+                        <input type="radio" name="ownership" data-valname="<?php echo $own_filter->name; ?>" value=".<?php echo $own_filter->slug; ?>">
                         <div class="indicator"></div>
                         <?php echo $own_filter->name; ?>
                      </label>
@@ -117,7 +127,7 @@ get_header();?>
 
                      foreach ($teach_filters as $teach_filter){ ?>
                      <label>
-                        <input type="radio" name="techingstatus" value="daily">
+                        <input type="radio" name="teaching_status" data-valname="<?php echo $teach_filter->name; ?>" value=".<?php echo $teach_filter->slug; ?>">
                         <div class="indicator"></div>
                         <?php echo $teach_filter->name; ?>
                      </label>
@@ -129,7 +139,7 @@ get_header();?>
 
                      foreach ($region_filters as $region_filter){ ?>
                      <label>
-                        <input type="checkbox" name="frequency" value="daily">
+                        <input type="checkbox" name="region" data-valname="<?php echo $region_filter->name; ?>" value=".<?php echo $region_filter->slug; ?>">
                         <div class="indicator"></div>
                         <?php echo $region_filter->name; ?>
                      </label>
@@ -148,7 +158,7 @@ get_header();?>
 
                   foreach ($pop_filters as $pop_filter){ ?>
                   <label>
-                     <input type="checkbox" name="frequency" value="daily">
+                     <input type="checkbox" name="pop_size" data-valname="<?php echo $pop_filter->name; ?>" value=".<?php echo $pop_filter->slug; ?>">
                      <div class="indicator"></div>
                      <?php echo $pop_filter->name; ?>
                   </label>
@@ -160,7 +170,7 @@ get_header();?>
 
                   foreach ($fpl_filters as $fpl_filter){ ?>
                   <label>
-                     <input type="checkbox" name="frequency" value="daily">
+                     <input type="checkbox" name="percent_below_fpl" data-valname="<?php echo $fpl_filter->name; ?>" value=".<?php echo $fpl_filter->slug; ?>">
                      <div class="indicator"></div>
                      <?php echo $fpl_filter->name; ?>
                   </label>
@@ -172,7 +182,7 @@ get_header();?>
 
                   foreach ($uninsured_filters as $uninsured_filter){ ?>
                   <label>
-                     <input type="checkbox" name="frequency" value="daily">
+                     <input type="checkbox" name="percent_uninsured" data-valname="<?php echo $uninsured_filter->name; ?>" value=".<?php echo $uninsured_filter->slug; ?>">
                      <div class="indicator"></div>
                      <?php echo $uninsured_filter->name; ?>
                   </label>
@@ -189,7 +199,8 @@ get_header();?>
 
                   foreach ($active_filters as $active_filter){ ?>
                   <label>
-                     <input type="radio" name="active" value="daily">
+                     <input type="radio" name="active"  data-valname="<?php echo $active_filter->name; ?>" value=".<?php echo $active_filter->slug; ?>">
+
                      <div class="indicator"></div>
                      <?php echo $active_filter->name; ?>
                   </label>
@@ -201,7 +212,7 @@ get_header();?>
 
                   foreach ($partner_filters as $partner_filter){ ?>
                   <label>
-                     <input type="checkbox" name="frequency" value="daily">
+                     <input type="checkbox" name="partners" data-valname="<?php echo $partner_filter->name; ?>" value=".<?php echo $partner_filter->slug; ?>">
                      <div class="indicator"></div>
                      <?php echo $partner_filter->name; ?>
                   </label>
@@ -213,7 +224,7 @@ get_header();?>
 
                   foreach ($sdh_filters as $sdh_filter){ ?>
                   <label>
-                     <input type="checkbox" name="frequency" value="daily">
+                     <input type="checkbox" name="sdh" data-valname="<?php echo $sdh_filter->name; ?>" value=".<?php echo $sdh_filter->slug; ?>">
                      <div class="indicator"></div>
                      <?php echo $sdh_filter->name; ?>
                   </label>
@@ -225,7 +236,7 @@ get_header();?>
 
                   foreach ($tp_filters as $tp_filter){ ?>
                   <label>
-                     <input type="checkbox" name="frequency" value="daily">
+                     <input type="checkbox" name="target_pop" data-valname="<?php echo $tp_filter->name; ?>" value=".<?php echo $tp_filter->slug; ?>">
                      <div class="indicator"></div>
                      <?php echo $tp_filter->name; ?>
                   </label>
@@ -237,7 +248,7 @@ get_header();?>
 
                   foreach ($program_filters as $program_filter){ ?>
                   <label>
-                     <input type="radio" name="programsetting" value="daily">
+                     <input type="radio" name="program_setting" data-valname="<?php echo $program_filter->name; ?>" value=".<?php echo $program_filter->slug; ?>">
                      <div class="indicator"></div>
                      <?php echo $program_filter->name; ?>
                   </label>
