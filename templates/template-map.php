@@ -17,15 +17,23 @@ get_header();?>
           <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
       </svg>
       <div id="modalNonFilter">
-         <h2 class="">THIS NEEDS TO BE DYAMIC: Examine how programs around the country are shaping our understanding of population health.</h2>
-         <p>As prevalence of population health grows, Essential Hospitals Institute seeks to better understand the upstream effects. Find programs around the country that are working with population health.</p>
-         <p>Use the search tools below, or click here to <a id="landingBrowsePrograms">browse all programs &raquo</a></p>
+         <?php 
+            $modal_title = get_field('modal_title');
+            $intro = get_field('introduction');
+            $instruction = get_field('instruction_paragraph');
+            $dismiss = get_field('dismiss_link_text');
+         ?>
+         <h2 class=""><?php echo $modal_title; ?></h2>
+         <p><?php echo $intro; ?></p>
+         <p><?php echo $instruction; ?> <a id="landingBrowsePrograms"><?php echo $dismiss?></a></p>
          <div class="search-container">
             <input type="text" id="landing-search" value="" placeholder="Search Programs">
             <input type="submit" name="" value="»">
          </div>
       </div>
    </div>
+
+      
 
 
    <div id="listingInterface" class="listing-interface">
