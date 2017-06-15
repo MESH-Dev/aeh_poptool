@@ -13,7 +13,6 @@ jQuery(document).ready(function($){
          }
       });
       var current_determ = this.id;
-      console.log(current_determ);
       $(this).toggleClass('active');
       $('.determ-intro').each(function(){
          if($(this).hasClass('active')){
@@ -29,6 +28,10 @@ jQuery(document).ready(function($){
       $('.sdh-icon').each(function(){
          $(this).removeClass('active');
       });
+   });
+
+   $('#menuButton').click(function(){
+      $('#menu-main_nav').toggleClass('open');
    });
 
 //  $('.sdh-icon.active').click(function(){

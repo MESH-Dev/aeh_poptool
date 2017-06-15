@@ -194,6 +194,9 @@ a.dropdown-trigger{
    transition: width 0.4s ease-in-out 0.8s;
    &.listing-view{
       width: 50%;
+      @media screen and ($bp-listing-interface){
+         width: 100%;
+      }
    }
 }
 
