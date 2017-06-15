@@ -195,8 +195,7 @@ var searchClose = document.getElementById('searchModalClose'),
    detailView = new TimelineMax(),
    detailCollapse = new TimelineMax(),
    mapView = new TimelineMax();
-
-console.log("open");
+ 
 
 //Langing view close animation
 landingView.paused(true)
@@ -368,9 +367,7 @@ menuButton.addEventListener("click", function(){
 // ======================= DATA FUNCTIONS  =============================================================
 var map;
 var markers = [];
-
-
-
+ 
 //Create All Map Markers for Hospitals
 function createMarker(hospital){
 
@@ -572,38 +569,7 @@ function createDetailPanel(single_program_id, single_hospital_id){
    openDetails();
 }
 
-
-//Generates HTML to load into Hospital View Panel, then calls function to show panel
-function createHospitalPanel(single_hospital){
-
-
-   console.log("Hospital Data! " + single_hospital.name );
-
-   var program_ids = [];
-
-   var hosp_HTML = "";
-   var program_HTML = "";
-
-
-   hosp_HTML += "<h3>" + single_hospital.name + "</h3>";
-
-
-   $('#hospital-panel').prepend(hosp_HTML);
-
-   program_ids = single_hospital.program_ids;
-
-
-   for(var x = 0; x < program_ids.length; x++){
-
-      program_HTML += "<h1>" + programs[program_ids[x]].name + "</h1><hr>";
-   }
-   $('#hospital-panel').append(program_HTML);
-
-   openDetails();
-
-}
-
-
+ 
 //Pans Map to center on hospitla marker - called after a program click.
 function centerMapOnHospital(hosp_id){
    var lat = hospitals[hosp_id].latitude;
@@ -653,8 +619,7 @@ function resetFilters() {
 
 
 function initMap() {
-   console.log("loading map");
-
+ 
 
    var mapOptions = {
       zoom: 5,
@@ -712,7 +677,6 @@ $.getJSON(prog_file, function(data) {
     $.getJSON(hosp_file, function(hosp_data) {
 
       hospitals = hosp_data;
-      console.log("json loaded");
       initMap(); //Everything is loaded - build map!
 
 
@@ -761,27 +725,7 @@ $("input#program-search, input#landing-search").keyup(function(){
 
 });
 
-// //Landing Search  -- REDUNDANT?
-// $("input#landing-search").keyup(function(){
-//    var filter = $(this).val();
-//    $("input#program-search").val(filter);
-
-//    $("#program-cards a").each(function(){
-
-//         // If the list item does not contain the text phrase fade it out
-//         if ($(this).text().search(new RegExp(filter, "i")) < 0) {
-//             $(this).fadeOut(200, UpdateMarkers);
-
-
-//         // Show the list item if the phrase matches and increase the count by 1
-//         } else {
-//             $(this).fadeIn(200, UpdateMarkers);
-
-//         }
-//     });
-
-// });
-
+ 
 
 
 
