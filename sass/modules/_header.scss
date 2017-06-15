@@ -1,7 +1,7 @@
 .navigation-bar{
-   position: absolute;
+   position: relative;
    background-color: $white;
-   height: 80px;
+   // height: 80px;
    width: 100%;
    padding: 10px 20px;
    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.4);
@@ -43,18 +43,12 @@
    &:hover{
       text-decoration: none;
    }
-   @media screen and (max-width: 843px){
+   @media screen and (max-width: 884px){
       display: block;
    }
 }
 
 .main-navigation{
-   // &::after{
-   //    content: '';
-   //    clear: both;
-   //    height: 0px;
-   //    width: 0px;
-   // }
    ul{
       float:right;
       margin-top:10px;
@@ -63,7 +57,7 @@
          float: left;
       }
       &:not(.open){
-         @media screen and (max-width: 843px){
+         @media screen and (max-width: 884px){
             overflow: hidden;
             height: 0px;
             margin: 0;

@@ -84,7 +84,7 @@ get_header();?>
 
       <div class="filters" id="filterContainer">
          <div id="hospitalFilters">
-               <fieldset class="filter-group checkboxes">
+               <fieldset class="filter-group">
                   <h2>Bed size</h2>
                   <div class="checkboxes">
                   <?php $bed_filters= get_terms(array('taxonomy'=>'bed_size', 'hide_empty'=>false));
@@ -151,7 +151,7 @@ get_header();?>
 
 
          <div id="communityFilters">
-            <fieldset class="filter-group checkboxes">
+            <fieldset class="filter-group">
                <div class="checkboxes">
                 <h2>Pop Size</h2>
                 <?php $pop_filters= get_terms(array('taxonomy'=>'pop_size','hide_empty'=>false));
@@ -192,7 +192,7 @@ get_header();?>
          </div>
 
          <div id="programFilters">
-            <fieldset class="filter-group checkboxes">
+            <fieldset class="filter-group">
                <h2>Active</h2>
                <div class="radio-buttons">
                 <?php $active_filters= get_terms(array('taxonomy'=>'active','hide_empty'=>false));
@@ -200,6 +200,7 @@ get_header();?>
                   foreach ($active_filters as $active_filter){ ?>
                   <label>
                      <input type="radio" name="active"  data-valname="<?php echo $active_filter->name; ?>" value=".<?php echo $active_filter->slug; ?>">
+
                      <div class="indicator"></div>
                      <?php echo $active_filter->name; ?>
                   </label>

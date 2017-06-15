@@ -13,19 +13,28 @@ footer{
 		.contact-info{
 			color:$red;
 			.name{
+				color: $red;
 				text-transform:uppercase;
 				font-weight:700;
 			}
 			.address{
+				color: $red;
 				@include georgia;
 			}
 			.contact{
 				font-weight:700;
+				font-family: 'Cabin', sans-serif;
 			}
 
 		}
 
 		.share{
+			white-space: nowrap;
+			color: $grey;
+			font-weight: 600;
+			@media screen and ($bp-smaller-than-desktophd){
+				white-space: normal;
+			}
 			.share-statement,
 			.add-this{
 				display:inline-block;

@@ -67,6 +67,7 @@ p {
   line-height: 1.428;
   margin-top: 0;
   margin-bottom: 1.8rem;
+  color: $grey;
 }
 
 a{
@@ -80,4 +81,6 @@ address, ol, ul{
 label, select{
    font-family: 'Cabin', sans-serif;
    font-size: 1.4rem;
+   color: $grey;
+   font-size: 1.3rem;
 }
