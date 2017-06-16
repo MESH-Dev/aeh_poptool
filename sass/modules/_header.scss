@@ -20,8 +20,8 @@
    }
    .navigation-logo{
       // width: 144px;
-      max-width:400px;
-      @media screen and ($bp-smaller-than-desktophd){
+      max-width:300px;
+      @media screen and ($bp-smaller-than-laptop){
          // margin: 0 auto;
          margin-bottom:1em;
          float: none;
@@ -55,7 +55,7 @@
       float:right;
       margin-top:10px;
       transition: height 0.25s ease-in-out;
-      @media screen and ($bp-smaller-than-desktophd){
+      @media screen and ($bp-smaller-than-laptop){
          float: left;
       }
       @media screen and (max-width: 884px){

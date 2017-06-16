@@ -170,6 +170,7 @@
    }
 }
 
+
 a.dropdown-trigger{
    display: inline-block;
    width: 33%;
@@ -261,7 +262,7 @@ a.dropdown-trigger{
       @media screen and ($bp-listing-interface){
          padding: 80px 20px 20px 20px;
       }
-      @media screen and ($bp-smaller-than-desktop){
+      @media screen and ($bp-smaller-than-laptop){
          padding-top: 150px;
       }
       @media screen and (max-width: 884px){
@@ -397,6 +398,7 @@ a.dropdown-trigger{
       padding: 6px 8px;
       transition: background-color 0.2s ease-in-out;
       font-weight: bold;
+      font-size:1.6em;
       &:hover{
          text-decoration: none;
          background-color: $green;
@@ -743,6 +745,7 @@ a.dropdown-trigger{
       #filterClear{
          float: right;
          color: $black;
+         font-size:1.3em;
       }
    }
    .filter-posttext{
@@ -776,6 +779,7 @@ a.dropdown-trigger{
    .trigger-container{
       margin: 0  0 10px 0;
       clear: both;
+      font-size:1.6em;
    }
    .category{
       text-align: right;
