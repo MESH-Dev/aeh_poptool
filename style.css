@@ -857,10 +857,6 @@ td:last-child {
 .navigation-bar svg {
   height: 60px;
 }
-/* line 21, sass/modules/_header.scss */
-.navigation-bar .navigation-logo {
-  width: 144px;
-}
 @media screen and (max-width: 1060px) {
   /* line 21, sass/modules/_header.scss */
   .navigation-bar .navigation-logo {
@@ -920,22 +916,30 @@ td:last-child {
   list-style-type: none;
   margin-right: 1em;
 }
-/* line 72, sass/modules/_header.scss */
+/* line 73, sass/modules/_header.scss */
+.main-navigation ul li:active, .main-navigation ul li:focus, .main-navigation ul li:hover {
+  border-top: 5px solid #35BDB2;
+}
+/* line 79, sass/modules/_header.scss */
+.main-navigation ul li.current-menu-item {
+  border-top: 5px solid #ed4642;
+}
+/* line 82, sass/modules/_header.scss */
 .main-navigation ul li:nth-of-type(1), .main-navigation ul li:nth-of-type(3) {
   width: 150px;
 }
-/* line 76, sass/modules/_header.scss */
+/* line 86, sass/modules/_header.scss */
 .main-navigation ul li:nth-of-type(2), .main-navigation ul li:nth-of-type(4) {
   width: 230px;
 }
-/* line 80, sass/modules/_header.scss */
+/* line 90, sass/modules/_header.scss */
 .main-navigation ul li a {
   color: #5A5B5C;
   text-transform: uppercase;
   font-size: 13px;
   font-weight: 600;
 }
-/* line 85, sass/modules/_header.scss */
+/* line 95, sass/modules/_header.scss */
 .main-navigation ul li a:hover {
   text-decoration: none;
 }
@@ -1344,6 +1348,7 @@ a.dropdown-trigger span {
   visibility: hidden;
   padding: 0 40px;
   bottom: 0;
+  width: 100%;
 }
 @media screen and (max-width: 1060px) {
   /* line 264, sass/modules/_layout.scss */
@@ -1357,23 +1362,24 @@ a.dropdown-trigger span {
     padding: 0 20px;
   }
 }
-/* line 281, sass/modules/_layout.scss */
+/* line 282, sass/modules/_layout.scss */
 .listing-interface .indiv-detail-block {
   display: block;
+  border-top: 10px solid #00aeef;
 }
-/* line 283, sass/modules/_layout.scss */
+/* line 285, sass/modules/_layout.scss */
 .listing-interface .indiv-detail-block .detail-title {
   color: #000000;
   font-weight: 600;
 }
-/* line 288, sass/modules/_layout.scss */
+/* line 290, sass/modules/_layout.scss */
 .listing-interface .detail-nav {
   width: 100%;
   z-index: 2;
   line-height: 50px;
   background-color: #ffffff;
 }
-/* line 294, sass/modules/_layout.scss */
+/* line 296, sass/modules/_layout.scss */
 .listing-interface #detailNavTop {
   position: absolute;
   height: 60px;
@@ -1385,28 +1391,24 @@ a.dropdown-trigger span {
   opacity: 0;
 }
 @media screen and (max-width: 960px) {
-  /* line 294, sass/modules/_layout.scss */
+  /* line 296, sass/modules/_layout.scss */
   .listing-interface #detailNavTop {
     padding: 0 20px;
   }
 }
 @media screen and (max-width: 1060px) {
-  /* line 294, sass/modules/_layout.scss */
+  /* line 296, sass/modules/_layout.scss */
   .listing-interface #detailNavTop {
     top: 140px;
   }
 }
 @media screen and (max-width: 884px) {
-  /* line 294, sass/modules/_layout.scss */
+  /* line 296, sass/modules/_layout.scss */
   .listing-interface #detailNavTop {
     top: 120px;
   }
 }
-/* line 312, sass/modules/_layout.scss */
-.listing-interface #detailNavTop .detail-nav-border {
-  border-bottom: 4px solid #00aeef;
-}
-/* line 315, sass/modules/_layout.scss */
+/* line 317, sass/modules/_layout.scss */
 .listing-interface #detailNavTop .program-hospital {
   margin: 0;
   display: inline-block;
@@ -1416,29 +1418,29 @@ a.dropdown-trigger span {
   color: #000000;
 }
 @media screen and (max-width: 480px) {
-  /* line 315, sass/modules/_layout.scss */
+  /* line 317, sass/modules/_layout.scss */
   .listing-interface #detailNavTop .program-hospital {
     width: 50%;
     text-align: right;
   }
 }
-/* line 328, sass/modules/_layout.scss */
+/* line 330, sass/modules/_layout.scss */
 .listing-interface #detailNavTop #backButton .button-text {
   margin: 0 0 0 10px;
 }
-/* line 333, sass/modules/_layout.scss */
+/* line 335, sass/modules/_layout.scss */
 .listing-interface .navigation-button {
   display: inline-block;
   cursor: pointer;
   transition: color 0.2s ease-in-out;
 }
-/* line 337, sass/modules/_layout.scss */
+/* line 339, sass/modules/_layout.scss */
 .listing-interface .navigation-button .button-arrow {
   height: 32px;
   display: inline-block;
   vertical-align: middle;
 }
-/* line 342, sass/modules/_layout.scss */
+/* line 344, sass/modules/_layout.scss */
 .listing-interface .navigation-button .button-text {
   font-size: 1.6rem;
   margin: 0 0 0 10px;
@@ -1447,23 +1449,23 @@ a.dropdown-trigger span {
   vertical-align: middle;
   transition: color 0.2s ease-in-out;
 }
-/* line 349, sass/modules/_layout.scss */
+/* line 351, sass/modules/_layout.scss */
 .listing-interface .navigation-button .button-text:hover {
   text-decoration: none;
 }
-/* line 354, sass/modules/_layout.scss */
+/* line 356, sass/modules/_layout.scss */
 .listing-interface .navigation-button svg path {
   transition: fill 0.2s ease-in-out;
 }
-/* line 359, sass/modules/_layout.scss */
+/* line 361, sass/modules/_layout.scss */
 .listing-interface .navigation-button:hover .button-text {
   color: #35BDB2;
 }
-/* line 362, sass/modules/_layout.scss */
+/* line 364, sass/modules/_layout.scss */
 .listing-interface .navigation-button:hover path {
   fill: #35BDB2;
 }
-/* line 367, sass/modules/_layout.scss */
+/* line 369, sass/modules/_layout.scss */
 .listing-interface a.contact-button {
   background-color: #00aeef;
   color: #ffffff;
@@ -1471,41 +1473,41 @@ a.dropdown-trigger span {
   transition: background-color 0.2s ease-in-out;
   font-weight: bold;
 }
-/* line 373, sass/modules/_layout.scss */
+/* line 375, sass/modules/_layout.scss */
 .listing-interface a.contact-button:hover {
   text-decoration: none;
   background-color: #35BDB2;
 }
-/* line 378, sass/modules/_layout.scss */
+/* line 380, sass/modules/_layout.scss */
 .listing-interface .detail-nav-bottom {
   bottom: 0;
   left: 0;
   padding-bottom: 10px;
 }
-/* line 382, sass/modules/_layout.scss */
+/* line 384, sass/modules/_layout.scss */
 .listing-interface .detail-nav-bottom .button-arrow {
   width: 32px;
   height: auto;
 }
-/* line 386, sass/modules/_layout.scss */
+/* line 388, sass/modules/_layout.scss */
 .listing-interface .detail-nav-bottom #collapse {
   float: right;
 }
-/* line 388, sass/modules/_layout.scss */
+/* line 390, sass/modules/_layout.scss */
 .listing-interface .detail-nav-bottom #collapse .button-text {
   margin: 0px 10px 0px 0px;
 }
 @media screen and (max-width: 412px) {
-  /* line 386, sass/modules/_layout.scss */
+  /* line 388, sass/modules/_layout.scss */
   .listing-interface .detail-nav-bottom #collapse {
     float: none;
   }
 }
-/* line 395, sass/modules/_layout.scss */
+/* line 397, sass/modules/_layout.scss */
 .listing-interface .detail-nav-bottom .detail-nav-border {
   border-bottom: 2px solid #E3E3E3;
 }
-/* line 399, sass/modules/_layout.scss */
+/* line 401, sass/modules/_layout.scss */
 .listing-interface .filter-bottom-nav {
   background: #ffffff;
   position: absolute;
@@ -1519,32 +1521,32 @@ a.dropdown-trigger span {
   z-index: 2;
 }
 @media screen and (max-width: 960px) {
-  /* line 399, sass/modules/_layout.scss */
+  /* line 401, sass/modules/_layout.scss */
   .listing-interface .filter-bottom-nav {
     padding: 0 20px;
   }
 }
-/* line 413, sass/modules/_layout.scss */
+/* line 415, sass/modules/_layout.scss */
 .listing-interface .filter-bottom-nav .filter-nav-border {
   border-top: 8px solid #00aeef;
   padding: 10px 0;
 }
-/* line 417, sass/modules/_layout.scss */
+/* line 419, sass/modules/_layout.scss */
 .listing-interface .filter-bottom-nav a {
   cursor: pointer;
   font-size: 2.4rem;
   transition: color 0.2s ease-in-out;
 }
-/* line 421, sass/modules/_layout.scss */
+/* line 423, sass/modules/_layout.scss */
 .listing-interface .filter-bottom-nav a:hover {
   text-decoration: none;
   color: #35BDB2;
 }
-/* line 426, sass/modules/_layout.scss */
+/* line 428, sass/modules/_layout.scss */
 .listing-interface .filter-bottom-nav #applyFilters {
   float: right;
 }
-/* line 430, sass/modules/_layout.scss */
+/* line 432, sass/modules/_layout.scss */
 .listing-interface .filters {
   position: absolute;
   background-color: #ffffff;
@@ -1558,63 +1560,63 @@ a.dropdown-trigger span {
   padding: 0 40px 70px 40px;
   overflow-y: scroll;
 }
-/* line 442, sass/modules/_layout.scss */
+/* line 444, sass/modules/_layout.scss */
 .listing-interface .filters h2 {
   font-weight: 400;
   color: #5A5B5C;
 }
 @media screen and (max-width: 1060px) {
-  /* line 430, sass/modules/_layout.scss */
+  /* line 432, sass/modules/_layout.scss */
   .listing-interface .filters {
     top: 300px;
   }
 }
 @media screen and (max-width: 884px) {
-  /* line 430, sass/modules/_layout.scss */
+  /* line 432, sass/modules/_layout.scss */
   .listing-interface .filters {
     top: 280px;
   }
 }
 @media screen and (max-width: 550px) {
-  /* line 430, sass/modules/_layout.scss */
+  /* line 432, sass/modules/_layout.scss */
   .listing-interface .filters {
     top: 350px;
   }
 }
 @media screen and (max-width: 960px) {
-  /* line 430, sass/modules/_layout.scss */
+  /* line 432, sass/modules/_layout.scss */
   .listing-interface .filters {
     padding-left: 20px;
     padding-right: 20px;
   }
 }
-/* line 460, sass/modules/_layout.scss */
+/* line 462, sass/modules/_layout.scss */
 .listing-interface .filters .filter-select {
   display: block;
 }
-/* line 463, sass/modules/_layout.scss */
+/* line 465, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range] {
   -webkit-appearance: none;
   width: 100%;
   margin: 0px 0;
 }
-/* line 468, sass/modules/_layout.scss */
+/* line 470, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]:focus, .listing-interface .filters input[type=range]:active {
   outline: none;
 }
-/* line 470, sass/modules/_layout.scss */
+/* line 472, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]:focus::-webkit-slider-thumb, .listing-interface .filters input[type=range]:active::-webkit-slider-thumb {
   background: #F05133;
 }
-/* line 473, sass/modules/_layout.scss */
+/* line 475, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]:focus::-moz-range-thumb, .listing-interface .filters input[type=range]:active::-moz-range-thumb {
   background: #F05133;
 }
-/* line 476, sass/modules/_layout.scss */
+/* line 478, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]:focus::-ms-thumb, .listing-interface .filters input[type=range]:active::-ms-thumb {
   background: #F05133;
 }
-/* line 480, sass/modules/_layout.scss */
+/* line 482, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 12px;
@@ -1624,7 +1626,7 @@ a.dropdown-trigger span {
   border-radius: 6px;
   border: 1.5px solid #0e97d4;
 }
-/* line 489, sass/modules/_layout.scss */
+/* line 491, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]::-webkit-slider-thumb {
   box-shadow: 0px 0px 0px transparent, 0px 0px 0px rgba(13, 13, 13, 0);
   border: 0px solid transparent;
@@ -1636,11 +1638,11 @@ a.dropdown-trigger span {
   -webkit-appearance: none;
   margin-top: -1.5px;
 }
-/* line 500, sass/modules/_layout.scss */
+/* line 502, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]:focus::-webkit-slider-runnable-track {
   background: #ffffff;
 }
-/* line 503, sass/modules/_layout.scss */
+/* line 505, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]::-moz-range-track {
   width: 100%;
   height: 12px;
@@ -1650,7 +1652,7 @@ a.dropdown-trigger span {
   border-radius: 6px;
   border: 1.5px solid #0e97d4;
 }
-/* line 512, sass/modules/_layout.scss */
+/* line 514, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]::-moz-range-thumb {
   box-shadow: 0px 0px 0px transparent, 0px 0px 0px rgba(13, 13, 13, 0);
   border: 0px solid transparent;
@@ -1660,7 +1662,7 @@ a.dropdown-trigger span {
   background: #0e97d4;
   cursor: pointer;
 }
-/* line 521, sass/modules/_layout.scss */
+/* line 523, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]::-ms-track {
   width: 100%;
   height: 12px;
@@ -1669,21 +1671,21 @@ a.dropdown-trigger span {
   border-color: transparent;
   color: transparent;
 }
-/* line 529, sass/modules/_layout.scss */
+/* line 531, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]::-ms-fill-lower {
   background: #f2f2f2;
   border: 1.5px solid #0e97d4;
   border-radius: 3px;
   box-shadow: 1px 1px 1px transparent, 0px 0px 1px rgba(13, 13, 13, 0);
 }
-/* line 535, sass/modules/_layout.scss */
+/* line 537, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]::-ms-fill-upper {
   background: #ffffff;
   border: 1.5px solid #0e97d4;
   border-radius: 3px;
   box-shadow: 1px 1px 1px transparent, 0px 0px 1px rgba(13, 13, 13, 0);
 }
-/* line 541, sass/modules/_layout.scss */
+/* line 543, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]::-ms-thumb {
   box-shadow: 0px 0px 0px transparent, 0px 0px 0px rgba(13, 13, 13, 0);
   border: 0px solid transparent;
@@ -1693,41 +1695,41 @@ a.dropdown-trigger span {
   cursor: pointer;
   height: 12px;
 }
-/* line 550, sass/modules/_layout.scss */
+/* line 552, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]:focus::-ms-fill-lower {
   background: #ffffff;
 }
-/* line 553, sass/modules/_layout.scss */
+/* line 555, sass/modules/_layout.scss */
 .listing-interface .filters input[type=range]:focus::-ms-fill-upper {
   background: #ffffff;
 }
-/* line 558, sass/modules/_layout.scss */
+/* line 560, sass/modules/_layout.scss */
 .listing-interface .filters label {
   display: inline-block;
   margin-right: 10px;
   margin-bottom: 10px;
 }
-/* line 563, sass/modules/_layout.scss */
+/* line 565, sass/modules/_layout.scss */
 .listing-interface .filters .checkboxes, .listing-interface .filters .radio-buttons {
   padding-bottom: 2rem;
   margin-bottom: 2rem;
   border-bottom: 2px solid #E3E3E3;
 }
-/* line 567, sass/modules/_layout.scss */
+/* line 569, sass/modules/_layout.scss */
 .listing-interface .filters .checkboxes input, .listing-interface .filters .radio-buttons input {
   opacity: 0;
   z-index: -10;
   position: absolute;
 }
-/* line 572, sass/modules/_layout.scss */
+/* line 574, sass/modules/_layout.scss */
 .listing-interface .filters .checkboxes input:focus ~ .indicator, .listing-interface .filters .radio-buttons input:focus ~ .indicator {
   border-color: #F05133;
 }
-/* line 577, sass/modules/_layout.scss */
+/* line 579, sass/modules/_layout.scss */
 .listing-interface .filters .checkboxes input:checked ~ .indicator::after, .listing-interface .filters .radio-buttons input:checked ~ .indicator::after {
   display: block;
 }
-/* line 582, sass/modules/_layout.scss */
+/* line 584, sass/modules/_layout.scss */
 .listing-interface .filters .checkboxes .indicator, .listing-interface .filters .radio-buttons .indicator {
   vertical-align: middle;
   position: relative;
@@ -1738,11 +1740,11 @@ a.dropdown-trigger span {
   border: 1px solid #00aeef;
   margin-right: 5px;
 }
-/* line 594, sass/modules/_layout.scss */
+/* line 596, sass/modules/_layout.scss */
 .listing-interface .filters .radio-buttons .indicator {
   border-radius: 50%;
 }
-/* line 596, sass/modules/_layout.scss */
+/* line 598, sass/modules/_layout.scss */
 .listing-interface .filters .radio-buttons .indicator::after {
   content: '';
   display: none;
@@ -1754,7 +1756,7 @@ a.dropdown-trigger span {
   border-radius: 50%;
   background: #35BDB2;
 }
-/* line 611, sass/modules/_layout.scss */
+/* line 613, sass/modules/_layout.scss */
 .listing-interface .filters .checkboxes .indicator::after {
   content: '';
   display: none;
@@ -1768,31 +1770,31 @@ a.dropdown-trigger span {
   border-right: 2px solid #35BDB2;
   border-bottom: 2px solid #35BDB2;
 }
-/* line 628, sass/modules/_layout.scss */
+/* line 630, sass/modules/_layout.scss */
 .listing-interface .filters select {
   border: 0px;
   -webkit-appearance: none;
 }
-/* line 632, sass/modules/_layout.scss */
+/* line 634, sass/modules/_layout.scss */
 .listing-interface .filters .custom-select {
   position: relative;
   display: inline-block;
   cursor: pointer;
 }
-/* line 636, sass/modules/_layout.scss */
+/* line 638, sass/modules/_layout.scss */
 .listing-interface .filters .custom-select p {
   display: inline-block;
   margin: 0px;
 }
-/* line 641, sass/modules/_layout.scss */
+/* line 643, sass/modules/_layout.scss */
 .listing-interface .filters .custom-select.open .select-menu {
   display: block;
 }
-/* line 644, sass/modules/_layout.scss */
+/* line 646, sass/modules/_layout.scss */
 .listing-interface .filters .custom-select.open::after {
   transform: rotate(-90deg);
 }
-/* line 648, sass/modules/_layout.scss */
+/* line 650, sass/modules/_layout.scss */
 .listing-interface .filters .custom-select .select-menu {
   display: none;
   position: absolute;
@@ -1803,17 +1805,17 @@ a.dropdown-trigger span {
   z-index: 2;
   padding: 10px;
 }
-/* line 657, sass/modules/_layout.scss */
+/* line 659, sass/modules/_layout.scss */
 .listing-interface .filters .custom-select .select-menu li {
   color: #00aeef;
   list-style: none;
   cursor: pointer;
 }
-/* line 661, sass/modules/_layout.scss */
+/* line 663, sass/modules/_layout.scss */
 .listing-interface .filters .custom-select .select-menu li:hover {
   color: #35BDB2;
 }
-/* line 666, sass/modules/_layout.scss */
+/* line 668, sass/modules/_layout.scss */
 .listing-interface .filters .custom-select::after {
   content: '»';
   color: #ffffff;
@@ -1828,63 +1830,63 @@ a.dropdown-trigger span {
   line-height: 18px;
   background-color: #00aeef;
 }
-/* line 682, sass/modules/_layout.scss */
+/* line 684, sass/modules/_layout.scss */
 .listing-interface .filters #hospitalFilters {
   display: none;
 }
-/* line 685, sass/modules/_layout.scss */
+/* line 687, sass/modules/_layout.scss */
 .listing-interface .filters #communityFilters {
   display: none;
 }
-/* line 688, sass/modules/_layout.scss */
+/* line 690, sass/modules/_layout.scss */
 .listing-interface .filters #programFilters {
   display: none;
 }
-/* line 692, sass/modules/_layout.scss */
+/* line 694, sass/modules/_layout.scss */
 .listing-interface .filters.hospitalTrigger #hospitalFilters {
   display: initial;
 }
-/* line 697, sass/modules/_layout.scss */
+/* line 699, sass/modules/_layout.scss */
 .listing-interface .filters.communityTrigger #communityFilters {
   display: initial;
 }
-/* line 702, sass/modules/_layout.scss */
+/* line 704, sass/modules/_layout.scss */
 .listing-interface .filters.programTrigger #programFilters {
   display: initial;
 }
-/* line 707, sass/modules/_layout.scss */
+/* line 709, sass/modules/_layout.scss */
 .listing-interface .filter-pretext {
   margin: 20px 0 0 0;
   display: inline-block;
   width: 100%;
 }
-/* line 711, sass/modules/_layout.scss */
+/* line 713, sass/modules/_layout.scss */
 .listing-interface .filter-pretext p {
   float: left;
   margin: 0;
   color: #5A5B5C;
 }
-/* line 716, sass/modules/_layout.scss */
+/* line 718, sass/modules/_layout.scss */
 .listing-interface .filter-pretext #filterClear {
   float: right;
   color: #000000;
 }
-/* line 722, sass/modules/_layout.scss */
+/* line 724, sass/modules/_layout.scss */
 .listing-interface .filter-posttext #results-indicator {
   display: inline-block;
   margin: 0;
 }
-/* line 726, sass/modules/_layout.scss */
+/* line 728, sass/modules/_layout.scss */
 .listing-interface .filter-posttext .category {
   margin-left: 10px;
   display: inline-block;
   padding: 0;
 }
-/* line 730, sass/modules/_layout.scss */
+/* line 732, sass/modules/_layout.scss */
 .listing-interface .filter-posttext .category p {
   margin-right: 2px;
 }
-/* line 735, sass/modules/_layout.scss */
+/* line 737, sass/modules/_layout.scss */
 .listing-interface .search-container {
   display: -webkit-box;
   display: -moz-box;
@@ -1892,7 +1894,7 @@ a.dropdown-trigger span {
   display: -webkit-flex;
   display: flex;
 }
-/* line 741, sass/modules/_layout.scss */
+/* line 743, sass/modules/_layout.scss */
 .listing-interface .search-container input[type="text"] {
   -webkit-flex-grow: 1;
   -moz-flex-grow: 1;
@@ -1900,37 +1902,37 @@ a.dropdown-trigger span {
   flex-grow: 1;
   margin-right: 5px;
 }
-/* line 749, sass/modules/_layout.scss */
+/* line 751, sass/modules/_layout.scss */
 .listing-interface .trigger-container {
   margin: 0  0 10px 0;
   clear: both;
 }
-/* line 753, sass/modules/_layout.scss */
+/* line 755, sass/modules/_layout.scss */
 .listing-interface .category {
   text-align: right;
   padding: 20px 10px;
 }
-/* line 756, sass/modules/_layout.scss */
+/* line 758, sass/modules/_layout.scss */
 .listing-interface .category p {
   color: #00aeef;
   display: inline-block;
   margin: 0 10px 0 0;
 }
-/* line 761, sass/modules/_layout.scss */
+/* line 763, sass/modules/_layout.scss */
 .listing-interface .category .category-icon {
   display: inline-block;
   width: 20px;
   vertical-align: middle;
 }
-/* line 765, sass/modules/_layout.scss */
+/* line 767, sass/modules/_layout.scss */
 .listing-interface .category .category-icon path {
   fill: #00aeef;
 }
-/* line 770, sass/modules/_layout.scss */
+/* line 772, sass/modules/_layout.scss */
 .listing-interface .listing-blocks-container {
   margin-top: 20px;
 }
-/* line 774, sass/modules/_layout.scss */
+/* line 776, sass/modules/_layout.scss */
 .listing-interface .listing-blocks a {
   display: block;
   width: 50%;
@@ -1939,67 +1941,151 @@ a.dropdown-trigger span {
   float: left;
 }
 @media screen and (max-width: 550px) {
-  /* line 774, sass/modules/_layout.scss */
+  /* line 776, sass/modules/_layout.scss */
   .listing-interface .listing-blocks a {
     width: 100%;
     float: none;
   }
 }
-/* line 785, sass/modules/_layout.scss */
+/* line 787, sass/modules/_layout.scss */
 .listing-interface .listing-blocks a:hover h2 {
   color: #35BDB2;
 }
-/* line 790, sass/modules/_layout.scss */
+/* line 792, sass/modules/_layout.scss */
 .listing-interface .listing-blocks li {
   list-style: none;
 }
-/* line 793, sass/modules/_layout.scss */
+/* line 795, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block {
   padding-left: 10px;
   padding-right: 10px;
   border-right: 2px solid #E3E3E3;
   width: 100%;
 }
-/* line 798, sass/modules/_layout.scss */
+/* line 800, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block h2 {
   color: #00aeef;
   transition: color 0.2s ease-in-out;
 }
-/* line 802, sass/modules/_layout.scss */
+/* line 804, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block p {
   margin: 0;
 }
-/* line 805, sass/modules/_layout.scss */
+/* line 807, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block .category {
   text-align: right;
   padding: 20px 10px;
 }
-/* line 808, sass/modules/_layout.scss */
+/* line 810, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block .category p {
   color: #00aeef;
   display: inline-block;
   margin: 0 10px 0 0;
 }
-/* line 813, sass/modules/_layout.scss */
+/* line 815, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block .category .category-icon {
   display: inline-block;
   width: 20px;
   vertical-align: middle;
 }
-/* line 817, sass/modules/_layout.scss */
+/* line 819, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block .category .category-icon path {
   fill: #00aeef;
 }
-/* line 822, sass/modules/_layout.scss */
+/* line 824, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block .block-interior {
   height: 260px;
   border-top: 6px solid #00aeef;
   border-bottom: 2px solid #E3E3E3;
   overflow: hidden;
 }
-/* line 827, sass/modules/_layout.scss */
+/* line 829, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block .block-interior.filter-view {
   height: 0;
+}
+
+/* line 837, sass/modules/_layout.scss */
+.hide {
+  display: none;
+}
+
+/* line 842, sass/modules/_layout.scss */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* =WordPress Core
+-------------------------------------------------------------- */
+/* line 855, sass/modules/_layout.scss */
+.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+/* line 859, sass/modules/_layout.scss */
+.aligncenter,
+div.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto;
+}
+
+/* line 865, sass/modules/_layout.scss */
+.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+/* line 870, sass/modules/_layout.scss */
+.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+/* line 875, sass/modules/_layout.scss */
+p img.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+/* line 879, sass/modules/_layout.scss */
+p img.aligncenter,
+div.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto;
+}
+
+/* line 885, sass/modules/_layout.scss */
+p img.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+/* line 890, sass/modules/_layout.scss */
+p img.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+/* line 895, sass/modules/_layout.scss */
+a img.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+/* line 900, sass/modules/_layout.scss */
+a img.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+/* line 904, sass/modules/_layout.scss */
+a img.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
 }
 
 /* line 15, sass/modules/_s_layout.scss */
