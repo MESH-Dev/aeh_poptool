@@ -89,6 +89,7 @@ img{
       }
       .main-intro{
          display: none;
+
       }
    }
 }
@@ -339,11 +340,11 @@ img{
 }
 
 .submit-program{
-  background: #F0F0F0;
+  //background: #F0F0F0;
     padding: 18px 18px 45px;
     width: 100%;
     box-sizing: border-box;
-  input{
+  input, textarea{
         background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #CCCCCC;
     color: #777777;
@@ -353,6 +354,10 @@ img{
     outline: medium none;
     padding: 6px 4px;
     width: 97%;
+  }
+
+  select{
+    height:auto;
   }
 
   input[type='submit']{

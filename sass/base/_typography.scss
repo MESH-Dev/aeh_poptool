@@ -63,15 +63,15 @@ h6{
 p {
    font-family: 'Cabin', sans-serif;
   //font-size: 1.4rem;
-  font-size:1.3em;
+  font-size:1.6em;
   line-height: 1.428;
   margin-top: 0;
   margin-bottom: 1.8rem;
   color: $grey;
 }
 
-input{
-  font-size:1.3em;
+input, li, a{
+  font-size:1.6em;
 }
 
 a{
@@ -84,7 +84,6 @@ address, ol, ul{
 
 label, select{
    font-family: 'Cabin', sans-serif;
-   font-size: 1.4rem;
+   font-size: 1.6rem;
    color: $grey;
-   font-size: 1.3rem;
 }
