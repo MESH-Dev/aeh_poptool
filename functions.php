@@ -137,6 +137,13 @@ function update_programs_map( $post_id ) {
             $settings_slug = rtrim($settings_slug," ");
           }
 
+          $primary_sdh =  get_field('primary_sdh',$p_id);
+          $primary_sdh_name = $primary_sdh->name;;
+          $primary_sdh_slug = $primary_sdh->slug;;
+ 
+ 
+
+
           $hosp_id = get_field('hospital',$p_id);
  
           //Add all of the listing 'parts' to an array
@@ -151,6 +158,8 @@ function update_programs_map( $post_id ) {
               "partners_slug" => $part_slug,
               "sdh" => $social_det,
               "sdh_slug" => $social_det_slug,
+              "primary_sdh" => $primary_sdh_name,
+              "primary_sdh_slug" => $primary_sdh_slug,
               "target_pop" => $target_pop,
               "target_pop_slug" => $target_pop_slug,
               "program_setting" => $settings,
