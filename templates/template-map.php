@@ -48,8 +48,10 @@ get_header();?>
          <p><?php echo $intro; ?></p>
          <p><?php echo $instruction; ?> <a id="landingBrowsePrograms"><?php echo $dismiss?></a></p>
          <div class="search-container">
+            <form id="landing-form">
             <input type="text" id="landing-search" value="" placeholder="Search Programs">
-            <input type="submit" name="" value="»">
+            <input type="submit" id="landing-submit" name="" value="»">
+            </form>
          </div>
       </div>
    </div>
@@ -72,13 +74,13 @@ get_header();?>
          <div class="trigger-container">
             <a class="dropdown-trigger" id="hospitalTrigger">
                HOSPITAL
-               <span>»</span>
+               <span id="hospitalTrigger">»</span>
             </a><a class="dropdown-trigger" id="communityTrigger">
                COMMUNITY
-               <span>»</span>
+               <span id="communityTrigger">»</span>
             </a><a class="dropdown-trigger" id="programTrigger">
                PROGRAM
-               <span>»</span>
+               <span id="programTrigger">»</span>
             </a>
          </div>
 
@@ -97,6 +99,15 @@ get_header();?>
                <ul id="program-cards" class="listing-blocks">
                   <!-- ==================== PROGRAM CARDS GO HERE ==================== -->
                </ul>
+               <div class="nothing-found" style="color: #f05133;
+    font-size: 13px;
+    font-weight: bold;
+    border: 1px solid #f05133;
+    width: 99%;
+    padding: 10px;
+    background-color: #fdedea; display:none">
+                  No programs found. Please modify your filter or search input.
+               </div>
             </div>
          </div>
 

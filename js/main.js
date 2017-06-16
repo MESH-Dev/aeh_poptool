@@ -1,4 +1,6 @@
 jQuery( document ).ready(function($) {
+
+    var map;
 // To keep our code clean and modular, all custom functionality will be contained inside a single object literal called "multiFilter".
 var multiFilter = {
 
@@ -359,12 +361,14 @@ landingView.paused(true)
 //Landing view close function
 var landingViewClose = function(){
  
-   var center = map.getCenter();
+    
    var mainMap = document.getElementById('map');
    landingView.play();
+
    mainMap.className += ' listing-view';
-   google.maps.event.trigger(map, 'resize');
-   map.setCenter(center);
+
+   //google.maps.event.trigger(map, 'resize');
+ 
 };
 
 //Map view animation
@@ -499,7 +503,7 @@ menuButton.addEventListener("click", function(){
 
 
 // ======================= DATA FUNCTIONS  =============================================================
-var map;
+
 var markers = [];
 var icons = [];
 var activeSize = new google.maps.Size(60, 67.68);
@@ -523,7 +527,7 @@ function createMarker(hospital){
 
     //Click event here to open panel and get content by ID
     google.maps.event.addListener(marker, 'click', function(){
-
+        landingViewClose();
         //reset detail panel html here
         $('#detailPaneContent').html('');
  
@@ -586,16 +590,15 @@ function createProgramCard(program){
 
  
 
-   var sdh_arry = program.sdh_slug.split(" ");
-
-   var sdh_img = sdh_arry[0];
+   // var sdh_arry = program.sdh_slug.split(" ");
+   // var sdh_img = sdh_arry[0];
 
    //print out single card html with all filterable taxonomies
    var cardHTML = "";
    cardHTML =  '<a href="#"><li data-hospid="hosp-'+ program.hosp_id +'" id="program-'+ program.id +'" class="mix indiv-block program-card ' + program_taxs + ' ' + hospital_taxs + '">';
    cardHTML += '<div class="block-interior">';
-   cardHTML +=   '<div class="category"><p>'+ program.sdh +'</p>';
-   cardHTML +=      '<img class="category-icon" src="'+$dir+'/img/icons/'+ sdh_img +'.svg"  >';
+   cardHTML +=   '<div class="category"><p>'+ program.primary_sdh +'</p>';
+   cardHTML +=      '<img class="category-icon" src="'+$dir+'/img/icons/'+ program.primary_sdh_slug +'.svg"  >';
    cardHTML +=   '</div>';
    cardHTML +=   '<h2>'+ program.name +'</h2>';
    cardHTML +=   '<p class="hospital">'+hospitals[program.hosp_id].name +'</p>';
@@ -624,13 +627,12 @@ function UpdateMarkers(){
 
    //$('#results-count').html(state.totalShow);
    $('#results-count').html($('#program-cards li:visible').length);
-
-   
-
-   
- 
-
-   //-------
+   if($('#program-cards li:visible').length == 0){
+        $('.nothing-found').show();
+   }
+   else{
+        $('.nothing-found').hide();
+   }
 
    //loop through markers (hospitals)
    for (var i = 0; i < markers.length; i++) {
@@ -678,11 +680,12 @@ function createDetailPanel(single_program_id, single_hospital_id){
       var program = programs[prog_ids[x]];
 
       panel_HTML += '<div class="indiv-detail-block">';
-      panel_HTML +=     '<div class="category"><p>' + program.sdh + '</p></div>';
+      panel_HTML +=     '<div class="category"><p>' + program.primary_sdh + '</p><img class="category-icon" src="'+$dir+'/img/icons/'+ program.primary_sdh_slug +'.svg"  ></div>';
       panel_HTML +=     '<h1>' + program.name + '</h1>';
       panel_HTML +=     '<div id="expand-'+program.id+'-panel"class="collapsable-content">';
       panel_HTML +=        '<div class="row program-info-row"><h4>PROGRAM DETAILS</h4>';
-      panel_HTML +=           '<div class="columns-8">';
+      panel_HTML +=           '<div class="columns-10">';
+      panel_HTML +=              '<p><span class="detail-title">Social Determinants :</span> '+ program.sdh +'</p>';
       panel_HTML +=              '<p><span class="detail-title">Target Population:</span> '+ program.target_pop +'</p>';
       panel_HTML +=              '<p><span class="detail-title">Program Setting:</span> '+ program.program_setting +'</p>';
       panel_HTML +=              '<p><span class="detail-title">Partners:</span> '+ program.partners +'</p>';
@@ -690,7 +693,7 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML +=           '</div>';
       panel_HTML +=        '</div>';
       panel_HTML +=        '<div class="row program-info-row"><h4>HOSPITAL DETAILS</h4>';
-      panel_HTML +=           '<div class="columns-8">';
+      panel_HTML +=           '<div class="columns-10">';
       panel_HTML +=              '<p><span class="detail-title">Ownership:</span> '+ hospital.ownership +'</p>';
       panel_HTML +=              '<p><span class="detail-title">Population Size:</span> '+ hospital.pop_size   +'</p>';
       panel_HTML +=              '<p><span class="detail-title">Number of Beds:</span> '+ hospital.bed_size +'</p>';
@@ -705,7 +708,7 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML +=     '</div>';
       panel_HTML +=     '<div class="detail-nav detail-nav-bottom">';
       panel_HTML +=             '<div class="detail-nav-border">';
-      panel_HTML +=                 '<a class="contact-button" href="'+program.contact_email+'">Contact a Representative »</a>';
+      panel_HTML +=                 '<a class="contact-button" id="expand-'+program.id+'-btn" href="'+program.contact_email+'">Contact a Representative »</a>';
       panel_HTML +=                 '<div class="navigation-button collapse" id="expand-'+program.id+'" >';
       panel_HTML +=                      '<a class="button-text">EXPAND</a><svg  class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12"><defs><style>.cls-1 { fill: #0d97d4; } </style></defs><title>uparrow</title><path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/></svg>';
       panel_HTML +=                 '</div>';
@@ -719,13 +722,14 @@ function createDetailPanel(single_program_id, single_hospital_id){
 
    $('#detailPaneContent').html(panel_HTML);
 
+
    var panel_id = '#expand-' + prog_ids[0] + '-panel';
    var btn_id = '#expand-' + prog_ids[0];
    if(x == 1){
-        console.log(panel_id);
-        $(btn_id).trigger('click');
-        $(panel_id).show('10');
+        $(panel_id).show();
         $(btn_id).hide();
+   }else{
+        $('.contact-button').css('opacity','0');
    }
 
    openDetails();
@@ -795,6 +799,8 @@ function resetFilters() {
 
    //clear search box here
    $("input#program-search").val('');
+   ProgramTextSearch('');
+
 
    //reset filters to show all
    $('#program-cards').mixItUp('filter','all');
@@ -809,15 +815,14 @@ function resetFilters() {
 function GetActiveString(){
     var active = [];
     $('#filterContainer input:checked').each(function() {
-
         var val = $(this).attr('data-valname');
-         
         active.push(val);
     });
     var filtered = '';
     filtered = active.join(", ");
 
-     if(filtered == ''){
+
+    if(filtered == ''){
         filtered = 'Showing All Programs';
     }
  
@@ -833,7 +838,7 @@ function initMap() {
  
    var mapOptions = {
       zoom: 5,
-      center: new google.maps.LatLng(37.1345952,-90.1902162),
+      center: new google.maps.LatLng(40.5345952,-96.1902162),
       styles: mapStyles,
       animation: google.maps.Animation.DROP,
       streetViewControl: false,
@@ -904,7 +909,6 @@ $.getJSON(prog_file, function(data) {
       hospitals = hosp_data;
       initMap(); //Everything is loaded - build map!
 
-
     });
 
 });
@@ -938,8 +942,14 @@ $('#menuButton').click(function(){
 $("input#program-search, input#landing-search").keyup(function(){
     // Retrieve the input field text and reset the count to zero
     var filter = $(this).val();
-    $("input#program-search").val(filter);
+    ProgramTextSearch(filter);
 
+});
+
+
+function ProgramTextSearch(filter){
+    $("input#program-search").val(filter);
+    $('#filter-string p').html("Search Results: "+filter);
     // Loop through grid items
     $("#program-cards a").each(function(){
 
@@ -951,28 +961,22 @@ $("input#program-search, input#landing-search").keyup(function(){
         // Show the list item if the phrase matches and increase the count by 1
         } else {
             $(this).fadeIn(200, UpdateMarkers);
-
-
         }
     });
 
-});
+}
 
 
-   //collpasable content
- 
- 
-
+//collpasable content
 $('#detailPaneContent').on('click', '.navigation-button', function() {
-    //var allPanels = $('.collapsable-content').hide();
-    
-
+ 
     var id = $(this).attr('id');
     id = "#" + id;
 
-    var panel_id = id+"-panel";
+    var panel_id = id + "-panel";
     var svg = id + " svg";
-    //panel_id = "#"+panel_id;
+    var contact_btn = id + "-btn";
+ 
  
     $(panel_id).slideToggle(500, function () {
         //execute this after slideToggle is done
@@ -981,12 +985,13 @@ $('#detailPaneContent').on('click', '.navigation-button', function() {
 
         if(visible){
  
+            $(contact_btn).css('opacity','1');
             $(id).children('.button-text').text("COLLAPSE");
             $(svg).css('transform','rotate(0deg)');
 
         }
         else{
- 
+            $(contact_btn ).css('opacity','0');
             $(id).children('.button-text').text("EXPAND");
             $(svg).css('transform','rotate(180deg)');
         }
@@ -997,9 +1002,14 @@ $('#detailPaneContent').on('click', '.navigation-button', function() {
   
 
 
+$('#landing-form').submit(function( event ) {
+    event.preventDefault();
+    landingViewClose()
+}); 
 
-
-
+$('.dropdown-trigger span').click(function( event ) {
+    //event.preventDefault();
+});
 
 
  

@@ -10,8 +10,8 @@
         "partners_slug": "external-funders external-health-care",
         "sdh": "Education, Family &amp; Social Support, Health Behaviors, Interpersonal Violence, Transportation",
         "sdh_slug": "education family-social-support health-behaviors interpersonal-violence transportation",
-        "primary_sdh": null,
-        "primary_sdh_slug": null,
+        "primary_sdh": "Health Literacy",
+        "primary_sdh_slug": "health-literacy",
         "target_pop": "Children\/Adolescents, Disabled, Families, Minorities",
         "target_pop_slug": "childrenadolescents disabled families minorities",
         "program_setting": "Community, Hospital",
@@ -198,5 +198,6 @@
         "program_setting_slug": "community hospital",
         "contact_email": "",
         "hosp_id": 41
+
     }
 }
