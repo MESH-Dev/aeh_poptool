@@ -70,12 +70,13 @@ p {
   color: $grey;
 }
 
-input, li, a{
+input, li{
   font-size:1.6em;
 }
 
 a{
    font-family: 'Cabin', sans-serif;
+   font-size:inherit;
 }
 
 address, ol, ul{
