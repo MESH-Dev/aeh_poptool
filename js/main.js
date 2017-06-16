@@ -1,4 +1,6 @@
 jQuery( document ).ready(function($) {
+
+    var map;
 // To keep our code clean and modular, all custom functionality will be contained inside a single object literal called "multiFilter".
 var multiFilter = {
 
@@ -359,12 +361,14 @@ landingView.paused(true)
 //Landing view close function
 var landingViewClose = function(){
  
-   var center = map.getCenter();
+    
    var mainMap = document.getElementById('map');
    landingView.play();
+
    mainMap.className += ' listing-view';
-   google.maps.event.trigger(map, 'resize');
-   map.setCenter(center);
+
+   //google.maps.event.trigger(map, 'resize');
+ 
 };
 
 //Map view animation
@@ -499,7 +503,7 @@ menuButton.addEventListener("click", function(){
 
 
 // ======================= DATA FUNCTIONS  =============================================================
-var map;
+
 var markers = [];
 var icons = [];
 var activeSize = new google.maps.Size(60, 67.68);
@@ -623,7 +627,12 @@ function UpdateMarkers(){
 
    //$('#results-count').html(state.totalShow);
    $('#results-count').html($('#program-cards li:visible').length);
- 
+   if($('#program-cards li:visible').length == 0){
+        $('.nothing-found').show();
+   }
+   else{
+        $('.nothing-found').hide();
+   }
 
    //loop through markers (hospitals)
    for (var i = 0; i < markers.length; i++) {
@@ -829,7 +838,7 @@ function initMap() {
  
    var mapOptions = {
       zoom: 5,
-      center: new google.maps.LatLng(37.1345952,-90.1902162),
+      center: new google.maps.LatLng(40.5345952,-96.1902162),
       styles: mapStyles,
       animation: google.maps.Animation.DROP,
       streetViewControl: false,
@@ -900,7 +909,6 @@ $.getJSON(prog_file, function(data) {
       hospitals = hosp_data;
       initMap(); //Everything is loaded - build map!
 
-
     });
 
 });
@@ -936,8 +944,8 @@ $("input#program-search, input#landing-search").keyup(function(){
     var filter = $(this).val();
     ProgramTextSearch(filter);
 
-
 });
+
 
 function ProgramTextSearch(filter){
     $("input#program-search").val(filter);
@@ -961,18 +969,14 @@ function ProgramTextSearch(filter){
 
 //collpasable content
 $('#detailPaneContent').on('click', '.navigation-button', function() {
-    //var allPanels = $('.collapsable-content').hide();
-    
-
+ 
     var id = $(this).attr('id');
     id = "#" + id;
 
     var panel_id = id + "-panel";
     var svg = id + " svg";
     var contact_btn = id + "-btn";
-    
-
-
+ 
  
     $(panel_id).slideToggle(500, function () {
         //execute this after slideToggle is done

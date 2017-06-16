@@ -314,9 +314,13 @@ function update_hospital_map( $post_id ) {
           }
  
           //8
-          $determinants = get_the_terms($p_id, 'sdh');
           $social_det_slug = '';
-          $social_det_slug .= $determinants[0]->slug;
+          $determinants = get_the_terms($p_id, 'sdh');
+          if($determinants){
+            
+            $social_det_slug .= $determinants[0]->slug;
+          }
+          
  
  
           //11

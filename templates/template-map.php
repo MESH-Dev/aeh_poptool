@@ -99,6 +99,15 @@ get_header();?>
                <ul id="program-cards" class="listing-blocks">
                   <!-- ==================== PROGRAM CARDS GO HERE ==================== -->
                </ul>
+               <div class="nothing-found" style="color: #f05133;
+    font-size: 13px;
+    font-weight: bold;
+    border: 1px solid #f05133;
+    width: 99%;
+    padding: 10px;
+    background-color: #fdedea; display:none">
+                  No programs found. Please modify your filter or search input.
+               </div>
             </div>
          </div>
 
