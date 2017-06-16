@@ -2,9 +2,30 @@
 
 get_header();?>
 
-<style>.mix{
+<style>
+.mix{
     display: none;
-}</style>
+}
+
+.collapsable-content{
+   display: none;
+   overflow: hidden;
+}
+
+.listing-interface .detail-nav-bottom .collapse .button-text {
+    margin: 0px 10px 0px 0px;
+}
+
+.listing-interface .detail-nav-bottom .collapse {
+    float: right;
+}
+
+.listing-interface .detail-nav-bottom .button-arrow{
+   transform: rotate(180deg);
+}
+
+
+</style>
 <main class="map-tool-page" id="content">
 
 

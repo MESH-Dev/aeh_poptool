@@ -337,10 +337,7 @@ var searchClose = document.getElementById('searchModalClose'),
    cancelFilters = document.getElementById('cancelFilters'),
    applyFilters = document.getElementById('applyFilters'),
    filterBottomNav = document.getElementById('filterBottomNav'),
-   filterSelects = document.getElementsByClassName('custom-select'),
-   collapseButton = document.getElementById('collapse'),
-   collapseArrow = document.getElementById('collapseArrow'),
-   collapsableContent = document.getElementById('collapsableContent'),
+   filterSelects = document.getElementsByClassName('custom-select'), 
    listingTab = document.getElementById('listing-tab'),
    mapTab = document.getElementById('map-tab'),
    mapListingButton = document.getElementById('map-listing-button'),
@@ -349,7 +346,6 @@ var searchClose = document.getElementById('searchModalClose'),
    filterView = new TimelineMax(),
    landingView = new TimelineMax(),
    detailView = new TimelineMax(),
-   detailCollapse = new TimelineMax(),
    mapView = new TimelineMax();
 
 //Langing view close animation
@@ -487,27 +483,8 @@ var closeDetails = function(){
 //    programBlocks[i].onclick = openDetails;
 // }
 backButton.onclick = closeDetails;
-
-
-//Multi-project Detail Collapse
-detailCollapse.paused(true)
-   .add("open")
-   .to(collapseArrow, 0.4, {rotation: "+=180"}, "open")
-   .to(collapsableContent, 0.4, {height:0}, "open")
-   // .to(detailPaneContent, 0.4, {height:"180px"}, "open")
-   .add("closed");
-
-var multiProjectOpen = function(){
-   detailCollapse.reverse();
-   collapseButton.onclick = multiProjectClose;
-};
-
-var multiProjectClose = function(){
-   detailCollapse.play();
-   collapseButton.onclick = multiProjectOpen;
-};
-
-collapseButton.onclick = multiProjectClose;
+ 
+ 
 
 
 //Mobile Nav Open and Close
@@ -696,13 +673,14 @@ function createDetailPanel(single_program_id, single_hospital_id){
    $('#hospital_title').html(hospital.name + " | " + hospital.city);
 
    var panel_HTML = '';
+
    for(var x = 0; x < prog_ids.length; x++){
       var program = programs[prog_ids[x]];
 
       panel_HTML += '<div class="indiv-detail-block">';
       panel_HTML +=     '<div class="category"><p>' + program.sdh + '</p></div>';
       panel_HTML +=     '<h1>' + program.name + '</h1>';
-      panel_HTML +=     '<div id="collapsableContent">';
+      panel_HTML +=     '<div id="expand-'+program.id+'-panel"class="collapsable-content">';
       panel_HTML +=        '<div class="row program-info-row"><h4>PROGRAM DETAILS</h4>';
       panel_HTML +=           '<div class="columns-8">';
       panel_HTML +=              '<p><span class="detail-title">Target Population:</span> '+ program.target_pop +'</p>';
@@ -724,14 +702,35 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML +=           '</div>';
       panel_HTML +=        '</div>';
       panel_HTML +=        '<div class="program-info-row">' + program.description + '</div>';
-      panel_HTML +=        '<div class="detail-nav detail-nav-bottom"><div class="detail-nav-border"><a class="contact-button" href="'+program.contact_email+'">Contact a Representative »</a><div class="navigation-button" id="collapse"><a class="button-text">COLLAPSE</a><svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12"><defs><style>.cls-1 { fill: #0d97d4; } </style></defs><title>uparrow</title><path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/></svg></div></div>';
-      panel_HTML +=     '</div> ';
+      panel_HTML +=     '</div>';
+      panel_HTML +=     '<div class="detail-nav detail-nav-bottom">';
+      panel_HTML +=             '<div class="detail-nav-border">';
+      panel_HTML +=                 '<a class="contact-button" href="'+program.contact_email+'">Contact a Representative »</a>';
+      panel_HTML +=                 '<div class="navigation-button collapse" id="expand-'+program.id+'" >';
+      panel_HTML +=                      '<a class="button-text">EXPAND</a><svg  class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12"><defs><style>.cls-1 { fill: #0d97d4; } </style></defs><title>uparrow</title><path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/></svg>';
+      panel_HTML +=                 '</div>';
+      panel_HTML +=            '</div>';
+      panel_HTML +=     '</div>';
       panel_HTML += '</div>';
    }
+ 
+
+ 
 
    $('#detailPaneContent').html(panel_HTML);
 
+   var panel_id = '#expand-' + prog_ids[0] + '-panel';
+   var btn_id = '#expand-' + prog_ids[0];
+   if(x == 1){
+        console.log(panel_id);
+        $(btn_id).trigger('click');
+        $(panel_id).show('10');
+        $(btn_id).hide();
+   }
+
    openDetails();
+
+
 }
 
  
@@ -958,6 +957,46 @@ $("input#program-search, input#landing-search").keyup(function(){
     });
 
 });
+
+
+   //collpasable content
+ 
+ 
+
+$('#detailPaneContent').on('click', '.navigation-button', function() {
+    //var allPanels = $('.collapsable-content').hide();
+    
+
+    var id = $(this).attr('id');
+    id = "#" + id;
+
+    var panel_id = id+"-panel";
+    var svg = id + " svg";
+    //panel_id = "#"+panel_id;
+ 
+    $(panel_id).slideToggle(500, function () {
+        //execute this after slideToggle is done
+        //change text of header based on visibility of content div
+        var visible =  $(panel_id).is(":visible");
+
+        if(visible){
+ 
+            $(id).children('.button-text').text("COLLAPSE");
+            $(svg).css('transform','rotate(0deg)');
+
+        }
+        else{
+ 
+            $(id).children('.button-text').text("EXPAND");
+            $(svg).css('transform','rotate(180deg)');
+        }
+ 
+    });
+    return false;
+});   
+  
+
+
 
 
 
