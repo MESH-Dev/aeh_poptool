@@ -35,7 +35,7 @@ get_header();
 
                   ?>
 
-                     <a href="<?php echo $link; ?>" <?php if($external){ echo 'target="_blank"'?> >
+                     <a href="<?php echo $link; ?>" <?php if($external){ echo 'target="_blank"'; }?> >
                         <div class="single-cta" >
                            <img src="<?php echo $hover_icon_url; ?>" >
                            <h3><?php echo $title; ?></h3>
