@@ -1,6 +1,6 @@
 
 
-<footer class="site-footer">
+<footer class="site-footer <?php if (is_page_template('templates/template-map.php')){ echo 'hide';}?>">
 	<div class="content-bar">
 		<div class="container">
 			<div class="row">

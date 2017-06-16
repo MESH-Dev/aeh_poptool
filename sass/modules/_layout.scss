@@ -270,6 +270,7 @@ a.dropdown-trigger{
       visibility: hidden;
       padding: 0 40px;
       bottom: 0;
+      width:100%;
       // right: 0;
       @media screen and ($bp-smaller-than-desktop){
          top: 200px;
@@ -280,6 +281,7 @@ a.dropdown-trigger{
    }
    .indiv-detail-block{
       display: block;
+      border-top:10px solid $blue;
       .detail-title{
          color: $black;
          font-weight: 600;
@@ -310,7 +312,7 @@ a.dropdown-trigger{
          top: 120px;
       }
       .detail-nav-border{
-         border-bottom: 4px solid $blue;
+         //border-bottom: 4px solid $blue;
       }
       .program-hospital{
          margin: 0;
@@ -830,4 +832,76 @@ a.dropdown-trigger{
          }
       }
    }
+}
+
+.hide{
+   display:none;
+}
+
+//Accessibility
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* =WordPress Core
+-------------------------------------------------------------- */
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+p img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+p img.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+p img.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+p img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
 }
