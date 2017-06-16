@@ -47,7 +47,7 @@ get_header();?>
          <h2 class=""><?php echo $modal_title; ?></h2>
          <p><?php echo $intro; ?></p>
          <p><?php echo $instruction; ?> <a id="landingBrowsePrograms"><?php echo $dismiss?></a></p>
-         <div class="search-container">
+         <div class="search-container row">
             <form id="landing-form">
             <input type="text" id="landing-search" value="" placeholder="Search Programs">
             <input type="submit" id="landing-submit" name="" value="»">

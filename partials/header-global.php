@@ -2,7 +2,7 @@
 		<div class="container">
 
 			<div class="row"><!-- //columns-12 -->
-				<div class="navigation-logo columns-2">
+				<div class="navigation-logo columns-3">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 						<img src="<?php bloginfo('template_directory'); ?>/img/logo-full.png" >
 						<span class="sr-only">Click here to return to homepage</span>

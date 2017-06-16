@@ -708,7 +708,7 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML +=     '</div>';
       panel_HTML +=     '<div class="detail-nav detail-nav-bottom">';
       panel_HTML +=             '<div class="detail-nav-border">';
-      panel_HTML +=                 '<a class="contact-button" id="expand-'+program.id+'-btn" href="'+program.contact_email+'">Contact a Representative »</a>';
+      panel_HTML +=                 '<a class="contact-button" id="expand-'+program.id+'-btn" href="mailto: ksusman@essentialhospitals.org, '+program.contact_email+'?Subject=Population Health Program Inquiry">Contact a Representative »</a>';
       panel_HTML +=                 '<div class="navigation-button collapse" id="expand-'+program.id+'" >';
       panel_HTML +=                      '<a class="button-text">EXPAND</a><svg  class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12"><defs><style>.cls-1 { fill: #0d97d4; } </style></defs><title>uparrow</title><path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/></svg>';
       panel_HTML +=                 '</div>';

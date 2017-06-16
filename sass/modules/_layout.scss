@@ -82,7 +82,7 @@
    max-width: 900px;
    .search-container{
       input[type="text"]{
-         max-width: 760px;
+         //max-width: 760px;
       }
    }
    #searchModalClose{
@@ -129,10 +129,15 @@
    white-space: nowrap;
    input[type="text"]{
       font-family: 'Cabin', sans-serif;
-      width: 40vw;
+      width: calc(100% - 36px);
       height: 36px;
       border: 0px;
       outline: 0px;
+      // display:inline-block;
+      // float:left;
+      // @media ($bp-smaller-than-tablet){
+      //    width:100%;
+      // }
    }
    input[type="submit"]{
       font-weight: normal;
@@ -143,7 +148,15 @@
       font-size: 2.4rem;
       vertical-align: bottom;
       padding: 0 10px;
-      &:hover{
+      width:36px;
+      // @media ($bp-smaller-than-tablet){
+      //    width:100%;
+      // }
+      // display:inline-block;
+      // float:left;
+      &:hover,
+      &:active,
+      &:focus{
          background: $green;
       }
    }
@@ -252,6 +265,9 @@ a.dropdown-trigger{
       visibility: hidden;
       h4, p{
          margin: 0;
+      }
+      p{
+         margin-right:5px;
       }
       .program-info-row{
          margin-bottom: 2rem;
