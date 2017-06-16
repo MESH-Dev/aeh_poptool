@@ -177,7 +177,7 @@
         "program_setting": "Hospital",
         "program_setting_slug": "hospital",
         "contact_email": "",
-        "hosp_id": 47
+        "hosp_id": 41
     },
     "61": {
         "id": "61",
@@ -198,25 +198,6 @@
         "program_setting_slug": "community hospital",
         "contact_email": "",
         "hosp_id": 41
-    },
-    "346": {
-        "id": "346",
-        "name": "TEST &#8211; WV Program 2",
-        "slug": "test-wv-program-2",
-        "description": "Test info",
-        "active": "Yes",
-        "active_slug": "yes",
-        "partners": "External Community Organization",
-        "partners_slug": "external-community-organization",
-        "sdh": "Food Insecurity",
-        "sdh_slug": "food-insecurity",
-        "primary_sdh": null,
-        "primary_sdh_slug": null,
-        "target_pop": "Women",
-        "target_pop_slug": "women",
-        "program_setting": "Community",
-        "program_setting_slug": "community",
-        "contact_email": "text@text.com",
-        "hosp_id": 41
+
     }
 }
