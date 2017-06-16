@@ -7,13 +7,22 @@ jQuery(document).ready(function($){
       //      $(this).removeClass('active');
       //      $('.sdh-intro').removeClass('determ');
       //   }
+      
+      //$(this).css({opacity:1})
+
       $('.sdh-icon').each(function(){
          if($(this).hasClass('active')){
             $(this).removeClass('active');
          }
       });
       var current_determ = this.id;
-      $(this).toggleClass('active');
+
+      $(this).addClass('active').animate({opacity:1},200);
+
+      $('.sdh-icon:not(.active)').animate({
+        opacity:.25
+      },200)
+
       $('.determ-intro').each(function(){
          if($(this).hasClass('active')){
             $(this).removeClass('active');
@@ -26,12 +35,24 @@ jQuery(document).ready(function($){
  $('.determ-close').click(function(){
       $('.sdh-intro').removeClass('determ');
       $('.sdh-icon').each(function(){
-         $(this).removeClass('active');
+         $(this).removeClass('active').css({
+          opacity:1
+         });
       });
    });
 
+  $clk_cnt=0;
    $('#menuButton').click(function(){
-      $('#menu-main_nav').toggleClass('open');
+      //$('#menu-main_nav').toggleClass('open');
+      $clk_cnt++;
+      if($clk_cnt==1){
+        $('#menu-main_nav').slideDown(100);
+
+      }else{
+        $('#menu-main_nav').slideUp(100);
+        $clk_cnt=0;
+      }
+      
    });
 
 //  $('.sdh-icon.active').click(function(){

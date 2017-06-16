@@ -21,13 +21,14 @@
    .navigation-logo{
       // width: 144px;
       max-width:400px;
-      @media screen and ($bp-smaller-than-desktop){
-         margin: 0 auto;
+      @media screen and ($bp-smaller-than-desktophd){
+         // margin: 0 auto;
+         margin-bottom:1em;
          float: none;
       }
-      // @media screen and ($bp-smaller-than-tablet){
-      //    width: 50%;
-      // }
+       @media screen and (max-width: 884px){
+         margin:0 auto;
+      }
    }
 }
 
@@ -54,22 +55,30 @@
       float:right;
       margin-top:10px;
       transition: height 0.25s ease-in-out;
-      @media screen and ($bp-smaller-than-desktop){
+      @media screen and ($bp-smaller-than-desktophd){
          float: left;
       }
-      &:not(.open){
-         @media screen and (max-width: 884px){
-            overflow: hidden;
-            height: 0px;
-            margin: 0;
+      @media screen and (max-width: 884px){
+            display:none;
+            height:auto;
          }
-      }
+      // &:not(.open){
+      //    @media screen and (max-width: 884px){
+      //       overflow: hidden;
+      //       height: 0px;
+      //       margin: 0;
+      //    }
+      // }
       li{
          display:inline-block;
          float:left;
          border-top:5px solid $blue;
          list-style-type: none;
          margin-right:1em;
+         @media screen and (max-width: 884px){
+            display:inherit;
+            float:none;
+         }
 
          &:active,
          &:focus,

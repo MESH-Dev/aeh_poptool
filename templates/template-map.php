@@ -50,7 +50,7 @@ get_header();?>
          <div class="search-container row">
             <form id="landing-form">
             <input type="text" id="landing-search" value="" placeholder="Search Programs">
-            <input type="submit" id="landing-submit" name="" value="»">
+            <button type="submit" id="landing-submit" name="" value="»"><span>»</span></button>
             </form>
          </div>
       </div>

@@ -1,7 +1,7 @@
 footer{
 	p{
 		margin:0;
-		font-size: 1em;
+		//font-size: 1em;
 	}
 	a{
 		color: $red;
@@ -12,6 +12,8 @@ footer{
 		padding:3em 0 2em 0;
 		.contact-info{
 			color:$red;
+			//font-size:.9em;
+			padding-top:5px;
 			.name{
 				color: $red;
 				text-transform:uppercase;
@@ -20,12 +22,18 @@ footer{
 			.address{
 				color: $red;
 				@include georgia;
+				text-transform:capitalize;
+				font-weight:400;
 			}
 			.contact{
 				font-weight:700;
 				font-family: 'Cabin', sans-serif;
 			}
-
+			@media ($bp-smaller-than-mobile){
+				[class*='columns-'] {
+					margin-bottom:1em;
+				}
+			}
 		}
 
 		.share{
@@ -59,6 +67,7 @@ footer{
 		text-align:right;
 		padding:.5em 0;
 		text-transform:uppercase;
+		height:30px;
 		a{
 			color:$blue;
 			&:hover,

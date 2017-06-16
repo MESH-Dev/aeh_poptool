@@ -31,15 +31,17 @@ get_header();
                         $hover_icon_url = $hover_icon['sizes']['small'];
                         $hover_icon_alt = $hover_icon['alt'];
                         $link = get_sub_field('section_link');
+                        $external=get_sub_field('external');
 
                   ?>
 
-                     <a href="<?php echo $link; ?>"><div class="single-cta">
-                        <img src="<?php echo $hover_icon_url; ?>" >
-                        <h3><?php echo $title; ?></h3>
-                        <p><?php echo $intro; ?></p>
-                           <!-- <p>Learn more &rarr;</p> -->
-                     </div></a>
+                     <a href="<?php echo $link; ?>" <?php if($external){ echo 'target="_blank"'?> >
+                        <div class="single-cta" >
+                           <img src="<?php echo $hover_icon_url; ?>" >
+                           <h3><?php echo $title; ?></h3>
+                           <p><?php echo $intro; ?></p>
+                        </div>
+                     </a>
 
 
                   <?php endwhile; endif; ?>

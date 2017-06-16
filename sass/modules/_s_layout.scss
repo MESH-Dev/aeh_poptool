@@ -26,10 +26,12 @@ img{
     font-size:3.6rem;
     margin-bottom:4rem;
     font-weight:100;
+    color:$white;
+    @include georgia;
     span{
       text-transform:uppercase;
       font-weight: 600;
-      // @include cabin;
+      @include cabin;
     }
     @media screen and ($bp-smaller-than-phablet){
       font-size: 2.6rem;
@@ -56,6 +58,7 @@ img{
    }
   h2{
      font-size: 3.6rem;
+     color:$black;
     span{
       @include georgia;
       font-weight: 100;
@@ -68,6 +71,11 @@ img{
         }
         a{
            font-weight: 600;
+           &:hover,
+           &:focus,
+           &:active{
+            color:$green;
+           }
         }
         p{
            @include georgia;
@@ -308,6 +316,7 @@ img{
   box-shadow: 2.828px 0px 4px 0px rgba(0, 0, 0, 0.06);
   -webkit-box-shadow: 2.828px 0px 4px 0px rgba(0, 0, 0, 0.06);
   -moz-box-shadow: 2.828px 0px 4px 0px rgba(0, 0, 0, 0.06);
+  padding-bottom:5em;
   @media ($bp-smaller-than-tablet){
     box-shadow:none;
     -webkit-box-shadow:none;
@@ -325,5 +334,38 @@ img{
   h1, h2, h3, h4, h5, h6{
     color:$red;
     text-transform:uppercase;
+    font-weight:700;
+  }
+}
+
+.submit-program{
+  background: #F0F0F0;
+    padding: 18px 18px 45px;
+    width: 100%;
+    box-sizing: border-box;
+  input{
+        background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    color: #777777;
+    display: block;
+    margin: 0 0 20px;
+    max-width: 100%;
+    outline: medium none;
+    padding: 6px 4px;
+    width: 97%;
+  }
+
+  input[type='submit']{
+        //background-color: #00aeef;
+        color: #ffffff;
+        padding: 6px 8px;
+        transition: background-color 0.2s ease-in-out;
+        font-weight: bold;
+    &:hover,
+    &:focus,
+    &:active{
+        text-decoration: none;
+        background-color: #35BDB2;
+    }
   }
 }

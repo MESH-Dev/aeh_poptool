@@ -11,7 +11,7 @@
 					<div class="contact-info">
 						<p>
 							<span class="name">America's Essential Hospitals<span><br/>
-							<span class="address">1301 Pennsylvania Ave. NW, Suite 950, Washington, DC 20004<span></br>
+							<span class="address">401 Ninth St NW, Ste 900, Washington, DC 20004<span></br>
 							<span class="contact">202.585.0100  |  <a href="mailto:info@essentialhospitals.org">info@essentialhospitals.org</a></span>
 						</p>
 					</div>
@@ -20,7 +20,7 @@
 					<div class="share">
 						<div class="share-statement">
 							Share the work<br/>
-							of healthy communities<br/>
+							of essential communities<br/>
 							with people Online:
 						</div>
 						<div class="add-this addthis_inline_share_toolbox"></div>
@@ -31,7 +31,7 @@
 	</div>
 	<div class="sig-bar">
 		<div class="container">
-			<p class="signature">Site design by <a href="http://meshfresh.com">MESH</a></p>
+			<!-- <p class="signature">Site design by <a href="http://meshfresh.com">MESH</a></p> -->
 		</div>
 	</div>
 </footer>
