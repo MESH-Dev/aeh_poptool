@@ -336,19 +336,22 @@ var searchClose = document.getElementById('searchModalClose'),
    backButton = document.getElementById('backButton'),
    detailNavBottom = document.getElementById('detailNavBottom'),
    detailPaneContent = document.getElementById('detailPaneContent'),
-   cancelFilters = document.getElementById('cancelFilters'),
+   cancelButton = document.getElementById('cancelFilters'),
    applyFilters = document.getElementById('applyFilters'),
    filterBottomNav = document.getElementById('filterBottomNav'),
-   filterSelects = document.getElementsByClassName('custom-select'), 
+   filterSelects = document.getElementsByClassName('custom-select'),
    listingTab = document.getElementById('listing-tab'),
    mapTab = document.getElementById('map-tab'),
    mapListingButton = document.getElementById('map-listing-button'),
    menuButton =  document.getElementById('menuButton'),
    mainNav = document.getElementById('menu-main_nav'),
+   desktopMapTab = document.getElementById('desktop-map-tab'),
+   mainMap = document.getElementById('map'),
    filterView = new TimelineMax(),
    landingView = new TimelineMax(),
    detailView = new TimelineMax(),
-   mapView = new TimelineMax();
+   mapView = new TimelineMax(),
+   desktopMapView = new TimelineMax();
 
 //Langing view close animation
 landingView.paused(true)
@@ -356,19 +359,18 @@ landingView.paused(true)
    .to(searchModal, 0.75, {css:{top:"-100%", autoAlpha:0}, ease: Elastic.easeIn.config(1, 1)}, "open")
    .to(listingInterface, 0.75, {css:{left:"0"}, ease: Power3.easeInOut, delay:0.4}, "open")
    .to(mapListingButton, 1, {css:{autoAlpha:1}}, "open")
+   .to(desktopMapTab, 0.1, {css:{autoAlpha:1}}, "closed")
    .add("closed");
 
 //Landing view close function
 var landingViewClose = function(){
- 
-    
-   var mainMap = document.getElementById('map');
+
    landingView.play();
 
-   mainMap.className += ' listing-view';
+   // mainMap.className += ' listing-view';
 
    //google.maps.event.trigger(map, 'resize');
- 
+
 };
 
 //Map view animation
@@ -416,7 +418,7 @@ filterView.paused(true)
    .add("open");
 
 var openFilters = function(event){
-   active = event.target;
+   active = this;
    //Reset filter trigger functions
    for (var i = 0; i < filterTriggers.length; i++) {
       filterTriggers[i].className = 'dropdown-trigger';
@@ -444,13 +446,19 @@ var closeFilters = function(event){
    event.target.onclick = openFilters;
 };
 
+var cancelFilters = function(){
+   active.className = "dropdown-trigger ";
+   filterContainer.className = "filters";
+   filterView.reverse();
+};
+
 for (var i = 0; i < filterTriggers.length; i++) {
    filterTriggers[i].onclick = openFilters;
 };
 
 applyFilters.addEventListener("click", closeFilters);
-cancelFilters.addEventListener("click", closeFilters);
- 
+cancelButton.addEventListener("click", cancelFilters);
+
 
 
 
@@ -487,15 +495,32 @@ var closeDetails = function(){
 //    programBlocks[i].onclick = openDetails;
 // }
 backButton.onclick = closeDetails;
- 
- 
-
 
 //Mobile Nav Open and Close
 menuButton.addEventListener("click", function(){
    mainNav.classList.toggle("open");
- 
+
 });
+
+desktopMapView.paused(true)
+   .add("open")
+   .to(listingInterface, 0.5, {css:{left:"-100%"}}, "open")
+   .to(desktopMapTab, 0.2, {css:{left:"0"}}, "open")
+   .add("closed")
+
+var desktopCloseListings = function(){
+   desktopMapView.play();
+   // mainMap.classList.toggle('listing-view');
+   desktopMapTab.onclick = desktopOpenListings;
+}
+
+var desktopOpenListings = function(){
+   desktopMapView.reverse();
+   // mainMap.classList.toggle('listing-view');
+   desktopMapTab.onclick = desktopCloseListings;
+}
+
+desktopMapTab.onclick = desktopCloseListings;
 
 
 // ======================= END FRONT END INTERACTIONS ==================================================
@@ -508,7 +533,7 @@ var markers = [];
 var icons = [];
 var activeSize = new google.maps.Size(60, 67.68);
 var inactiveSize = new google.maps.Size(40, 45.3);
- 
+
 //Create All Map Markers for Hospitals
 function createMarker(hospital){
 
@@ -522,7 +547,7 @@ function createMarker(hospital){
       //add custom marker based on topic here (need to add topic to json)
 
     });
- 
+
 
 
     //Click event here to open panel and get content by ID
@@ -530,9 +555,9 @@ function createMarker(hospital){
         landingViewClose();
         //reset detail panel html here
         $('#detailPaneContent').html('');
- 
+
         setActiveMarker(marker.id);
- 
+
         //create Panel content and show it.
         createDetailPanel('', marker.id);
         mapView.reverse();
@@ -543,7 +568,7 @@ function createMarker(hospital){
    // google.maps.event.addListener(map, 'idle', function() {
    //     showVisibleMarkers();
    // });
- 
+
    markers.push(marker);
 
 }
@@ -551,7 +576,7 @@ function createMarker(hospital){
 
 function setActiveMarker(marker_id){
     for (var i = 0; i < markers.length; i++) {
- 
+
         if(markers[i].id == marker_id){
             markers[i].setIcon(icons[markers[i].topic].active);
         }
@@ -588,7 +613,7 @@ function createProgramCard(program){
    program_taxs += program.target_pop_slug + " ";
    program_taxs += program.program_setting_slug + " ";
 
- 
+
 
    // var sdh_arry = program.sdh_slug.split(" ");
    // var sdh_img = sdh_arry[0];
@@ -619,11 +644,11 @@ function UpdateMarkers(){
 
    //this will show the active filters strings
    var activeString = GetActiveString();
-    
- 
+
+
 
    $('#filter-string p').html(activeString);
-   //var state = $('#program-cards').mixItUp('getState'); 
+   //var state = $('#program-cards').mixItUp('getState');
 
    //$('#results-count').html(state.totalShow);
    $('#results-count').html($('#program-cards li:visible').length);
@@ -669,8 +694,8 @@ function createDetailPanel(single_program_id, single_hospital_id){
    else{
       prog_ids = hospital.program_ids;
    }
- 
-   
+
+
    //set panel hospital title
    $('#hospital_title').html(hospital.name + " | " + hospital.city);
 
@@ -716,9 +741,9 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML +=     '</div>';
       panel_HTML += '</div>';
    }
- 
 
- 
+
+
 
    $('#detailPaneContent').html(panel_HTML);
 
@@ -737,7 +762,7 @@ function createDetailPanel(single_program_id, single_hospital_id){
 
 }
 
- 
+
 //Pans Map to center on hospitla marker - called after a program click.
 function centerMapOnHospital(hosp_id){
    var lat = hospitals[hosp_id].latitude;
@@ -766,18 +791,18 @@ function createIcons(){
         var inactive={};
         var iconObj ={};
 
-        active.url = $dir + "/img/markers/" + sdh + "-active.png"; 
+        active.url = $dir + "/img/markers/" + sdh + "-active.png";
         active.scaledSize= activeSize;
-        inactive.url = $dir+ "/img/markers/" + sdh + ".png"; 
+        inactive.url = $dir+ "/img/markers/" + sdh + ".png";
         inactive.scaledSize= inactiveSize;
 
         iconObj.active = active;
         iconObj.inactive = inactive;
 
         icons[sdh] = iconObj;
-       
+
    }
-   
+
 }
 
 
@@ -793,7 +818,7 @@ function loadPrograms() {
 
 
 function resetFilters() {
- 
+
    //clear all input fields
    $('#filterContainer input:checked').removeAttr('checked');
 
@@ -825,27 +850,27 @@ function GetActiveString(){
     if(filtered == ''){
         filtered = 'Showing All Programs';
     }
- 
+
     return filtered;
 
 }
 
- 
+
 
 
 
 function initMap() {
- 
+
    var mapOptions = {
       zoom: 5,
       center: new google.maps.LatLng(40.5345952,-96.1902162),
       styles: mapStyles,
       animation: google.maps.Animation.DROP,
       streetViewControl: false,
- 
+
    }
 
-   
+
 
    map_document = document.getElementById('map');
    map = new google.maps.Map(map_document,mapOptions);
@@ -969,22 +994,22 @@ function ProgramTextSearch(filter){
 
 //collpasable content
 $('#detailPaneContent').on('click', '.navigation-button', function() {
- 
+
     var id = $(this).attr('id');
     id = "#" + id;
 
     var panel_id = id + "-panel";
     var svg = id + " svg";
     var contact_btn = id + "-btn";
- 
- 
+
+
     $(panel_id).slideToggle(500, function () {
         //execute this after slideToggle is done
         //change text of header based on visibility of content div
         var visible =  $(panel_id).is(":visible");
 
         if(visible){
- 
+
             $(contact_btn).css('opacity','1');
             $(id).children('.button-text').text("COLLAPSE");
             $(svg).css('transform','rotate(0deg)');
@@ -995,24 +1020,24 @@ $('#detailPaneContent').on('click', '.navigation-button', function() {
             $(id).children('.button-text').text("EXPAND");
             $(svg).css('transform','rotate(180deg)');
         }
- 
+
     });
     return false;
-});   
-  
+});
+
 
 
 $('#landing-form').submit(function( event ) {
     event.preventDefault();
     landingViewClose()
-}); 
+});
 
 $('.dropdown-trigger span').click(function( event ) {
     //event.preventDefault();
 });
 
 
- 
+
 
 
 
