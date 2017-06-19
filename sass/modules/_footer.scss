@@ -8,12 +8,15 @@ footer{
 	}
 	.content-bar{
 		background:$light-grey;
-
+		
 		padding:3em 0 2em 0;
 		.contact-info{
 			color:$red;
 			//font-size:.9em;
 			padding-top:5px;
+			p{
+				font-size:1.3em;
+			}
 			.name{
 				color: $red;
 				text-transform:uppercase;

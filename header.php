@@ -13,6 +13,8 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
+	<meta name="msvalidate.01" content="2769E9F62BF3F327ED3BF080893E4271" />
+
 	<!-- Mobile Specific Metas
 	================================================== -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -25,10 +27,10 @@
 
 	<!-- Favicons
 	================================================== -->
-	<link rel="shortcut icon" href="images/favicon.ico">
-	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	<link rel="shortcut icon" href="<?php bloginfo('url' );?>/favicon.ico">
+	<link rel="apple-touch-icon" href="<?php bloginfo('url' );?>/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="<?php bloginfo('url' );?>/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="<?php bloginfo('url' );?>/apple-touch-icon-114x114.png">
 
 	<!-- Fonts
 	================================================== -->
@@ -36,14 +38,14 @@
 
 	<!-- Bugherd
 	================================================== -->
-	<script type='text/javascript'>
+	<!--<script type='text/javascript'>
 	(function (d, t) {
 	  var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
 	  bh.type = 'text/javascript';
 	  bh.src = 'https://www.bugherd.com/sidebarv2.js?apikey=yqsy4bao6vlyvoxgc15tbq';
 	  s.parentNode.insertBefore(bh, s);
 	  })(document, 'script');
-	</script>
+	</script>-->
 
 	<?php wp_head(); ?>
 

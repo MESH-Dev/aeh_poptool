@@ -16,7 +16,7 @@ get_header();
                   $g_intro = get_field('greeting_intro');
                   $g_sub = get_field('greeting_subparagraph');
                ?>
-               <h1 style="color:white;"><span><?php echo $g_title; ?></span><br> <?php echo $g_intro; ?></h1>
+               <h1><span><?php echo $g_title; ?></span><br> <?php echo $g_intro; ?></h1>
 
                <p><?php echo $g_sub; ?></p>
             </div>
@@ -37,7 +37,7 @@ get_header();
 
                      <a href="<?php echo $link; ?>" <?php if($external){ echo 'target="_blank"'; }?> >
                         <div class="single-cta" >
-                           <img src="<?php echo $hover_icon_url; ?>" >
+                           <img alt="<?php echo $hover_icon_alt; ?>" src="<?php echo $hover_icon_url; ?>" >
                            <h3><?php echo $title; ?></h3>
                            <p><?php echo $intro; ?></p>
                         </div>
@@ -107,8 +107,7 @@ get_header();
                <div id="<?php echo $determ_identifier; ?>" class="sdh-icon "><!-- columns-3 no-padding -->
                   <div class="wrap">
                      <?php echo file_get_contents($sdh_icon_url); ?>
-                     <!-- <img src="<?php echo $sdh_icon_url; ?>"> -->
-                     <p class="caption"><?php echo $sdh_title; ?> <!--<//?php echo $sdh_cnt; ?> <//?php echo $mod; ?>--></p>
+                     <p class="caption"><?php echo $sdh_title; ?></p>
                   </div>
                </div>
                <?php endwhile; endif; ?>

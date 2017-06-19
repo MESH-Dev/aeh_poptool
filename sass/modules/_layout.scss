@@ -814,7 +814,7 @@ a.dropdown-trigger{
    }
    .category{
       text-align: right;
-      padding: 20px 10px;
+      padding: 20px 10px 10px 10px;
       p{
          color: $blue;
          display: inline-block;
@@ -882,7 +882,7 @@ a.dropdown-trigger{
             }
          }
          .block-interior{
-            height: 260px;
+            height: 200px;
             border-top: 6px solid $blue;
             border-bottom: 2px solid $light-grey;
             overflow: hidden;
