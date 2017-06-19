@@ -62,7 +62,7 @@ get_header();
                   ?>
                   <h2><?php echo $sd_intro_b; ?> <span><?php echo $sd_intro_nb; ?></span></h2>
                   <?php echo $sd_intro_desc; ?>
-               </div>
+               </div><!-- end main-intro -->
                <?php if (have_rows('social_determinant')):
                      $sdh_cnt=0;
                      while(have_rows('social_determinant')):the_row();
@@ -75,17 +75,14 @@ get_header();
                      $determ_identifier = preg_replace('#[ -]+#', '-', $sdh_title_lower);
                      $sdh_description = get_sub_field('sdh_description');
                      $mod = $sdh_cnt % 4;
-                     // if($sdh_cnt % 4 == 0){
-                     //    echo '</div><div class="row">';
-                     // }
                ?>
                <div class="determ-intro <?php echo $determ_identifier; ?>">
                   <h2><?php echo $sdh_title; ?></h2>
                   <p><?php echo $sdh_description; ?></p>
-                <a class="determ-close">BACK TO DESCRIPTION OF ALL SOCIAL DETERMINANTS »</a>
-             </div>
+                  <a class="determ-close">BACK TO DESCRIPTION OF ALL SOCIAL DETERMINANTS »</a>
+               </div><!-- end determ-intro -->
              <?php endwhile; endif; ?>
-            </div>
+            </div><!-- end sdh-intro -->
             <div class="columns-6 offset-by-1 icons-container">
                <div class="row">
                <?php if (have_rows('social_determinant')):
@@ -100,22 +97,18 @@ get_header();
                      $determ_identifier = preg_replace('#[ -]+#', '-', $sdh_title_lower);
                      $sdh_description = get_sub_field('sdh_description');
                      $mod = $sdh_cnt % 4;
-                     // if($sdh_cnt % 4 == 0){
-                     //    echo '</div><div class="row">';
-                     // }
                ?>
-               <div id="<?php echo $determ_identifier; ?>" class="sdh-icon "><!-- columns-3 no-padding -->
+               <div id="<?php echo $determ_identifier; ?>" class="sdh-icon ">
                   <div class="wrap">
                      <?php echo file_get_contents($sdh_icon_url); ?>
                      <p class="caption"><?php echo $sdh_title; ?></p>
-                  </div>
-               </div>
+                  </div> <!-- end wrap -->
+               </div> <!-- end sdh-icon -->
                <?php endwhile; endif; ?>
-               <!-- </div> --><!-- end row -->
-            </div>
-         </div>
-      </div>
-   </div>
+            </div><!-- end icons-container -->
+         </div> <!-- end row -->
+      </div> <!-- end container -->
+   </div> <!-- end social determinants -->
 
 </main>
 

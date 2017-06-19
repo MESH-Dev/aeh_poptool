@@ -284,7 +284,6 @@ body {
   line-height: 1.428;
   font-weight: 100;
   font-family: 'Cabin', sans-serif;
-  overflow: hidden;
 }
 
 /* line 30, sass/base/_base-styles.scss */
@@ -2525,21 +2524,25 @@ img {
   width: 97%;
 }
 /* line 363, sass/modules/_s_layout.scss */
+.submit-program textarea {
+  height: 150px;
+}
+/* line 367, sass/modules/_s_layout.scss */
 .submit-program .frm_dynamic_select_container {
   margin-bottom: 2em;
 }
-/* line 367, sass/modules/_s_layout.scss */
+/* line 371, sass/modules/_s_layout.scss */
 .submit-program select {
   height: auto;
   min-width: 70%;
 }
-/* line 372, sass/modules/_s_layout.scss */
+/* line 376, sass/modules/_s_layout.scss */
 .submit-program input[type='checkbox'] {
   border: none;
   background: none !important;
   display: inline-block;
 }
-/* line 378, sass/modules/_s_layout.scss */
+/* line 382, sass/modules/_s_layout.scss */
 .submit-program .frm_style_formidable-style.with_frm_style .frm_radio label,
 .submit-program .frm_style_formidable-style.with_frm_style .frm_checkbox label
 .frm_radio label,
@@ -2547,7 +2550,7 @@ img {
   display: inline;
   white-space: normal;
 }
-/* line 386, sass/modules/_s_layout.scss */
+/* line 390, sass/modules/_s_layout.scss */
 .submit-program .frm_form_field .frm_checkbox,
 .submit-program .frm_form_field .frm_checkbox + .frm_checkbox,
 .submit-program .frm_form_field .frm_radio,
@@ -2555,7 +2558,7 @@ img {
   margin-bottom: 1em;
   margin-left: 1em;
 }
-/* line 394, sass/modules/_s_layout.scss */
+/* line 398, sass/modules/_s_layout.scss */
 .submit-program .with_frm_style .frm_radio input[type=radio],
 .submit-program .with_frm_style .frm_checkbox input[type=checkbox],
 .submit-program .frm_radio input[type=radio],
@@ -2568,7 +2571,7 @@ img {
   border: none;
   vertical-align: baseline;
 }
-/* line 408, sass/modules/_s_layout.scss */
+/* line 412, sass/modules/_s_layout.scss */
 .submit-program input[type='submit'],
 .submit-program button[type='submit'] {
   background-color: #00aeef;
@@ -2577,7 +2580,7 @@ img {
   font-weight: bold;
   border: none;
 }
-/* line 416, sass/modules/_s_layout.scss */
+/* line 420, sass/modules/_s_layout.scss */
 .submit-program input[type='submit']:hover, .submit-program input[type='submit']:focus, .submit-program input[type='submit']:active,
 .submit-program button[type='submit']:hover,
 .submit-program button[type='submit']:focus,
@@ -2586,33 +2589,33 @@ img {
   background-color: #35BDB2;
 }
 
-/* line 426, sass/modules/_s_layout.scss */
+/* line 430, sass/modules/_s_layout.scss */
 .mix {
   display: none;
 }
 
-/* line 430, sass/modules/_s_layout.scss */
+/* line 434, sass/modules/_s_layout.scss */
 .collapsable-content {
   display: none;
   overflow: hidden;
 }
 
-/* line 435, sass/modules/_s_layout.scss */
+/* line 439, sass/modules/_s_layout.scss */
 .listing-interface .detail-nav-bottom .collapse .button-text {
   margin: 0px 10px 0px 0px;
 }
 
-/* line 439, sass/modules/_s_layout.scss */
+/* line 443, sass/modules/_s_layout.scss */
 .listing-interface .detail-nav-bottom .collapse {
   float: right;
 }
 
-/* line 443, sass/modules/_s_layout.scss */
+/* line 447, sass/modules/_s_layout.scss */
 .listing-interface .detail-nav-bottom .button-arrow {
   transform: rotate(180deg);
 }
 
-/* line 447, sass/modules/_s_layout.scss */
+/* line 451, sass/modules/_s_layout.scss */
 .nothing-found {
   color: #f05133;
   font-size: 13px;
@@ -2624,7 +2627,7 @@ img {
   display: none;
 }
 
-/* line 456, sass/modules/_s_layout.scss */
+/* line 460, sass/modules/_s_layout.scss */
 .submission-tab {
   background: #ffffff;
   height: 30px;
@@ -2640,7 +2643,7 @@ img {
   text-transform: uppercase;
 }
 
-/* line 471, sass/modules/_s_layout.scss */
+/* line 475, sass/modules/_s_layout.scss */
 .submission-tab a::after {
   content: '»';
   display: inline;
@@ -2650,18 +2653,18 @@ img {
   top: 2px;
 }
 
-/* line 480, sass/modules/_s_layout.scss */
+/* line 484, sass/modules/_s_layout.scss */
 .submission-tab a {
   color: #00aeef;
 }
 
-/* line 483, sass/modules/_s_layout.scss */
+/* line 487, sass/modules/_s_layout.scss */
 .submission-tab a:hover {
   color: #35BDB2;
   text-decoration: none;
 }
 
-/* line 488, sass/modules/_s_layout.scss */
+/* line 492, sass/modules/_s_layout.scss */
 .hide-panel {
   background: #ffffff;
   height: 30px;
@@ -2677,16 +2680,16 @@ img {
   text-transform: uppercase;
 }
 
-/* line 504, sass/modules/_s_layout.scss */
+/* line 508, sass/modules/_s_layout.scss */
 .page-404 .content {
   margin: 3em 0;
   min-height: 70vh;
 }
-/* line 507, sass/modules/_s_layout.scss */
+/* line 511, sass/modules/_s_layout.scss */
 .page-404 .content a {
   color: #00aeef;
 }
-/* line 509, sass/modules/_s_layout.scss */
+/* line 513, sass/modules/_s_layout.scss */
 .page-404 .content a:hover, .page-404 .content a:focus, .page-404 .content a:active {
   opacity: .7;
   text-decoration: none;
