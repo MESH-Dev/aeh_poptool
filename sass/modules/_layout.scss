@@ -241,7 +241,8 @@ a.dropdown-trigger{
 }
 
 .filter-group{
-   margin-bottom: 70px;
+   margin-bottom: 20px;
+   max-width: 80%
 }
 
 #map{
@@ -342,6 +343,13 @@ a.dropdown-trigger{
          color: $black;
          font-weight: 600;
       }
+
+      p.hospital{
+         margin-bottom: 20px;
+         top: -18px;
+         position: relative;
+      }
+
    }
    .detail-nav{
       width: 100%;

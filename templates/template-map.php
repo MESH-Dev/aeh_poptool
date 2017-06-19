@@ -2,6 +2,10 @@
 
 get_header();?>
 
+<style>
+  body{  overflow: hidden;}
+</style>
+
 <main class="map-tool-page" id="content">
 
    <div class="submission-tab">
@@ -90,9 +94,9 @@ get_header();?>
 
       <div class="filters" id="filterContainer">
          <div id="hospitalFilters">
-               <fieldset class="filter-group checkers">
+               <fieldset class=" checkers filter-group">
                   <h2>Bed size</h2>
-                  <div class="checkboxes">
+                  <div class="checkboxes ">
                   <?php $bed_filters= get_terms(array('taxonomy'=>'bed_size', 'hide_empty'=>false));
 
                      foreach ($bed_filters as $bed_filter){ ?>
@@ -103,8 +107,10 @@ get_header();?>
                      </label>
                   <?php } ?>
                   </div>
+              </fieldset>
+              <fieldset class="checkers  filter-group">
                    <h2>%Govt payer</h2>
-                   <div class="checkboxes">
+                   <div class="checkboxes ">
                   <?php $govt_filters= get_terms(array('taxonomy'=>'percent_govt_payer', 'hide_empty'=>false));
 
                      foreach ($govt_filters as $govt_filter){ ?>
@@ -115,8 +121,10 @@ get_header();?>
                      </label>
                   <?php } ?>
                   </div>
+                </fieldset>
+                <fieldset class="checkers  filter-group">  
                    <h2>Ownership</h2>
-                   <div class="radio-buttons">
+                   <div class="radio-buttons ">
                   <?php $own_filters= get_terms(array('taxonomy'=>'ownership', 'hide_empty'=>false));
 
                      foreach ($own_filters as $own_filter){ ?>
@@ -127,8 +135,10 @@ get_header();?>
                      </label>
                   <?php } ?>
                   </div>
+              </fieldset>
+              <fieldset class="checkers  filter-group">
                   <h2>Teaching Status</h2>
-                  <div class="radio-buttons">
+                  <div class="radio-buttons ">
                    <?php $teach_filters= get_terms(array('taxonomy'=>'teaching_status', 'hide_empty'=>false));
 
                      foreach ($teach_filters as $teach_filter){ ?>
@@ -139,8 +149,10 @@ get_header();?>
                      </label>
                   <?php } ?>
                   </div>
+                </fieldset>
+              <fieldset class="checkers  filter-group">
                   <h2>Region</h2>
-                  <div class="checkboxes">
+                  <div class="checkboxes ">
                    <?php $region_filters= get_terms(array('taxonomy'=>'region','hide_empty'=>false));
 
                      foreach ($region_filters as $region_filter){ ?>
@@ -157,8 +169,8 @@ get_header();?>
 
 
          <div id="communityFilters">
-            <fieldset class="filter-group checkers">
-               <div class="checkboxes">
+            <fieldset class="checkers filter-group">
+               <div class="checkboxes ">
                 <h2>Pop Size</h2>
                 <?php $pop_filters= get_terms(array('taxonomy'=>'pop_size','hide_empty'=>false));
 
@@ -170,6 +182,8 @@ get_header();?>
                   </label>
                <?php } ?>
                </div>
+           </fieldset>
+           <fieldset class="checkers  filter-group">
                <h2>% Below FPL</h2>
                <div class="checkboxes">
                 <?php $fpl_filters= get_terms(array('taxonomy'=>'percent_below_fpl','hide_empty'=>false));
@@ -182,6 +196,8 @@ get_header();?>
                   </label>
                <?php } ?>
                </div>
+              </fieldset>
+             <fieldset class="checkers filter-group">
                <h2>% Uninsured</h2>
                <div class="checkboxes">
                 <?php $uninsured_filters= get_terms(array('taxonomy'=>'percent_uninsured','hide_empty'=>false));
@@ -198,9 +214,9 @@ get_header();?>
          </div>
 
          <div id="programFilters">
-            <fieldset class="filter-group checkers">
+            <fieldset class="checkers filter-group">
                <h2>Active</h2>
-               <div class="radio-buttons">
+               <div class="radio-buttons  ">
                 <?php $active_filters= get_terms(array('taxonomy'=>'active','hide_empty'=>false));
 
                   foreach ($active_filters as $active_filter){ ?>
@@ -212,8 +228,10 @@ get_header();?>
                   </label>
                <?php } ?>
                </div>
+            </fieldset>   
+            <fieldset class="checkers filter-group">
                <h2>Partners</h2>
-               <div class="checkboxes">
+               <div class="checkboxes ">
                 <?php $partner_filters= get_terms(array('taxonomy'=>'partners','hide_empty'=>false));
 
                   foreach ($partner_filters as $partner_filter){ ?>
@@ -224,8 +242,10 @@ get_header();?>
                   </label>
                <?php } ?>
                </div>
+            </fieldset>   
+            <fieldset class="checkers filter-group">
                <h2>Social Determinants</h2>
-               <div class="checkboxes">
+               <div class="checkboxes ">
                 <?php $sdh_filters= get_terms(array('taxonomy'=>'sdh','hide_empty'=>false));
 
                   foreach ($sdh_filters as $sdh_filter){ ?>
@@ -236,8 +256,10 @@ get_header();?>
                   </label>
                <?php } ?>
                </div>
+            </fieldset>   
+            <fieldset class="checkers filter-group">
                <h2>Target Pop</h2>
-               <div class="checkboxes">
+               <div class="checkboxes ">
                 <?php $tp_filters= get_terms(array('taxonomy'=>'target_pop','hide_empty'=>false));
 
                   foreach ($tp_filters as $tp_filter){ ?>
@@ -248,8 +270,10 @@ get_header();?>
                   </label>
                <?php } ?>
                </div>
+            </fieldset>   
+            <fieldset class="checkers filter-group">
                <h2>Program Setting</h2>
-               <div class="radio-buttons">
+               <div class="radio-buttons ">
                 <?php $program_filters= get_terms(array('taxonomy'=>'program_setting','hide_empty'=>false));
 
                   foreach ($program_filters as $program_filter){ ?>
@@ -320,7 +344,7 @@ get_header();?>
 
       </div><!-- #detailPane -->
    </div> <!-- #listingInterface -->
-   <div id="desktop-map-tab"><a>VIEW MAP</a></div>
+   <div id="desktop-map-tab"><a>HIDE RESULTS</a></div>
 
 
    <div id="map"></div>

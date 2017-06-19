@@ -153,7 +153,7 @@ var multiFilter = {
 
     !self.outputString.length && (self.outputString = 'all');
 
-    //console.log(self.outputString);
+     console.log(self.outputString);
 
     // ^ we can check the console here to take a look at the filter string that is produced
 
@@ -489,6 +489,7 @@ var openDetails = function(){
 var closeDetails = function(){
    detailView.reverse();
    selectionView.className = '';
+   setInactiveMarkers(); 
 }
 
 // for (var i = 0; i < programBlocks.length; i++) {
@@ -512,12 +513,14 @@ var desktopCloseListings = function(){
    desktopMapView.play();
    // mainMap.classList.toggle('listing-view');
    desktopMapTab.onclick = desktopOpenListings;
+   desktopMapTab.innerHTML='<a>SHOW RESULTS</a>';
 }
 
 var desktopOpenListings = function(){
    desktopMapView.reverse();
    // mainMap.classList.toggle('listing-view');
    desktopMapTab.onclick = desktopCloseListings;
+   desktopMapTab.innerHTML='<a>HIDE RESULTS</a>';
 }
 
 desktopMapTab.onclick = desktopCloseListings;
@@ -586,6 +589,14 @@ function setActiveMarker(marker_id){
     }
 }
 
+ 
+function setInactiveMarkers(){
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setIcon(icons[markers[i].topic].inactive);   
+    }
+}
+
+
 
 
 //Create Initial HTML for Program Cards
@@ -594,6 +605,7 @@ function createProgramCard(program){
    //Get values of hospital taxonomies for filtering cards
    var hospital_taxs = "";
    var program_taxs = "";
+   var program_search_taxs = "";
 
    //combine all hospital taxonomies
    hospital_taxs += hospitals[program.hosp_id].bed_size_slug + " ";
@@ -613,7 +625,13 @@ function createProgramCard(program){
    program_taxs += program.target_pop_slug + " ";
    program_taxs += program.program_setting_slug + " ";
 
+   program_search_taxs += program.active + " ";
+   program_search_taxs += program.partners + " ";
+   program_search_taxs += program.sdh + " ";
+   program_search_taxs += program.target_pop + " ";
+   program_search_taxs += program.program_setting + " ";
 
+ 
 
    // var sdh_arry = program.sdh_slug.split(" ");
    // var sdh_img = sdh_arry[0];
@@ -629,6 +647,8 @@ function createProgramCard(program){
    cardHTML +=   '<p class="hospital">'+hospitals[program.hosp_id].name +'</p>';
    cardHTML +=   '<p class="location">'+hospitals[program.hosp_id].city +'</p>';
    cardHTML += '</div>';
+   cardHTML += '<span class="hide">' + program_search_taxs + '</span>';
+
    cardHTML += '</li></a>';
 
 
@@ -707,6 +727,7 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML += '<div class="indiv-detail-block">';
       panel_HTML +=     '<div class="category"><p>' + program.primary_sdh + '</p><img class="category-icon" src="'+$dir+'/img/icons/'+ program.primary_sdh_slug +'.svg"  ></div>';
       panel_HTML +=     '<h1>' + program.name + '</h1>';
+      panel_HTML +=     '<p class="hospital">' + hospital.name + " | " + hospital.city + '</p>';
       panel_HTML +=     '<div id="expand-'+program.id+'-panel"class="collapsable-content">';
       panel_HTML +=        '<div class="row program-info-row"><h4>PROGRAM DETAILS</h4>';
       panel_HTML +=           '<div class="columns-10">';
@@ -717,6 +738,7 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML +=              '<p><span class="detail-title">Active Program:</span> '+ program.active +'</p>';
       panel_HTML +=           '</div>';
       panel_HTML +=        '</div>';
+      panel_HTML +=        '<div class="program-info-row">' + program.description + '</div>';
       panel_HTML +=        '<div class="row program-info-row"><h4>HOSPITAL DETAILS</h4>';
       panel_HTML +=           '<div class="columns-10">';
       panel_HTML +=              '<p><span class="detail-title">Ownership:</span> '+ hospital.ownership +'</p>';
@@ -729,7 +751,7 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML +=              '<p><span class="detail-title">Region:</span> '+ hospital.region +'</p>';
       panel_HTML +=           '</div>';
       panel_HTML +=        '</div>';
-      panel_HTML +=        '<div class="program-info-row">' + program.description + '</div>';
+
       panel_HTML +=     '</div>';
       panel_HTML +=     '<div class="detail-nav detail-nav-bottom">';
       panel_HTML +=             '<div class="detail-nav-border">';
@@ -769,16 +791,9 @@ function centerMapOnHospital(hosp_id){
    var lng = hospitals[hosp_id].longitude;
 
    var center = new google.maps.LatLng(lat, lng);
- 
-   var refresh = function() {
-                    
-        google.maps.event.trigger(map, "resize");
-        map.panTo(center);
-        
-    }
-    setTimeout(refresh, 200);
- 
 
+   map.panTo(center);
+ 
 }
 
 
@@ -869,15 +884,13 @@ function initMap() {
 
    var mapOptions = {
       zoom: 5,
-      center: new google.maps.LatLng(40.5345952,-96.1902162),
+      center: new google.maps.LatLng(40.5345952,-81.1902162),
       styles: mapStyles,
       animation: google.maps.Animation.DROP,
       streetViewControl: false,
 
    }
-
-
-
+ 
    map_document = document.getElementById('map');
    map = new google.maps.Map(map_document,mapOptions);
 
