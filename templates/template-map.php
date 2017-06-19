@@ -87,17 +87,17 @@ get_header();?>
    <div class="submission-tab">
      <a href="<? echo get_permalink(376); ?>">Submit a program</a>
    </div>
- 
+
    <div id="map-listing-button">
       <div id="map-tab"><a>VIEW MAP</a></div><div id="listing-tab"><a>RESULTS &amp; FILTERS</a></div>
    </div>
 
    <div id="searchModal" class="searchmodal">
-      <svg id="searchModalClose" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <svg id="searchModalClose" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="44" width="44">
           <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
       </svg>
       <div id="modalNonFilter">
-         <?php 
+         <?php
             $modal_title = get_field('modal_title');
             $intro = get_field('introduction');
             $instruction = get_field('instruction_paragraph');
@@ -115,7 +115,7 @@ get_header();?>
       </div>
    </div>
 
-      
+
 
 
    <div id="listingInterface" class="listing-interface">
@@ -136,13 +136,13 @@ get_header();?>
          <div class="trigger-container">
             <a class="dropdown-trigger" id="hospitalTrigger">
                HOSPITAL
-               <span id="hospitalTrigger">»</span>
+               <span>»</span>
             </a><a class="dropdown-trigger" id="communityTrigger">
                COMMUNITY
-               <span id="communityTrigger">»</span>
+               <span>»</span>
             </a><a class="dropdown-trigger" id="programTrigger">
                PROGRAM
-               <span id="programTrigger">»</span>
+               <span>»</span>
             </a>
          </div>
 
@@ -152,7 +152,7 @@ get_header();?>
                <p id="results-indicator"><span id="results-count"></span> RESULTS:</p>
                <div id="filter-string" class="category">
                   <p></p>
-                   
+
                </div>
             </div>
 
@@ -359,7 +359,7 @@ get_header();?>
          <div class="detail-nav" id="detailNavTop">
             <div class="detail-nav-border">
                <div class="navigation-button" id="backButton">
-                  <svg class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 25">
+                  <svg class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 25" height="32" width="15">
                      <defs>
                       <style>
                         .cls-1 {
@@ -384,7 +384,7 @@ get_header();?>
                <div class="detail-nav-border">
                   <div class="navigation-button" id="collapse">
                      <a class="button-text">COLLAPSE</a>
-                     <svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12">
+                     <svg id="collapseArrow" class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12" height="15" width="32">
                           <defs>
                             <style>
                               .cls-1 {
@@ -401,8 +401,8 @@ get_header();?>
          </div> <!-- #detailPaneContent -->
 
       </div><!-- #detailPane -->
-
    </div> <!-- #listingInterface -->
+   <div id="desktop-map-tab"><a>VIEW MAP</a></div>
 
 
    <div id="map"></div>
