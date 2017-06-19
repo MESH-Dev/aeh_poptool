@@ -3,15 +3,15 @@
         "id": "52",
         "name": "TEST &#8211; Arizona Program",
         "slug": "test-arizona-program",
-        "description": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.",
+        "description": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.\r\n<ul>\r\n \t<li>Line 1<\/li>\r\n \t<li>Line 2<\/li>\r\n \t<li>Line 3<\/li>\r\n \t<li>Line 4<\/li>\r\n<\/ul>",
         "active": "Yes",
         "active_slug": "yes",
         "partners": "External Funders, External Health Care",
         "partners_slug": "external-funders external-health-care",
         "sdh": "Education, Family &amp; Social Support, Health Behaviors, Interpersonal Violence, Transportation",
         "sdh_slug": "education family-social-support health-behaviors interpersonal-violence transportation",
-        "primary_sdh": "Health Literacy",
-        "primary_sdh_slug": "health-literacy",
+        "primary_sdh": null,
+        "primary_sdh_slug": null,
         "target_pop": "Children\/Adolescents, Disabled, Families, Minorities",
         "target_pop_slug": "childrenadolescents disabled families minorities",
         "program_setting": "Community, Hospital",
@@ -198,6 +198,5 @@
         "program_setting_slug": "community hospital",
         "contact_email": "",
         "hosp_id": 41
-
     }
 }
