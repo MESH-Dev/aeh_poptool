@@ -24,11 +24,70 @@ get_header();?>
    transform: rotate(180deg);
 }
 
+.nothing-found{
+   color: #f05133;
+   font-size: 13px;
+   font-weight: bold;
+   border: 1px solid #f05133;
+   width: 99%;
+   padding: 10px;
+   background-color: #fdedea; display:none
+ }
+ .submission-tab{
+   background: #ffffff;
+   height: 30px;
+   position: absolute;
+   display: inline-block;
+   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+   top: 180px;
+   right: 0px;
+   padding: 2px 10px;
+   cursor: pointer;
+   z-index: 1;
+   line-height: 21px;
+   text-transform: uppercase;
+ }
+
+ .submission-tab a::after {
+    content: '»';
+    display: inline;
+    font-size: 2rem;
+    margin-left: 4px;
+    position: relative;
+    top: 2px;
+}
+
+ .submission-tab a{
+   color: #00aeef;
+ }
+  .submission-tab a:hover{
+   color: #35BDB2;
+   text-decoration: none;
+ }
+
+  .hide-panel{
+   background: #ffffff;
+   height: 30px;
+   position: absolute;
+   display: inline-block;
+   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+   top: 180px;
+   right: 0px;
+   padding: 4px 10px;
+   cursor: pointer;
+   z-index: 1;
+   line-height: 21px;
+   text-transform: uppercase;
+ }
+
 
 </style>
 <main class="map-tool-page" id="content">
 
-
+   <div class="submission-tab">
+     <a href="<? echo get_permalink(376); ?>">Submit a program</a>
+   </div>
+ 
    <div id="map-listing-button">
       <div id="map-tab"><a>VIEW MAP</a></div><div id="listing-tab"><a>RESULTS &amp; FILTERS</a></div>
    </div>
@@ -60,6 +119,9 @@ get_header();?>
 
 
    <div id="listingInterface" class="listing-interface">
+      <!-- <div id="full-map" class="hide-panel">
+         <a href="">Show Full Map</a>
+      </div> -->
       <div id="selectionView">
 
          <div class="search-container">
@@ -99,13 +161,7 @@ get_header();?>
                <ul id="program-cards" class="listing-blocks">
                   <!-- ==================== PROGRAM CARDS GO HERE ==================== -->
                </ul>
-               <div class="nothing-found" style="color: #f05133;
-    font-size: 13px;
-    font-weight: bold;
-    border: 1px solid #f05133;
-    width: 99%;
-    padding: 10px;
-    background-color: #fdedea; display:none">
+               <div class="nothing-found" >
                   No programs found. Please modify your filter or search input.
                </div>
             </div>

@@ -340,7 +340,7 @@ img{
 }
 
 .submit-program{
-  //background: #F0F0F0;
+    background: #F0F0F0;
     padding: 18px 18px 45px;
     width: 100%;
     box-sizing: border-box;
@@ -358,6 +358,7 @@ img{
 
   select{
     height:auto;
+    min-width: 70%;
   }
 
   input[type='submit']{

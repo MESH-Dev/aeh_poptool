@@ -16,7 +16,7 @@
       }
    }
    @media screen and ($bp-listing-interface){
-      display: initial;
+      display: inline-block;
    }
    &.open{
       #map-tab{
@@ -588,6 +588,7 @@ a.dropdown-trigger{
          display: inline-block;
          margin-right: 10px;
          margin-bottom: 10px;
+         font-size: 1.4rem;
       }
       .checkboxes, .radio-buttons{
          padding-bottom: 2rem;
@@ -719,17 +720,17 @@ a.dropdown-trigger{
       }
       &.hospitalTrigger{
          #hospitalFilters{
-            display: initial;
+            display: inline-block;
          }
       }
       &.communityTrigger{
          #communityFilters{
-            display: initial;
+            display: inline-block;
          }
       }
       &.programTrigger{
          #programFilters{
-            display: initial;
+            display: inline-block;
          }
       }
    }
