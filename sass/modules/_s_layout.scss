@@ -454,7 +454,7 @@ img{
    background-color: #fdedea; display:none
  }
  .submission-tab{
-   background: #ffffff;
+   background: $blue;
    height: 30px;
    position: absolute;
    display: inline-block;
@@ -468,6 +468,11 @@ img{
    text-transform: uppercase;
  }
 
+  .submission-tab:hover{
+   background: $green;
+ 
+ }
+
  .submission-tab a::after {
     content: '»';
     display: inline;
@@ -478,10 +483,10 @@ img{
 }
 
  .submission-tab a{
-   color: #00aeef;
+   color: #ffffff;
  }
   .submission-tab a:hover{
-   color: #35BDB2;
+   color: #ffffff;
    text-decoration: none;
  }
 
