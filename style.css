@@ -417,7 +417,7 @@ p {
 }
 
 /* line 73, sass/base/_typography.scss */
-input, li {
+input {
   font-size: 1.6em;
 }
 
@@ -976,69 +976,73 @@ footer .content-bar .contact-info {
   padding-top: 5px;
 }
 /* line 17, sass/modules/_footer.scss */
+footer .content-bar .contact-info p {
+  font-size: 1.3em;
+}
+/* line 20, sass/modules/_footer.scss */
 footer .content-bar .contact-info .name {
   color: #F05133;
   text-transform: uppercase;
   font-weight: 700;
 }
-/* line 22, sass/modules/_footer.scss */
+/* line 25, sass/modules/_footer.scss */
 footer .content-bar .contact-info .address {
   color: #F05133;
   font-family: Georgia, Times, "Times New Roman", serif;
   text-transform: capitalize;
   font-weight: 400;
 }
-/* line 28, sass/modules/_footer.scss */
+/* line 31, sass/modules/_footer.scss */
 footer .content-bar .contact-info .contact {
   font-weight: 700;
   font-family: 'Cabin', sans-serif;
 }
 @media (max-width: 480px) {
-  /* line 33, sass/modules/_footer.scss */
+  /* line 36, sass/modules/_footer.scss */
   footer .content-bar .contact-info [class*='columns-'] {
     margin-bottom: 1em;
   }
 }
-/* line 39, sass/modules/_footer.scss */
+/* line 42, sass/modules/_footer.scss */
 footer .content-bar .share {
   white-space: nowrap;
   color: #5A5B5C;
   font-weight: 600;
 }
 @media screen and (max-width: 1250px) {
-  /* line 39, sass/modules/_footer.scss */
+  /* line 42, sass/modules/_footer.scss */
   footer .content-bar .share {
     white-space: normal;
   }
 }
-/* line 46, sass/modules/_footer.scss */
+/* line 49, sass/modules/_footer.scss */
 footer .content-bar .share .share-statement,
 footer .content-bar .share .add-this {
   display: inline-block;
 }
-/* line 52, sass/modules/_footer.scss */
+/* line 55, sass/modules/_footer.scss */
 footer .content-bar .share .share-statement {
   margin-right: 1em;
   text-transform: uppercase;
   font-size: 1em;
   font-family: 'Cabin', sans-serif;
 }
-/* line 60, sass/modules/_footer.scss */
+/* line 63, sass/modules/_footer.scss */
 footer .content-bar .share .add-this .at-style-responsive .at-share-btn {
   margin: 0;
 }
-/* line 66, sass/modules/_footer.scss */
+/* line 69, sass/modules/_footer.scss */
 footer .sig-bar {
   text-align: right;
   padding: .5em 0;
   text-transform: uppercase;
   height: 30px;
 }
-/* line 71, sass/modules/_footer.scss */
+/* line 74, sass/modules/_footer.scss */
 footer .sig-bar a {
   color: #00aeef;
 }
-/* line 73, sass/modules/_footer.scss */
+/* line 76, sass/modules/_footer.scss */
 footer .sig-bar a:hover, footer .sig-bar a:active, footer .sig-bar a:focus {
   opacity: .7;
   text-decoration: none;
@@ -1950,7 +1954,7 @@ a.dropdown-trigger span {
 /* line 785, sass/modules/_layout.scss */
 .listing-interface .category {
   text-align: right;
-  padding: 20px 10px;
+  padding: 20px 10px 10px 10px;
 }
 /* line 788, sass/modules/_layout.scss */
 .listing-interface .category p {
@@ -2034,7 +2038,7 @@ a.dropdown-trigger span {
 }
 /* line 854, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block .block-interior {
-  height: 260px;
+  height: 200px;
   border-top: 6px solid #00aeef;
   border-bottom: 2px solid #E3E3E3;
   overflow: hidden;
@@ -2469,18 +2473,17 @@ img {
   font-weight: 700;
 }
 
-/* line 342, sass/modules/_s_layout.scss */
+/* line 346, sass/modules/_s_layout.scss */
 .submit-program {
-  background: #F0F0F0;
   padding: 18px 18px 45px;
   width: 100%;
   box-sizing: border-box;
 }
-/* line 347, sass/modules/_s_layout.scss */
+/* line 351, sass/modules/_s_layout.scss */
 .submit-program input, .submit-program textarea {
   background: none repeat scroll 0 0 #FFFFFF;
   border: 1px solid #CCCCCC;
-  color: #777777;
+  color: #5a5b5b;
   display: block;
   margin: 0 0 20px;
   max-width: 100%;
@@ -2488,20 +2491,170 @@ img {
   padding: 6px 4px;
   width: 97%;
 }
-/* line 359, sass/modules/_s_layout.scss */
+/* line 363, sass/modules/_s_layout.scss */
+.submit-program .frm_dynamic_select_container {
+  margin-bottom: 2em;
+}
+/* line 367, sass/modules/_s_layout.scss */
 .submit-program select {
   height: auto;
   min-width: 70%;
 }
-/* line 364, sass/modules/_s_layout.scss */
-.submit-program input[type='submit'] {
+/* line 372, sass/modules/_s_layout.scss */
+.submit-program input[type='checkbox'] {
+  border: none;
+  background: none !important;
+  display: inline-block;
+}
+/* line 378, sass/modules/_s_layout.scss */
+.submit-program .frm_style_formidable-style.with_frm_style .frm_radio label,
+.submit-program .frm_style_formidable-style.with_frm_style .frm_checkbox label
+.frm_radio label,
+.submit-program .frm_checkbox label {
+  display: inline;
+  white-space: normal;
+}
+/* line 386, sass/modules/_s_layout.scss */
+.submit-program .frm_form_field .frm_checkbox,
+.submit-program .frm_form_field .frm_checkbox + .frm_checkbox,
+.submit-program .frm_form_field .frm_radio,
+.submit-program .frm_form_field .frm_radio + .frm_radio {
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+/* line 394, sass/modules/_s_layout.scss */
+.submit-program .with_frm_style .frm_radio input[type=radio],
+.submit-program .with_frm_style .frm_checkbox input[type=checkbox],
+.submit-program .frm_radio input[type=radio],
+.submit-program .frm_checkbox input[type=checkbox] {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  margin-right: 5px;
+  width: auto;
+  border: none;
+  vertical-align: baseline;
+}
+/* line 408, sass/modules/_s_layout.scss */
+.submit-program input[type='submit'],
+.submit-program button[type='submit'] {
+  background-color: #00aeef;
   color: #ffffff;
-  padding: 6px 8px;
   transition: background-color 0.2s ease-in-out;
   font-weight: bold;
+  border: none;
 }
-/* line 370, sass/modules/_s_layout.scss */
-.submit-program input[type='submit']:hover, .submit-program input[type='submit']:focus, .submit-program input[type='submit']:active {
+/* line 416, sass/modules/_s_layout.scss */
+.submit-program input[type='submit']:hover, .submit-program input[type='submit']:focus, .submit-program input[type='submit']:active,
+.submit-program button[type='submit']:hover,
+.submit-program button[type='submit']:focus,
+.submit-program button[type='submit']:active {
   text-decoration: none;
   background-color: #35BDB2;
+}
+
+/* line 426, sass/modules/_s_layout.scss */
+.mix {
+  display: none;
+}
+
+/* line 430, sass/modules/_s_layout.scss */
+.collapsable-content {
+  display: none;
+  overflow: hidden;
+}
+
+/* line 435, sass/modules/_s_layout.scss */
+.listing-interface .detail-nav-bottom .collapse .button-text {
+  margin: 0px 10px 0px 0px;
+}
+
+/* line 439, sass/modules/_s_layout.scss */
+.listing-interface .detail-nav-bottom .collapse {
+  float: right;
+}
+
+/* line 443, sass/modules/_s_layout.scss */
+.listing-interface .detail-nav-bottom .button-arrow {
+  transform: rotate(180deg);
+}
+
+/* line 447, sass/modules/_s_layout.scss */
+.nothing-found {
+  color: #f05133;
+  font-size: 13px;
+  font-weight: bold;
+  border: 1px solid #f05133;
+  width: 99%;
+  padding: 10px;
+  background-color: #fdedea;
+  display: none;
+}
+
+/* line 456, sass/modules/_s_layout.scss */
+.submission-tab {
+  background: #ffffff;
+  height: 30px;
+  position: absolute;
+  display: inline-block;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  top: 180px;
+  right: 0px;
+  padding: 2px 10px;
+  cursor: pointer;
+  z-index: 1;
+  line-height: 21px;
+  text-transform: uppercase;
+}
+
+/* line 471, sass/modules/_s_layout.scss */
+.submission-tab a::after {
+  content: '»';
+  display: inline;
+  font-size: 2rem;
+  margin-left: 4px;
+  position: relative;
+  top: 2px;
+}
+
+/* line 480, sass/modules/_s_layout.scss */
+.submission-tab a {
+  color: #00aeef;
+}
+
+/* line 483, sass/modules/_s_layout.scss */
+.submission-tab a:hover {
+  color: #35BDB2;
+  text-decoration: none;
+}
+
+/* line 488, sass/modules/_s_layout.scss */
+.hide-panel {
+  background: #ffffff;
+  height: 30px;
+  position: absolute;
+  display: inline-block;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  top: 180px;
+  right: 0px;
+  padding: 4px 10px;
+  cursor: pointer;
+  z-index: 1;
+  line-height: 21px;
+  text-transform: uppercase;
+}
+
+/* line 504, sass/modules/_s_layout.scss */
+.page-404 .content {
+  margin: 3em 0;
+  min-height: 70vh;
+}
+/* line 507, sass/modules/_s_layout.scss */
+.page-404 .content a {
+  color: #00aeef;
+}
+/* line 509, sass/modules/_s_layout.scss */
+.page-404 .content a:hover, .page-404 .content a:focus, .page-404 .content a:active {
+  opacity: .7;
+  text-decoration: none;
 }

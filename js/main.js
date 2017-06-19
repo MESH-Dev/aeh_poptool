@@ -744,9 +744,15 @@ function centerMapOnHospital(hosp_id){
    var lng = hospitals[hosp_id].longitude;
 
    var center = new google.maps.LatLng(lat, lng);
-
-   map.panTo(center);
-   //map.setZoom(7);
+ 
+   var refresh = function() {
+                    
+        google.maps.event.trigger(map, "resize");
+        map.panTo(center);
+        
+    }
+    setTimeout(refresh, 200);
+ 
 
 }
 
