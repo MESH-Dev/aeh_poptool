@@ -556,6 +556,7 @@ function createMarker(hospital){
     //Click event here to open panel and get content by ID
     google.maps.event.addListener(marker, 'click', function(){
         landingViewClose();
+        desktopOpenListings();
         //reset detail panel html here
         $('#detailPaneContent').html('');
 
@@ -738,7 +739,7 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML +=              '<p><span class="detail-title">Active Program:</span> '+ program.active +'</p>';
       panel_HTML +=           '</div>';
       panel_HTML +=        '</div>';
-      panel_HTML +=        '<div class="program-info-row">' + program.description + '</div>';
+      panel_HTML +=        '<div class="program-info-row program-description">' + program.description + '</div>';
       panel_HTML +=        '<div class="row program-info-row"><h4>HOSPITAL DETAILS</h4>';
       panel_HTML +=           '<div class="columns-10">';
       panel_HTML +=              '<p><span class="detail-title">Ownership:</span> '+ hospital.ownership +'</p>';
@@ -884,10 +885,14 @@ function initMap() {
 
    var mapOptions = {
       zoom: 5,
-      center: new google.maps.LatLng(40.5345952,-81.1902162),
+      center: new google.maps.LatLng(40.5345952,-71.1902162),
       styles: mapStyles,
       animation: google.maps.Animation.DROP,
       streetViewControl: false,
+      zoomControl: true,
+      zoomControlOptions: {
+          position: google.maps.ControlPosition.BOTTOM_CENTER
+      },
 
    }
  

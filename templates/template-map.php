@@ -32,6 +32,7 @@ get_header();?>
          <p><?php echo $instruction; ?> <a id="landingBrowsePrograms"><?php echo $dismiss?></a></p>
          <div class="search-container row">
             <form id="landing-form">
+            <label for="landing-search" class="sr-only">Search Programs</label>
             <input type="text" id="landing-search" value="" placeholder="Search Programs">
             <button type="submit" id="landing-submit" name="" value="»"><span>»</span></button>
             </form>

@@ -1,6 +1,7 @@
 jQuery(document).ready(function($){
 
   //Are we loaded?
+  wWidth = $(window).width();
 
   $('.sdh-icon').click(function(event){
       //   if($(this).hasClass('active')){
@@ -9,6 +10,11 @@ jQuery(document).ready(function($){
       //   }
       
       //$(this).css({opacity:1})
+
+       if(wWidth < 750){
+          sdh_top = $('.social-determinants').offset().top;
+          $("html, body").animate({ scrollTop: sdh_top }, 600);
+        }
 
       $('.sdh-icon').each(function(){
          if($(this).hasClass('active')){
