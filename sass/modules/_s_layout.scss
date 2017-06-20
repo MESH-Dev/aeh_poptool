@@ -339,12 +339,14 @@ img{
   }
 
   li{
-    //font-size:1.6em;
+    font-size:1.6em;
+    list-style-position: outside;
+    margin-left:2.5em;
   }
 }
 
 .submit-program{
-    //background: #F0F0F0;
+    background: #F0F0F0;
     padding: 18px 18px 45px;
     width: 100%;
     box-sizing: border-box;

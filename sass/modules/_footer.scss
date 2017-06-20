@@ -6,6 +6,13 @@ footer{
 	a{
 		color: $red;
 	}
+
+	@media ($bp-smaller-than-tablet){
+		[class*='columns-'] {
+			margin-bottom:1em;
+		}
+	}
+
 	.content-bar{
 		background:$light-grey;
 		
@@ -32,11 +39,7 @@ footer{
 				font-weight:700;
 				font-family: 'Cabin', sans-serif;
 			}
-			@media ($bp-smaller-than-mobile){
-				[class*='columns-'] {
-					margin-bottom:1em;
-				}
-			}
+			
 		}
 
 		.share{

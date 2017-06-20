@@ -303,7 +303,7 @@ a.dropdown-trigger{
    #detailPane{
       opacity: 0;
       visibility: hidden;
-      h4, p{
+      h4{
          margin: 0;
       }
       p{
@@ -313,6 +313,9 @@ a.dropdown-trigger{
          margin-bottom: 2rem;
          color: $grey;
          font-size:1.3em;
+         p{
+            margin:0;
+         }
       }
    }
    #collapsableContent{
@@ -339,6 +342,17 @@ a.dropdown-trigger{
    .indiv-detail-block{
       display: block;
       border-top:10px solid $blue;
+
+      .program-description{
+         p, ul{
+            margin-bottom:1.8rem !important;
+         }
+         li{
+            list-style-position: outside;
+            margin-left:2.5em;
+         }
+      }
+      
       .detail-title{
          color: $black;
          font-weight: 600;
