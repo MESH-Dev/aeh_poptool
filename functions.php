@@ -494,4 +494,318 @@ function getCoordinates($address){
 
 }
 
+function get_resources(){
+  $post_slug = $_POST['resource'];
+  $post_slug_ct = $_POST['contentType'];
+  $query = $_POST['query']; //*
+  //var_dump($post_slug);
+  //$query = $_POST('query');
+ 
+ //Make the search exlusive to entries or clicking the filter
+ if ($post_slug == '' && $post_slug_ct == " " ): //All posts? No filter
+      $args = array(
+      'post_type' => 'resources',
+      'posts_per_page' => -1,
+      'post_status' => 'publish'
+      
+      );
+elseif ($post_slug != '' && $post_slug_ct != ''): //Using the filter - both filters have been used
+      $args = array(
+      'post_type' => 'resources',
+      'posts_per_page' => -1,
+      'post_status' => 'publish',
+      //'s' => $query, //This is an 'and', so the query is effectively stopping here, if not commented out
+      'tax_query' => array(
+        'relation'=>'AND',
+        array(
+          'taxonomy' => 'member_topic',
+          'field'    => 'slug',
+          'terms'    => $post_slug, 
+          ),
+        array(
+          'taxonomy' => 'content_type',
+          'field'    => 'slug',
+          'terms'    => $post_slug_ct, 
+          ),
+        ),
+      );
+ elseif ($post_slug != '' && $post_slug_ct == ''  ): //Using the filter - Topic filter used
+      $args = array(
+      'post_type' => 'resources',
+      'posts_per_page' => -1,
+      'post_status' => 'publish',
+      //'s' => $query, //This is an 'and', so the query is effectively stopping here, if not commented out
+      'tax_query' => array(
+        array(
+          'taxonomy' => 'member_topic',
+          'field'    => 'slug',
+          'terms'    => $post_slug, 
+          ),
+        ),
+      );
+elseif ($post_slug_ct != '' && $post_slug == ''  ): //Using the filter - Content filter used
+      $args = array(
+      'post_type' => 'resources',
+      'posts_per_page' => -1,
+      'post_status' => 'publish',
+      //'s' => $query, //This is an 'and', so the query is effectively stopping here, if not commented out
+      'tax_query' => array(
+         array(
+          'taxonomy' => 'content_type',
+          'field'    => 'slug',
+          'terms'    => $post_slug_ct, 
+          ),
+        ),
+      );
+else:  //If the search is used
+      $args = array(
+      'post_type' => 'resources',
+      'posts_per_page' => -1,
+      'post_status' => 'publish',
+      's' => $query
+      //
+          
+         // ),
+        //),
+      );
+endif;
+        // the query
+      
+        $the_query = new WP_Query( $args ); 
+        //var_dump($args);
+        $count = $the_query->found_posts;
+        
+
+       if ( $the_query->have_posts() ) : 
+      // Do we have any posts in the databse that match our query?
+      // In the case of the home page, this will call for the most recent posts 
+      
+        //echo '<div class="container '.$profile_class .'" id="project-gallery">';
+         while ( $the_query->have_posts() ) : $the_query->the_post(); //We set up $the_query on line 144
+        // If we have some posts to show, start a loop that will display each one the same way
+        
+        
+         //if (have_rows ('project_gallery')): //Setup the panels between the top/bottom panels
+               //Setup variables
+               
+                $the_title = get_the_title();
+                $mr_link = get_field('mrf_link'); 
+                
+                $target = '';
+                $curated = get_field('curated', $post->ID); 
+
+                $date = get_the_date('m.d.y');
+                $directory = get_bloginfo('template_directory');
+
+                if ($curated == 'true'){
+                        //$directory = bloginfo('template_directory');
+                        $target ='<img src="'. $directory .'/assets/img/curated.png">';
+
+                }else{
+                        $target="";
+                    } 
+
+                $determinants= get_the_terms($post->ID, 'sdh');
+                //var_dump($member_topics);
+                $strategies= get_the_terms($post->ID, 'strategy');
+
+                $short_title = get_the_title('', '', false);
+                $shortened_title = substr($short_title, 0, 73);
+                $length  =  strlen($short_title);
+                
+                if ($length >= 73){
+                    $overflow = "overflow";
+
+                }else{
+                    $overflow="";
+                }
+
+                foreach ($determinants as $member_topic){
+                    $dn = $member_topic->name;
+                    $ds = $member_topic->slug;
+                    //var_dump($mt);
+                    //$mt_filter .= $member_topic->slug . ' ';
+                }
+                foreach ($content_types as $content_type){
+                    $sn = $content_type->name;
+                    $ss = $content_type->slug;
+                    //$ct_filter .= $content_type->slug . ' ';
+                }
+
+          //endif; 
+          echo '<div class="resource-item '. $ds . ' ' . $ss . '">
+                    <div class="row">
+                        <div class="one columns alpha the-date">' . $date .'</div>
+                            <div class="seven columns the-title ' . $overflow .'">
+                                <a href="' . $mr_link .'">
+                                    <div class="orange_text"> '. $shortened_title . '</div>
+                                </a>
+                            </div>
+                        <div class="two columns">
+                            <div class="m-topic">' . $mt . '</div>
+                        </div>
+                        <div class="two columns omega">
+                            <div class="c-type">.' . $ct . '</div>
+                        </div>
+                    </div>
+                </div>';
+         endwhile; 
+       else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) 
+        
+        echo '<article class="post-error">
+                <h3 class="404">
+                  Your search did not produce any results!</br>
+                
+                  Please use a different search term, or try something more specific.
+                </h3>
+              </article>';
+       endif; // OK, I think that takes care of both scenarios (having posts or not having any posts) 
+       die();//if this isn't included, you will get funky characters at the end of your query results.
+}
+
+//AJAX Discussion
+
+// add_action('wp_ajax_get_discussions', 'get_discussions');  
+// add_action('wp_ajax_nopriv_get_discussions', 'get_discussions'); 
+
+// function get_discussions(){
+//   $post_slug = $_POST['discussionListing'];
+//   //$post_slug_ct = $_POST['contentType'];
+//   $query = $_POST['query']; //*
+//   //var_dump($post_slug);
+//   //$query = $_POST('query');
+ 
+// if ($query == ''): //if the search filter is used
+
+//  //Make the search exlusive to entries or clicking the filter
+//  if ($post_slug == '' ): //All posts? No filter
+//       $args = array(
+//       'post_type' => 'discussions',
+//       'posts_per_page' => -1,
+//       'post_status' => 'publish'
+      
+//       );
+
+//  elseif ($post_slug != ''  ): //Using the filter - Topic filter used
+//       $args = array(
+//       'post_type' => 'discussions',
+//       'posts_per_page' => -1,
+//       'post_status' => 'publish',
+//       //'s' => $query, //This is an 'and', so the query is effectively stopping here, if not commented out
+//       'tax_query' => array(
+//         array(
+//           'taxonomy' => 'member_topic',
+//           'field'    => 'slug',
+//           'terms'    => $post_slug, 
+//           ),
+//         ),
+//       );
+//  endif; //end sub if
+
+
+// else:  //If the search is used
+//       $args = array(
+//       'post_type' => 'discussions',
+//       'posts_per_page' => -1,
+//       'post_status' => 'publish',
+//       's' => $query
+//       //
+          
+//          // ),
+//         //),
+//       );
+// endif;
+//         // the query
+      
+//         $the_query_d = new WP_Query( $args ); 
+//         //var_dump($args);
+//         $count = $the_query_d->found_posts;
+        
+
+//        if ( $the_query_d->have_posts() ) : 
+//       // Do we have any posts in the databse that match our query?
+//       // In the case of the home page, this will call for the most recent posts 
+      
+//         //echo '<div class="container '.$profile_class .'" id="project-gallery">';
+//          while ( $the_query_d->have_posts() ) : $the_query_d->the_post(); //We set up $the_query on line 144
+//         // If we have some posts to show, start a loop that will display each one the same way
+        
+        
+//          //if (have_rows ('project_gallery')): //Setup the panels between the top/bottom panels
+//                //Setup variables
+               
+//                 $the_title = get_the_title();
+//                 $dt_link = get_the_permalink();
+                
+//                 $target = '';
+//                 $curated = get_field('curated', $post->ID); 
+
+//                 $date = get_the_date('m.d.y');
+//                 $directory = get_bloginfo('template_directory');
+
+//                 if ($curated == 'true'){
+//                         //$directory = bloginfo('template_directory');
+//                         $target ='<img src="'. $directory .'/assets/img/curated.png">';
+
+//                 }else{
+//                         $target="";
+//                     } 
+
+//                 $discussion_topics = get_the_terms($post->ID, 'member_topic');
+//                 //var_dump($discussion_topics);
+//                 //var_dump($member_topics);
+//                 //$content_types= get_the_terms($post->ID, 'content_type');
+
+//                 $short_title = get_the_title('', '', false);
+//                 $shortened_title = substr($short_title, 0, 110);
+//                 $length  =  strlen($short_title);
+                
+//                 if ($length >= 110){
+//                     $overflow = "overflow";
+
+//                 }else{
+//                     $overflow="";
+//                 }
+
+//                 foreach ($discussion_topics as $discussion_topic){
+//                     $dt = $discussion_topic->name;
+//                     $ds = $discussion_topic->slug;
+//                     //var_dump($mt);
+//                     //$mt_filter .= $member_topic->slug . ' ';
+//                 }
+//                 foreach ($content_types as $content_type){
+//                     //$ct = $content_type->slug;
+//                     //$ct_filter .= $content_type->slug . ' ';
+//                 }
+
+//           //endif; 
+//           echo '<div class="discussion-item '. $ds . ' ' . $ds . '">
+//                     <div class="row">
+//                         <div class="one columns alpha the-date">' . $date .'</div>
+//                             <div class="eight columns the-title ' . $overflow .'">
+//                                 <a href="' . $dt_link .'">
+//                                     <div class="orange_text"> '. $shortened_title . '</div>
+//                                 </a>
+//                             </div><!-- end the-title -->
+//                         <div class="three columns">
+//                             <div class="m-topic">' . $dt . '</div>
+//                         </div> <!--end three columns -->
+//                         </div>
+//                     </div>
+//                 </div>';
+//          endwhile; 
+//        else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) 
+        
+//         echo '<article class="post-error">
+//                 <h3 class="404">
+//                   Your search did not produce any results!</br>
+                
+//                   Please use a different search term, or try something more specific.
+//                 </h3>
+//               </article>';
+//        endif; // OK, I think that takes care of both scenarios (having posts or not having any posts) 
+//        die();//if this isn't included, you will get funky characters at the end of your query results.
+// }
+
+
 ?>

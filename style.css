@@ -1003,47 +1003,48 @@ footer .content-bar .contact-info .address {
 footer .content-bar .contact-info .contact {
   font-weight: 700;
   font-family: 'Cabin', sans-serif;
+  color: #F05133;
 }
-/* line 45, sass/modules/_footer.scss */
+/* line 46, sass/modules/_footer.scss */
 footer .content-bar .share {
   white-space: nowrap;
   color: #5A5B5C;
   font-weight: 600;
 }
 @media screen and (max-width: 1250px) {
-  /* line 45, sass/modules/_footer.scss */
+  /* line 46, sass/modules/_footer.scss */
   footer .content-bar .share {
     white-space: normal;
   }
 }
-/* line 52, sass/modules/_footer.scss */
+/* line 53, sass/modules/_footer.scss */
 footer .content-bar .share .share-statement,
 footer .content-bar .share .add-this {
   display: inline-block;
 }
-/* line 58, sass/modules/_footer.scss */
+/* line 59, sass/modules/_footer.scss */
 footer .content-bar .share .share-statement {
   margin-right: 1em;
   text-transform: uppercase;
   font-size: 1em;
   font-family: 'Cabin', sans-serif;
 }
-/* line 66, sass/modules/_footer.scss */
+/* line 67, sass/modules/_footer.scss */
 footer .content-bar .share .add-this .at-style-responsive .at-share-btn {
   margin: 0;
 }
-/* line 72, sass/modules/_footer.scss */
+/* line 73, sass/modules/_footer.scss */
 footer .sig-bar {
   text-align: right;
   padding: .5em 0;
   text-transform: uppercase;
   height: 30px;
 }
-/* line 77, sass/modules/_footer.scss */
+/* line 78, sass/modules/_footer.scss */
 footer .sig-bar a {
   color: #00aeef;
 }
-/* line 79, sass/modules/_footer.scss */
+/* line 80, sass/modules/_footer.scss */
 footer .sig-bar a:hover, footer .sig-bar a:active, footer .sig-bar a:focus {
   opacity: .7;
   text-decoration: none;
@@ -2726,4 +2727,144 @@ img {
 .page-404 .content a:hover, .page-404 .content a:focus, .page-404 .content a:active {
   opacity: .7;
   text-decoration: none;
+}
+
+/* line 534, sass/modules/_s_layout.scss */
+.resource-grid [class*='columns-']:last-of-type {
+  padding-right: 15px;
+}
+/* line 538, sass/modules/_s_layout.scss */
+.resource-grid .resource-indiv {
+  margin-bottom: 10px;
+  padding-right: 10px;
+  border-right: 2px solid #E3E3E3;
+}
+/* line 546, sass/modules/_s_layout.scss */
+.resource-grid .resource-indiv:nth-of-type(even) .resource-block {
+  margin-left: 10px;
+}
+@media (max-width: 750px) {
+  /* line 546, sass/modules/_s_layout.scss */
+  .resource-grid .resource-indiv:nth-of-type(even) .resource-block {
+    margin-left: 0;
+  }
+}
+/* line 554, sass/modules/_s_layout.scss */
+.resource-grid .resource-block {
+  height: 400px;
+  border-top: 6px solid #00aeef;
+  border-bottom: 2px solid #E3E3E3;
+  overflow: hidden;
+  padding: 10px 0 10px 10px;
+}
+/* line 565, sass/modules/_s_layout.scss */
+.resource-grid .resource-block h2 {
+  color: #00aeef;
+}
+
+/* line 570, sass/modules/_s_layout.scss */
+.filter-dropdown {
+  appearance: none;
+  display: inline;
+  float: left;
+  padding-right: 5px;
+}
+/* line 576, sass/modules/_s_layout.scss */
+.filter-dropdown ul {
+  list-style-type: none;
+}
+/* line 578, sass/modules/_s_layout.scss */
+.filter-dropdown ul li {
+  list-style-type: none;
+}
+/* line 580, sass/modules/_s_layout.scss */
+.filter-dropdown ul li.initial {
+  background-color: #00aeef;
+  position: relative;
+  color: #ffffff;
+  font-size: 1.2em;
+}
+/* line 585, sass/modules/_s_layout.scss */
+.filter-dropdown ul li.initial span {
+  position: absolute;
+  transform: rotate(90deg);
+  right: 5px;
+}
+/* line 594, sass/modules/_s_layout.scss */
+.filter-dropdown ul li:hover ul, .filter-dropdown ul li:focus ul, .filter-dropdown ul li:active ul {
+  left: 0;
+}
+/* line 598, sass/modules/_s_layout.scss */
+.filter-dropdown ul li ul {
+  position: absolute;
+  left: -9999999px;
+}
+
+/* line 610, sass/modules/_s_layout.scss */
+.resource-toolbar label {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+/* line 616, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes, .resource-toolbar .radio-buttons {
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #E3E3E3;
+}
+/* line 620, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes input, .resource-toolbar .radio-buttons input {
+  opacity: 0;
+  z-index: -10;
+  position: absolute;
+}
+/* line 625, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes input:focus ~ .indicator, .resource-toolbar .radio-buttons input:focus ~ .indicator {
+  border-color: #F05133;
+}
+/* line 630, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes input:checked ~ .indicator::after, .resource-toolbar .radio-buttons input:checked ~ .indicator::after {
+  display: block;
+}
+/* line 635, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes .indicator, .resource-toolbar .radio-buttons .indicator {
+  vertical-align: middle;
+  position: relative;
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  background: transparent;
+  border: 1px solid #00aeef;
+  margin-right: 5px;
+}
+/* line 647, sass/modules/_s_layout.scss */
+.resource-toolbar .radio-buttons .indicator {
+  border-radius: 50%;
+}
+/* line 649, sass/modules/_s_layout.scss */
+.resource-toolbar .radio-buttons .indicator::after {
+  content: '';
+  display: none;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: #35BDB2;
+}
+/* line 664, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes .indicator::after {
+  content: '';
+  display: none;
+  position: absolute;
+  height: 12px;
+  width: 6px;
+  transform: rotate(45deg);
+  transform-origin: bottom left;
+  bottom: 6px;
+  left: 0;
+  border-right: 2px solid #35BDB2;
+  border-bottom: 2px solid #35BDB2;
 }

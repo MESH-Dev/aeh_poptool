@@ -29,7 +29,7 @@ get_header();?>
          ?>
          <h2 class=""><?php echo $modal_title; ?></h2>
          <p><?php echo $intro; ?></p>
-         <p><?php echo $instruction; ?> <a id="landingBrowsePrograms"><?php echo $dismiss?></a></p>
+         <p><?php echo $instruction; ?> <a id="landingBrowsePrograms"><?php echo $dismiss; ?></a></p>
          <div class="search-container row">
             <form id="landing-form">
             <label for="landing-search" class="sr-only">Search Programs</label>
@@ -216,7 +216,7 @@ get_header();?>
 
          <div id="programFilters">
             <fieldset class="checkers filter-group">
-               <h2>Active</h2>
+               <legend><h2>Active</h2></legend>
                <div class="radio-buttons  ">
                 <?php $active_filters= get_terms(array('taxonomy'=>'active','hide_empty'=>false));
 
@@ -231,7 +231,7 @@ get_header();?>
                </div>
             </fieldset>   
             <fieldset class="checkers filter-group">
-               <h2>Partners</h2>
+               <legend><h2>Partners</h2></legend>
                <div class="checkboxes ">
                 <?php $partner_filters= get_terms(array('taxonomy'=>'partners','hide_empty'=>false));
 
@@ -245,7 +245,7 @@ get_header();?>
                </div>
             </fieldset>   
             <fieldset class="checkers filter-group">
-               <h2>Social Determinants</h2>
+               <legend><h2>Social Determinants</h2></legend>
                <div class="checkboxes ">
                 <?php $sdh_filters= get_terms(array('taxonomy'=>'sdh','hide_empty'=>false));
 
@@ -259,7 +259,7 @@ get_header();?>
                </div>
             </fieldset>   
             <fieldset class="checkers filter-group">
-               <h2>Target Pop</h2>
+               <legend><h2>Target Pop</h2></legend>
                <div class="checkboxes ">
                 <?php $tp_filters= get_terms(array('taxonomy'=>'target_pop','hide_empty'=>false));
 
@@ -273,7 +273,7 @@ get_header();?>
                </div>
             </fieldset>   
             <fieldset class="checkers filter-group">
-               <h2>Program Setting</h2>
+               <legend><h2>Program Setting</h2></legend>
                <div class="radio-buttons ">
                 <?php $program_filters= get_terms(array('taxonomy'=>'program_setting','hide_empty'=>false));
 
