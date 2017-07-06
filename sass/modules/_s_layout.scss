@@ -526,3 +526,154 @@ img{
     }
   }
  }
+
+//Resources Library
+
+.resource-grid{
+
+  [class*='columns-']:last-of-type{
+    padding-right:15px;
+  }
+
+  .resource-indiv{
+    //border-top:right: 2px solid #E3E3E3;
+    //Keep these values the same
+    margin-bottom:10px;
+    padding-right:10px;
+    //---------------------
+    border-right: 2px solid $light-grey;
+     &:nth-of-type(even){
+        .resource-block{
+              margin-left: 10px;
+              @media ($bp-smaller-than-tablet){
+                margin-left:0;
+              }
+            }
+        }
+  }
+  .resource-block{
+
+            height: 400px;
+            border-top: 6px solid $blue;
+            border-bottom: 2px solid $light-grey;
+             
+            overflow: hidden;
+            padding:10px 0 10px 10px;
+
+
+
+            h2{
+              color:$blue;
+            }
+  }
+}
+.filter-dropdown{
+  appearance:none;
+  display:inline;
+  float:left;
+  padding-right:5px;
+
+  ul{
+    list-style-type:none;
+    li{
+      list-style-type:none;
+      &.initial{
+        background-color:$blue;
+        position:relative;
+        color:$white;
+        font-size:1.2em;
+        span{
+          position:absolute;
+          transform:rotate(90deg);
+          right:5px;
+        }
+      }
+        &:hover,
+        &:focus,
+        &:active{
+          ul{
+            left:0;
+          }
+        }
+      ul{
+        position:absolute;
+        left:-9999999px;
+        li{
+
+        }
+      }
+    }
+  }
+}
+
+.resource-toolbar{
+        label{
+         display: inline-block;
+         margin-right: 10px;
+         margin-bottom: 10px;
+         font-size: 1.4rem;
+      }
+      .checkboxes, .radio-buttons{
+         padding-bottom: 2rem;
+         margin-bottom: 2rem;
+         border-bottom: 2px solid $light-grey;
+         input{
+            opacity: 0;
+            z-index: -10;
+            position: absolute;
+            &:focus{
+               ~ .indicator{
+                  border-color: $red;
+               }
+            }
+            &:checked{
+               ~ .indicator::after{
+                  display: block;
+               }
+            }
+         }
+         .indicator{
+            vertical-align: middle;
+            position: relative;
+            display: inline-block;
+            height: 12px;
+            width: 12px;
+            background: transparent;
+            border: 1px solid $blue;
+            margin-right: 5px;
+         }
+      }
+      .radio-buttons{
+         .indicator{
+            border-radius: 50%;
+            &::after{
+               content: '';
+               display: none;
+               position: absolute;
+               top: 1px;
+               left: 1px;
+               height: 8px;
+               width: 8px;
+               border-radius: 50%;
+               background: $green;
+            }
+         }
+      }
+      .checkboxes{
+         .indicator{
+            &::after{
+               content: '';
+               display: none;
+               position: absolute;
+               height: 12px;
+               width: 6px;
+               transform: rotate(45deg);
+               transform-origin: bottom left;
+               bottom: 6px;
+               left: 0;
+               border-right: 2px solid $green;
+               border-bottom: 2px solid $green;
+            }
+         }
+      }
+}

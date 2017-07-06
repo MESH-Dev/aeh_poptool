@@ -59,7 +59,7 @@ function program_custom_post() {
 }
 add_action( 'init', 'program_custom_post', 0 );
 
-//Custom post type PROGRAMS
+//Custom post type HOSPITALS
 function hospital_custom_post() {
 
 	$labels = array(
@@ -115,6 +115,63 @@ function hospital_custom_post() {
 
 }
 add_action( 'init', 'hospital_custom_post', 0 );
+
+//Custom post type RESOURCES
+function resource_custom_post() {
+
+	$labels = array(
+		'name'                  => _x( 'Resources', 'Post Type General Name', 'text_domain' ),
+		'singular_name'         => _x( 'Resource', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'             => __( 'Resources', 'text_domain' ),
+		'name_admin_bar'        => __( 'Resources', 'text_domain' ),
+		'archives'              => __( 'Resource Archives', 'text_domain' ),
+		'attributes'            => __( 'Resource Attributes', 'text_domain' ),
+		'parent_item_colon'     => __( 'Parent Resource:', 'text_domain' ),
+		'all_items'             => __( 'All Resources', 'text_domain' ),
+		'add_new_item'          => __( 'Add New Resources', 'text_domain' ),
+		'add_new'               => __( 'Add New Resource', 'text_domain' ),
+		'new_item'              => __( 'New Resource', 'text_domain' ),
+		'edit_item'             => __( 'Edit Resource', 'text_domain' ),
+		'update_item'           => __( 'Update Resource', 'text_domain' ),
+		'view_item'             => __( 'View Resource', 'text_domain' ),
+		'view_items'            => __( 'View Resources', 'text_domain' ),
+		'search_items'          => __( 'Search Resources', 'text_domain' ),
+		'not_found'             => __( 'Resource Not found', 'text_domain' ),
+		'not_found_in_trash'    => __( 'Resource Not found in Trash', 'text_domain' ),
+		'featured_image'        => __( 'Featured Image', 'text_domain' ),
+		'set_featured_image'    => __( 'Set featured image', 'text_domain' ),
+		'remove_featured_image' => __( 'Remove featured image', 'text_domain' ),
+		'use_featured_image'    => __( 'Use as featured image', 'text_domain' ),
+		'insert_into_item'      => __( 'Insert into item', 'text_domain' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this item', 'text_domain' ),
+		'items_list'            => __( 'Items list', 'text_domain' ),
+		'items_list_navigation' => __( 'Items list navigation', 'text_domain' ),
+		'filter_items_list'     => __( 'Filter items list', 'text_domain' ),
+	);
+	$args = array(
+		'label'                 => __( 'Resource', 'text_domain' ),
+		'description'           => __( 'Custom AEH Population Health Tool post type for individual Resources', 'text_domain' ),
+		'labels'                => $labels,
+		'supports'              => array( ),
+		'taxonomies'            => array('SDH', 'Strategy'),
+		'hierarchical'          => true,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 5,
+		'menu_icon'             => 'dashicons-admin-post',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'has_archive'           => true,		
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'capability_type'       => 'page',
+	);
+	register_post_type( 'resource', $args );
+
+}
+add_action( 'init', 'resource_custom_post', 0 );
 
 // Register Bed Size Tax
 function bed_size_tax() {
@@ -426,7 +483,7 @@ function sdh_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'sdh', array( 'program','hospital'  ), $args );
+	register_taxonomy( 'sdh', array( 'program','hospital','resource'  ), $args );
 
 }
 add_action( 'init', 'sdh_tax', 0 );
@@ -625,6 +682,45 @@ function percent_uninsured_tax() {
 
 }
 add_action( 'init', 'percent_uninsured_tax', 0 );
+
+// Register strategy Tax
+function strategy_tax() {
+
+	$labels = array(
+		'name'                       => _x( 'Strategies', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Strategy', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Strategy', 'text_domain' ),
+		'all_items'                  => __( 'All Strategy', 'text_domain' ),
+		'parent_item'                => __( 'Parent Strategy', 'text_domain' ),
+		'parent_item_colon'          => __( 'Parent Strategy:', 'text_domain' ),
+		'new_item_name'              => __( 'New Strategy', 'text_domain' ),
+		'add_new_item'               => __( 'Add New Strategy', 'text_domain' ),
+		'edit_item'                  => __( 'Edit Strategy', 'text_domain' ),
+		'update_item'                => __( 'Update Strategy', 'text_domain' ),
+		'view_item'                  => __( 'View Strategy', 'text_domain' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'text_domain' ),
+		'add_or_remove_items'        => __( 'Add or remove Strategy', 'text_domain' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'text_domain' ),
+		'popular_items'              => __( 'Popular Strategy', 'text_domain' ),
+		'search_items'               => __( 'Search Strategy', 'text_domain' ),
+		'not_found'                  => __( 'Not Found', 'text_domain' ),
+		'no_terms'                   => __( 'No items', 'text_domain' ),
+		'items_list'                 => __( 'Items list', 'text_domain' ),
+		'items_list_navigation'      => __( 'Items list navigation', 'text_domain' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'strategy', array( 'resource' ), $args );
+
+}
+add_action( 'init', 'strategy_tax', 0 );
 
 add_action('init', 'sdh_register_meta');
         function sdh_register_meta(){
