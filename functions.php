@@ -494,72 +494,110 @@ function getCoordinates($address){
 
 }
 
+//Add ajax functionality to pages, all not just in admin
+add_action('wp_head','pluginname_ajaxurl');
+function pluginname_ajaxurl() {
+?>
+<script type="text/javascript">
+var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+</script>
+<?php
+}
+
+add_action('wp_ajax_get_resources', 'get_resources');  
+add_action('wp_ajax_nopriv_get_resources', 'get_resources');  //_nopriv_ allows access for both signed in users, and not
+
+//Used in the AJAX for Resources, should pull "all" content from the_content
+
+function get_content($more_link_text = '(more...)', $stripteaser = 0, $more_file = '')
+{
+  $content = get_the_content($more_link_text, $stripteaser, $more_file);
+  $content = apply_filters('the_content', $content);
+  $content = str_replace(']]>', ']]&gt;', $content);
+  return $content;
+}
+
+//AJAX Resources
 function get_resources(){
-  $post_slug = $_POST['resource'];
-  $post_slug_ct = $_POST['contentType'];
+  $post_slug = $_POST['strategies']; //This is our value from our ajax js file
+  //var_dump($post_slug);
+  $post_slug_ct = $_POST['determinants']; //This is our value from our ajax js file
+  //var_dump($post_slug_ct);
   $query = $_POST['query']; //*
+  //var_dump($query);
+  //var_dump($query);
   //var_dump($post_slug);
   //$query = $_POST('query');
  
  //Make the search exlusive to entries or clicking the filter
- if ($post_slug == '' && $post_slug_ct == " " ): //All posts? No filter
+ if ($post_slug == '' && $post_slug_ct == '' && $query == ''): //All posts? No filter
       $args = array(
-      'post_type' => 'resources',
+      'post_type' => 'resource',
       'posts_per_page' => -1,
       'post_status' => 'publish'
       
       );
-elseif ($post_slug != '' && $post_slug_ct != ''): //Using the filter - both filters have been used
+      //var_dump('No filters '.$args);
+elseif ($post_slug != '' && $post_slug_ct != '' && $query == ''): //Using the filter - both filters have been used
       $args = array(
-      'post_type' => 'resources',
+      'post_type' => 'resource',
       'posts_per_page' => -1,
       'post_status' => 'publish',
       //'s' => $query, //This is an 'and', so the query is effectively stopping here, if not commented out
       'tax_query' => array(
         'relation'=>'AND',
         array(
-          'taxonomy' => 'member_topic',
+          'taxonomy' => 'strategy',
           'field'    => 'slug',
           'terms'    => $post_slug, 
           ),
         array(
-          'taxonomy' => 'content_type',
+          'taxonomy' => 'sdh',
           'field'    => 'slug',
           'terms'    => $post_slug_ct, 
           ),
         ),
       );
- elseif ($post_slug != '' && $post_slug_ct == ''  ): //Using the filter - Topic filter used
+      //var_dump('Terms Strategy: '.$post_slug);
+      //var_dump('Terms Determinant: '.$post_slug_ct);
+      //var_dump('Both filters '.$args);
+      //var_dump('Strategy search '.$post_slug);
+      //var_dump('Determinant search '.$post_slug_ct);
+ elseif ($post_slug != '' && $post_slug_ct == '' && $query == '' ): //Using the filter - Topic filter used
       $args = array(
-      'post_type' => 'resources',
+      'post_type' => 'resource',
       'posts_per_page' => -1,
       'post_status' => 'publish',
       //'s' => $query, //This is an 'and', so the query is effectively stopping here, if not commented out
       'tax_query' => array(
         array(
-          'taxonomy' => 'member_topic',
+          'taxonomy' => 'strategy',
           'field'    => 'slug',
           'terms'    => $post_slug, 
           ),
         ),
       );
-elseif ($post_slug_ct != '' && $post_slug == ''  ): //Using the filter - Content filter used
+      //var_dump('Terms :'.$post_slug);
+      //var_dump('Strategy only '.$args);
+elseif ($post_slug_ct != '' && $post_slug == '' && $query == ''): //Using the filter - Content filter used
       $args = array(
-      'post_type' => 'resources',
+      'post_type' => 'resource',
       'posts_per_page' => -1,
       'post_status' => 'publish',
       //'s' => $query, //This is an 'and', so the query is effectively stopping here, if not commented out
       'tax_query' => array(
          array(
-          'taxonomy' => 'content_type',
+          'taxonomy' => 'sdh',
           'field'    => 'slug',
           'terms'    => $post_slug_ct, 
           ),
         ),
       );
+      //var_dump('Terms: '.$post_slug_ct);
+      //var_dump('Determinant Only: '.$args);
 else:  //If the search is used
       $args = array(
-      'post_type' => 'resources',
+      'post_type' => 'resource',
       'posts_per_page' => -1,
       'post_status' => 'publish',
       's' => $query
@@ -568,6 +606,7 @@ else:  //If the search is used
          // ),
         //),
       );
+      //var_dump('Search: '.$args);
 endif;
         // the query
       
@@ -587,225 +626,127 @@ endif;
         
          //if (have_rows ('project_gallery')): //Setup the panels between the top/bottom panels
                //Setup variables
-               
+                $p_id=get_the_id();
                 $the_title = get_the_title();
-                $mr_link = get_field('mrf_link'); 
+                $the_content = get_the_content();
+                //$mr_link = get_field('mrf_link'); 
                 
-                $target = '';
-                $curated = get_field('curated', $post->ID); 
+                //$target = '';
+                //$curated = get_field('curated', $post->ID); 
 
-                $date = get_the_date('m.d.y');
-                $directory = get_bloginfo('template_directory');
+                //$date = get_the_date('m.d.y');
+                //$directory = get_bloginfo('template_directory');
 
-                if ($curated == 'true'){
-                        //$directory = bloginfo('template_directory');
-                        $target ='<img src="'. $directory .'/assets/img/curated.png">';
+                $primary_sdh_resource = get_field('primary_sdh_resource', $p_id);
+                $resource_intro = get_field('resource_introduction', $p_id);
+                $resource_content = get_field('resource_content', $p_id);
 
-                }else{
-                        $target="";
-                    } 
-
-                $determinants= get_the_terms($post->ID, 'sdh');
-                //var_dump($member_topics);
-                $strategies= get_the_terms($post->ID, 'strategy');
-
-                $short_title = get_the_title('', '', false);
-                $shortened_title = substr($short_title, 0, 73);
-                $length  =  strlen($short_title);
-                
-                if ($length >= 73){
-                    $overflow = "overflow";
-
-                }else{
-                    $overflow="";
+                if($primary_sdh_resource != ''){
+                  $primary_sdh_name = $primary_sdh_resource->name;
+                  $primary_sdh_slug = $primary_sdh_resource->slug;
                 }
 
-                foreach ($determinants as $member_topic){
-                    $dn = $member_topic->name;
-                    $ds = $member_topic->slug;
+                $resource_author=get_field('resource_author', $p_id);
+                $resource_link = get_field('resource_link', $p_id);
+                // if ($curated == 'true'){
+                //         //$directory = bloginfo('template_directory');
+                //         $target ='<img src="'. $directory .'/assets/img/curated.png">';
+
+                // }else{
+                //         $target="";
+                //     } 
+
+                $determinants= get_the_terms($p_id, 'sdh');
+                //var_dump($member_topics);
+                $strategies= get_the_terms($p_id, 'strategy');
+
+                // $short_title = get_the_title('', '', false);
+                // $shortened_title = substr($short_title, 0, 73);
+                // $length  =  strlen($short_title);
+                
+                // if ($length >= 73){
+                //     $overflow = "overflow";
+
+                // }else{
+                //     $overflow="";
+                // }
+
+                $dn='';
+                $ds='';
+                $dn_list='';
+                $space =' ';
+                $comma = ', ';
+
+                foreach ($determinants as $determinant){
+                    $dn = $determinant->name;
+                    $dn_list .= $determinant->name . $comma;
+                    $ds .= $determinant->slug . $space;
                     //var_dump($mt);
                     //$mt_filter .= $member_topic->slug . ' ';
                 }
-                foreach ($content_types as $content_type){
-                    $sn = $content_type->name;
-                    $ss = $content_type->slug;
+
+                $sn='';
+                $ss='';
+                $sn_list='';
+                foreach ($strategies as $strategy){
+                    $sn = $strategy->name;
+                    $sn_list .= $strategy->name . $comma;
+                    $ss .= $strategy->slug . $space;
                     //$ct_filter .= $content_type->slug . ' ';
                 }
 
           //endif; 
-          echo '<div class="resource-item '. $ds . ' ' . $ss . '">
-                    <div class="row">
-                        <div class="one columns alpha the-date">' . $date .'</div>
-                            <div class="seven columns the-title ' . $overflow .'">
-                                <a href="' . $mr_link .'">
-                                    <div class="orange_text"> '. $shortened_title . '</div>
-                                </a>
-                            </div>
-                        <div class="two columns">
-                            <div class="m-topic">' . $mt . '</div>
-                        </div>
-                        <div class="two columns omega">
-                            <div class="c-type">.' . $ct . '</div>
-                        </div>
+          echo '<div class="columns-6 resource-item '. $ds . ' ' . $ss . '">
+                    <div class="resource-indiv">
+                          <div class="resource-block">
+                          <div class="resource-inner" style="padding-right:10px;">
+                              <div class="resource-head">
+                                <p>'.$primary_sdh_name.'</p>
+                              <img class="category-icon" src="'.get_bloginfo('template_directory').'/img/icons/'.$primary_sdh_slug.'.svg">
+                              </div>
+                              <div class="content">
+                              <h2>'.$the_title.' From Filter</h2>
+                              <div class="author">
+                                '.$resource_author.'
+                              </div>
+                              
+                                 <p class="resource-intro">'.$resource_intro.'</p>'
+                                 .$resource_content.
+                               
+                                  '<p class="tax-terms s-determinants">
+                                  <span>Social Determinants: </span>
+                                  '. rtrim($dn_list, $comma).'
+                                  </p>
+                              <p class="tax-terms strategy">
+                                <span>Strategy: </span>
+                                '.rtrim($sn_list, $comma).'
+                              </p>
+                              </div>
+                             <div class="resource-foot">
+                               <p class="expand">
+                                       <span class="text">Expand</span>  <img src="'.get_bloginfo('template_directory').'/img/backarrow.svg">
+                                    </p>
+                                    <p class="resource-link">
+                                       <a href="'.$resource_link.'" target="_blank">Full Resource »</a>
+                                    </p>
+                             </div>
+                         </div></div>
                     </div>
                 </div>';
          endwhile; 
        else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) 
-        
-        echo '<article class="post-error">
-                <h3 class="404">
-                  Your search did not produce any results!</br>
+        echo '<div class="post-error">
+                  No programs found. Please modify your filter or search input.
+               </div>';
+        // echo '<article class="post-error">
+        //         <h3 class="404">
+        //           Your search did not produce any results!</br>
                 
-                  Please use a different search term, or try something more specific.
-                </h3>
-              </article>';
+        //           Please use a different search term, or try something more specific.
+        //         </h3>
+        //       </article>';
        endif; // OK, I think that takes care of both scenarios (having posts or not having any posts) 
        die();//if this isn't included, you will get funky characters at the end of your query results.
 }
-
-//AJAX Discussion
-
-// add_action('wp_ajax_get_discussions', 'get_discussions');  
-// add_action('wp_ajax_nopriv_get_discussions', 'get_discussions'); 
-
-// function get_discussions(){
-//   $post_slug = $_POST['discussionListing'];
-//   //$post_slug_ct = $_POST['contentType'];
-//   $query = $_POST['query']; //*
-//   //var_dump($post_slug);
-//   //$query = $_POST('query');
- 
-// if ($query == ''): //if the search filter is used
-
-//  //Make the search exlusive to entries or clicking the filter
-//  if ($post_slug == '' ): //All posts? No filter
-//       $args = array(
-//       'post_type' => 'discussions',
-//       'posts_per_page' => -1,
-//       'post_status' => 'publish'
-      
-//       );
-
-//  elseif ($post_slug != ''  ): //Using the filter - Topic filter used
-//       $args = array(
-//       'post_type' => 'discussions',
-//       'posts_per_page' => -1,
-//       'post_status' => 'publish',
-//       //'s' => $query, //This is an 'and', so the query is effectively stopping here, if not commented out
-//       'tax_query' => array(
-//         array(
-//           'taxonomy' => 'member_topic',
-//           'field'    => 'slug',
-//           'terms'    => $post_slug, 
-//           ),
-//         ),
-//       );
-//  endif; //end sub if
-
-
-// else:  //If the search is used
-//       $args = array(
-//       'post_type' => 'discussions',
-//       'posts_per_page' => -1,
-//       'post_status' => 'publish',
-//       's' => $query
-//       //
-          
-//          // ),
-//         //),
-//       );
-// endif;
-//         // the query
-      
-//         $the_query_d = new WP_Query( $args ); 
-//         //var_dump($args);
-//         $count = $the_query_d->found_posts;
-        
-
-//        if ( $the_query_d->have_posts() ) : 
-//       // Do we have any posts in the databse that match our query?
-//       // In the case of the home page, this will call for the most recent posts 
-      
-//         //echo '<div class="container '.$profile_class .'" id="project-gallery">';
-//          while ( $the_query_d->have_posts() ) : $the_query_d->the_post(); //We set up $the_query on line 144
-//         // If we have some posts to show, start a loop that will display each one the same way
-        
-        
-//          //if (have_rows ('project_gallery')): //Setup the panels between the top/bottom panels
-//                //Setup variables
-               
-//                 $the_title = get_the_title();
-//                 $dt_link = get_the_permalink();
-                
-//                 $target = '';
-//                 $curated = get_field('curated', $post->ID); 
-
-//                 $date = get_the_date('m.d.y');
-//                 $directory = get_bloginfo('template_directory');
-
-//                 if ($curated == 'true'){
-//                         //$directory = bloginfo('template_directory');
-//                         $target ='<img src="'. $directory .'/assets/img/curated.png">';
-
-//                 }else{
-//                         $target="";
-//                     } 
-
-//                 $discussion_topics = get_the_terms($post->ID, 'member_topic');
-//                 //var_dump($discussion_topics);
-//                 //var_dump($member_topics);
-//                 //$content_types= get_the_terms($post->ID, 'content_type');
-
-//                 $short_title = get_the_title('', '', false);
-//                 $shortened_title = substr($short_title, 0, 110);
-//                 $length  =  strlen($short_title);
-                
-//                 if ($length >= 110){
-//                     $overflow = "overflow";
-
-//                 }else{
-//                     $overflow="";
-//                 }
-
-//                 foreach ($discussion_topics as $discussion_topic){
-//                     $dt = $discussion_topic->name;
-//                     $ds = $discussion_topic->slug;
-//                     //var_dump($mt);
-//                     //$mt_filter .= $member_topic->slug . ' ';
-//                 }
-//                 foreach ($content_types as $content_type){
-//                     //$ct = $content_type->slug;
-//                     //$ct_filter .= $content_type->slug . ' ';
-//                 }
-
-//           //endif; 
-//           echo '<div class="discussion-item '. $ds . ' ' . $ds . '">
-//                     <div class="row">
-//                         <div class="one columns alpha the-date">' . $date .'</div>
-//                             <div class="eight columns the-title ' . $overflow .'">
-//                                 <a href="' . $dt_link .'">
-//                                     <div class="orange_text"> '. $shortened_title . '</div>
-//                                 </a>
-//                             </div><!-- end the-title -->
-//                         <div class="three columns">
-//                             <div class="m-topic">' . $dt . '</div>
-//                         </div> <!--end three columns -->
-//                         </div>
-//                     </div>
-//                 </div>';
-//          endwhile; 
-//        else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) 
-        
-//         echo '<article class="post-error">
-//                 <h3 class="404">
-//                   Your search did not produce any results!</br>
-                
-//                   Please use a different search term, or try something more specific.
-//                 </h3>
-//               </article>';
-//        endif; // OK, I think that takes care of both scenarios (having posts or not having any posts) 
-//        die();//if this isn't included, you will get funky characters at the end of your query results.
-// }
-
 
 ?>

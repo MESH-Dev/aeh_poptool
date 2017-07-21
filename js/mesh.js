@@ -61,6 +61,8 @@ jQuery(document).ready(function($){
       
    });
 
+
+
 //  $('.sdh-icon.active').click(function(){
 //     $('.sdh-intro').removeClass('determ');
 // });
