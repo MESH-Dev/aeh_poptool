@@ -1,0 +1,19 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #00aeef;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>AEH_PopHealth_SD-Icons_MASTER-2</title>
+  <circle class="cls-1" cx="20" cy="20" r="20"/>
+  <g>
+    <path class="cls-2" d="M34.12,17.58,19.77,5.26,5.88,17.38l1.49,1.71L8.7,17.93V30.49H31.12V18l1.53,1.31ZM21.4,28.23H18.61V23.52H21.4Zm7.45-12.14V28.23H22.91V22H17.1v6.22H11V16l8.82-7.7,9.12,7.83Z"/>
+    <rect class="cls-2" x="17.1" y="14.09" width="5.82" height="5.75"/>
+  </g>
+</svg>

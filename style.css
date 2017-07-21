@@ -2081,35 +2081,36 @@ a.dropdown-trigger span {
   color: #00aeef;
   display: inline-block;
   margin: 0 10px 0 0;
+  text-transform: uppercase;
 }
-/* line 899, sass/modules/_layout.scss */
+/* line 900, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block .category .category-icon {
   display: inline-block;
   width: 20px;
   vertical-align: middle;
 }
-/* line 903, sass/modules/_layout.scss */
+/* line 904, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block .category .category-icon path {
   fill: #00aeef;
 }
-/* line 908, sass/modules/_layout.scss */
+/* line 909, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block .block-interior {
   height: 200px;
   border-top: 6px solid #00aeef;
   border-bottom: 2px solid #E3E3E3;
   overflow: hidden;
 }
-/* line 913, sass/modules/_layout.scss */
+/* line 914, sass/modules/_layout.scss */
 .listing-interface .listing-blocks .indiv-block .block-interior.filter-view {
   height: 0;
 }
 
-/* line 921, sass/modules/_layout.scss */
+/* line 922, sass/modules/_layout.scss */
 .hide {
   display: none;
 }
 
-/* line 926, sass/modules/_layout.scss */
+/* line 927, sass/modules/_layout.scss */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -2123,66 +2124,66 @@ a.dropdown-trigger span {
 
 /* =WordPress Core
 -------------------------------------------------------------- */
-/* line 939, sass/modules/_layout.scss */
+/* line 940, sass/modules/_layout.scss */
 .alignnone {
   margin: 5px 20px 20px 0;
 }
 
-/* line 943, sass/modules/_layout.scss */
+/* line 944, sass/modules/_layout.scss */
 .aligncenter,
 div.aligncenter {
   display: block;
   margin: 5px auto 5px auto;
 }
 
-/* line 949, sass/modules/_layout.scss */
+/* line 950, sass/modules/_layout.scss */
 .alignright {
   float: right;
   margin: 5px 0 20px 20px;
 }
 
-/* line 954, sass/modules/_layout.scss */
+/* line 955, sass/modules/_layout.scss */
 .alignleft {
   float: left;
   margin: 5px 20px 20px 0;
 }
 
-/* line 959, sass/modules/_layout.scss */
+/* line 960, sass/modules/_layout.scss */
 p img.alignnone {
   margin: 5px 20px 20px 0;
 }
 
-/* line 963, sass/modules/_layout.scss */
+/* line 964, sass/modules/_layout.scss */
 p img.aligncenter,
 div.aligncenter {
   display: block;
   margin: 5px auto 5px auto;
 }
 
-/* line 969, sass/modules/_layout.scss */
+/* line 970, sass/modules/_layout.scss */
 p img.alignright {
   float: right;
   margin: 5px 0 20px 20px;
 }
 
-/* line 974, sass/modules/_layout.scss */
+/* line 975, sass/modules/_layout.scss */
 p img.alignleft {
   float: left;
   margin: 5px 20px 20px 0;
 }
 
-/* line 979, sass/modules/_layout.scss */
+/* line 980, sass/modules/_layout.scss */
 a img.alignright {
   float: right;
   margin: 5px 0 20px 20px;
 }
 
-/* line 984, sass/modules/_layout.scss */
+/* line 985, sass/modules/_layout.scss */
 a img.alignnone {
   margin: 5px 20px 20px 0;
 }
 
-/* line 988, sass/modules/_layout.scss */
+/* line 989, sass/modules/_layout.scss */
 a img.alignleft {
   float: left;
   margin: 5px 20px 20px 0;
@@ -2783,7 +2784,7 @@ img {
 /* line 589, sass/modules/_s_layout.scss */
 .resource-grid .resource-item {
   background-color: #ffffff;
-  height: 310px;
+  height: 340px;
 }
 /* line 596, sass/modules/_s_layout.scss */
 .resource-grid .resource-item:after {
@@ -2793,7 +2794,7 @@ img {
 }
 /* line 603, sass/modules/_s_layout.scss */
 .resource-grid .resource-block {
-  height: 300px;
+  height: 330px;
   border-top: 6px solid #00aeef;
   border-bottom: 2px solid #E3E3E3;
   overflow: hidden;
@@ -2844,7 +2845,6 @@ img {
 }
 /* line 658, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-head {
-  text-align: right;
   color: #00aeef;
   text-transform: uppercase;
   padding: 10px 0;
@@ -2853,18 +2853,52 @@ img {
 .resource-grid .resource-block .resource-head p {
   display: inline-block;
   font-size: 1.3rem;
-  margin: 0 10px 0 0;
+  margin: 0 0 0 10px;
   color: #00aeef;
   font-weight: 700;
 }
 /* line 673, sass/modules/_s_layout.scss */
+.resource-grid .resource-block .strategy-label {
+  margin-top: 10px;
+}
+/* line 677, sass/modules/_s_layout.scss */
+.resource-grid .resource-block .strategy-cb {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-top: -4px;
+  background-color: #E3E3E3;
+  vertical-align: middle;
+  border-radius: 3px;
+}
+/* line 686, sass/modules/_s_layout.scss */
+.resource-grid .resource-block .strategy-cb.program-implementation {
+  background-color: orange;
+}
+/* line 690, sass/modules/_s_layout.scss */
+.resource-grid .resource-block .strategy-cb.strategic-planning {
+  background-color: red;
+}
+/* line 694, sass/modules/_s_layout.scss */
+.resource-grid .resource-block .strategy-cb.multisector-partnerships {
+  background-color: green;
+}
+/* line 698, sass/modules/_s_layout.scss */
+.resource-grid .resource-block .strategy-cb.hospital-readiness-community-assessment {
+  background-color: cyan;
+}
+/* line 702, sass/modules/_s_layout.scss */
+.resource-grid .resource-block .strategy-cb.hit-systems-analysis {
+  background-color: brown;
+}
+/* line 707, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot {
   border-top: 2px solid #E3E3E3;
   color: #00aeef;
   text-transform: uppercase;
   padding: 10px 0;
 }
-/* line 679, sass/modules/_s_layout.scss */
+/* line 713, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot .expand {
   font-size: 1.3rem;
   color: #00aeef;
@@ -2872,7 +2906,7 @@ img {
   font-weight: 700;
   cursor: pointer;
 }
-/* line 685, sass/modules/_s_layout.scss */
+/* line 719, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot .expand img {
   transform: rotate(-90deg);
   width: 8px;
@@ -2882,163 +2916,214 @@ img {
   margin-left: 10px;
   transition: transform 0.4s ease-in-out;
 }
-/* line 694, sass/modules/_s_layout.scss */
+/* line 728, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot .expand:focus, .resource-grid .resource-block .resource-foot .expand:active, .resource-grid .resource-block .resource-foot .expand:hover {
   opacity: .7;
 }
-/* line 701, sass/modules/_s_layout.scss */
+/* line 735, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot .resource-link {
   float: right;
 }
-/* line 703, sass/modules/_s_layout.scss */
+/* line 737, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot .resource-link a {
   font-size: 1.3rem;
   color: #00aeef;
   text-decoration: none;
   font-weight: 700;
 }
-/* line 708, sass/modules/_s_layout.scss */
+/* line 742, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot .resource-link a:hover, .resource-grid .resource-block .resource-foot .resource-link a:focus, .resource-grid .resource-block .resource-foot .resource-link a:active {
   opacity: .7;
 }
 
-/* line 718, sass/modules/_s_layout.scss */
+/* line 752, sass/modules/_s_layout.scss */
 .filter-dropdown {
   appearance: none;
   display: inline;
   float: left;
   padding-right: 5px;
 }
-/* line 724, sass/modules/_s_layout.scss */
+/* line 758, sass/modules/_s_layout.scss */
 .filter-dropdown ul {
   list-style-type: none;
 }
-/* line 726, sass/modules/_s_layout.scss */
+/* line 760, sass/modules/_s_layout.scss */
 .filter-dropdown ul li {
   list-style-type: none;
 }
-/* line 728, sass/modules/_s_layout.scss */
+/* line 762, sass/modules/_s_layout.scss */
 .filter-dropdown ul li.initial {
   background-color: #00aeef;
   position: relative;
   color: #ffffff;
   font-size: 1.2em;
 }
-/* line 733, sass/modules/_s_layout.scss */
+/* line 767, sass/modules/_s_layout.scss */
 .filter-dropdown ul li.initial span {
   position: absolute;
   transform: rotate(90deg);
   right: 5px;
 }
-/* line 742, sass/modules/_s_layout.scss */
+/* line 776, sass/modules/_s_layout.scss */
 .filter-dropdown ul li:hover ul, .filter-dropdown ul li:focus ul, .filter-dropdown ul li:active ul {
   left: 0;
 }
-/* line 746, sass/modules/_s_layout.scss */
+/* line 780, sass/modules/_s_layout.scss */
 .filter-dropdown ul li ul {
   position: absolute;
   left: -9999999px;
 }
 
-/* line 758, sass/modules/_s_layout.scss */
+/* line 792, sass/modules/_s_layout.scss */
 .resource-toolbar label {
-  margin-right: 10px;
+  margin-right: 19px;
   margin-bottom: 10px;
   font-size: 1.4rem;
-  text-indent: -20px;
-  padding-left: 20px;
+  text-indent: -29px;
+  padding-left: 29px;
+}
+/* line 801, sass/modules/_s_layout.scss */
+.resource-toolbar label.selected {
+  opacity: 1 !important;
+}
+/* line 804, sass/modules/_s_layout.scss */
+.resource-toolbar label.selected svg .cls-1 {
+  fill: #ed4642;
 }
 @media (max-width: 750px) {
-  /* line 758, sass/modules/_s_layout.scss */
+  /* line 792, sass/modules/_s_layout.scss */
   .resource-toolbar label {
     width: 100%;
   }
 }
-/* line 776, sass/modules/_s_layout.scss */
+/* line 817, sass/modules/_s_layout.scss */
 .resource-toolbar #filterClear {
   float: right;
   font-size: 1.3em;
   padding: 20px 0;
   cursor: pointer;
 }
-/* line 782, sass/modules/_s_layout.scss */
+/* line 823, sass/modules/_s_layout.scss */
 .resource-toolbar #filterClear:hover, .resource-toolbar #filterClear:focus, .resource-toolbar #filterClear:active {
   text-decoration: underline;
 }
-/* line 789, sass/modules/_s_layout.scss */
+/* line 830, sass/modules/_s_layout.scss */
 .resource-toolbar .search-container {
   margin: 0;
 }
-/* line 794, sass/modules/_s_layout.scss */
+/* line 835, sass/modules/_s_layout.scss */
 .resource-toolbar .resource-filters fieldset {
   max-width: initial;
 }
-/* line 797, sass/modules/_s_layout.scss */
+/* line 838, sass/modules/_s_layout.scss */
 .resource-toolbar .resource-filters p {
   font-size: 1.3rem;
   padding: 20px 0;
   margin: 0;
   float: left;
 }
-/* line 803, sass/modules/_s_layout.scss */
+/* line 844, sass/modules/_s_layout.scss */
 .resource-toolbar .resource-filters .filter-group {
   margin-bottom: 0;
 }
-/* line 805, sass/modules/_s_layout.scss */
+/* line 846, sass/modules/_s_layout.scss */
 .resource-toolbar .resource-filters .filter-group legend {
   margin-bottom: 3rem;
 }
-/* line 810, sass/modules/_s_layout.scss */
+/* line 851, sass/modules/_s_layout.scss */
 .resource-toolbar .resource-filters .filter-group h2 span {
   font-style: italic;
   font-size: 1.3rem;
 }
 @media (max-width: 1060px) {
-  /* line 818, sass/modules/_s_layout.scss */
+  /* line 859, sass/modules/_s_layout.scss */
   .resource-toolbar .resource-filters .checkboxes.filters .columns-6 {
     width: 100%;
   }
 }
-/* line 830, sass/modules/_s_layout.scss */
+/* line 871, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes, .resource-toolbar .radio-buttons {
   padding-bottom: 2rem;
   margin-bottom: 2rem;
   border-bottom: 2px solid #E3E3E3;
 }
-/* line 835, sass/modules/_s_layout.scss */
+/* line 876, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes:nth-of-type(2), .resource-toolbar .radio-buttons:nth-of-type(2) {
   border-bottom: none;
 }
-/* line 838, sass/modules/_s_layout.scss */
+/* line 880, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes label, .resource-toolbar .radio-buttons label {
+  cursor: pointer;
+}
+/* line 884, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes input, .resource-toolbar .radio-buttons input {
   opacity: 0;
   z-index: -10;
   position: absolute;
 }
-/* line 843, sass/modules/_s_layout.scss */
+/* line 889, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes input:focus ~ .indicator, .resource-toolbar .radio-buttons input:focus ~ .indicator {
   border-color: #F05133;
 }
-/* line 848, sass/modules/_s_layout.scss */
+/* line 894, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes input:checked ~ .indicator::after, .resource-toolbar .radio-buttons input:checked ~ .indicator::after {
   display: block;
 }
-/* line 853, sass/modules/_s_layout.scss */
+/* line 899, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes .indicator, .resource-toolbar .radio-buttons .indicator {
   vertical-align: middle;
   position: relative;
   display: inline-block;
-  height: 12px;
-  width: 12px;
+  height: 21px;
+  width: 21px;
   background: transparent;
-  border: 1px solid #00aeef;
   margin-right: 5px;
 }
-/* line 865, sass/modules/_s_layout.scss */
+/* line 909, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes .indicator svg, .resource-toolbar .radio-buttons .indicator svg {
+  max-width: 100%;
+  height: auto;
+}
+/* line 914, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes .indicator.program-implementation, .resource-toolbar .radio-buttons .indicator.program-implementation {
+  background-color: orange;
+  border-radius: 3px;
+}
+/* line 919, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes .indicator.strategic-planning, .resource-toolbar .radio-buttons .indicator.strategic-planning {
+  background-color: red;
+  border-radius: 3px;
+}
+/* line 924, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes .indicator.multisector-partnerships, .resource-toolbar .radio-buttons .indicator.multisector-partnerships {
+  background-color: green;
+  border-radius: 3px;
+}
+/* line 929, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes .indicator.hospital-readiness-community-assessment, .resource-toolbar .radio-buttons .indicator.hospital-readiness-community-assessment {
+  background-color: cyan;
+  border-radius: 3px;
+}
+/* line 934, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes .indicator.hit-systems-analysis, .resource-toolbar .radio-buttons .indicator.hit-systems-analysis {
+  background-color: brown;
+  border-radius: 3px;
+}
+/* line 943, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes .indicator:hover svg .cls-1, .resource-toolbar .checkboxes .indicator:active svg .cls-1, .resource-toolbar .checkboxes .indicator:focus svg .cls-1, .resource-toolbar .radio-buttons .indicator:hover svg .cls-1, .resource-toolbar .radio-buttons .indicator:active svg .cls-1, .resource-toolbar .radio-buttons .indicator:focus svg .cls-1 {
+  fill: #ed4642;
+}
+/* line 949, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes .indicator svg, .resource-toolbar .radio-buttons .indicator svg {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+/* line 957, sass/modules/_s_layout.scss */
 .resource-toolbar .radio-buttons .indicator {
   border-radius: 50%;
 }
-/* line 867, sass/modules/_s_layout.scss */
+/* line 959, sass/modules/_s_layout.scss */
 .resource-toolbar .radio-buttons .indicator::after {
   content: '';
   display: none;
@@ -3050,27 +3135,13 @@ img {
   border-radius: 50%;
   background: #35BDB2;
 }
-/* line 882, sass/modules/_s_layout.scss */
-.resource-toolbar .checkboxes .indicator::after {
-  content: '';
-  display: none;
-  position: absolute;
-  height: 12px;
-  width: 6px;
-  transform: rotate(45deg);
-  transform-origin: bottom left;
-  bottom: 6px;
-  left: 0;
-  border-right: 2px solid #35BDB2;
-  border-bottom: 2px solid #35BDB2;
-}
-/* line 898, sass/modules/_s_layout.scss */
+/* line 991, sass/modules/_s_layout.scss */
 .resource-toolbar .filter-group:nth-of-type(2) .checkboxes,
 .resource-toolbar .filter-group:nth-of-type(2) .radio-buttons {
   border-bottom: none;
   margin-bottom: 0;
 }
-/* line 904, sass/modules/_s_layout.scss */
+/* line 997, sass/modules/_s_layout.scss */
 .resource-toolbar .functions {
   font-size: 1.8rem;
   color: #00aeef;
@@ -3080,12 +3151,12 @@ img {
   padding: 1em 0;
   font-weight: 700;
 }
-/* line 915, sass/modules/_s_layout.scss */
+/* line 1008, sass/modules/_s_layout.scss */
 .resource-toolbar .functions:hover, .resource-toolbar .functions:focus, .resource-toolbar .functions:active {
   opacity: .7;
 }
 
-/* line 929, sass/modules/_s_layout.scss */
+/* line 1022, sass/modules/_s_layout.scss */
 .hide {
   display: none;
 }

@@ -34,8 +34,8 @@ function expandResource(){
       console.log($clk_ctr);
       var r = $(this).parent().parent().find('.content');
       var rHt = r[0].scrollHeight;
-      var openRi = rHt+110;
-      var openR = rHt+100;
+      var openRi = rHt+140;
+      var openR = rHt+130;
       var openC = rHt;
     if($clk_ctr == 0){
       //console.log($clk_ctr);
@@ -54,10 +54,10 @@ function expandResource(){
       $clk_ctr++;
     }else{
       $(this).parent().parent().parent().parent().parent().css({
-        height:'310'
+        height:'340'
       });
       $(this).parent().parent().parent().css({
-        height:'300'
+        height:'330'
       });
       $(this).parent().parent().find('.content').css({
         height:'200'
@@ -75,6 +75,24 @@ expandResource();
 
 
 //Get the resource filters checked
+$rs_cnt=0;
+$('.resource-filters label').click(function(){
+  //_this = $(this);
+  $rs_cnt++;
+  if($rs_cnt==1){
+  $(this).parent().parent().find('label').each(function(){
+    $(this).animate({opacity:.5},200);
+  });
+  $(this).addClass('selected').css({opacity:1});
+  
+  //console.log($rs_cnt);
+  }else{
+    $(this).removeClass('selected').css({opacity:1});
+    $rs_cnt=0;
+  }
+  // _this.not('.selected').animate({opacity:.7},200);
+  //_this.not('.selected').addClass('not-active');
+});
 //$('.resource-filters input[type="checkbox"]').click(function(){
 $('.apply-filters').click(function(){
   _this = $(this);
@@ -82,10 +100,10 @@ $('.apply-filters').click(function(){
  $clk_ctr=0;
   //$(this).parent().find('.selected').removeClass('selected');
   
-  $(this).addClass('selected');
+  //$(this).addClass('selected');
 
-  var _on = _this.data('filter');
-  console.log(_on); 
+  // var _on = _this.data('filter');
+  // console.log(_on); 
 
   var strategies = []
   var strategy = $(this).data('filter');
@@ -94,6 +112,8 @@ $('.apply-filters').click(function(){
   $('.filters.strategy input[type="checkbox"]:checked').each(function(i){
     strategies[i] = $(this).data('filter');
   }); 
+
+  console.log(strategies);
   
   var determinants = [];
   var determinant = $(this).data('filter');
@@ -101,6 +121,7 @@ $('.apply-filters').click(function(){
   $('.filters.determinant :checkbox:checked').each(function(i){
     determinants[i] = $(this).data('filter');
   });
+  console.log(determinants);
 
   //Delete whatever is already in the result
   $('.resource-item').detach();
@@ -126,7 +147,7 @@ $('#resource-form').submit(function(e){
   $('.post-error').detach();
 });
 
-$('.remove-filters').click(function(){
+$('#filterClear').click(function(){
   var determinants = "";
   var strategies = "";
   var query = "";
@@ -135,17 +156,19 @@ $('.remove-filters').click(function(){
   $('.filters input[type="checkbox"]:checked').prop('checked', false);
   $('#resource-form input[name="s"]').val('');
 
+  $('.filters label').animate({opacity:1},200).removeClass('selected');
+
   $('.member-resource-item').detach();
   //$('.discussion-listing').detach();
   $('.post-error').detach();
 
-  $('.topic-filtered span').text('all');
-  $('.type-filtered span').text('all');
+  //$('.topic-filtered span').text('all');
+  //$('.type-filtered span').text('all');
 
   loadResources(determinants,strategies,query);
   // loadDiscussions(discussionListing, '');
 
-  $('[class*="filter-"]').find('li.selected').removeClass('selected');
+  //$('[class*="filter-"]').find('li.selected').removeClass('selected');
 
 });
 

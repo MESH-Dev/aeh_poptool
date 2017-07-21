@@ -660,6 +660,8 @@ endif;
                 //var_dump($member_topics);
                 $strategies= get_the_terms($p_id, 'strategy');
 
+                $_base = get_bloginfo('template_directory');
+
                 // $short_title = get_the_title('', '', false);
                 // $shortened_title = substr($short_title, 0, 73);
                 // $length  =  strlen($short_title);
@@ -674,15 +676,26 @@ endif;
                 $dn='';
                 $ds='';
                 $dn_list='';
+                $dn_slug = '';
                 $space =' ';
                 $comma = ', ';
 
                 foreach ($determinants as $determinant){
                     $dn = $determinant->name;
+                    $dn_slug = $determinant->slug;
                     $dn_list .= $determinant->name . $comma;
                     $ds .= $determinant->slug . $space;
                     //var_dump($mt);
                     //$mt_filter .= $member_topic->slug . ' ';
+                }
+
+                if($determinants != ''){
+                  $sdh_label = '<div class="sdh-label">
+                                       <img class="category-icon" src="'.$_base.'/img/icons/'.$dn_slug.'.svg">
+                                       <p>'.$dn.'</p>
+                                    </div>';
+                }else{
+                  $sdn_label='';
                 }
 
                 $sn='';
@@ -692,7 +705,18 @@ endif;
                     $sn = $strategy->name;
                     $sn_list .= $strategy->name . $comma;
                     $ss .= $strategy->slug . $space;
+                    $s_class = $strategy->slug;
                     //$ct_filter .= $content_type->slug . ' ';
+                }
+
+                if($strategies != ''){
+                  $strat_label='<div class="strategy-label">
+                                       <div class="strategy-cb '.$s_class.'">
+                                       </div>
+                                       <p>'.$sn.'</p>
+                                    </div>';
+                }else{
+                  $strat_label='';
                 }
 
           //endif; 
@@ -700,10 +724,11 @@ endif;
                     <div class="resource-indiv">
                           <div class="resource-block">
                           <div class="resource-inner" style="padding-right:10px;">
-                              <div class="resource-head">
-                                <p>'.$primary_sdh_name.'</p>
-                              <img class="category-icon" src="'.get_bloginfo('template_directory').'/img/icons/'.$primary_sdh_slug.'.svg">
-                              </div>
+                              <div class="resource-head">'
+                                
+                              .$sdh_label.
+                              $strat_label.
+                              '</div>
                               <div class="content">
                               <h2>'.$the_title.' From Filter</h2>
                               <div class="author">
