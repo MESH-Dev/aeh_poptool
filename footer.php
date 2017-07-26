@@ -54,6 +54,7 @@
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <?php if (!is_page_template("templates/template-map.php")) {?>
 	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-593039cafc329c1e"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js"></script>
 <?php } ?>
 
 </body>

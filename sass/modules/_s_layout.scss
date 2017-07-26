@@ -616,13 +616,19 @@ img{
             }
 
             .resource-intro{
-              margin-bottom:7em;
+              //margin-bottom:7em;
+            }
+            .resource-content{
+              margin-bottom:4em;
+              margin-top:3em;
+              opacity:0;
             }
 
             h2{
               color:$blue;
               margin:0;
               font-weight:700;
+              font-size:2.1rem;
             }
 
             .content{
@@ -661,6 +667,7 @@ img{
               //font-size: 1.4rem;
               text-transform:uppercase;
               padding:10px 0;
+              height:70px;
               p{
                 display: inline-block;
                 font-size: 1.3rem;
@@ -670,7 +677,7 @@ img{
               }
             }
 
-            .strategy-label{
+            .sdh-label + .strategy-label{
               margin-top:10px;
             }
 
@@ -683,24 +690,24 @@ img{
               vertical-align: middle;
               border-radius:3px;
 
-              &.program-implementation{
-                background-color:orange;
+               &.program-implementation{
+                  background-color:#f57e20;
               }
 
               &.strategic-planning{
-                background-color:red;
+                background-color:#94cedd;
               }
 
               &.multisector-partnerships{
-                background-color:green;
+                background-color:#8fc73e;
               }
 
               &.hospital-readiness-community-assessment{
-                background-color:cyan;
+                background-color:#816281;
               }
 
               &.hit-systems-analysis{
-                background-color:brown;
+                background-color:#febc11;
               }
             }
 
@@ -798,14 +805,23 @@ img{
      text-indent: -29px;
      padding-left: 29px;
 
-     &.selected{
-      opacity:1 !important;
-      svg{
-        .cls-1{
-          fill:$new-red;
-        }
-      }
-     }
+     // input:checked{
+     //  opacity:1 !important;
+     //  svg{
+     //    .cls-1{
+     //      fill:$new-red;
+     //    }
+     //  }
+     // }
+
+     // &.selected{
+     //  opacity:1 !important;
+     //  svg{
+     //    .cls-1{
+     //      fill:$new-red;
+     //    }
+     //  }
+     // }
 
      @media($bp-smaller-than-tablet){
       width:100%;
@@ -885,12 +901,26 @@ img{
         opacity: 0;
         z-index: -10;
         position: absolute;
+        -webkit-appearance:none;
+        appearance:none;
+        -moz-appearance:none;
+        -ms-appearance:none;
         &:focus{
            ~ .indicator{
               border-color: $red;
            }
         }
         &:checked{
+          opacity:1 !important;
+          ~ .indicator{
+            svg{
+              .cls-1{
+                fill:$new-red;
+              }
+            }
+          }
+            
+
            ~ .indicator::after{
               display: block;
            }
@@ -912,27 +942,27 @@ img{
           }
 
           &.program-implementation{
-            background-color:orange;
+            background-color:#f57e20;
             border-radius:3px;
           }
 
           &.strategic-planning{
-            background-color:red;
+            background-color:#94cedd;
             border-radius:3px;
           }
 
           &.multisector-partnerships{
-            background-color:green;
+            background-color:#8fc73e;
             border-radius:3px;
           }
 
           &.hospital-readiness-community-assessment{
-            background-color:cyan;
+            background-color:#816281;
             border-radius:3px;
           }
 
           &.hit-systems-analysis{
-            background-color:brown;
+            background-color:#febc11;
             border-radius:3px;
           }
 
@@ -995,21 +1025,20 @@ img{
   }
 
   .functions{
+    border-top:6px solid $blue;
+    padding:1em 0;
+    span{
     font-size:1.8rem;
     color:$blue;
     cursor:pointer;
-    //display:inline-block;
-      //float:left;
-      //width:45%;
-      font-weight:700;
-      border-top:6px solid $blue;
-      padding:1em 0;
-      font-weight: 700;
-    &:hover,
-    &:focus,
-    &:active{
-      opacity:.7;
+    font-weight:700;
+      &:hover,
+      &:focus,
+      &:active{
+        opacity:.7;
+      }
     }
+   
   }
 
       // .functions{

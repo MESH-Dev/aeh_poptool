@@ -29,6 +29,7 @@ $('.loader, .loader-container').hide();
 
 
 function expandResource(){
+  $('.resource-content').css({opacity:0});
    $clk_ctr=0;
    $('.resource-block .expand').click(function(){
       console.log($clk_ctr);
@@ -37,25 +38,35 @@ function expandResource(){
       var openRi = rHt+140;
       var openR = rHt+130;
       var openC = rHt;
-    if($clk_ctr == 0){
+      var open = $(this).parent().parent().parent().parent().parent().hasClass('open');
+      console.log(open);
+      //$clk_ctr=0;
+    if(open != true){
       //console.log($clk_ctr);
-      $(this).parent().parent().parent().parent().parent().css({
-        height:openRi
-      });
-      $(this).parent().parent().parent().css({
-        height:openR
-      });
-      $(this).parent().parent().find('.content').css({
-        height:openC
-      });
-      $(this).find('img').css({transform:'rotate(90deg)'});
-      $(this).find('.text').text('Collapse');
-      $grid.masonry('layout');
-      $clk_ctr++;
+      //if(open != 'true'){
+        $(this).parent().parent().parent().parent().parent().css({
+          height:openRi
+        }).addClass('open');
+        $(this).parent().parent().parent().css({
+          height:openR
+        });
+        $(this).parent().parent().find('.content').css({
+          height:openC
+        });
+        $(this).find('img').css({transform:'rotate(90deg)'});
+        $(this).find('.text').text('Collapse');
+        $(this).parent().parent().find('.resource-content').animate({opacity:1,'margin-top':0},200);
+        $grid.masonry('layout');
+        $clk_ctr++;
+        console.log()
+      // }else{
+      //   $clk_ctr=0;
+      // }
+      
     }else{
       $(this).parent().parent().parent().parent().parent().css({
         height:'340'
-      });
+      }).removeClass('open');
       $(this).parent().parent().parent().css({
         height:'330'
       });
@@ -64,6 +75,7 @@ function expandResource(){
       });
       $(this).find('img').css({transform:'rotate(-90deg)'});
       $(this).find('.text').text('Expand');
+      $(this).parent().parent().find('.resource-content').animate({opacity:0,'margin-top':'3em'},100);
       $grid.masonry('layout');
       $clk_ctr=0;
     }
@@ -76,20 +88,34 @@ expandResource();
 
 //Get the resource filters checked
 $rs_cnt=0;
-$('.resource-filters label').click(function(){
+$('.resource-filters input').click(function(){
   //_this = $(this);
   $rs_cnt++;
-  if($rs_cnt==1){
-  $(this).parent().parent().find('label').each(function(){
-    $(this).animate({opacity:.5},200);
-  });
-  $(this).addClass('selected').css({opacity:1});
+  console.log($rs_cnt);
+  $checked = $('input:checked');
+  $non_checked = $('input:not(:checked)')
+  //if($rs_cnt==1){
+  if($checked.length > 0){
+    $(this).parent().parent().parent().find('input:not(:checked)').each(function(){
+      $(this).parent().animate({opacity:.5},200);
+    });
+     $(this).parent().parent().parent().find('input:checked').each(function(){
+      $(this).parent().animate({opacity:1},200);
+    });
+   }else{
+    $(this).parent().parent().parent().find('input').each(function(){
+      $(this).parent().animate({opacity:1},200);
+    });
+   }
+    //$(this).addClass('selected').css({opacity:1});
   
-  //console.log($rs_cnt);
-  }else{
-    $(this).removeClass('selected').css({opacity:1});
-    $rs_cnt=0;
-  }
+  // console.log($rs_cnt);
+  // }else{
+  //   $rs_cnt=0;
+  //   $(this).removeClass('selected').css({opacity:1});
+  //   console.log($rs_cnt);
+  // }
+
   // _this.not('.selected').animate({opacity:.7},200);
   //_this.not('.selected').addClass('not-active');
 });

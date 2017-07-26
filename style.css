@@ -2805,51 +2805,55 @@ img {
 .resource-grid .resource-block .resource-inner {
   padding-right: 10px;
 }
-/* line 618, sass/modules/_s_layout.scss */
-.resource-grid .resource-block .resource-intro {
-  margin-bottom: 7em;
+/* line 621, sass/modules/_s_layout.scss */
+.resource-grid .resource-block .resource-content {
+  margin-bottom: 4em;
+  margin-top: 3em;
+  opacity: 0;
 }
-/* line 622, sass/modules/_s_layout.scss */
+/* line 627, sass/modules/_s_layout.scss */
 .resource-grid .resource-block h2 {
   color: #00aeef;
   margin: 0;
   font-weight: 700;
+  font-size: 2.1rem;
 }
-/* line 628, sass/modules/_s_layout.scss */
+/* line 634, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .content {
   height: 200px;
   overflow: hidden;
   max-width: 95%;
 }
-/* line 633, sass/modules/_s_layout.scss */
+/* line 639, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .content p {
   font-size: 1.3rem;
 }
-/* line 639, sass/modules/_s_layout.scss */
+/* line 645, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .tax-terms span {
   text-transform: uppercase;
   font-weight: 700;
 }
-/* line 645, sass/modules/_s_layout.scss */
+/* line 651, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .author {
   font-size: 1.2em;
   font-weight: 700;
   margin: 15px 0;
 }
-/* line 651, sass/modules/_s_layout.scss */
+/* line 657, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .category-icon {
   display: inline-block;
   width: 20px;
   vertical-align: middle;
   margin-top: -4px;
 }
-/* line 658, sass/modules/_s_layout.scss */
+/* line 664, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-head {
   color: #00aeef;
   text-transform: uppercase;
   padding: 10px 0;
+  height: 70px;
 }
-/* line 664, sass/modules/_s_layout.scss */
+/* line 671, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-head p {
   display: inline-block;
   font-size: 1.3rem;
@@ -2857,11 +2861,11 @@ img {
   color: #00aeef;
   font-weight: 700;
 }
-/* line 673, sass/modules/_s_layout.scss */
-.resource-grid .resource-block .strategy-label {
+/* line 680, sass/modules/_s_layout.scss */
+.resource-grid .resource-block .sdh-label + .strategy-label {
   margin-top: 10px;
 }
-/* line 677, sass/modules/_s_layout.scss */
+/* line 684, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .strategy-cb {
   width: 20px;
   height: 20px;
@@ -2871,34 +2875,34 @@ img {
   vertical-align: middle;
   border-radius: 3px;
 }
-/* line 686, sass/modules/_s_layout.scss */
+/* line 693, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .strategy-cb.program-implementation {
-  background-color: orange;
+  background-color: #f57e20;
 }
-/* line 690, sass/modules/_s_layout.scss */
+/* line 697, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .strategy-cb.strategic-planning {
-  background-color: red;
+  background-color: #94cedd;
 }
-/* line 694, sass/modules/_s_layout.scss */
+/* line 701, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .strategy-cb.multisector-partnerships {
-  background-color: green;
+  background-color: #8fc73e;
 }
-/* line 698, sass/modules/_s_layout.scss */
+/* line 705, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .strategy-cb.hospital-readiness-community-assessment {
-  background-color: cyan;
+  background-color: #816281;
 }
-/* line 702, sass/modules/_s_layout.scss */
+/* line 709, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .strategy-cb.hit-systems-analysis {
-  background-color: brown;
+  background-color: #febc11;
 }
-/* line 707, sass/modules/_s_layout.scss */
+/* line 714, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot {
   border-top: 2px solid #E3E3E3;
   color: #00aeef;
   text-transform: uppercase;
   padding: 10px 0;
 }
-/* line 713, sass/modules/_s_layout.scss */
+/* line 720, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot .expand {
   font-size: 1.3rem;
   color: #00aeef;
@@ -2906,7 +2910,7 @@ img {
   font-weight: 700;
   cursor: pointer;
 }
-/* line 719, sass/modules/_s_layout.scss */
+/* line 726, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot .expand img {
   transform: rotate(-90deg);
   width: 8px;
@@ -2916,65 +2920,65 @@ img {
   margin-left: 10px;
   transition: transform 0.4s ease-in-out;
 }
-/* line 728, sass/modules/_s_layout.scss */
+/* line 735, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot .expand:focus, .resource-grid .resource-block .resource-foot .expand:active, .resource-grid .resource-block .resource-foot .expand:hover {
   opacity: .7;
 }
-/* line 735, sass/modules/_s_layout.scss */
+/* line 742, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot .resource-link {
   float: right;
 }
-/* line 737, sass/modules/_s_layout.scss */
+/* line 744, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot .resource-link a {
   font-size: 1.3rem;
   color: #00aeef;
   text-decoration: none;
   font-weight: 700;
 }
-/* line 742, sass/modules/_s_layout.scss */
+/* line 749, sass/modules/_s_layout.scss */
 .resource-grid .resource-block .resource-foot .resource-link a:hover, .resource-grid .resource-block .resource-foot .resource-link a:focus, .resource-grid .resource-block .resource-foot .resource-link a:active {
   opacity: .7;
 }
 
-/* line 752, sass/modules/_s_layout.scss */
+/* line 759, sass/modules/_s_layout.scss */
 .filter-dropdown {
   appearance: none;
   display: inline;
   float: left;
   padding-right: 5px;
 }
-/* line 758, sass/modules/_s_layout.scss */
+/* line 765, sass/modules/_s_layout.scss */
 .filter-dropdown ul {
   list-style-type: none;
 }
-/* line 760, sass/modules/_s_layout.scss */
+/* line 767, sass/modules/_s_layout.scss */
 .filter-dropdown ul li {
   list-style-type: none;
 }
-/* line 762, sass/modules/_s_layout.scss */
+/* line 769, sass/modules/_s_layout.scss */
 .filter-dropdown ul li.initial {
   background-color: #00aeef;
   position: relative;
   color: #ffffff;
   font-size: 1.2em;
 }
-/* line 767, sass/modules/_s_layout.scss */
+/* line 774, sass/modules/_s_layout.scss */
 .filter-dropdown ul li.initial span {
   position: absolute;
   transform: rotate(90deg);
   right: 5px;
 }
-/* line 776, sass/modules/_s_layout.scss */
+/* line 783, sass/modules/_s_layout.scss */
 .filter-dropdown ul li:hover ul, .filter-dropdown ul li:focus ul, .filter-dropdown ul li:active ul {
   left: 0;
 }
-/* line 780, sass/modules/_s_layout.scss */
+/* line 787, sass/modules/_s_layout.scss */
 .filter-dropdown ul li ul {
   position: absolute;
   left: -9999999px;
 }
 
-/* line 792, sass/modules/_s_layout.scss */
+/* line 799, sass/modules/_s_layout.scss */
 .resource-toolbar label {
   margin-right: 19px;
   margin-bottom: 10px;
@@ -2982,94 +2986,98 @@ img {
   text-indent: -29px;
   padding-left: 29px;
 }
-/* line 801, sass/modules/_s_layout.scss */
-.resource-toolbar label.selected {
-  opacity: 1 !important;
-}
-/* line 804, sass/modules/_s_layout.scss */
-.resource-toolbar label.selected svg .cls-1 {
-  fill: #ed4642;
-}
 @media (max-width: 750px) {
-  /* line 792, sass/modules/_s_layout.scss */
+  /* line 799, sass/modules/_s_layout.scss */
   .resource-toolbar label {
     width: 100%;
   }
 }
-/* line 817, sass/modules/_s_layout.scss */
+/* line 833, sass/modules/_s_layout.scss */
 .resource-toolbar #filterClear {
   float: right;
   font-size: 1.3em;
   padding: 20px 0;
   cursor: pointer;
 }
-/* line 823, sass/modules/_s_layout.scss */
+/* line 839, sass/modules/_s_layout.scss */
 .resource-toolbar #filterClear:hover, .resource-toolbar #filterClear:focus, .resource-toolbar #filterClear:active {
   text-decoration: underline;
 }
-/* line 830, sass/modules/_s_layout.scss */
+/* line 846, sass/modules/_s_layout.scss */
 .resource-toolbar .search-container {
   margin: 0;
 }
-/* line 835, sass/modules/_s_layout.scss */
+/* line 851, sass/modules/_s_layout.scss */
 .resource-toolbar .resource-filters fieldset {
   max-width: initial;
 }
-/* line 838, sass/modules/_s_layout.scss */
+/* line 854, sass/modules/_s_layout.scss */
 .resource-toolbar .resource-filters p {
   font-size: 1.3rem;
   padding: 20px 0;
   margin: 0;
   float: left;
 }
-/* line 844, sass/modules/_s_layout.scss */
+/* line 860, sass/modules/_s_layout.scss */
 .resource-toolbar .resource-filters .filter-group {
   margin-bottom: 0;
 }
-/* line 846, sass/modules/_s_layout.scss */
+/* line 862, sass/modules/_s_layout.scss */
 .resource-toolbar .resource-filters .filter-group legend {
   margin-bottom: 3rem;
 }
-/* line 851, sass/modules/_s_layout.scss */
+/* line 867, sass/modules/_s_layout.scss */
 .resource-toolbar .resource-filters .filter-group h2 span {
   font-style: italic;
   font-size: 1.3rem;
 }
 @media (max-width: 1060px) {
-  /* line 859, sass/modules/_s_layout.scss */
+  /* line 875, sass/modules/_s_layout.scss */
   .resource-toolbar .resource-filters .checkboxes.filters .columns-6 {
     width: 100%;
   }
 }
-/* line 871, sass/modules/_s_layout.scss */
+/* line 887, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes, .resource-toolbar .radio-buttons {
   padding-bottom: 2rem;
   margin-bottom: 2rem;
   border-bottom: 2px solid #E3E3E3;
 }
-/* line 876, sass/modules/_s_layout.scss */
+/* line 892, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes:nth-of-type(2), .resource-toolbar .radio-buttons:nth-of-type(2) {
   border-bottom: none;
 }
-/* line 880, sass/modules/_s_layout.scss */
+/* line 896, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes label, .resource-toolbar .radio-buttons label {
   cursor: pointer;
 }
-/* line 884, sass/modules/_s_layout.scss */
+/* line 900, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes input, .resource-toolbar .radio-buttons input {
   opacity: 0;
   z-index: -10;
   position: absolute;
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
 }
-/* line 889, sass/modules/_s_layout.scss */
+/* line 909, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes input:focus ~ .indicator, .resource-toolbar .radio-buttons input:focus ~ .indicator {
   border-color: #F05133;
 }
-/* line 894, sass/modules/_s_layout.scss */
+/* line 913, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes input:checked, .resource-toolbar .radio-buttons input:checked {
+  opacity: 1 !important;
+}
+/* line 917, sass/modules/_s_layout.scss */
+.resource-toolbar .checkboxes input:checked ~ .indicator svg .cls-1, .resource-toolbar .radio-buttons input:checked ~ .indicator svg .cls-1 {
+  fill: #ed4642;
+}
+/* line 924, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes input:checked ~ .indicator::after, .resource-toolbar .radio-buttons input:checked ~ .indicator::after {
   display: block;
 }
-/* line 899, sass/modules/_s_layout.scss */
+/* line 929, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes .indicator, .resource-toolbar .radio-buttons .indicator {
   vertical-align: middle;
   position: relative;
@@ -3079,51 +3087,51 @@ img {
   background: transparent;
   margin-right: 5px;
 }
-/* line 909, sass/modules/_s_layout.scss */
+/* line 939, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes .indicator svg, .resource-toolbar .radio-buttons .indicator svg {
   max-width: 100%;
   height: auto;
 }
-/* line 914, sass/modules/_s_layout.scss */
+/* line 944, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes .indicator.program-implementation, .resource-toolbar .radio-buttons .indicator.program-implementation {
-  background-color: orange;
+  background-color: #f57e20;
   border-radius: 3px;
 }
-/* line 919, sass/modules/_s_layout.scss */
+/* line 949, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes .indicator.strategic-planning, .resource-toolbar .radio-buttons .indicator.strategic-planning {
-  background-color: red;
+  background-color: #94cedd;
   border-radius: 3px;
 }
-/* line 924, sass/modules/_s_layout.scss */
+/* line 954, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes .indicator.multisector-partnerships, .resource-toolbar .radio-buttons .indicator.multisector-partnerships {
-  background-color: green;
+  background-color: #8fc73e;
   border-radius: 3px;
 }
-/* line 929, sass/modules/_s_layout.scss */
+/* line 959, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes .indicator.hospital-readiness-community-assessment, .resource-toolbar .radio-buttons .indicator.hospital-readiness-community-assessment {
-  background-color: cyan;
+  background-color: #816281;
   border-radius: 3px;
 }
-/* line 934, sass/modules/_s_layout.scss */
+/* line 964, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes .indicator.hit-systems-analysis, .resource-toolbar .radio-buttons .indicator.hit-systems-analysis {
-  background-color: brown;
+  background-color: #febc11;
   border-radius: 3px;
 }
-/* line 943, sass/modules/_s_layout.scss */
+/* line 973, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes .indicator:hover svg .cls-1, .resource-toolbar .checkboxes .indicator:active svg .cls-1, .resource-toolbar .checkboxes .indicator:focus svg .cls-1, .resource-toolbar .radio-buttons .indicator:hover svg .cls-1, .resource-toolbar .radio-buttons .indicator:active svg .cls-1, .resource-toolbar .radio-buttons .indicator:focus svg .cls-1 {
   fill: #ed4642;
 }
-/* line 949, sass/modules/_s_layout.scss */
+/* line 979, sass/modules/_s_layout.scss */
 .resource-toolbar .checkboxes .indicator svg, .resource-toolbar .radio-buttons .indicator svg {
   position: absolute;
   right: 0;
   top: 0;
 }
-/* line 957, sass/modules/_s_layout.scss */
+/* line 987, sass/modules/_s_layout.scss */
 .resource-toolbar .radio-buttons .indicator {
   border-radius: 50%;
 }
-/* line 959, sass/modules/_s_layout.scss */
+/* line 989, sass/modules/_s_layout.scss */
 .resource-toolbar .radio-buttons .indicator::after {
   content: '';
   display: none;
@@ -3135,28 +3143,30 @@ img {
   border-radius: 50%;
   background: #35BDB2;
 }
-/* line 991, sass/modules/_s_layout.scss */
+/* line 1021, sass/modules/_s_layout.scss */
 .resource-toolbar .filter-group:nth-of-type(2) .checkboxes,
 .resource-toolbar .filter-group:nth-of-type(2) .radio-buttons {
   border-bottom: none;
   margin-bottom: 0;
 }
-/* line 997, sass/modules/_s_layout.scss */
+/* line 1027, sass/modules/_s_layout.scss */
 .resource-toolbar .functions {
+  border-top: 6px solid #00aeef;
+  padding: 1em 0;
+}
+/* line 1030, sass/modules/_s_layout.scss */
+.resource-toolbar .functions span {
   font-size: 1.8rem;
   color: #00aeef;
   cursor: pointer;
   font-weight: 700;
-  border-top: 6px solid #00aeef;
-  padding: 1em 0;
-  font-weight: 700;
 }
-/* line 1008, sass/modules/_s_layout.scss */
-.resource-toolbar .functions:hover, .resource-toolbar .functions:focus, .resource-toolbar .functions:active {
+/* line 1035, sass/modules/_s_layout.scss */
+.resource-toolbar .functions span:hover, .resource-toolbar .functions span:focus, .resource-toolbar .functions span:active {
   opacity: .7;
 }
 
-/* line 1022, sass/modules/_s_layout.scss */
+/* line 1051, sass/modules/_s_layout.scss */
 .hide {
   display: none;
 }

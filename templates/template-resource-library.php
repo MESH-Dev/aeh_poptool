@@ -48,13 +48,12 @@ get_header();
                      </div>
                   </div>
                </div> -->
-
                 <!--Strategy-->
                <fieldset class="checkers filter-group">
                   <legend><h2>Strategy <span>select all that apply</span></h2></legend>
                    <div class="checkboxes filters strategy">
-
-                     <?php $strategy_filters= get_terms(array('taxonomy'=>'strategy', 'hide_empty'=>false)); 
+                     <div class="row">
+                     <?php $strategy_filters= get_terms(array('taxonomy'=>'strategy', 'hide_empty'=>true)); 
                            $strat_cnt=0;
 
                            $strat_count = count($strategy_filters);
@@ -83,6 +82,7 @@ get_header();
                               </div>
                               <?php } ?>
                      </div>
+                  </div>
                </fieldset>
                <!-- ++++++++++++++ -->
                <!--Social Determinant-->
@@ -91,7 +91,7 @@ get_header();
                    <div class="checkboxes filters determinant">
                      <div class="row">
 
-                           <?php $sdh_filters= get_terms(array('taxonomy'=>'sdh', 'hide_empty'=>false));
+                           <?php $sdh_filters= get_terms(array('taxonomy'=>'sdh', 'hide_empty'=>true));
                               $sdh_cnt=0;
                               
                               $sdh_count = count($sdh_filters);
@@ -130,7 +130,7 @@ get_header();
             </div>
          <div class="row">
             <div class="apply-filters functions">
-               Apply Filters »
+               <span>Apply Filters »</span>
             </div>  
             <!-- <div class="remove-filters functions">
                Clear All X
@@ -242,17 +242,23 @@ get_header();
                                     <p class="resource-intro">
                                        <?php echo $resource_intro; ?>
                                     </p>
+                                    <div class="resource-content">
                                     <?php echo $resource_content; ?>
+                                    </div>
                                     <?php //echo the_content(); ?>
                                 
-                                 <p class="tax-terms s-determinants">
+                                 <?php //if($sdh_name != ''){ ?>
+                                <!--  <p class="tax-terms s-determinants">
                                     <span>Social Determinants: </span>
                                     <?php echo rtrim($sdh_name, $comma); ?>
-                                 </p>
-                                 <p class="tax-terms strategy">
+                                 </p> -->
+                                 <?php //} ?>
+                                 <?php //if($strat_name != ''){ ?>
+                                 <!-- <p class="tax-terms strategy">
                                     <span>Strategy: </span>
                                     <?php echo rtrim($strat_name, $comma); ?>
-                                 </p>
+                                 </p> -->
+                                 <?php //} ?>
                                   </div>
                                  <div class="resource-foot">
                                     <p class="expand">
