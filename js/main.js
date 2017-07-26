@@ -551,10 +551,16 @@ function createMarker(hospital){
 
     });
 
+    //Create variable needed for Spider marker clustering
+    var oms = new OverlappingMarkerSpiderfier(map, { 
+            markersWontMove: true, 
+            markersWontHide: true,
+            basicFormatEvents: true
+          });
 
 
     //Click event here to open panel and get content by ID
-    google.maps.event.addListener(marker, 'click', function(){
+    google.maps.event.addListener(marker, 'spider_click', function(){
         landingViewClose();
         desktopOpenListings();
         //reset detail panel html here
@@ -574,9 +580,11 @@ function createMarker(hospital){
    // });
 
    markers.push(marker);
+   //oms.addMarker(marker);
+
+   window.oms = oms; 
 
 }
-
 
 function setActiveMarker(marker_id){
     for (var i = 0; i < markers.length; i++) {

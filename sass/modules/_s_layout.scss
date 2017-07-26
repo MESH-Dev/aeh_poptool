@@ -591,7 +591,7 @@ img{
     //transition:height .2s ease-in-out;
     // width:50%;
     // float:left;
-    height:310px;
+    height:340px;
 
     &:after{
       content: '';
@@ -602,7 +602,7 @@ img{
 
   .resource-block{
 
-            height: 300px;
+            height: 330px;
             border-top: 6px solid $blue;
             border-bottom: 2px solid $light-grey;
              
@@ -616,13 +616,19 @@ img{
             }
 
             .resource-intro{
-              margin-bottom:7em;
+              //margin-bottom:7em;
+            }
+            .resource-content{
+              margin-bottom:4em;
+              margin-top:3em;
+              opacity:0;
             }
 
             h2{
               color:$blue;
               margin:0;
               font-weight:700;
+              font-size:2.1rem;
             }
 
             .content{
@@ -656,17 +662,52 @@ img{
             }
 
             .resource-head{
-              text-align:right;
+              //text-align:right;
               color:$blue;
               //font-size: 1.4rem;
               text-transform:uppercase;
               padding:10px 0;
+              height:70px;
               p{
                 display: inline-block;
                 font-size: 1.3rem;
-                margin: 0 10px 0 0;
+                margin: 0 0 0 10px;
                 color:$blue;
                 font-weight:700;
+              }
+            }
+
+            .sdh-label + .strategy-label{
+              margin-top:10px;
+            }
+
+            .strategy-cb{
+              width:20px;
+              height:20px;
+              display:inline-block;
+              margin-top:-4px;
+              background-color:$light-grey;
+              vertical-align: middle;
+              border-radius:3px;
+
+               &.program-implementation{
+                  background-color:#f57e20;
+              }
+
+              &.strategic-planning{
+                background-color:#94cedd;
+              }
+
+              &.multisector-partnerships{
+                background-color:#8fc73e;
+              }
+
+              &.hospital-readiness-community-assessment{
+                background-color:#816281;
+              }
+
+              &.hit-systems-analysis{
+                background-color:#febc11;
               }
             }
 
@@ -755,169 +796,250 @@ img{
 }
 
 .resource-toolbar{
-        label{
-         //display: inline-block;
-         margin-right: 10px;
-         margin-bottom: 10px;
-         font-size: 1.4rem;
-         //white-space:nowrap;
-         text-indent: -20px;
-         padding-left: 20px;
+    label{
+     //display: inline-block;
+     margin-right: 19px;
+     margin-bottom: 10px;
+     font-size: 1.4rem;
+     //white-space:nowrap;
+     text-indent: -29px;
+     padding-left: 29px;
+
+     // input:checked{
+     //  opacity:1 !important;
+     //  svg{
+     //    .cls-1{
+     //      fill:$new-red;
+     //    }
+     //  }
+     // }
+
+     // &.selected{
+     //  opacity:1 !important;
+     //  svg{
+     //    .cls-1{
+     //      fill:$new-red;
+     //    }
+     //  }
+     // }
+
+     @media($bp-smaller-than-tablet){
+      width:100%;
+     }
+  }
 
 
 
-         @media($bp-smaller-than-tablet){
-          width:100%;
-         }
+  #filterClear{
+    float: right;
+    //color: #5a5b5b;
+    font-size: 1.3em;
+    padding: 20px 0;
+    cursor:pointer;
+    &:hover,
+    &:focus,
+    &:active{
+      text-decoration: underline;
+    }
+  }
+
+  .search-container{
+    margin:0;
+  }
+
+  .resource-filters{
+    fieldset{
+      max-width:initial;
+    }
+    p{
+      font-size:1.3rem;
+      padding:20px 0;
+      margin:0;
+      float:left;
+    }
+    .filter-group{
+      margin-bottom:0;
+      legend{
+        margin-bottom:3rem;
       }
+      h2{
 
-
-
-      #filterClear{
-        float: right;
-        //color: #5a5b5b;
-        font-size: 1.3em;
-        padding: 20px 0;
-        cursor:pointer;
-        &:hover,
-        &:focus,
-        &:active{
-          text-decoration: underline;
-        }
-      }
-
-      .search-container{
-        margin:0;
-      }
-
-      .resource-filters{
-        fieldset{
-          max-width:initial;
-        }
-        p{
+        span{
+          font-style:italic;
           font-size:1.3rem;
-          padding:20px 0;
-          margin:0;
-          float:left;
         }
-        .filter-group{
-          margin-bottom:0;
-          legend{
-            margin-bottom:3rem;
+      }
+    }
+
+    .checkboxes.filters{
+      .columns-6{
+      @media ($bp-smaller-than-desktop){
+        width:100%;
+      }
+
+    }
+    }
+    
+  }
+
+
+
+  .checkboxes, .radio-buttons{
+     padding-bottom: 2rem;
+     margin-bottom: 2rem;
+     border-bottom: 2px solid $light-grey;
+
+     &:nth-of-type(2){
+      border-bottom:none;
+     }
+
+     label{
+      cursor:pointer;
+     }
+
+     input{
+        opacity: 0;
+        z-index: -10;
+        position: absolute;
+        -webkit-appearance:none;
+        appearance:none;
+        -moz-appearance:none;
+        -ms-appearance:none;
+        &:focus{
+           ~ .indicator{
+              border-color: $red;
+           }
+        }
+        &:checked{
+          opacity:1 !important;
+          ~ .indicator{
+            svg{
+              .cls-1{
+                fill:$new-red;
+              }
+            }
           }
-          h2{
+            
 
-            span{
-              font-style:italic;
-              font-size:1.3rem;
-            }
+           ~ .indicator::after{
+              display: block;
+           }
+        }
+     }
+     .indicator{
+        vertical-align: middle;
+        position: relative;
+        display: inline-block;
+        height: 21px;
+        width: 21px;
+        background: transparent;
+        //border: 1px solid $blue;
+        margin-right: 5px;
+
+          svg{
+            max-width:100%;
+            height:auto;
           }
-        }
 
-        .checkboxes.filters{
-          .columns-6{
-          @media ($bp-smaller-than-desktop){
-            width:100%;
+          &.program-implementation{
+            background-color:#f57e20;
+            border-radius:3px;
           }
 
-        }
-        }
-        
-      }
+          &.strategic-planning{
+            background-color:#94cedd;
+            border-radius:3px;
+          }
 
+          &.multisector-partnerships{
+            background-color:#8fc73e;
+            border-radius:3px;
+          }
 
+          &.hospital-readiness-community-assessment{
+            background-color:#816281;
+            border-radius:3px;
+          }
 
-      .checkboxes, .radio-buttons{
-         padding-bottom: 2rem;
-         margin-bottom: 2rem;
-         border-bottom: 2px solid $light-grey;
+          &.hit-systems-analysis{
+            background-color:#febc11;
+            border-radius:3px;
+          }
 
-         &:nth-of-type(2){
-          border-bottom:none;
-         }
-         input{
-            opacity: 0;
-            z-index: -10;
-            position: absolute;
-            &:focus{
-               ~ .indicator{
-                  border-color: $red;
-               }
-            }
-            &:checked{
-               ~ .indicator::after{
-                  display: block;
-               }
-            }
-         }
-         .indicator{
-            vertical-align: middle;
-            position: relative;
-            display: inline-block;
-            height: 12px;
-            width: 12px;
-            background: transparent;
-            border: 1px solid $blue;
-            margin-right: 5px;
-         }
-      }
-      .radio-buttons{
-         .indicator{
-            border-radius: 50%;
-            &::after{
-               content: '';
-               display: none;
-               position: absolute;
-               top: 1px;
-               left: 1px;
-               height: 8px;
-               width: 8px;
-               border-radius: 50%;
-               background: $green;
-            }
-         }
-      }
-      .checkboxes{
-         .indicator{
-            &::after{
-               content: '';
-               display: none;
-               position: absolute;
-               height: 12px;
-               width: 6px;
-               transform: rotate(45deg);
-               transform-origin: bottom left;
-               bottom: 6px;
-               left: 0;
-               border-right: 2px solid $green;
-               border-bottom: 2px solid $green;
-            }
-         }
-      }
-
-      .filter-group:nth-of-type(2) .checkboxes,
-      .filter-group:nth-of-type(2) .radio-buttons{
-        border-bottom:none;
-        margin-bottom:0;
-      }
-
-      .functions{
-        font-size:1.8rem;
-        color:$blue;
-        cursor:pointer;
-        //display:inline-block;
-          //float:left;
-          //width:45%;
-          font-weight:700;
-          border-top:6px solid $blue;
-          padding:1em 0;
-          font-weight: 700;
         &:hover,
-        &:focus,
-        &:active{
-          opacity:.7;
+        &:active,
+        &:focus{
+          svg{
+            .cls-1{
+              fill:$new-red;
+            }
+          }
         }
+
+        svg{
+          position:absolute;
+          right:0;
+          top:0;
+        }
+     }
+  }
+  .radio-buttons{
+     .indicator{
+        border-radius: 50%;
+        &::after{
+           content: '';
+           display: none;
+           position: absolute;
+           top: 1px;
+           left: 1px;
+           height: 8px;
+           width: 8px;
+           border-radius: 50%;
+           background: $green;
+        }
+     }
+  }
+
+  .checkboxes{
+     .indicator{
+        // &::after{
+        //    content: '';
+        //    display: none;
+        //    position: absolute;
+        //    height: 12px;
+        //    width: 6px;
+        //    transform: rotate(45deg);
+        //    transform-origin: bottom left;
+        //    bottom: 6px;
+        //    left: 0;
+        //    border-right: 2px solid $green;
+        //    border-bottom: 2px solid $green;
+        // }
+     }
+  }
+
+  .filter-group:nth-of-type(2) .checkboxes,
+  .filter-group:nth-of-type(2) .radio-buttons{
+    border-bottom:none;
+    margin-bottom:0;
+  }
+
+  .functions{
+    border-top:6px solid $blue;
+    padding:1em 0;
+    span{
+    font-size:1.8rem;
+    color:$blue;
+    cursor:pointer;
+    font-weight:700;
+      &:hover,
+      &:focus,
+      &:active{
+        opacity:.7;
       }
+    }
+   
+  }
 
       // .functions{
       //     display:inline-block;

@@ -48,21 +48,62 @@ get_header();
                      </div>
                   </div>
                </div> -->
+                <!--Strategy-->
+               <fieldset class="checkers filter-group">
+                  <legend><h2>Strategy <span>select all that apply</span></h2></legend>
+                   <div class="checkboxes filters strategy">
+                     <div class="row">
+                     <?php $strategy_filters= get_terms(array('taxonomy'=>'strategy', 'hide_empty'=>true)); 
+                           $strat_cnt=0;
+
+                           $strat_count = count($strategy_filters);
+                              $strat_half = $strat_count/2;
+                              $strat_round = round($strat_half);
+                     ?>
+
+                              <?php foreach ($strategy_filters as $strategy_filter){  
+                                 $strat_cnt++;
+                                 $strat_class = $strategy_filter->slug;
+                               if($strat_count > 5 && $strat_cnt == 1){ ?>
+                                 <div class="columns-6 start">
+                              <?php }
+                                 ?>
+                                 <?php if($strat_count > 5 && $strat_cnt == $strat_round+1){ ?>
+                              </div><div class='columns-6 next'>
+                              <?php } ?>
+                              <label for="id-<?php echo $strategy_filter->slug ?>">
+                                 <input type="checkbox" id="id-<?php echo $strategy_filter->slug ?>" name="check-<?php echo $strategy_filter->slug ?>" data-filter='<?php echo $strategy_filter->slug ?>' data-valname="<?php echo $strategy_filter->name ?>" value=".<?php echo $strategy_filter->name; ?>">
+                                    <div class="indicator <?php echo $strat_class; ?>"></div>
+                                    <?php echo $strategy_filter->name ?>
+                                 </input>
+                              </label>
+                               <?php } ?>
+                              <?php if($strat_count > 5 && $strat_count-$strat_cnt == 0){?>
+                              </div>
+                              <?php } ?>
+                     </div>
+                  </div>
+               </fieldset>
+               <!-- ++++++++++++++ -->
                <!--Social Determinant-->
                <fieldset class="checkers filter-group">
-                  <legend><h2>Social Determinant <span>check all that apply</span></h2></legend>
+                  <legend><h2>Social Determinant <span>select all that apply</span></h2></legend>
                    <div class="checkboxes filters determinant">
                      <div class="row">
 
-                           <?php $sdh_filters= get_terms(array('taxonomy'=>'sdh', 'hide_empty'=>false));
+                           <?php $sdh_filters= get_terms(array('taxonomy'=>'sdh', 'hide_empty'=>true));
                               $sdh_cnt=0;
                               
                               $sdh_count = count($sdh_filters);
                               $sdh_half = $sdh_count/2;
                               $sdh_round = round($sdh_half);
+
                               //var_dump($sdh_count);
                               foreach ($sdh_filters as $sdh_filter){ 
-                                 $sdh_cnt++;                                 
+                                 $sdh_cnt++;
+                                 $sdh_slug = $sdh_filter->slug;
+                                 $_base = get_bloginfo('template_directory'); 
+                                 $sdh_icon_url = $_base.'/img/icons/med/AEH_PopHealth_med-Icons_'.$sdh_slug.'.svg';                               
                               if($sdh_count > 5 && $sdh_cnt == 1){ ?>
                               <div class="columns-6 start">
                               <?php }
@@ -72,7 +113,7 @@ get_header();
                               <?php } ?>
                               <label for="id-<?php echo $sdh_filter->slug ?>">
                                  <input type="checkbox" id="id-<?php echo $sdh_filter->slug ?>" name="check-<?php echo $sdh_filter->slug ?>" data-filter='<?php echo $sdh_filter->slug ?>' data-valname="<?php echo $sdh_filter->name; ?>" value=".<?php echo $sdh_filter->slug; ?>">
-                                    <div class="indicator"></div>   
+                                    <div class="indicator"><?php echo file_get_contents($sdh_icon_url); ?></div>   
                                     <?php echo $sdh_filter->name; ?>
                                  </input>
                               </label>
@@ -85,44 +126,11 @@ get_header();
                </fieldset>
                <!-- ++++++++++++++ -->
 
-               <!--Strategy-->
-               <fieldset class="checkers filter-group">
-                  <legend><h2>Strategy <span>check all that apply</span></h2></legend>
-                   <div class="checkboxes filters strategy">
 
-                     <?php $strategy_filters= get_terms(array('taxonomy'=>'strategy', 'hide_empty'=>false)); 
-                           $strat_cnt=0;
-
-                           $strat_count = count($strategy_filters);
-                              $strat_half = $strat_count/2;
-                              $strat_round = round($strat_half);
-                     ?>
-
-                              <?php foreach ($strategy_filters as $strategy_filter){  
-                                 $strat_cnt++;
-                               if($strat_count > 5 && $strat_cnt == 1){ ?>
-                                 <div class="columns-6 start">
-                              <?php }
-                                 ?>
-                                 <?php if($strat_count > 5 && $strat_cnt == $strat_round+1){ ?>
-                              </div><div class='columns-6 next'>
-                              <?php } ?>
-                              <label for="id-<?php echo $strategy_filter->slug ?>">
-                                 <input type="checkbox" id="id-<?php echo $strategy_filter->slug ?>" name="check-<?php echo $strategy_filter->slug ?>" data-filter='<?php echo $strategy_filter->slug ?>' data-valname="<?php echo $strategy_filter->name ?>" value=".<?php echo $strategy_filter->name; ?>">
-                                    <div class="indicator"></div>
-                                    <?php echo $strategy_filter->name ?>
-                                 </input>
-                              </label>
-                               <?php } ?>
-                              <?php if($strat_count > 5 && $strat_count-$strat_cnt == 0){?>
-                              </div>
-                              <?php } ?>
-                     </div>
-               </fieldset>
             </div>
          <div class="row">
             <div class="apply-filters functions">
-               Apply Filters »
+               <span>Apply Filters »</span>
             </div>  
             <!-- <div class="remove-filters functions">
                Clear All X
@@ -178,22 +186,29 @@ get_header();
                               $resource_link = get_field('resource_link', $post->ID);
                               
                               $sdh = get_the_terms($post->ID, 'sdh');
+                              $sdh_name_single = '';
+                              $sdh_slug = '';
                               $sdh_name = '';
                               $sdh_class = '';
                               if($sdh != ''){
                                  foreach($sdh as $determinant){
+                                    $sdh_name_single = $determinant->name;
+                                    $sdh_slug = $determinant->slug;
                                     $sdh_name .= $determinant->name . $comma;
                                     $sdh_class .= $determinant->slug . $separator; 
                                  }
                               }
 
                               $strategies = get_the_terms($post->ID, 'strategy');
+                              $strat_name_single = '';
                               $strat_name = '';
                               $strat_class = '';
                               if($strategies != ''){
                                  foreach($strategies as $strategy){
+                                    $strat_name_single = $strategy->name;
                                     $strat_name .= $strategy->name . $comma;
-                                    $strat_class .= $strategy->slug . $separator;
+                                    //$strat_class .= $strategy->slug . $separator;
+                                    $strat_class = $strategy->slug;
                                  }
                               }
 
@@ -202,12 +217,23 @@ get_header();
                            <div class="resource-indiv">
                               <div class="resource-block">
                                  <div class="resource-inner" style="padding-right:10px;">
-                                 <?php if($primary_sdh_resource !=''){?>
+                                 <?php //if($primary_sdh_resource !=''){?>
                                  <div class="resource-head">
-                                    <p><?php echo $primary_sdh_name; ?></p>
-                                    <img class="category-icon" src="<?php bloginfo('template_directory'); ?>/img/icons/<?php echo $primary_sdh_slug ?>.svg">
+                                    <?php if ($sdh_name_single != ''){?>
+                                    <div class="sdh-label">
+                                       <img class="category-icon" src="<?php bloginfo('template_directory'); ?>/img/icons/<?php echo $sdh_slug ?>.svg">
+                                       <p><?php echo $sdh_name_single ?></p>
+                                    </div>
+                                    <?php } ?>
+                                    <?php if ($strat_name_single != ''){?>
+                                    <div class="strategy-label">
+                                       <div class="strategy-cb <?php echo $strat_class; ?>">
+                                       </div>
+                                       <p><?php echo $strat_name_single; ?></p>
+                                    </div>
+                                    <?php } ?>
                                  </div>
-                                 <?php } ?>
+                                 <?php //} ?>
                                  <div class="content">
                                  <h2><?php echo the_title();?></h2>
                                  <div class="author">
@@ -216,17 +242,23 @@ get_header();
                                     <p class="resource-intro">
                                        <?php echo $resource_intro; ?>
                                     </p>
+                                    <div class="resource-content">
                                     <?php echo $resource_content; ?>
+                                    </div>
                                     <?php //echo the_content(); ?>
                                 
-                                 <p class="tax-terms s-determinants">
+                                 <?php //if($sdh_name != ''){ ?>
+                                <!--  <p class="tax-terms s-determinants">
                                     <span>Social Determinants: </span>
                                     <?php echo rtrim($sdh_name, $comma); ?>
-                                 </p>
-                                 <p class="tax-terms strategy">
+                                 </p> -->
+                                 <?php //} ?>
+                                 <?php //if($strat_name != ''){ ?>
+                                 <!-- <p class="tax-terms strategy">
                                     <span>Strategy: </span>
                                     <?php echo rtrim($strat_name, $comma); ?>
-                                 </p>
+                                 </p> -->
+                                 <?php //} ?>
                                   </div>
                                  <div class="resource-foot">
                                     <p class="expand">

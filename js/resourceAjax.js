@@ -29,41 +29,53 @@ $('.loader, .loader-container').hide();
 
 
 function expandResource(){
+  $('.resource-content').css({opacity:0});
    $clk_ctr=0;
    $('.resource-block .expand').click(function(){
       console.log($clk_ctr);
       var r = $(this).parent().parent().find('.content');
       var rHt = r[0].scrollHeight;
-      var openRi = rHt+110;
-      var openR = rHt+100;
+      var openRi = rHt+140;
+      var openR = rHt+130;
       var openC = rHt;
-    if($clk_ctr == 0){
+      var open = $(this).parent().parent().parent().parent().parent().hasClass('open');
+      console.log(open);
+      //$clk_ctr=0;
+    if(open != true){
       //console.log($clk_ctr);
-      $(this).parent().parent().parent().parent().parent().css({
-        height:openRi
-      });
-      $(this).parent().parent().parent().css({
-        height:openR
-      });
-      $(this).parent().parent().find('.content').css({
-        height:openC
-      });
-      $(this).find('img').css({transform:'rotate(90deg)'});
-      $(this).find('.text').text('Collapse');
-      $grid.masonry('layout');
-      $clk_ctr++;
+      //if(open != 'true'){
+        $(this).parent().parent().parent().parent().parent().css({
+          height:openRi
+        }).addClass('open');
+        $(this).parent().parent().parent().css({
+          height:openR
+        });
+        $(this).parent().parent().find('.content').css({
+          height:openC
+        });
+        $(this).find('img').css({transform:'rotate(90deg)'});
+        $(this).find('.text').text('Collapse');
+        $(this).parent().parent().find('.resource-content').animate({opacity:1,'margin-top':0},200);
+        $grid.masonry('layout');
+        $clk_ctr++;
+        console.log()
+      // }else{
+      //   $clk_ctr=0;
+      // }
+      
     }else{
       $(this).parent().parent().parent().parent().parent().css({
-        height:'310'
-      });
+        height:'340'
+      }).removeClass('open');
       $(this).parent().parent().parent().css({
-        height:'300'
+        height:'330'
       });
       $(this).parent().parent().find('.content').css({
         height:'200'
       });
       $(this).find('img').css({transform:'rotate(-90deg)'});
       $(this).find('.text').text('Expand');
+      $(this).parent().parent().find('.resource-content').animate({opacity:0,'margin-top':'3em'},100);
       $grid.masonry('layout');
       $clk_ctr=0;
     }
@@ -75,6 +87,38 @@ expandResource();
 
 
 //Get the resource filters checked
+$rs_cnt=0;
+$('.resource-filters input').click(function(){
+  //_this = $(this);
+  $rs_cnt++;
+  console.log($rs_cnt);
+  $checked = $('input:checked');
+  $non_checked = $('input:not(:checked)')
+  //if($rs_cnt==1){
+  if($checked.length > 0){
+    $(this).parent().parent().parent().find('input:not(:checked)').each(function(){
+      $(this).parent().animate({opacity:.5},200);
+    });
+     $(this).parent().parent().parent().find('input:checked').each(function(){
+      $(this).parent().animate({opacity:1},200);
+    });
+   }else{
+    $(this).parent().parent().parent().find('input').each(function(){
+      $(this).parent().animate({opacity:1},200);
+    });
+   }
+    //$(this).addClass('selected').css({opacity:1});
+  
+  // console.log($rs_cnt);
+  // }else{
+  //   $rs_cnt=0;
+  //   $(this).removeClass('selected').css({opacity:1});
+  //   console.log($rs_cnt);
+  // }
+
+  // _this.not('.selected').animate({opacity:.7},200);
+  //_this.not('.selected').addClass('not-active');
+});
 //$('.resource-filters input[type="checkbox"]').click(function(){
 $('.apply-filters').click(function(){
   _this = $(this);
@@ -82,10 +126,10 @@ $('.apply-filters').click(function(){
  $clk_ctr=0;
   //$(this).parent().find('.selected').removeClass('selected');
   
-  $(this).addClass('selected');
+  //$(this).addClass('selected');
 
-  var _on = _this.data('filter');
-  console.log(_on); 
+  // var _on = _this.data('filter');
+  // console.log(_on); 
 
   var strategies = []
   var strategy = $(this).data('filter');
@@ -94,6 +138,8 @@ $('.apply-filters').click(function(){
   $('.filters.strategy input[type="checkbox"]:checked').each(function(i){
     strategies[i] = $(this).data('filter');
   }); 
+
+  console.log(strategies);
   
   var determinants = [];
   var determinant = $(this).data('filter');
@@ -101,6 +147,7 @@ $('.apply-filters').click(function(){
   $('.filters.determinant :checkbox:checked').each(function(i){
     determinants[i] = $(this).data('filter');
   });
+  console.log(determinants);
 
   //Delete whatever is already in the result
   $('.resource-item').detach();
@@ -126,7 +173,7 @@ $('#resource-form').submit(function(e){
   $('.post-error').detach();
 });
 
-$('.remove-filters').click(function(){
+$('#filterClear').click(function(){
   var determinants = "";
   var strategies = "";
   var query = "";
@@ -135,17 +182,19 @@ $('.remove-filters').click(function(){
   $('.filters input[type="checkbox"]:checked').prop('checked', false);
   $('#resource-form input[name="s"]').val('');
 
+  $('.filters label').animate({opacity:1},200).removeClass('selected');
+
   $('.member-resource-item').detach();
   //$('.discussion-listing').detach();
   $('.post-error').detach();
 
-  $('.topic-filtered span').text('all');
-  $('.type-filtered span').text('all');
+  //$('.topic-filtered span').text('all');
+  //$('.type-filtered span').text('all');
 
   loadResources(determinants,strategies,query);
   // loadDiscussions(discussionListing, '');
 
-  $('[class*="filter-"]').find('li.selected').removeClass('selected');
+  //$('[class*="filter-"]').find('li.selected').removeClass('selected');
 
 });
 
