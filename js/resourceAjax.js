@@ -32,14 +32,14 @@ function expandResource(){
   $('.resource-content').css({opacity:0});
    $clk_ctr=0;
    $('.resource-block .expand').click(function(){
-      console.log($clk_ctr);
+      //console.log($clk_ctr);
       var r = $(this).parent().parent().find('.content');
       var rHt = r[0].scrollHeight;
       var openRi = rHt+140;
       var openR = rHt+130;
       var openC = rHt;
       var open = $(this).parent().parent().parent().parent().parent().hasClass('open');
-      console.log(open);
+      //console.log(open);
       //$clk_ctr=0;
     if(open != true){
       //console.log($clk_ctr);
@@ -58,11 +58,6 @@ function expandResource(){
         $(this).parent().parent().find('.resource-content').animate({opacity:1,'margin-top':0},200);
         $grid.masonry('layout');
         $clk_ctr++;
-        console.log()
-      // }else{
-      //   $clk_ctr=0;
-      // }
-      
     }else{
       $(this).parent().parent().parent().parent().parent().css({
         height:'340'
@@ -91,7 +86,7 @@ $rs_cnt=0;
 $('.resource-filters input').click(function(){
   //_this = $(this);
   $rs_cnt++;
-  console.log($rs_cnt);
+  //console.log($rs_cnt);
   $checked = $('input:checked');
   $non_checked = $('input:not(:checked)')
   //if($rs_cnt==1){
