@@ -114,8 +114,8 @@ $('.resource-filters input').click(function(){
   // _this.not('.selected').animate({opacity:.7},200);
   //_this.not('.selected').addClass('not-active');
 });
-//$('.resource-filters input[type="checkbox"]').click(function(){
-$('.apply-filters').click(function(){
+$('.resource-filters input[type="checkbox"]').click(function(){
+//$('.apply-filters').click(function(){
   _this = $(this);
   $grid.masonry('remove');
  $clk_ctr=0;
@@ -179,7 +179,7 @@ $('#filterClear').click(function(){
 
   $('.filters label').animate({opacity:1},200).removeClass('selected');
 
-  $('.member-resource-item').detach();
+  $('resource-item').detach();
   //$('.discussion-listing').detach();
   $('.post-error').detach();
 

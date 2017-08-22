@@ -551,12 +551,6 @@ function createMarker(hospital){
 
     });
 
-    //Create variable needed for Spider marker clustering
-    var oms = new OverlappingMarkerSpiderfier(map, { 
-            markersWontMove: true, 
-            markersWontHide: true,
-            basicFormatEvents: true
-          });
 
 
     //Click event here to open panel and get content by ID
@@ -580,11 +574,9 @@ function createMarker(hospital){
    // });
 
    markers.push(marker);
-   //oms.addMarker(marker);
-
-   window.oms = oms; 
-
+   return marker;
 }
+
 
 function setActiveMarker(marker_id){
     for (var i = 0; i < markers.length; i++) {
@@ -764,7 +756,7 @@ function createDetailPanel(single_program_id, single_hospital_id){
       panel_HTML +=     '</div>';
       panel_HTML +=     '<div class="detail-nav detail-nav-bottom">';
       panel_HTML +=             '<div class="detail-nav-border">';
-      panel_HTML +=                 '<a class="contact-button" id="expand-'+program.id+'-btn" href="mailto: ksusman@essentialhospitals.org, '+program.contact_email+'?Subject=Population Health Program Inquiry">Contact a Representative »</a>';
+      panel_HTML +=                 '<a class="contact-button" id="expand-'+program.id+'-btn" href="mailto: ksusman@essentialhospitals.org, '+program.contact_email+'?Subject=Population Health Program Inquiry">Contact a Representative Â»</a>';
       panel_HTML +=                 '<div class="navigation-button collapse" id="expand-'+program.id+'" >';
       panel_HTML +=                      '<a class="button-text">EXPAND</a><svg  class="button-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 12"><defs><style>.cls-1 { fill: #0d97d4; } </style></defs><title>uparrow</title><path class="cls-1" d="M25,12,13.06,0,0,12H4.28l8.78-7.92L21.17,12Z"/></svg>';
       panel_HTML +=                 '</div>';
@@ -807,9 +799,17 @@ function centerMapOnHospital(hosp_id){
 
 
 function loadMarkers(){
+  var oms = new OverlappingMarkerSpiderfier(map, { 
+  markersWontMove: true, 
+  markersWontHide: false,
+  basicFormatEvents: true,
+  keepSpiderfied: true
+
+});
    //create markers from hospital data json
    for (var hospital_id in hospitals){
-      createMarker(hospitals[hospital_id]);
+      var marker = createMarker(hospitals[hospital_id]);
+      oms.addMarker(marker);
    }
 }
 

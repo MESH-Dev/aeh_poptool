@@ -121,6 +121,7 @@ img{
    }
     a{
       float: left;
+      width:100%;
       &:nth-of-type(2){
           margin: 10px 0;
       }
@@ -131,6 +132,7 @@ img{
     .single-cta{
       position: relative;
       overflow: hidden;
+      width:100%;
       @media screen and ($bp-smaller-than-tablet){
          width: 100%;
       }
@@ -342,6 +344,18 @@ img{
     font-size:1.6em;
     list-style-position: outside;
     margin-left:2.5em;
+  }
+
+  a{
+    color:$blue;
+    text-decoration:none;
+    &:hover,
+    &:focus,
+    &:active{
+      //opacity:.7;
+      text-decoration:none;
+      color:$green;
+    }
   }
 }
 
@@ -622,6 +636,17 @@ img{
               margin-bottom:4em;
               margin-top:3em;
               opacity:0;
+              a{
+                color:$blue;
+                text-decoration:none;
+                &:hover,
+                &:focus,
+                &:active{
+                  //opacity:.7;
+                  text-decoration:none;
+                  color:$green;
+                }
+              }
             }
 
             h2{
@@ -709,6 +734,15 @@ img{
               &.hit-systems-analysis{
                 background-color:#febc11;
               }
+
+              &.sustainable-funding{
+                background-color:#bec0c2;
+              }
+
+              &.workforce-capacity{
+                background-color:#35bdb2;
+              }
+
             }
 
             .resource-foot{
@@ -804,6 +838,16 @@ img{
      //white-space:nowrap;
      text-indent: -29px;
      padding-left: 29px;
+     &:hover,
+     &:active,
+     &:focus{
+      opacity:1 !important;
+      svg{
+        .cls-1{
+          fill:$new-red;
+        }
+      }
+     }
 
      // input:checked{
      //  opacity:1 !important;
@@ -911,7 +955,7 @@ img{
            }
         }
         &:checked{
-          opacity:1 !important;
+          //opacity:1 !important;
           ~ .indicator{
             svg{
               .cls-1{
@@ -963,6 +1007,17 @@ img{
 
           &.hit-systems-analysis{
             background-color:#febc11;
+            border-radius:3px;
+          }
+
+           &.sustainable-funding{
+            background-color:#bec0c2;
+            border-radius:3px;
+
+          }
+          
+          &.workforce-capacity{
+            background-color:#35bdb2;
             border-radius:3px;
           }
 
@@ -1020,7 +1075,8 @@ img{
 
   .filter-group:nth-of-type(2) .checkboxes,
   .filter-group:nth-of-type(2) .radio-buttons{
-    border-bottom:none;
+    //border-bottom:none;
+    border-bottom:6px solid $blue;
     margin-bottom:0;
   }
 
