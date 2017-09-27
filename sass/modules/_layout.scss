@@ -70,11 +70,13 @@
       right: 0;
       // transition: right 0.4s linear;
       a{
+        margin-right:15px;
          &::after{
             content: '»';
             display: inline;
-            font-size: 2rem;
+            font-size: 15px;
             margin-left: 4px;
+            position:absolute;
          }
       }
    }

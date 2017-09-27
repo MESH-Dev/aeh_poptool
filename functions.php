@@ -892,8 +892,8 @@ endif;
                 </div>';
          endwhile; 
        else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) 
-        echo '<div class="post-error">
-                  Sorry, nothing found. Please modify your filter or search input.
+        echo '<div class="post-warning">
+                  <h2>Sorry, there are no resources available yet for this search. Please check back soon as we are always adding new content. In the meantime, please browse our growing <a href="'.get_page_link(15).'">community programs map</a>.</h2>
                </div>';
         // echo '<article class="post-error">
         //         <h3 class="404">
