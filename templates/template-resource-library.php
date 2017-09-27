@@ -26,6 +26,7 @@ get_header();
    <div class="container resource-container">
       <div class="row">
          <div class="resource-toolbar columns-4">
+            
             <div class="search-container">
                <form id="resource-form" action="" method="get">
                   <label for="resource-search" class="sr-only">Search Programs</label>
@@ -53,7 +54,7 @@ get_header();
                   <legend><h2>Strategy <span>select all that apply</span></h2></legend>
                    <div class="checkboxes filters strategy">
                      <div class="row">
-                     <?php $strategy_filters= get_terms(array('taxonomy'=>'strategy', 'hide_empty'=>true)); 
+                     <?php $strategy_filters= get_terms(array('taxonomy'=>'strategy', 'hide_empty'=>false)); 
                            $strat_cnt=0;
 
                            $strat_count = count($strategy_filters);
@@ -91,7 +92,41 @@ get_header();
                    <div class="checkboxes filters determinant">
                      <div class="row">
 
-                           <?php $sdh_filters= get_terms(array('taxonomy'=>'sdh', 'hide_empty'=>true));
+                           <?php 
+                               global $query_string;
+                                 $args = array(
+                                    'post_type' => 'resource',
+                                    'posts_per_page' => -1,
+                                 );
+
+                                 $the_query = new WP_Query($args);
+
+
+                        //var_dump($query);
+
+                        if ($the_query->have_posts()){
+                           $r_cnt=0;
+                           while($the_query->have_posts()){ $the_query->the_post();
+                                 
+                                 $sdh_array = array();
+                                 $sdh_array[] = get_the_terms($post->ID, 'sdh');
+                                 
+                                 //var_dump($sdh_array);
+                                 ?>
+
+                                <?php foreach ($sdh_array as $sdhs){ 
+                                    //if($sdhs != ''){
+                                 
+                                    var_dump($sdhs);?>
+                                    <!-- <h1><?php echo $sdhs->name; ?></h1> -->
+                                <?php }//}
+                                }} wp_reset_postdata();
+
+
+                                ?>
+                             <?php $sdh_filters= get_terms(array('taxonomy'=>'sdh', 'hide_empty'=>false));
+                                 //var_dump(get_terms(array('taxonomy'=>'sdh')));
+                           
                               $sdh_cnt=0;
                               
                               $sdh_count = count($sdh_filters);
@@ -121,6 +156,7 @@ get_header();
                               <?php if($sdh_count > 5 && $sdh_count-$sdh_cnt == 0){?>
                               </div>
                            <?php } ?>
+
                      </div>
                   </div>
                </fieldset>
@@ -129,9 +165,9 @@ get_header();
 
             </div>
          <div class="row">
-            <div class="apply-filters functions">
+            <!-- <div class="apply-filters functions">
                <span>Apply Filters »</span>
-            </div>  
+            </div>   -->
             <!-- <div class="remove-filters functions">
                Clear All X
             </div>   -->

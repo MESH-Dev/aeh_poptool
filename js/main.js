@@ -551,16 +551,10 @@ function createMarker(hospital){
 
     });
 
-    //Create variable needed for Spider marker clustering
-    var oms = new OverlappingMarkerSpiderfier(map, { 
-            markersWontMove: true, 
-            markersWontHide: true,
-            basicFormatEvents: true
-          });
 
 
     //Click event here to open panel and get content by ID
-    google.maps.event.addListener(marker, 'spider_click', function(){
+    google.maps.event.addListener(marker, 'click', function(){
         landingViewClose();
         desktopOpenListings();
         //reset detail panel html here
@@ -573,18 +567,20 @@ function createMarker(hospital){
         mapView.reverse();
 
     });
-
-    // Fired when the map becomes idle after panning or zooming. HOLD ON THIS
-   // google.maps.event.addListener(map, 'idle', function() {
-   //     showVisibleMarkers();
-   // });
+ 
+    // oms.addListener('format', function(marker, status) {
+    //     var iconURL = status == OverlappingMarkerSpiderfier.markerStatus.SPIDERFIABLE ? $dir + "/img/markers/health-behaviors.png" : 
+    //                   status == OverlappingMarkerSpiderfier.markerStatus.UNSPIDERFIABLE ? icons[hospital.sdh_slug].inactive : icons[hospital.sdh_slug].inactive;
+    //      marker.setIcon( iconURL );
+    // });
+ 
 
    markers.push(marker);
+
    //oms.addMarker(marker);
-
-   window.oms = oms; 
-
+   return marker;
 }
+
 
 function setActiveMarker(marker_id){
     for (var i = 0; i < markers.length; i++) {
@@ -593,7 +589,7 @@ function setActiveMarker(marker_id){
             markers[i].setIcon(icons[markers[i].topic].active);
         }
         else{
-            markers[i].setIcon(icons[markers[i].topic].inactive);
+             markers[i].setIcon(icons[markers[i].topic].inactive);
         }
     }
 }
@@ -807,11 +803,38 @@ function centerMapOnHospital(hosp_id){
 
 
 function loadMarkers(){
+   // var oms = new OverlappingMarkerSpiderfier(map, { 
+   //    markersWontMove: true, 
+   //    markersWontHide: false,
+   //    basicFormatEvents: true,
+   //    keepSpiderfied: true
+   //  });
+
+  
    //create markers from hospital data json
    for (var hospital_id in hospitals){
-      createMarker(hospitals[hospital_id]);
+      var marker = createMarker(hospitals[hospital_id]);
+ 
    }
+
+   var styles = [{
+                height: 52,
+                width: 53,
+                //anchor: [16, 0],
+                url: $dir + '/img/cluster/m1.png',
+                textColor:'#ffffff',
+                textSize: 15
+                }];
+
+   var markerCluster = new MarkerClusterer(map, markers, {imagePath: $dir + '/img/cluster/m', gridSize: 5, maxZoom: 15, styles:styles}); // styles:styles
+
+   markerCluster.setMaxZoom(15);
+   console.log(markerCluster.getStyles());
+   
+   
 }
+
+
 
 //create icon object with SDH icons.
 function createIcons(){
@@ -885,14 +908,60 @@ function GetActiveString(){
 
 }
 
+//For unique links to individual items
+//..get the variable added to the end of our URL, after the '?prog=' text
+function getQueryVariable(variable){
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
 
+//Get the value from the getQueryVariable function, and save it to 
+//..a variable
+var p_slug = getQueryVariable('prog');
 
+//Create URL function
+function showProgramLink (program){
+
+  //Run through our programs.json file
+  for (var program_id in programs){
+
+    //Get some stuff from the file and save it to variables
+    var hosp_id = programs[program_id].hosp_id;
+    var prog_id = programs[program_id].id;
+    var prog_slug = programs[program_id].slug;
+
+    //Once we have everything from the file, do some checking..
+    //..(1)does the value from our URL match a slug from the programs.json file?
+    if(p_slug == prog_slug){
+      //..(2)then run the same interaction as when a user clicks a marker
+      landingViewClose();
+      desktopOpenListings();
+      //reset detail panel html here
+      $('#detailPaneContent').html('');
+
+      //Set the marker for this program/hospital
+      setActiveMarker(hosp_id);
+
+      //create Panel content and show it.
+      //..in this version, use the prog_id & hosp_id we found above
+      createDetailPanel(prog_id, hosp_id);
+      mapView.reverse();
+    }
+  }
+  
+}
 
 
 function initMap() {
 
    var mapOptions = {
       zoom: 5,
+      maxZoom: 15,
       center: new google.maps.LatLng(40.5345952,-71.1902162),
       styles: mapStyles,
       animation: google.maps.Animation.DROP,
@@ -940,12 +1009,6 @@ function initMap() {
 
 
 
-
-
-
-
-
-
 //========================  GET DATA AND LOAD UP MAP    ====================================================
 
 var programs;
@@ -965,6 +1028,15 @@ $.getJSON(prog_file, function(data) {
 
       hospitals = hosp_data;
       initMap(); //Everything is loaded - build map!
+
+
+      //Check to see if prog variable exists in our URL
+      //..use programs.json
+      if (p_slug){
+        //..if it exists, run our showProgramLink function,
+        //..which generates the page as if someone had clicked on a map marker
+          showProgramLink();
+        }
 
     });
 

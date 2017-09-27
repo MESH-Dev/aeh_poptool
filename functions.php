@@ -55,7 +55,7 @@ function update_programs_map( $post_id ) {
 
           //Get post info to save to our json file
           $title = get_the_title();
-          $description = get_the_content();
+          $description = get_content();
 
           $contact_email = get_field('contact_email',$p_id);
 
@@ -228,7 +228,7 @@ function update_hospital_map( $post_id ) {
 
           //Get post info to save to our json file
           $title = get_the_title();
-          $description = get_the_content();
+          $description = get_content();
  
           $the_id = (string)$p_id;
 
@@ -517,6 +517,146 @@ function get_content($more_link_text = '(more...)', $stripteaser = 0, $more_file
   return $content;
 }
 
+/**
+ * Extend WordPress search to include custom fields
+ *
+ * https://adambalee.com
+ */
+
+/**
+ * Join posts and postmeta tables
+ *
+ * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_join
+ */
+function cf_search_join( $join ) {
+    global $wpdb;
+
+    if ( is_page_template('templates/template-resource-library.php') ) {   
+        $join .=' LEFT JOIN '.$wpdb->postmeta. ' ON '. $wpdb->posts . '.ID = ' . $wpdb->postmeta . '.post_id ';
+        //var_dump($join);
+    }
+
+    return $join;
+}
+add_filter('posts_join', 'cf_search_join' );
+
+/**
+ * Modify the search query with posts_where
+ *
+ * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_where
+ */
+function cf_search_where( $where ) {
+    global $pagenow, $wpdb;
+
+    if ( is_page_template('templates/template-resource-library.php') ) {
+        $where = preg_replace(
+            "/\(\s*".$wpdb->posts.".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
+            "(".$wpdb->posts.".post_title LIKE $1) OR (".$wpdb->postmeta.".meta_value LIKE $1)", $where );
+    }
+
+    //var_dump($where);
+
+    return $where;
+}
+add_filter( 'posts_where', 'cf_search_where' );
+
+/**
+ * Prevent duplicates
+ *
+ * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_distinct
+ */
+function cf_search_distinct( $where ) {
+    global $wpdb;
+
+    if ( is_page_template('templates/template-resource-library.php') ) {
+        return "DISTINCT";
+    }
+
+    //var_dump($wpdb);
+
+    return $where;
+}
+add_filter( 'posts_distinct', 'cf_search_distinct' );
+
+/**
+ * [list_searcheable_acf list all the custom fields we want to include in our search query]
+ * @return [array] [list of custom fields]
+ */
+function list_searcheable_acf(){
+  $list_searcheable_acf = array("resource_introduction", "resource_content", "resource_author");
+  return $list_searcheable_acf;
+}
+/**
+ * [advanced_custom_search search that encompasses ACF/advanced custom fields and taxonomies and split expression before request]
+ * @param  [query-part/string]      $where    [the initial "where" part of the search query]
+ * @param  [object]                 $wp_query []
+ * @return [query-part/string]      $where    [the "where" part of the search query as we customized]
+ * see https://vzurczak.wordpress.com/2013/06/15/extend-the-default-wordpress-search/
+ * credits to Vincent Zurczak for the base query structure/spliting tags section
+ */
+function advanced_custom_search( $where, &$wp_query ) {
+    global $wpdb;
+ 
+    if ( empty( $where ))
+        return $where;
+ 
+    // get search expression
+    $terms = $wp_query->query_vars[ 's' ];
+    
+    // explode search expression to get search terms
+    $exploded = explode( ' ', $terms );
+    if( $exploded === FALSE || count( $exploded ) == 0 )
+        $exploded = array( 0 => $terms );
+         
+    // reset search in order to rebuilt it as we whish
+    $where = '';
+    
+    // get searcheable_acf, a list of advanced custom fields you want to search content in
+    $list_searcheable_acf = list_searcheable_acf();
+    foreach( $exploded as $tag ) :
+        $where .= " 
+          AND (
+            (phtL7TU3_posts.post_title LIKE '%$tag%')
+            OR (phtL7TU3_posts.post_content LIKE '%$tag%')
+            OR EXISTS (
+              SELECT * FROM phtL7TU3_postmeta
+                WHERE post_id = phtL7TU3_posts.ID
+                  AND (";
+        foreach ($list_searcheable_acf as $searcheable_acf) :
+          if ($searcheable_acf == $list_searcheable_acf[0]):
+            $where .= " (meta_key LIKE '%" . $searcheable_acf . "%' AND meta_value LIKE '%$tag%') ";
+          else :
+            $where .= " OR (meta_key LIKE '%" . $searcheable_acf . "%' AND meta_value LIKE '%$tag%') ";
+          endif;
+        endforeach;
+          $where .= ")
+            )
+            OR EXISTS (
+              SELECT * FROM phtL7TU3_comments
+              WHERE comment_post_ID = phtL7TU3_posts.ID
+                AND comment_content LIKE '%$tag%'
+            )
+            OR EXISTS (
+              SELECT * FROM phtL7TU3_terms
+              INNER JOIN phtL7TU3_term_taxonomy
+                ON phtL7TU3_term_taxonomy.term_id = phtL7TU3_terms.term_id
+              INNER JOIN phtL7TU3_term_relationships
+                ON phtL7TU3_term_relationships.term_taxonomy_id = phtL7TU3_term_taxonomy.term_taxonomy_id
+              WHERE (
+              taxonomy = 'post_tag'
+                OR taxonomy = 'category'              
+                OR taxonomy = 'myCustomTax'
+              )
+                AND object_id = phtL7TU3_posts.ID
+                AND phtL7TU3_terms.name LIKE '%$tag%'
+            )
+        )";
+    endforeach;
+    return $where;
+}
+ 
+add_filter( 'posts_search', 'advanced_custom_search', 500, 2 );
+
 //AJAX Resources
 function get_resources(){
   $post_slug = $_POST['strategies']; //This is our value from our ajax js file
@@ -524,7 +664,7 @@ function get_resources(){
   $post_slug_ct = $_POST['determinants']; //This is our value from our ajax js file
   //var_dump($post_slug_ct);
   $query = $_POST['query']; //*
-  //var_dump($query);
+  //var_dump('The query is'.$query);
   //var_dump($query);
   //var_dump($post_slug);
   //$query = $_POST('query');
@@ -730,22 +870,14 @@ endif;
                               $strat_label.
                               '</div>
                               <div class="content">
-                              <h2>'.$the_title.' From Filter</h2>
+                              <h2>'.$the_title.'</h2>
                               <div class="author">
                                 '.$resource_author.'
                               </div>
                               
-                                 <p class="resource-intro">'.$resource_intro.'</p>'
-                                 .$resource_content.
-                               
-                                  '<p class="tax-terms s-determinants">
-                                  <span>Social Determinants: </span>
-                                  '. rtrim($dn_list, $comma).'
-                                  </p>
-                              <p class="tax-terms strategy">
-                                <span>Strategy: </span>
-                                '.rtrim($sn_list, $comma).'
-                              </p>
+                                 <p class="resource-intro">'.$resource_intro.'</p>
+                                 <div class="resource-content">'.$resource_content.'
+                              </div>
                               </div>
                              <div class="resource-foot">
                                <p class="expand">
@@ -760,8 +892,8 @@ endif;
                 </div>';
          endwhile; 
        else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) 
-        echo '<div class="post-error">
-                  No programs found. Please modify your filter or search input.
+        echo '<div class="post-warning">
+                  <h2>Sorry, there are no resources available yet for this search. Please check back soon as we are always adding new content. In the meantime, please browse our growing <a href="'.get_page_link(15).'">community programs map</a>.</h2>
                </div>';
         // echo '<article class="post-error">
         //         <h3 class="404">
@@ -773,5 +905,7 @@ endif;
        endif; // OK, I think that takes care of both scenarios (having posts or not having any posts) 
        die();//if this isn't included, you will get funky characters at the end of your query results.
 }
+
+
 
 ?>
